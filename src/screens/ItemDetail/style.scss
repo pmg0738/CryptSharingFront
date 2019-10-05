@@ -1,6 +1,6 @@
 .item-detail-selected-pic{
-    width: 550px;
-    height: 550px;
+    width: 480px;
+    height: 480px;
     margin-bottom: 20px;
 }
 
@@ -46,4 +46,41 @@
     color: black;
     padding: 15px;
     padding-left: 25px;
+}
+
+.item-detail-goto-chat{
+    margin-right:20px;
+    margin-bottom:20px;
+    margin-left:20px;
+
+}
+
+.item-detail-goto-request{
+    margin-bottom:20px;
+    margin-left:20px;
+
+}
+
+.item-detail-owner{
+    font-size: 28px;
+    margin-left:20px;
+    margin-bottom: 20px;
+}
+
+.item-detail-rent-state{
+    font-size: 28px;
+    margin-left:20px;
+    margin-bottom: 20px;
+}
+
+.item-detail-charge{
+    font-size: 28px;
+    margin-left:20px;
+    margin-bottom: 20px;
+}
+
+.item-detail-more-detail-info-header{
+    font-size: 28px;
+    margin-left:20px;
+    margin-bottom: 8px;
 }

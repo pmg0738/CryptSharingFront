@@ -23,7 +23,6 @@ export default class ItemDetail extends React.Component {
         super(props);
 
         this.state = {
-            selectedImage: itemPicture2,
             images: [
                 itemPicture,
                 itemPicture2,
@@ -32,13 +31,8 @@ export default class ItemDetail extends React.Component {
                 itemPicture2,
                 test,
             ],
-            imageStartIndex: 1,
+            imageStartIndex: 0,
         }
-    }
-
-    changeSelectedImage = (e) =>{
-
-        console.log('id:', e.target.id);
     }
 
     myArray = (array, index) => {
@@ -69,7 +63,7 @@ export default class ItemDetail extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={12} md={6} className="item-detail-pic">
-                            <img className="item-detail-selected-pic" src={this.state.selectedImage}></img>
+                            <img className="item-detail-selected-pic" src={this.state.images[0]}></img>
                             <Row>
                                 <FontAwesomeIcon className="item-detail-chevron-left" icon={faChevronLeft}
                                     onClick={this.backOneStep}
@@ -87,16 +81,18 @@ export default class ItemDetail extends React.Component {
                             </Row>
                         </Col>
                         <Col sm={12} md={6} className="item-detail-info">
-                            <div className="item-detail-owner">出品者: park　★★★★★</div>
-                            <div className="item-detail-renter">貸出状況: park</div>
+                            <Button className="item-detail-goto-chat">チャット</Button>
+                            <Button className="item-detail-goto-request">リクエスト</Button>
+                            <div className="item-detail-owner">出品者 : park　★★★★★</div>
+                            <div className="item-detail-rent-state">貸出状況 : 貸し出し可能</div>
                             <div className="item-detail-charge">利用料：1000円/日</div>
                             <div className="item-detail-more-detail-info-header">
                                 その他の情報
-                                <div className="item-detail-more-detail-info-contents">
-                                    ブランド名：GUCCI
-                                    sadfsdfa<br/>
-                                    sdflajksdfjlakasdfjkl<br/>
-                                </div>
+                            </div>
+                            <div className="item-detail-more-detail-info-contents">
+                                ブランド名：GUCCI<br/>
+                                これはいい<br/>
+                                まじで<br/>
                             </div>
                         </Col>
                     </Row>
