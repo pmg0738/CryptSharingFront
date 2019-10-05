@@ -21,6 +21,7 @@ import cup from '../../images/cup.jpg';
 import mouse from '../../images/mouse.jpg';
 import speaker from '../../images/speaker.jpg';
 import carryBag from '../../images/carry_bag.jpg';
+import monitor from '../../images/monitor.jpg'
 //  import umbrella from '../../images/umbrella.jpg';
 
 
@@ -71,6 +72,12 @@ export default class ItemList extends React.Component {
                     image: bicycle,
                     title: "自転車",
                     status: 0,
+                }, 
+                {
+                    color: "red",
+                    image: monitor,
+                    title: "自転車",
+                    status: 1,
                 }, 
             ]
         }
