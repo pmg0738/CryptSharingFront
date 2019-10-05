@@ -62,15 +62,13 @@ export default class NavbarForSearch extends React.Component {
 
     render() {
         return (
-            <div>
-                <Nav className="navbar-container">
-                        <Button className="navbar-hamburger-menu-button" onClick={this.handleMenu}>
-                            <FontAwesomeIcon icon={faBars}/>
-                        </Button>
-                    {this.state.menu}
-                    {/* {this.renderMenu()} */}
-                </Nav>
-            </div>
+            <Nav className="navbar-container">
+                    <Button className="navbar-hamburger-menu-button" onClick={this.handleMenu}>
+                        <FontAwesomeIcon icon={faBars}/>
+                    </Button>
+                {this.state.menu}
+                {/* {this.renderMenu()} */}
+            </Nav>
         )
     }
 }
