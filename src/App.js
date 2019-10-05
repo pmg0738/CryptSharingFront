@@ -10,21 +10,21 @@ import {
 import MainSearch from './screens/MainSearch';
 import ItemList from './screens/ItemList';
 import ItemDetail from './screens/ItemDetail';
-import ChatScreen from './screens/ChatScreen';
+import ChatScreen from './screens/Chat';
 
 
 export default class App extends React.Component{
   render(){
   return (
       <div className="App">
+        {/* <Route path='/search' component={MainSearch}/> */}
         <BrowserRouter>
           <Row>
-            <Col></Col>
             <Col>
-              <Route path='/MainSearch' component={MainSearch}/>
-              <Route path='/ItemList' component={ItemList}/>
-              <Route path='/ItemDetail' component={ItemDetail}/>
-              <Route path='/ChatScreen' component={ChatScreen}/>
+              <Route path='/search' component={MainSearch}/>
+              <Route path='/items'  component={ItemList}/>
+              <Route path='/items/:id' component={ItemDetail}/>
+              <Route path='/chat' component={ChatScreen}/>
             </Col>
           </Row>
         </BrowserRouter>
