@@ -16,6 +16,17 @@ import itemPicture from '../../images/bicycle.jpg';
 import itemPicture2 from '../../images/bicycle2.jpg';
 import test from '../../images/test.jpg';
 
+import S__23519271 from '../../images/S__23519271.jpg';
+import S__23519273 from '../../images/S__23519273.jpg';
+import S__23519274 from '../../images/S__23519274.jpg';
+import S__23519275 from '../../images/S__23519275.jpg';
+import S__23519276 from '../../images/S__23519276.jpg';
+import S__23519277 from '../../images/S__23519277.jpg';
+import S__23519278 from '../../images/S__23519278.jpg';
+import S__23519279 from '../../images/S__23519279.jpg';
+import S__23519280 from '../../images/S__23519280.jpg';
+import S__23519281 from '../../images/S__23519281.jpg';
+
 
 
 export default class ItemDetail extends React.Component {
@@ -24,14 +35,19 @@ export default class ItemDetail extends React.Component {
 
         this.state = {
             images: [
-                itemPicture,
-                itemPicture2,
-                test,
-                itemPicture,
-                itemPicture2,
-                test,
+                S__23519271,
+                S__23519273,
+                S__23519274,
+                S__23519275,
+                S__23519276,
+                S__23519277,
+                S__23519278,
+                S__23519279,
+                S__23519280,
+                S__23519281,
             ],
-            imageStartIndex: 0,
+            imageStartIndex: 0,                
+            selectedImage: S__23519271,
         }
     }
 
@@ -63,7 +79,7 @@ export default class ItemDetail extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={12} md={6} className="item-detail-pic">
-                            <img className="item-detail-selected-pic" src={this.state.images[0]}></img>
+                            <img className="item-detail-selected-pic" src={this.state.selectedImage}></img>
                             <Row>
                                 <FontAwesomeIcon className="item-detail-chevron-left" icon={faChevronLeft}
                                     onClick={this.backOneStep}

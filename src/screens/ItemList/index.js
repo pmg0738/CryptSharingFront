@@ -92,6 +92,7 @@ export default class ItemList extends React.Component {
                     <Row>
                     {this.state.items.map((item) => 
                         <Col xc={6} sm={6} md={4} lg={3}>
+                        <Link to='/items/1'>
                             <Card className="item-list-item-card">
                                 <div className="item-list-item-card-image-container">
                                     <Image src={item.image} className="item-list-item-card-image"/>
@@ -108,6 +109,7 @@ export default class ItemList extends React.Component {
                                     <Button className={"item-list-item-card-detail-button-" + item.color}>詳細</Button>
                                 </Link> */}
                             </Card>
+                        </Link>
                             {/* <p className="item-list-item-card-price-under">10円/分</p> */}
                         </Col>
                     )}
