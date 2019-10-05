@@ -9,7 +9,6 @@
     // margin-right: 5px;
     height: 150px;
     width: 150px;
-
 }
 
 .item-detail-non-selected-pic-container{
@@ -61,26 +60,30 @@
 
 }
 
+$info-font-size: 20px;
+$info-margin-left: 20px;
+// $title-left: 7px;
+
 .item-detail-owner{
-    font-size: 28px;
-    margin-left:20px;
+    font-size: $info-font-size;
+    margin-left: $info-margin-left;
     margin-bottom: 20px;
 }
 
 .item-detail-rent-state{
-    font-size: 28px;
-    margin-left:20px;
+    font-size: $info-font-size;
+    margin-left: $info-margin-left;
     margin-bottom: 20px;
 }
 
 .item-detail-charge{
-    font-size: 28px;
-    margin-left:20px;
+    font-size: $info-font-size;
+    margin-left: $info-margin-left;
     margin-bottom: 20px;
 }
 
 .item-detail-more-detail-info-header{
-    font-size: 28px;
-    margin-left:20px;
+    font-size: $info-font-size;
+    margin-left: $info-margin-left;
     margin-bottom: 8px;
 }
