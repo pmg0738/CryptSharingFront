@@ -19,12 +19,12 @@ export default class App extends React.Component{
   render(){
   return (
       <div className="App">
+        {/* <Route path='/search' component={MainSearch}/> */}
         <BrowserRouter>
-              <Navbar></Navbar>
-              <Route exact path='/search' component={MainSearch}/>
-              <Route exact path='/items' component={ItemList}/>
-              <Route exact path='/items/:id' component={ItemDetail}/>
-              <Route exact path='/chat' component={Chat}/>
+            <Route exact path='/search' component={MainSearch}/>
+            <Route exact path='/items' component={ItemList}/>
+            <Route exact path='/items/:id' component={ItemDetail}/>
+            <Route exact path='/chat' component={Chat}/>
         </BrowserRouter>
       </div>
     )

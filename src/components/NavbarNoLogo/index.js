@@ -11,11 +11,10 @@ import {
     Nav,
   } from 'react-bootstrap';
 
-  import logo from '../../images/logo.png';
 
 
 
-export default class Navbar extends React.Component {
+export default class NavbarForSearch extends React.Component {
     constructor(props) {
         super(props);
         
@@ -65,9 +64,6 @@ export default class Navbar extends React.Component {
         return (
             <div>
                 <Nav className="navbar-container">
-                    <Link to='/search'>
-                        <img className="navbar-logo-image" src={logo}/>
-                    </Link>
                         <Button className="navbar-hamburger-menu-button" onClick={this.handleMenu}>
                             <FontAwesomeIcon icon={faBars}/>
                         </Button>
