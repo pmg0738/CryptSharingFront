@@ -7,12 +7,12 @@ import {
   Row,  
 } from 'react-bootstrap';
 
-import Navbar from './components/Navbar';
-
 import MainSearch from './screens/MainSearch';
 import ItemList from './screens/ItemList';
 import ItemDetail from './screens/ItemDetail';
 import Chat from './screens/Chat';
+// import Navbar from '.src/components/Navbar';
+
 
 
 export default class App extends React.Component{

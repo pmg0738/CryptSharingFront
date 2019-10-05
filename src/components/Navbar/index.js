@@ -41,29 +41,41 @@ export default class Navbar extends React.Component {
     }
 
     renderMenu = () => {
-        return (
-            
-                <Card className="navbar-hamburger-menu-button-items">
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <Link to='/search' className="navbar-hamburger-menu-button-item">Search</Link>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                            <Link to='/chat' className="navbar-hamburger-menu-button-item">Chat</Link>
-                        </ListGroup.Item>
-                    </ListGroup>
-                </Card>
-            
+        return (            
+            // <Card className="navbar-hamburger-menu-button-items">
+            //     <ListGroup variant="flush">
+            //         <ListGroup.Item>
+            //             <Link to='/search' className="navbar-hamburger-menu-button-item">Search</Link>
+            //         </ListGroup.Item>
+            //         <ListGroup.Item>
+            //             <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
+            //         </ListGroup.Item>
+            //         <ListGroup.Item>
+            //             <Link to='/chat' className="navbar-hamburger-menu-button-item">Chat</Link>
+            //         </ListGroup.Item>
+            //     </ListGroup>
+            // </Card>            
+            <div className="navbar-menu-items">
+                <Link to='/search'>
+                    <p className="navbar-menu-item">Search</p>
+                </Link>
+                <Link to='/items'>
+                    <p className="navbar-menu-item">Items</p>
+                </Link>
+                <Link to='/chat'>
+                    <p className="navbar-menu-item">Chat</p>
+                </Link>
+            </div>
         )
     }
+
 
 
     render() {
         return (
             <div>
+                {this.state.menu}
+                {/* {this.renderMenu()} */}
                 <Nav className="navbar-container">
                     <Link to='/search'>
                         <img className="navbar-logo-image" src={logo}/>
@@ -71,9 +83,8 @@ export default class Navbar extends React.Component {
                         <Button className="navbar-hamburger-menu-button" onClick={this.handleMenu}>
                             <FontAwesomeIcon icon={faBars}/>
                         </Button>
-                    {this.state.menu}
-                    {/* {this.renderMenu()} */}
                 </Nav>
+                {/* {this.state.menu} */}
             </div>
         )
     }
