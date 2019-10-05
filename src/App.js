@@ -23,7 +23,8 @@ export default class App extends React.Component{
         <BrowserRouter>
             <Route exact path='/search' component={MainSearch}/>
             <Route exact path='/items' component={ItemList}/>
-            <Route exact path='/items/:id' component={ItemDetail}/>
+            {/* <Route exact path='/items/:id' component={ItemDetail}/> */}
+            <Route exact path='/items/1' component={ItemDetail}/>
             <Route exact path='/chat' component={Chat}/>
         </BrowserRouter>
       </div>

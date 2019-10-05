@@ -5,8 +5,16 @@
     // max-width: 250px;
     margin-bottom: 20px;
 }
+.item-list-item-card-image-container {
+    background-color: #999999;
+    height: 200px;
+    // width: 200px;
+}
 .item-list-item-card-image {
-    height: 200px;    
+    // background-color: #999999;
+    // max-height: 200px;
+    // width: 200px;
+    height: 100%;
 }
 .item-list-item-card-status {
     color: #33b033;
