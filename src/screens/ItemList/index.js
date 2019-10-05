@@ -8,9 +8,9 @@ import {
     Col,
     Row,    
  } from 'react-bootstrap';
- import image from '../../images/art.jpg';
+//  import image from '../../images/art.jpg';
  import bicycle from '../../images/bicycle.jpg';
- import umbrella from '../../images/umbrella.jpg';
+//  import umbrella from '../../images/umbrella.jpg';
 
 
 export default class ItemList extends React.Component {

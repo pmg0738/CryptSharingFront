@@ -1,11 +1,13 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
-export default class ChatScreen extends React.Component {
+
+export default class Chat extends React.Component {
     render() {
         return (
-            <div>
-                
-            </div>
+            <Container>
+
+            </Container>
         )
     }
 }

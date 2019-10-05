@@ -7,10 +7,12 @@ import {
   Row,  
 } from 'react-bootstrap';
 
+import Navbar from './components/Navbar';
+
 import MainSearch from './screens/MainSearch';
 import ItemList from './screens/ItemList';
 import ItemDetail from './screens/ItemDetail';
-import ChatScreen from './screens/ChatScreen';
+import Chat from './screens/Chat';
 
 
 export default class App extends React.Component{
@@ -18,15 +20,11 @@ export default class App extends React.Component{
   return (
       <div className="App">
         <BrowserRouter>
-          <Row>
-            <Col></Col>
-            <Col>
-              <Route path='/MainSearch' component={MainSearch}/>
-              <Route path='/ItemList' component={ItemList}/>
-              <Route path='/ItemDetail' component={ItemDetail}/>
-              <Route path='/ChatScreen' component={ChatScreen}/>
-            </Col>
-          </Row>
+              <Navbar></Navbar>
+              <Route exact path='/search' component={MainSearch}/>
+              <Route exact path='/items' component={ItemList}/>
+              <Route exact path='/items/:id' component={ItemDetail}/>
+              <Route exact path='/chat' component={Chat}/>
         </BrowserRouter>
       </div>
     )
