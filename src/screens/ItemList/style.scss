@@ -1,0 +1,39 @@
+.item-list-item-card {
+    // background-color: aqua;
+    height: 300px;
+    width: 250px;
+    margin-bottom: 20px;
+}
+.item-list-item-card-image {
+    height: 200px;    
+}
+.item-list-item-card-status {
+    color: #33b033;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    bottom: -5px;
+    left: 15px;
+}
+.item-list-item-card-title {
+    position: absolute;
+    top: 210px;
+    left: 10px;
+}
+.item-list-item-card-price {
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    // bottom: 10px;
+    top: 210px;
+    right: 20px;
+}
+.item-list-item-card-detail-button {
+    background-color: #002739;
+    border-color: #002739;
+    width: 60px;
+    padding: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
