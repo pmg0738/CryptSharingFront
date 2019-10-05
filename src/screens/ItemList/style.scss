@@ -1,18 +1,22 @@
 .item-list-item-card {
     border-width: 0px;
-    width: 250px;
-    margin-bottom: 20px;    
+    // width: 250px;
+    margin-bottom: 20px;
 }
 .item-list-item-card-image {
     border-color: #ffffff;
-    border-width: 10px;
-    height: 250px;
-    width: 250px;
+    // height: 250px;
+    // width: 250px;
+    // position: absolute;    
+    width: 100%;
+    // padding-top: 100%;
 }
 .item-list-item-card-image-smoke {    
     background-color: #ffffff;
-    height: 250px;
-    width: 250px;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    padding-top: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -20,8 +24,10 @@
 }
 .item-list-item-card-image-smoke-not-available{
     background-color: #333333;
-    height: 250px;
-    width: 250px;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    padding-top: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
