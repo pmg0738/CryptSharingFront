@@ -15,6 +15,12 @@ import Navbar from '../../components/Navbar';
 import bicycle from '../../images/bicycle.jpg';
 import test from '../../images/test.jpg';
 
+import park from '../../images/park.jpg';
+import cap from '../../images/cap.jpg';
+import cup from '../../images/cup.jpg';
+import mouse from '../../images/mouse.jpg';
+import speaker from '../../images/speaker.jpg';
+import carryBag from '../../images/carry_bag.jpg';
 //  import umbrella from '../../images/umbrella.jpg';
 
 
@@ -23,7 +29,50 @@ export default class ItemList extends React.Component {
         super(props);
 
         this.state = {
-            items: [bicycle, bicycle, test, bicycle, test, bicycle, test, bicycle, test, bicycle, test, bicycle],
+            items: [
+                {
+                    color: "red",
+                    image: park,
+                    title: "ぱく",
+                    status: 0,
+                }, 
+                {
+                    color: "yellow",
+                    image: cap,
+                    title: "キャップ",
+                    status: 1,
+                }, 
+                {
+                    color: "green",
+                    image: cup,
+                    title: "コップ",
+                    status: 1,
+                }, 
+                {
+                    color: "blue",
+                    image: mouse,
+                    title: "マウス",
+                    status: 0,
+                }, 
+                {
+                    color: "red",
+                    image: speaker,
+                    title: "スピーカー",
+                    status: 0,
+                }, 
+                {
+                    color: "yellow",
+                    image: carryBag,
+                    title: "キャリーバック",
+                    status: 0,
+                }, 
+                {
+                    color: "green",
+                    image: bicycle,
+                    title: "自転車",
+                    status: 0,
+                }, 
+            ]
         }
     }
 
@@ -38,15 +87,21 @@ export default class ItemList extends React.Component {
                         <Col xc={6} sm={6} md={4} lg={3}>
                             <Card className="item-list-item-card">
                                 <div className="item-list-item-card-image-container">
-                                    <Image src={item} className="item-list-item-card-image" />
+                                    <Image src={item.image} className="item-list-item-card-image"/>
+                                    <div className="item-list-item-card-image-smoke" />
+                                    {[<div className="item-list-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
-                                <p className="item-list-item-card-title">自転車</p>
-                                <p className="item-list-item-card-status">利用可能</p>
-                                <p className="item-list-item-card-price">10円</p>
-                                <Link to='/items/1'>
-                                    <Button className="item-list-item-card-detail-button">詳細</Button>
-                                </Link>
+                                <p className={"item-list-item-card-title-" + item.color}>{item.title}</p>
+                                {[
+                                <p className="item-list-item-card-status-unavailable">貸出中</p>,
+                                <div/>
+                                ][item.status]}
+                                {/* <p className="item-list-item-card-price">10円/分</p> */}
+                                {/* <Link to='/items/1'>
+                                    <Button className={"item-list-item-card-detail-button-" + item.color}>詳細</Button>
+                                </Link> */}
                             </Card>
+                            {/* <p className="item-list-item-card-price-under">10円/分</p> */}
                         </Col>
                     )}
                     </Row>

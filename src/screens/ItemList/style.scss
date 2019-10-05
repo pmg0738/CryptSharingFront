@@ -1,45 +1,157 @@
 .item-list-item-card {
-    // background-color: aqua;
-    height: 300px;
-    width: 80%;
-    // max-width: 250px;
-    margin-bottom: 20px;
-}
-.item-list-item-card-image-container {
-    background-color: #999999;
-    height: 200px;
-    // width: 200px;
+    border-width: 0px;
+    width: 250px;
+    margin-bottom: 20px;    
 }
 .item-list-item-card-image {
-    // background-color: #999999;
-    // max-height: 200px;
-    // width: 200px;
-    height: 100%;
+    border-color: #ffffff;
+    border-width: 10px;
+    height: 250px;
+    width: 250px;
 }
-.item-list-item-card-status {
-    color: #33b033;
+.item-list-item-card-image-smoke {    
+    background-color: #ffffff;
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.1;
+}
+.item-list-item-card-image-smoke-not-available{
+    background-color: #333333;
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+}
+// .item-list-item-card-status-available {
+//     color: #33b033;
+//     font-size: 12px;
+//     font-weight: bold;
+//     position: absolute;
+//     bottom: -5px;
+//     left: 15px;
+// }
+.item-list-item-card-status-unavailable {
+    // color: #ff6967;
+    color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     position: absolute;
     bottom: -5px;
     left: 15px;
 }
-.item-list-item-card-title {
+$title-top: 7px;
+$title-left: 7px;
+.item-list-item-card-title-red {
+    background-color: #ea4335;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     position: absolute;
-    top: 210px;
-    left: 10px;
+    top: $title-top;
+    left: $title-left;
+}
+.item-list-item-card-title-yellow {
+    background-color: #fbbc05;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: $title-top;
+    left: $title-left;
+}
+.item-list-item-card-title-blue {
+    background-color: #4285f4;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: $title-top;
+    left: $title-left;
+}
+.item-list-item-card-title-green {
+    background-color: #34a853;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: $title-top;
+    left: $title-left;
 }
 .item-list-item-card-price {
+    background-color: #ffffff;
+    opacity: 0.8;
+    border-radius: 8px;
+    color: #ffffff;
+    // color: #000000;
     font-size: 20px;
     font-weight: bold;
     position: absolute;
     // bottom: 10px;
-    top: 210px;
+    top: 10px;
     right: 20px;
 }
-.item-list-item-card-detail-button {
-    background-color: #002739;
-    border-color: #002739;
+.item-list-item-card-price-under {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: -10px;
+}
+.item-list-item-card-detail-button-yellow {
+    background-color: #fbbc05;
+    border-color: #fbbc05;
+    width: 60px;
+    padding: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.item-list-item-card-detail-button-red {
+    // background-color: #002739;
+    // border-color: #002739;
+    background-color: #ea4335;
+    border-color: #ea4335;
+    width: 60px;
+    padding: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.item-list-item-card-detail-button-blue {
+    // background-color: #002739;
+    // border-color: #002739;
+    background-color: #4285f4;
+    border-color: #4285f4;
+    width: 60px;
+    padding: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.item-list-item-card-detail-button-green {
+    // background-color: #002739;
+    // border-color: #002739;
+    background-color: #34a853;
+    border-color: #34a853;
     width: 60px;
     padding: 5px;
     position: absolute;
