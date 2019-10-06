@@ -129,8 +129,8 @@ export default class ItemList extends React.Component {
     }
 
     componentWillMount() {
-        // axios.get('http://localhost:8000/items')
-        axios.get(API_BASE_URL + '/items')
+        axios.get('http://localhost:8000/items')
+        // axios.get(API_BASE_URL + '/items')
             .then(res => console.log('res', res))
             .catch(error => console.error('ItemList get items', error))
     }

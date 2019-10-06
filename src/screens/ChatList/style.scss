@@ -1,0 +1,88 @@
+.friend-card {
+    align-items: center;
+    flex-direction: row;
+    padding: 8px;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+.friend-card-image {
+    background-color: #999;
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+}
+.friend-card-name {
+    // align-self: center;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+.friend-card-num-of-cards {
+    // align-self: center;
+    color: #999999;
+    position: absolute;
+    right: 100px;
+}
+.friend-card-button {
+    // background-color: #E0C043;
+    // border-color: #E0C043;
+    background-color: #002739;
+    padding-top: 10px;
+    position: absolute;
+    right: 20px;
+}
+// .friend-send-button {
+//     // background-color: #ffcc00;
+//     // border-color: #ffcc00;
+//     padding-top: 10px;
+//     position: absolute;
+//     right: 20px;
+// }
+.friend-card-button-link {
+    height: 50px;
+}
+.friend-card-num-of-good {
+    // color: #ffcc00;
+    color: #ff6967;
+    // font-weight: bold;
+    // font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    // font-family: 'Courier New', Courier, monospace;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+.friend-list-container {
+    padding-bottom: 30px;
+}
+.friend-list-num-of-friends {
+    color: #ffffff;
+    text-align: left;
+    margin: 20px;
+}
+.friend-card-lastMessage {
+    color: #999999;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+.friend-list-add-tag-button {
+    // background-color: #ffcc00;
+    // border-color: #ffcc00;
+    height: 40px;
+    margin-left: 10px;
+}
+.friend-list-add-tag-button:hover {
+    // background-color: #ffcc00;
+    // border-color: #ffcc00;
+    height: 40px;
+    margin-left: 10px;
+}
+.friend-list-tag-select {
+    height: 40px;
+}
+.friend-list-top-row {
+    align-items: center;
+}
+.friend-list-tag-container {
+    // background-color: #ff6967;
+    position: absolute;
+    right: 30px;
+}

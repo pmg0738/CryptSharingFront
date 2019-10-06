@@ -59,7 +59,7 @@ export default class Navbar extends React.Component {
                         <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
                     </ListGroup.Item>
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/chat' className="navbar-hamburger-menu-button-item">Chat</Link>
+                        <Link to='/chats' className="navbar-hamburger-menu-button-item">Chat</Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card>            
