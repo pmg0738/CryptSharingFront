@@ -8,13 +8,14 @@ import {
   Row,  
 } from 'react-bootstrap';
 
-import MainSearch from './screens/MainSearch';
-import ItemList from './screens/ItemList';
-import ItemDetail from './screens/ItemDetail';
 import Chat from './screens/Chat';
 import ChatList from './screens/ChatList';
+import ItemList from './screens/ItemList';
+import ItemDetail from './screens/ItemDetail';
+import ItemPost from './screens/ItemPost';
+import MainSearch from './screens/MainSearch';
 import Navbar from './components/Navbar';
-import NavbarNoLogo from './components/NavbarNoLogo';
+// import NavbarNoLogo from './components/NavbarNoLogo';
 
 
 
@@ -27,6 +28,7 @@ export default class App extends React.Component{
             <div className="screen-container">
               <Route exact path='/search' component={MainSearch}/>
               <Route exact path='/items' component={ItemList}/>
+              <Route exact path='/items/post' component={ItemPost}/>
               {/* <Route exact path='/items/:id' component={ItemDetail}/> */}
               <Route exact path='/chats' component={ChatList}/>
               <Route exact path='/items/1' component={ItemDetail}/>

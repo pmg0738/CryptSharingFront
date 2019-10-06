@@ -167,9 +167,9 @@ export default class ItemList extends React.Component {
                         </Col>
                     )}
                     </Row>
-                    <Button className="item-list-add-button">
-                        ＋
-                    </Button>
+                    <Link to='/items/post'>
+                        <Button className="item-list-add-button">＋</Button>                    
+                    </Link>
                     <Pagination numOfPage={10} />
                 </Container>
                 {/* <Navbar/> */}
