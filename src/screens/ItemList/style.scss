@@ -1,5 +1,19 @@
+// /* mixinの定義 */
+// @mixin bg-gradient($angle: 180deg, $color: #0bd, $amount: 20%) {
+//     background: linear-gradient($angle, $color, adjust-hue($color, $amount)) fixed;
+//   }
+   
+//   /* 必要箇所でmixinの呼び出し */
+// body {
+// @include bg-gradient;
+// }
+
+@mixin bg-gradient($angle: 0.01deg, $color: #ea4335, $amount: 50%) {
+    background: linear-gradient($angle, $color, adjust-hue($color, $amount)) fixed;
+  }
+   
 .item-list-add-button {
-    background-color: #ea4335;
+    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
     border-color: #ea4335;
     border-radius: 25px;
     font-size: 20px;
@@ -11,7 +25,8 @@
     width: 50px;
 }
 .item-list-add-button:hover {
-    background-color: #fbbc05;
+    // background-color: #fbbc05;
+    background: linear-gradient(to bottom,#F9C936,#fbbc05 30%,#C69B17); 
     border-color: #fbbc05;
     border-radius: 25px;
     font-size: 20px;
@@ -27,16 +42,26 @@
 }
 .item-list-item-card {
     border-width: 0px;
-    // width: 250px;
     margin-bottom: 20px;
+}
+.item-list-item-card:hover {
+    border-width: 0px;
+    margin-bottom: 20px;
+    transform: scale(1.2);
+    transition-duration: 0.5s;  
 }
 .item-list-item-card-image {
     border-color: #ffffff;
-    // height: 250px;
-    // width: 250px;
-    // position: absolute;    
     width: 100%;
-    // padding-top: 100%;
+    // transition-duration: 0.5s;
+    // -webkit-transform: scale(1.5,1.5);
+	// transform: scale(1.5,1.5);
+}
+.item-list-item-card-image:hover {
+    border-color: #ffffff;
+    width: 100%;
+    // transform: scale(1.2);
+    // transition-duration: 0.5s;  
 }
 .item-list-item-card-image-smoke {    
     background-color: #ffffff;
@@ -80,7 +105,8 @@
 $title-top: 7px;
 $title-left: 7px;
 .item-list-item-card-title-red {
-    background-color: #ea4335;
+    // background-color: #ea4335;
+    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
     // border-radius: 20px;
     color: #ffffff;
     font-size: 18px;
@@ -161,8 +187,8 @@ $title-left: 7px;
 .item-list-item-card-detail-button-red {
     // background-color: #002739;
     // border-color: #002739;
-    background-color: #ea4335;
-    border-color: #ea4335;
+    background-color: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B);
+    border-color: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B);
     width: 60px;
     padding: 5px;
     position: absolute;

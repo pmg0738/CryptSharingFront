@@ -1,5 +1,8 @@
 import React from 'react';
+import axios from 'axios';
+
 import './style.scss';
+import { API_BASE_URL } from '../../config.js'
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import {
@@ -125,6 +128,13 @@ export default class ItemList extends React.Component {
         }
     }
 
+    componentWillMount() {
+        // axios.get('http://localhost:8000/items')
+        axios.get(API_BASE_URL + '/items')
+            .then(res => console.log('res', res))
+            .catch(error => console.error('ItemList get items', error))
+    }
+
 
     render() {
         return(
@@ -137,7 +147,7 @@ export default class ItemList extends React.Component {
                             <Card className="item-list-item-card">
                                 <div className="item-list-item-card-image-container">
                                     <Image src={item.image} className="item-list-item-card-image"/>
-                                    <div className="item-list-item-card-image-smoke" />
+                                    {/* <div className="item-list-item-card-image-smoke" /> */}
                                     {[<div className="item-list-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
                                 <p className={"item-list-item-card-title-" + item.color}>{item.title}</p>
