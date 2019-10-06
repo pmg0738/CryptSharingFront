@@ -129,7 +129,6 @@ export default class ItemList extends React.Component {
     render() {
         return(
             <div>
-                <Navbar/>
                 <Container>
                     <Row>
                     {this.state.items.map((item) => 
@@ -160,6 +159,7 @@ export default class ItemList extends React.Component {
                         ＋
                     </Button>
                 </Container>
+                <Navbar/>
             </div>
         )
     }

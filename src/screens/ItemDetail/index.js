@@ -75,7 +75,6 @@ export default class ItemDetail extends React.Component {
     render() {
         return (
             <div>
-                <Navbar/>
                 <Container>
                     <Row>
                         <Col sm={12} md={6} className="item-detail-pic">
@@ -113,6 +112,7 @@ export default class ItemDetail extends React.Component {
                         </Col>
                     </Row>
                 </Container>
+                <Navbar/>
             </div>
 
         )

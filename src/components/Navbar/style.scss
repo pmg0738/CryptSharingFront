@@ -4,6 +4,12 @@
 
 .navbar-container{
     background-color: #282c34;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+.navbar-container-dummy {
+    height: 80px;
 }
 
 .navbar-hamburger-menu-button{
@@ -24,7 +30,7 @@
 }
 
 .navbar-hamburger-menu-button-items{
-    position: absolute;
+    position: fixed;
     top: 55px;
     right:20px;
 }
