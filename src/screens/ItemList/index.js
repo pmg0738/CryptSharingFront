@@ -129,7 +129,7 @@ export default class ItemList extends React.Component {
     render() {
         return(
             <div>
-                <Container>
+                <Container className="item-list-container">
                     <Row>
                     {this.state.items.map((item) => 
                         <Col xc={6} sm={6} md={4} lg={3}>
@@ -159,7 +159,7 @@ export default class ItemList extends React.Component {
                         ＋
                     </Button>
                 </Container>
-                <Navbar/>
+                {/* <Navbar/> */}
             </div>
         )
     }

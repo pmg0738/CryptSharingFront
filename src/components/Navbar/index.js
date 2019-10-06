@@ -24,6 +24,13 @@ export default class Navbar extends React.Component {
             menu: <div/>
         }
     }
+
+    closeMenu = () => {
+        this.setState({
+            showMenu: false,
+            menu: <div/>            
+        })
+    }
     
     handleMenu = () => {
         if(this.state.showMenu){
@@ -44,13 +51,13 @@ export default class Navbar extends React.Component {
         return (            
             <Card className="navbar-hamburger-menu-button-items">
                 <ListGroup variant="flush">
-                    <ListGroup.Item>
+                    <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/search' className="navbar-hamburger-menu-button-item">Search</Link>
                     </ListGroup.Item>
-                    <ListGroup.Item>
+                    <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
                     </ListGroup.Item>
-                    <ListGroup.Item>
+                    <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/chat' className="navbar-hamburger-menu-button-item">Chat</Link>
                     </ListGroup.Item>
                 </ListGroup>
@@ -78,12 +85,12 @@ export default class Navbar extends React.Component {
                     <Link to='/search'>
                         <img className="navbar-logo-image" src={logo}/>
                     </Link>
-                        <Button className="navbar-hamburger-menu-button" onClick={this.handleMenu}>
-                            <FontAwesomeIcon icon={faBars}/>
-                        </Button>
+                    <Button className="navbar-hamburger-menu-button" 
+                        onClick={this.handleMenu}>
+                        <FontAwesomeIcon icon={faBars}/>
+                    </Button>
                 </Nav>
                 {this.state.menu}
-                <div className="navbar-container-dummy"/>
             </div>
         )
     }

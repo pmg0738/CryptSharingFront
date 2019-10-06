@@ -11,7 +11,7 @@ export default class MainSearch extends React.Component {
     render() {
         return (
             <div>
-                <Navbar/>
+                {/* <Navbar/> */}
                 <Container className="main-search-container">
                     <img src={logo} className="main-search-logo"/>
                     <Form>
