@@ -1,0 +1,116 @@
+.chat-view{
+    background-color:white;
+    width: 90%;
+    height: 500px;
+    flex-direction: column;
+}
+
+.chat-textarea{
+    background-color: aqua;
+    top: 530px;
+    left: 0px;
+    width:90%;
+}
+
+.chat-balloon-left{
+    position: relative;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 1.5em 0 1.5em 15px;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #e0edff;
+}
+
+.chat-balloon-left:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-right: 15px solid #e0edff;
+}
+  
+.chat-ballon-left p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.chat-balloon-right {
+    border-radius: 10px;
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 15px 1.5em 0;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #e0edff;
+}
+  
+.chat-balloon-right:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-left: 15px solid #e0edff;
+}
+  
+.chat-balloon-right p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.entire{
+    // marginTop:10,
+    margin-bottom:8px;
+    // position:'absolute',
+    // left:55,
+    background-color: aqua;      
+    // bottom:10
+}
+    
+.main{
+        border-radius:15px;
+        max-width:200px;
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-right:20px;
+        padding-left:20px;
+        background-color: #DCEFD7;
+
+        margin-right:20px;
+        justify-content: center;
+        align-items: center;           
+}
+
+.traiangle{
+        width:0px;
+        height:0px;
+        background-color:transparent;
+        // backgroundColor:'',
+        border-style: solid;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-bottom-width: 15px;
+
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: #DCEFD7;
+
+        position:absolute;
+        // right:58,
+        right:13px;
+        bottom:5px
+}
+
+.body-text{
+        line-height:20px;
+}
