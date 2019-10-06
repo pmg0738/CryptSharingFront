@@ -10,12 +10,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
-// import bridge from '../../images/bridge.jpg';
-// import camera from '../../images/camera.jpg';
-// import cave from '../../images/cave.jpg'
-// import clock from '../../images/clock.jpg'
-// import land from '../../images/land.jpg'
-// import lamp from '../../images/lamp.jpg';
+import Pagination from '../../components/Pagination';
 import bicycle from '../../images/bicycle.jpg';
 
 export default class FriendList extends React.Component{
@@ -44,6 +39,9 @@ export default class FriendList extends React.Component{
                     </Card>
                     )
                 }
+                <Pagination
+                    numOfPage={2}
+                />
             </Container>
         )
     }

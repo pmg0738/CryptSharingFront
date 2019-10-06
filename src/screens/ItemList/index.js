@@ -15,6 +15,8 @@ import {
  } from 'react-bootstrap';
 //  import image from '../../images/art.jpg';
 import Navbar from '../../components/Navbar';
+import Pagination from '../../components/Pagination';
+
 import bicycle from '../../images/bicycle.jpg';
 import test from '../../images/test.jpg';
 
@@ -168,6 +170,7 @@ export default class ItemList extends React.Component {
                     <Button className="item-list-add-button">
                         ＋
                     </Button>
+                    <Pagination numOfPage={10} />
                 </Container>
                 {/* <Navbar/> */}
             </div>
