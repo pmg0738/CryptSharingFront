@@ -1,3 +1,27 @@
+.item-list-add-button {
+    background-color: #ea4335;
+    border-color: #ea4335;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+}
+.item-list-add-button:hover {
+    background-color: #fbbc05;
+    border-color: #fbbc05;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+}
 .item-list-item-card {
     border-width: 0px;
     // width: 250px;

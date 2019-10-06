@@ -79,6 +79,48 @@ export default class ItemList extends React.Component {
                     title: "自転車",
                     status: 1,
                 }, 
+                {
+                    color: "yellow",
+                    image: cap,
+                    title: "キャップ",
+                    status: 1,
+                }, 
+                {
+                    color: "green",
+                    image: cup,
+                    title: "コップ",
+                    status: 1,
+                }, 
+                {
+                    color: "blue",
+                    image: mouse,
+                    title: "マウス",
+                    status: 0,
+                }, 
+                {
+                    color: "red",
+                    image: speaker,
+                    title: "スピーカー",
+                    status: 0,
+                }, 
+                {
+                    color: "yellow",
+                    image: carryBag,
+                    title: "キャリーバック",
+                    status: 0,
+                }, 
+                {
+                    color: "green",
+                    image: bicycle,
+                    title: "自転車",
+                    status: 0,
+                }, 
+                {
+                    color: "red",
+                    image: monitor,
+                    title: "自転車",
+                    status: 1,
+                }, 
             ]
         }
     }
@@ -114,6 +156,9 @@ export default class ItemList extends React.Component {
                         </Col>
                     )}
                     </Row>
+                    <Button className="item-list-add-button">
+                        ＋
+                    </Button>
                 </Container>
             </div>
         )

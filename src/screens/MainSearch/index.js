@@ -1,7 +1,8 @@
 import React from 'react';
 import './style.scss';
 
-import { Button, Container, Form, Row } from 'react-bootstrap';
+import { Container, Form, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/NavbarNoLogo';
 import logo from '../../images/logo.png';
@@ -19,6 +20,9 @@ export default class MainSearch extends React.Component {
                                 <Form.Control className="main-search-search-form" type="text" placeholder="Search" />
                             </Form.Group>
                         </Row>
+                        <Link to='/items'>
+                            <p className="main-search-category-search-button">カテゴリから探す</p>
+                        </Link>
                     </Form>
                 </Container>
             </div>
