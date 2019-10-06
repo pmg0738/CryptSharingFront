@@ -31,7 +31,6 @@ export default class App extends React.Component{
               <Route exact path='/chats' component={ChatList}/>
               <Route exact path='/items/1' component={ItemDetail}/>
               <Route exact path='/chats/1' component={Chat}/>
-              {console.log('props', this.props)}
             </div>
             <Navbar/>
         </BrowserRouter>        
