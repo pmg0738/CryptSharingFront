@@ -8,31 +8,16 @@ import {
     Button,
 } from 'react-bootstrap';
 
-import Navbar from '../../components/Navbar';
-
-export default class Chat extends React.Component {
+export default class Chat_test extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
             messages: [
                 {
-                    id: 0,
-                    message: 'こんにちは！そのモニター借りたいです！',
-                },
-                {
                     id: 1,
-                    message: 'あざす！とりま俺んちの近く着て～',
-                },
-                {
-                    id: 0,
-                    message: 'どこなん？',
-                },
-                {
-                    id: 1,
-                    message: '九工大の近くだよん～',
-                },
-
+                    message: 'aaaaa',
+                }
             ],
             inputtingMessage: '',
         }
@@ -56,25 +41,13 @@ export default class Chat extends React.Component {
           }
     }
 
-    scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ block: "end" });
-      }
-      
-      componentDidMount() {
-        this.scrollToBottom();
-      }
-      
-      componentDidUpdate() {
-        this.scrollToBottom();
-      }
-
     render() {
         return (
             <div>
                 <Navbar/>
                 <Container>
-                        <div id="chat-view-container" className="chat-view-container">
-                            <div className="chat-view">
+                        <div className="chat-view-container">
+                            <div className="chat-view-messages">
                                 {this.state.messages.map(item =>
                                     [
                                     <ChatBoxMe message = {item.message}/>,
@@ -82,9 +55,7 @@ export default class Chat extends React.Component {
                                 ][item.id]                
                                     )}
                             </div>
-                            <div ref={(el) => {this.messagesEnd = el;}}></div>
                         </div>
-
                         <Form.Control 
                             className="chat-textarea" 
                             as="textarea" 
@@ -108,15 +79,13 @@ class ChatBoxMe extends React.Component{
 
     render(){
         return(
-            <div>
-                <div class="chat-message chat-right">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
+            <div className="entire">
+                <div className="main">
+                    <p className="body-text">
+                        {this.props.message}
+                    </p>
                 </div>
-                </div>
-                <div class="chat-message-clear"></div>
+                <div className="triangle"/>
             </div>
         )
     }
@@ -131,16 +100,11 @@ class ChatBoxOther extends React.Component{
 
     render(){
         return(
-            <div>
-                <div class="chat-message chat-left">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
+            <Row>
+                <div className="chat-balloon-left">
+                    {this.props.message}
                 </div>
-                </div>
-                <div class="chat-message-clear"></div>
-            </div>
+            </Row>
         )
     }
 }

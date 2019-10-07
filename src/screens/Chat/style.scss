@@ -1,116 +1,66 @@
-.chat-view{
-    background-color:white;
-    width: 90%;
-    height: 500px;
-    flex-direction: column;
-}
-
 .chat-textarea{
-    background-color: aqua;
+    background-color: rgb(207, 240, 245);
     top: 530px;
     left: 0px;
-    width:90%;
+    width:100%;
+    margin-top: 20px;
 }
 
-.chat-balloon-left{
-    position: relative;
-    border-radius: 20px;
-    display: inline-block;
-    margin: 1.5em 0 1.5em 15px;
-    padding: 7px 10px;
-    min-width: 120px;
-    max-width: 100%;
-    color: #555;
-    font-size: 16px;
-    background: #e0edff;
+#chat-view-container{
+    overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
+    height:700px;/*テキストエリアが下に張り付く様にする*/
+    width:100%;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    background-color: #eee;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;/*ヘッダーの下に影を入れる*/
 }
 
-.chat-balloon-left:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -30px;
-    margin-top: -15px;
-    border: 15px solid transparent;
-    border-right: 15px solid #e0edff;
-}
-  
-.chat-ballon-left p {
+.chat-message{
     margin: 0px;
-    padding: 0px;
-}
-
-.chat-balloon-right {
-    border-radius: 10px;
-    position: relative;
-    display: inline-block;
-    margin: 1.5em 15px 1.5em 0;
-    padding: 7px 10px;
-    min-width: 120px;
-    max-width: 100%;
-    color: #555;
+    padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
     font-size: 16px;
-    background: #e0edff;
-}
-  
-.chat-balloon-right:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    margin-top: -15px;
-    border: 15px solid transparent;
-    border-left: 15px solid #e0edff;
-}
-  
-.chat-balloon-right p {
-    margin: 0px;
-    padding: 0px;
+    word-wrap: break-word;/* 吹き出し内で自動で改行 */
+    white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
 }
 
-.entire{
-    // marginTop:10,
-    margin-bottom:8px;
-    // position:'absolute',
-    // left:55,
-    background-color: aqua;      
-    // bottom:10
-}
-    
-.main{
-        border-radius:15px;
-        max-width:200px;
-        padding-top:10px;
-        padding-bottom:10px;
-        padding-right:20px;
-        padding-left:20px;
-        background-color: #DCEFD7;
-
-        margin-right:20px;
-        justify-content: center;
-        align-items: center;           
+.chat-message-box{
+    margin-top: 20px;
+    max-width: 100%;
+    font-size: 16px;
 }
 
-.traiangle{
-        width:0px;
-        height:0px;
-        background-color:transparent;
-        // backgroundColor:'',
-        border-style: solid;
-        border-left-width: 15px;
-        border-right-width: 15px;
-        border-bottom-width: 15px;
-
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: #DCEFD7;
-
-        position:absolute;
-        // right:58,
-        right:13px;
-        bottom:5px
+.chat-message-content{
+    padding: 20px;
 }
 
-.body-text{
-        line-height:20px;
+.chat-left{
+    float:left;
+    line-height:1.3em;
 }
+
+.chat-left .chat-message-box {
+    color: #333;/*テキストを黒にする*/
+    background: #fff;
+    border: 2px solid #282c34;
+    border-radius: 30px 30px 30px 0px;/*左下だけ尖らせて吹き出し感を出す*/
+    margin-right: 50px;/*左側の発言だとわかる様に、吹き出し右側に隙間を入れる*/
+}
+
+.chat-right .chat-message-box{
+    color: #fff;/*テキストを白にする*/
+    background: rgb(66, 78, 69);
+    border: 2px solid #282c34;
+    border-radius: 30px 30px 0px 30px;/*右下だけ尖らせて吹き出し感を出す*/
+    margin-left: 50px;/*右側の発言だとわかる様に、吹き出し左側に隙間を入れる*/
+}
+
+.chat-right{
+    float:right;
+    line-height:1.3em;
+}
+
+.chat-message-clear{
+    clear: both; 
+}
+
