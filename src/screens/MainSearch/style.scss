@@ -1,7 +1,21 @@
 .main-search-container {
-    align-items: center;
-    justify-content: center;
     text-align: center;
+    background-color: #ea4335;
+    background: #ea4335;
+    color: #ea4335;
+    width: 900px;
+    margin-top: 60px;
+}
+.main-search-card {
+    // justify-content: center;
+    // align-items: center;
+    background-color: transparent;
+    align-self: center;
+    border-width: 0px;
+    width: 600px;
+    margin-left: 150px;
+    position: absolute;
+    justify-self: center;
 }
 .main-search-form-row {
     margin-top: 50px;
@@ -17,15 +31,134 @@
     border-radius: 25px;
     height: 50px;
     padding-left: 20px;
-    width: 600px;
+    // width: 100%;
+    width: 550px;
 }
-.main-search-logo {
+.main-search-logo-image {
     background-color: #282c34;
-    margin-top: 150px;
-    width: 600px;
+    width: 100%;
+    // margin-top: 150px;
+    align-self: center;
 }
 .main-search-category-search-button {
     // background-color: aqua;
-    padding-right: 200px;
+    // padding-right: 200px;
+
     text-align: right;
+    margin-right: 30px;
+    margin-top: 10px;
+    // background-color: #34a853;
+}
+.main-search-category-button-row {
+    // margin-left: 10%;
+    // width: 70%;
+    // background-color: aqua;
+    align-self: center;
+    justify-self: center;
+    width: 600px;
+}
+.main-search-category-button-red {
+    background-color: #ea4335;
+    border-color: #ea4335;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-red:hover {
+    background-color: #ea4335;
+    border-color: #ea4335;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-blue {
+    background-color: #4285f4;
+    border-color: #4285f4;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-blue:hover {
+    background-color: #4285f4;
+    border-color: #4285f4;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-green {
+    background-color: #34a853;
+    border-color: #34a853;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-green:hover {
+    background-color: #34a853;
+    border-color: #34a853;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-yellow {
+    background-color: #fbbc05;
+    border-color: #fbbc05;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-category-button-yellow:hover {
+    background-color: #fbbc05;
+    border-color: #fbbc05;
+    border-radius: 30px;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+}
+.main-search-item-menu-card{
+    background-color: #ea4335;
+}
+
+.main-search-item-menu-list-group {
+    background-color: #ea4335;
+}
+.main-search-human-menu-card{
+    background-color: #4285f4;
+}
+
+.main-search-human-menu-list-group {
+    background-color: #4285f4;
+}
+.main-search-money-menu-card{
+    background-color: #fbbc05;
+}
+
+.main-search-money-menu-list-group {
+    background-color: #fbbc05;
+}
+.main-search-place-menu-card{
+    background-color: #34a853;
+}
+
+.main-search-place-menu-list-group {
+    background-color: #34a853;
+}
+
+.main-search-item-menu-link {
+    color: white;
+}
+.main-search-human-menu-link {
+    color: white;
+}
+.main-search-money-menu-link {
+    color: white;
+}
+.main-search-place-menu-link {
+    color: white;
 }

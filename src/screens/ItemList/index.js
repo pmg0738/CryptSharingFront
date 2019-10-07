@@ -137,6 +137,14 @@ export default class ItemList extends React.Component {
             .catch(error => console.error('ItemList get items', error))
     }
 
+    renderRentaringMessage = (isRented) => {
+        if(isRented){
+            return(
+            <   p className="item-list-item-card-status-unavailable">貸出中</p>
+            )
+        }
+    }
+
 
     render() {
         return(
@@ -153,14 +161,12 @@ export default class ItemList extends React.Component {
                                     {[<div className="item-list-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
                                 <p className={"item-list-item-card-title-" + item.color}>{item.title}</p>
-                                {[
-                                <p className="item-list-item-card-status-unavailable">貸出中</p>,
-                                <div/>
-                                ][item.status]}
+                                {this.renderRentaringMessage(!item.status)}
                                 {/* <p className="item-list-item-card-price">10円/分</p> */}
                                 {/* <Link to='/items/1'>
                                     <Button className={"item-list-item-card-detail-button-" + item.color}>詳細</Button>
                                 </Link> */}
+                                {/* <p className={"item-list-item-card-price-" + item.color}>{20 + "円 / 分" }</p> */}
                             </Card>
                         </Link>
                             {/* <p className="item-list-item-card-price-under">10円/分</p> */}
