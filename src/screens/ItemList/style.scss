@@ -104,6 +104,8 @@
 }
 $title-top: 7px;
 $title-left: 7px;
+$price-bottom: -5px;
+$price-right: 10px;
 .item-list-item-card-title-red {
     // background-color: #ea4335;
     background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
@@ -157,6 +159,59 @@ $title-left: 7px;
     top: $title-top;
     left: $title-left;
 }
+.item-list-item-card-price-red {
+    // background-color: #ea4335;
+    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: $price-bottom;
+    right: $price-right;
+}
+.item-list-item-card-price-yellow {
+    background-color: #fbbc05;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: $price-bottom;
+    right: $price-right;
+}
+.item-list-item-card-price-blue {
+    background-color: #4285f4;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: $price-bottom;
+    right: $price-right;
+}
+.item-list-item-card-price-green {
+    background-color: #34a853;
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: $price-bottom;
+    right: $price-right;
+}
 .item-list-item-card-price {
     background-color: #ffffff;
     opacity: 0.8;
@@ -184,6 +239,7 @@ $title-left: 7px;
     bottom: 10px;
     right: 10px;
 }
+
 .item-list-item-card-detail-button-red {
     // background-color: #002739;
     // border-color: #002739;
