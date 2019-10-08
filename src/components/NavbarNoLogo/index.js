@@ -53,6 +53,15 @@ export default class NavbarForSearch extends React.Component {
                         <ListGroup.Item>
                             <Link to='/chat' className="navbar-hamburger-menu-button-item">Chat</Link>
                         </ListGroup.Item>
+                        {/* <ListGroup.Item>
+                            <Link to='/what_i_posted' className="navbar-hamburger-menu-button-item">What I Post</Link>
+                        </ListGroup.Item> */}
+                        <ListGroup.Item>
+                            <Link to='/mypage' className="navbar-hamburger-menu-button-item">MyPage</Link>
+                        </ListGroup.Item>
+                        {/* <ListGroup.Item>
+                            <Link to='/history' className="navbar-hamburger-menu-button-item">History</Link>
+                        </ListGroup.Item> */}
                     </ListGroup>
                 </Card>
             

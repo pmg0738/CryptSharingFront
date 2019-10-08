@@ -61,6 +61,9 @@ export default class Navbar extends React.Component {
                     <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/chats' className="navbar-hamburger-menu-button-item">Chat</Link>
                     </ListGroup.Item>
+                    <ListGroup.Item>
+                            <Link to='/mypage' className="navbar-hamburger-menu-button-item">MyPage</Link>
+                        </ListGroup.Item>
                 </ListGroup>
             </Card>            
             // <div className="navbar-menu-items">

@@ -14,6 +14,8 @@ import ItemList from './screens/ItemList';
 import ItemDetail from './screens/ItemDetail';
 import ItemPost from './screens/ItemPost';
 import MainSearch from './screens/MainSearch';
+import MyPage from './screens/MyPage';
+
 import Navbar from './components/Navbar';
 // import NavbarNoLogo from './components/NavbarNoLogo';
 
@@ -33,6 +35,8 @@ export default class App extends React.Component{
               <Route exact path='/chats' component={ChatList}/>
               <Route exact path='/items/1' component={ItemDetail}/>
               <Route exact path='/chats/1' component={Chat}/>
+              <Route exact path='/mypage' component={MyPage}/>
+
             </div>
             <Navbar/>
         </BrowserRouter>        
