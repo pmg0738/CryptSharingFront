@@ -10,6 +10,8 @@ import {
 
 import Navbar from '../../components/Navbar';
 
+let valueOfTextarea ;
+
 export default class Chat extends React.Component {
     constructor(props){
         super(props);
@@ -32,7 +34,11 @@ export default class Chat extends React.Component {
                     id: 1,
                     message: '九工大の近くだよん～',
                 },
-
+                {
+                    id: 0,
+                    message: '近い!'
+                },
+                
             ],
             inputtingMessage: '',
         }
@@ -42,18 +48,40 @@ export default class Chat extends React.Component {
         if (e.keyCode === 13) {
             console.log('if no naka', e.keyCode);
             console.log('value', e.target.value);
-            let messages = this.state.messages;
-            messages.push(
+            let latestMessages = this.state.messages;
+            latestMessages.push(
                 {
                     id: 0,   // 0自分が送ったやつ
                     message: e.target.value
                     }
                 );
             this.setState({
-                messages: messages,
+                messages: latestMessages,
                 inputtingMessage: '',
             })
           }
+    }
+
+    sendMessageByButton = (e) =>{
+        console.log('return e.target.value by global variable', valueOfTextarea);
+        let latestMessages = this.state.messages;
+        latestMessages.push(
+            {
+                id: 0,
+                message: valueOfTextarea
+            }
+        )
+        this.setState({
+            messages: latestMessages,
+            inputtingMessage: '',
+        })
+    }
+
+    
+
+    inputTextInTextarea = (e) =>{
+        this.setState({inputtingMessage: e.target.value});
+        valueOfTextarea = e.target.value;
     }
 
     scrollToBottom = () => {
@@ -90,9 +118,11 @@ export default class Chat extends React.Component {
                             as="textarea" 
                             rows="3"
                             value={this.state.inputtingMessage}
-                            onChange={(e) => this.setState({inputtingMessage: e.target.value})}
+                            onChange = {this.inputTextInTextarea}
+                            // onChange={(e) => this.setState({inputtingMessage: e.target.value})}
                             onKeyDown={(e) => this.sendMessage(e)}
                         ></Form.Control>
+                        <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
                 </Container>
             </div>
         )

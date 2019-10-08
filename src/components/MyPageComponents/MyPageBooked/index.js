@@ -7,12 +7,16 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {
     Button,
     Card,
-    ListGroup,
+    Container,
+    Row,
+    Col,
     Nav,
+    Image,
   } from 'react-bootstrap';
 
-  import logo from '../../images/logo.png';
-  
+import speaker from '../../../images/speaker.jpg';
+import cap from '../../../images/cap.jpg';
+import cup from '../../../images/cup.jpg';
 
 
 
@@ -21,13 +25,47 @@ export default class MyPageBooked extends React.Component {
         super(props);
         
         this.state = {
+            items: [
+                {
+                    color: "red",
+                    image: speaker,
+                    title: "スピーカ",
+                    status: 0,
+                }, 
+                {
+                    color: "yellow",
+                    image: cap,
+                    title: "キャップ",
+                    status: 1,
+                }, 
+                {
+                    color: "green",
+                    image: cup,
+                    title: "コップ",
+                    status: 1,
+                }, 
+            ]
         }
     }
 
     render() {
         return (
-            <div>
-            </div>
+            <Container>
+                <Row>
+                    {this.state.items.map(item =>
+                        <Col xc={6} sm={6} md={4} lg={3}>
+                            <Card className="mypage-posted-item-card">
+                                <div className="mypage-posted-item-card-image-container">
+                                    <Image src={item.image} className="mypage-posted-item-card-image"/>
+                                    {[<div className="mypage-posted-item-card-image-smoke-not-available" />,<div/>][item.status]}
+                                </div>
+                                <p className={"mypage-posted-item-card-title-" + item.color}>{item.title}</p>
+                                {/* {this.renderRentaringMessage(!item.status)} */}
+                            </Card>
+                        </Col>
+                    )}
+                </Row>
+            </Container>
         )
     }
 }
