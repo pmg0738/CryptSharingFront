@@ -92,7 +92,7 @@ export default class Chat extends React.Component {
                             value={this.state.inputtingMessage}
                             onChange={(e) => this.setState({inputtingMessage: e.target.value})}
                             onKeyDown={(e) => this.sendMessage(e)}
-                        />
+                        ></Form.Control>
                 </Container>
             </div>
         )

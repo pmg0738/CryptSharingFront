@@ -6,6 +6,8 @@ import { Button, Card, Container, Col, Form, Row,
  } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
+import MyPagePosted from '../../components/MyPageComponents/MyPagePosted';
 import Navbar from '../../components/NavbarNoLogo';
 import logo from '../../images/logo.png';
 
@@ -25,6 +27,7 @@ export default class MainSearch extends React.Component {
                     <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                         <Tab eventKey="rent-now" title="Rent Now">
                             <div className="my-page-tab-explanation">What You rent now</div>
+                            <MyPagePosted/>
                         </Tab>
                         <Tab eventKey="booked" title="Booked">
                             <div className="my-page-tab-explanation">What You have booked (NOT RENT YET)</div>
