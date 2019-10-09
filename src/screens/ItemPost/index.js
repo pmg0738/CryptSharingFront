@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import { 
     Alert,
     Container,
@@ -204,7 +205,9 @@ export default class ItemPost extends React.Component {
                                 
                             </div> */}
                             <Row className="item-post-confirm-button-container">
-                                <Button className="item-post-confirm-button">確認</Button>
+                                <Link to='./itempostconfirm'>
+                                    <Button className="item-post-confirm-button">確認</Button>
+                                </Link>
                             </Row>
                         </Col>
                     </Row>
