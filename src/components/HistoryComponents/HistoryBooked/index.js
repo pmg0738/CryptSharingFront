@@ -20,7 +20,7 @@ import cup from '../../../images/cup.jpg';
 
 
 
-export default class MyPagePosted extends React.Component {
+export default class HistoryBooked extends React.Component {
     constructor(props) {
         super(props);
         
@@ -54,12 +54,12 @@ export default class MyPagePosted extends React.Component {
                 <Row>
                     {this.state.items.map(item =>
                         <Col xc={6} sm={6} md={4} lg={3}>
-                            <Card className="mypage-posted-item-card">
-                                <div className="mypage-posted-item-card-image-container">
-                                    <Image src={item.image} className="mypage-posted-item-card-image"/>
-                                    {[<div className="mypage-posted-item-card-image-smoke-not-available" />,<div/>][item.status]}
+                            <Card className="history-booked-item-card">
+                                <div className="history-booked-item-card-image-container">
+                                    <Image src={item.image} className="history-booked-item-card-image"/>
+                                    {[<div className="history-booked-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
-                                <p className={"mypage-posted-item-card-title-" + item.color}>{item.title}</p>
+                                <p className={"history-booked-item-card-title-" + item.color}>{item.title}</p>
                                 {/* {this.renderRentaringMessage(!item.status)} */}
                             </Card>
                         </Col>

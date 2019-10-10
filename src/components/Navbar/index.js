@@ -63,7 +63,10 @@ export default class Navbar extends React.Component {
                     </ListGroup.Item>
                     <ListGroup.Item>
                             <Link to='/mypage' className="navbar-hamburger-menu-button-item">MyPage</Link>
-                        </ListGroup.Item>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                            <Link to='/history' className="navbar-hamburger-menu-button-item">History</Link>
+                    </ListGroup.Item>
                 </ListGroup>
             </Card>            
             // <div className="navbar-menu-items">
