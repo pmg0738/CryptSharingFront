@@ -10,8 +10,12 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
+import Chat from '../../screens/Chat';
 import Pagination from '../../components/Pagination';
 import bicycle from '../../images/bicycle.jpg';
+import test from '../../images/test.jpg';
+
+let valueOfTextarea ;
 
 export default class FriendList extends React.Component{
     constructor(props){
@@ -19,26 +23,41 @@ export default class FriendList extends React.Component{
 
         this.state = {
             friends: friends,
+            inputtingMessage: '',
+            messages: messages,
+            selectedChatroom: '',
         }
     }
+
+// showSelectedChatRoom = () =>{
+// }
+
 
     render(){
         return(
             <Container className="friend-list-container">
-                {
-                    this.state.friends.map(friend => 
-                    <Card className="friend-card">
-                        <img src={friend.image} className="friend-card-image"/>
-                        <h6 className="friend-card-name">{friend.name}</h6>
-                        <h6 className="friend-card-lastMessage">{friend.lastMessage}</h6>
-                        <Link to='/chats/1' className="friend-card-button-link">
-                            <Button className="friend-card-button">
-                                <h6>トーク</h6>
-                            </Button>
-                        </Link>
-                    </Card>
-                    )
-                }
+                <Row>
+                    <Col sm={12} md={6} className="chat-list">
+                        {
+                            this.state.friends.map(friend => 
+                            <Card className="friend-card">
+                                <img src={friend.image} className="friend-card-image"/>
+                                <h6 className="friend-card-name">{friend.name}</h6>
+                                <h6 className="friend-card-lastMessage">{friend.lastMessage}</h6>
+                                    <Button 
+                                        className="friend-card-button"
+                                        onClick={this.showSelectedChatRoom}
+                                    >
+                                        <h6>トーク</h6>
+                                    </Button>
+                            </Card>
+                            )
+                        }
+                    </Col>
+                    <Col sm={12} md={6} className="chat-view">
+                        <Chat/>
+                    </Col>
+                </Row>
                 <Pagination
                     numOfPage={2}
                 />
@@ -47,19 +66,41 @@ export default class FriendList extends React.Component{
     }
 }
 
+const messages =[
+    {
+        id: 0,
+        message: 'こんにちは！そのモニター借りたいです！',
+    },
+    {
+        id: 1,
+        message: 'あざす！とりま俺んちの近く着て～',
+    },
+    {
+        id: 0,
+        message: 'どこなん？',
+    },
+    {
+        id: 1,
+        message: '九工大の近くだよん～',
+    },
+    {
+        id: 0,
+        message: '近い!'
+    },
 
+]
 
 const friends = [
     {
-        name: "Friend A",
-        image: bicycle,
+        name: "池田エライザ",
+        image: test,
         numOfCards: 3,
         numOfGood: 100,
-        lastMessage: "よろしく"
+        lastMessage: "近い！"
     },
     {
         name: "Friend B",
-        image: bicycle,
+        image: test,
         numOfCards: 4,
         numOfGood: 120,
         lastMessage: ""
@@ -112,22 +153,56 @@ const friends = [
         numOfCards: 5,
         numOfGood: 21,
     },
-    {
-        name: "Friend D",
-        image: bicycle,
-        numOfCards: 6,
-        numOfGood: 73,
-    },
-    {
-        name: "Friend E",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 1,
-    },
-    {
-        name: "Friend F",
-        image: bicycle,
-        numOfCards: 2,
-        numOfGood: 0,
-    },
 ]
+
+
+
+
+
+
+
+
+class ChatBoxMe extends React.Component{
+    constructor(props){
+        super(props);
+
+    }
+
+    render(){
+        return(
+            <div>
+                <div class="chat-message chat-right">
+                <div class="chat-message-box">
+                    <div class="chat-message-content">
+                        <div class="chat-message-text">{this.props.message}</div>
+                    </div>
+                </div>
+                </div>
+                <div class="chat-message-clear"></div>
+            </div>
+        )
+    }
+}
+
+
+class ChatBoxOther extends React.Component{
+    constructor(props){
+        super(props);
+        
+    }
+
+    render(){
+        return(
+            <div>
+                <div class="chat-message chat-left">
+                <div class="chat-message-box">
+                    <div class="chat-message-content">
+                        <div class="chat-message-text">{this.props.message}</div>
+                    </div>
+                </div>
+                </div>
+                <div class="chat-message-clear"></div>
+            </div>
+        )
+    }
+}

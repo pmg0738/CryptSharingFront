@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.scss';
+import './style2.scss';
 import { 
     Container,
     Form,
@@ -113,16 +113,22 @@ export default class Chat extends React.Component {
                             <div ref={(el) => {this.messagesEnd = el;}}></div>
                         </div>
 
-                        <Form.Control 
-                            className="chat-textarea" 
-                            as="textarea" 
-                            rows="3"
-                            value={this.state.inputtingMessage}
-                            onChange = {this.inputTextInTextarea}
-                            // onChange={(e) => this.setState({inputtingMessage: e.target.value})}
-                            onKeyDown={(e) => this.sendMessage(e)}
-                        ></Form.Control>
-                        <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
+                        <Form.Row>
+                            <Form.Group as={Col}>
+                                <Form.Control 
+                                    className="chat-textarea" 
+                                    as="textarea" 
+                                    rows="3"
+                                    value={this.state.inputtingMessage}
+                                    onChange = {this.inputTextInTextarea}
+                                    // onChange={(e) => this.setState({inputtingMessage: e.target.value})}
+                                    onKeyDown={(e) => this.sendMessage(e)}
+                                ></Form.Control>
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                            <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
+                            </Form.Group>
+                        </Form.Row>
                 </Container>
             </div>
         )
