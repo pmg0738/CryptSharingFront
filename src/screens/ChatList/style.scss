@@ -87,3 +87,30 @@
     position: absolute;
     right: 30px;
 }
+
+
+
+.chat-list-absolute {
+    background-color: #ea4335;
+    position: absolute;
+    // position: absolute;
+    left: 0px;    
+    overflow: auto;
+}
+.chat-list-fixed {
+    background-color: #fbbc05;
+    position: fixed;
+    left: 0px;    
+    overflow: auto;
+}
+.chat-view-absolute {
+    background-color: #4285f4;
+    position: absolute;
+    right: 0px;
+}
+.chat-view-fixed {
+    background-color: #34a853;
+    position: fixed;
+    right: 0px;
+}
+

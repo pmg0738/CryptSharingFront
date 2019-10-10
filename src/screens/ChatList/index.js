@@ -26,18 +26,35 @@ export default class FriendList extends React.Component{
             inputtingMessage: '',
             messages: messages,
             selectedChatroom: '',
+            listStyle: "chat-list-absolute",
+            chatStyle: "chat-view-fixed",
         }
     }
 
 // showSelectedChatRoom = () =>{
 // }
+    onList = () => {
+        this.setState({
+            listStyle: "chat-list-absolute",
+            chatStyle: "chat-view-fixed"
+        })
+    }
+
+    onChat = () => {
+        this.setState({
+            listStyle: "chat-list-fixed",
+            chatStyle: "chat-view-absolute"
+        })
+    }
 
 
     render(){
         return(
             <Container className="friend-list-container">
                 <Row>
-                    <Col sm={12} md={6} className="chat-list">
+                    <Col sm={12} md={6} className={this.state.listStyle}
+                        onMouseOver={this.onList}
+                    >
                         {
                             this.state.friends.map(friend => 
                             <Card className="friend-card">
@@ -49,18 +66,23 @@ export default class FriendList extends React.Component{
                                         onClick={this.showSelectedChatRoom}
                                     >
                                         <h6>トーク</h6>
-                                    </Button>
+                                    </Button>                                    
                             </Card>
                             )
                         }
+                        <Pagination
+                                numOfPage={2}
+                            />
                     </Col>
-                    <Col sm={12} md={6} className="chat-view">
+                    <Col sm={12} md={6} className={this.state.chatStyle}
+                        onMouseOver={this.onChat}
+                    >
                         <Chat/>
                     </Col>
                 </Row>
-                <Pagination
+                {/* <Pagination
                     numOfPage={2}
-                />
+                /> */}
             </Container>
         )
     }
@@ -139,6 +161,45 @@ const friends = [
         numOfCards: 3,
         numOfGood: 109,
         lastMessage: ""
+    },
+    {
+        name: "Friend B",
+        image: bicycle,
+        numOfCards: 4,
+        numOfGood: 39,
+        lastMessage: ""
+    },
+    {
+        name: "Friend C",
+        image: bicycle,
+        numOfCards: 5,
+        numOfGood: 21,
+    },
+    {
+        name: "Friend B",
+        image: bicycle,
+        numOfCards: 4,
+        numOfGood: 39,
+        lastMessage: ""
+    },
+    {
+        name: "Friend C",
+        image: bicycle,
+        numOfCards: 5,
+        numOfGood: 21,
+    },
+    {
+        name: "Friend B",
+        image: bicycle,
+        numOfCards: 4,
+        numOfGood: 39,
+        lastMessage: ""
+    },
+    {
+        name: "Friend C",
+        image: bicycle,
+        numOfCards: 5,
+        numOfGood: 21,
     },
     {
         name: "Friend B",
