@@ -41,90 +41,105 @@ export default class ItemList extends React.Component {
                     image: park,
                     title: "ぱく",
                     status: 0,
+                    price : "￥10,000/1日",
                 }, 
                 {
                     color: "yellow",
                     image: cap,
                     title: "キャップ",
                     status: 1,
+                    price : "￥500/1日",
                 }, 
                 {
                     color: "green",
                     image: cup,
                     title: "コップ",
                     status: 1,
+                    price : "￥50/1日",
                 }, 
                 {
                     color: "blue",
                     image: mouse,
                     title: "マウス",
                     status: 0,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "red",
                     image: speaker,
                     title: "スピーカー",
                     status: 0,
+                    price : "￥320/1日",
                 }, 
                 {
                     color: "yellow",
                     image: carryBag,
                     title: "キャリーバック",
                     status: 0,
+                    price : "￥400/1日",
                 }, 
                 {
                     color: "green",
                     image: bicycle,
                     title: "自転車",
                     status: 0,
+                    price : "￥300/1日",
                 }, 
                 {
                     color: "red",
                     image: monitor,
                     title: "自転車",
                     status: 1,
+                    price : "￥700/1日",
                 }, 
                 {
                     color: "yellow",
                     image: cap,
                     title: "キャップ",
                     status: 1,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "green",
                     image: cup,
                     title: "コップ",
                     status: 1,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "blue",
                     image: mouse,
                     title: "マウス",
                     status: 0,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "red",
                     image: speaker,
                     title: "スピーカー",
                     status: 0,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "yellow",
                     image: carryBag,
                     title: "キャリーバック",
                     status: 0,
+                    price : "￥100/1日",
                 }, 
                 {
                     color: "green",
                     image: bicycle,
                     title: "自転車",
                     status: 0,
+                    price : "￥300/1日",
                 }, 
                 {
                     color: "red",
                     image: monitor,
                     title: "自転車",
                     status: 1,
+                    price : "￥500/1日",
                 }, 
             ]
         }
@@ -160,7 +175,7 @@ export default class ItemList extends React.Component {
                                     {/* <div className="item-list-item-card-image-smoke" /> */}
                                     {[<div className="item-list-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
-                                <p className={"item-list-item-card-title-" + item.color}>{item.title}</p>
+                                <p className={"item-list-item-card-title-" + item.color}>{item.price}</p>
                                 {this.renderRentaringMessage(!item.status)}
                                 {/* <p className="item-list-item-card-price">10円/分</p> */}
                                 {/* <Link to='/items/1'>

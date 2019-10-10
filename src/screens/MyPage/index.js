@@ -26,7 +26,7 @@ export default class MainSearch extends React.Component {
         return (
 
                 <Container>
-                    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                    <Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
                         <Tab eventKey="rent-now" title="Rent Now">
                             <div className="my-page-tab-explanation">What You rent now</div>
                             <MyPageRentNow/>

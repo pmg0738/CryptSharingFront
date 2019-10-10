@@ -25,7 +25,7 @@ export default class MainSearch extends React.Component {
         return (
 
                 <Container>
-                    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                    <Tabs defaultActiveKey="booked history" id="uncontrolled-tab-example">
                         <Tab eventKey="booked history" title="Booked History">
                             <div className="history-tab-explanation">What You Booked Before</div>
                             <HistoryBooked/>

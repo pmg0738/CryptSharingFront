@@ -205,7 +205,7 @@ export default class ItemPost extends React.Component {
                                 
                             </div> */}
                             <Row className="item-post-confirm-button-container">
-                                <Link to='./itempostconfirm'>
+                                <Link to='/itempostconfirm'>
                                     <Button className="item-post-confirm-button">確認</Button>
                                 </Link>
                             </Row>
