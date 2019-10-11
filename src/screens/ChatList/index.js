@@ -1,4 +1,5 @@
 import React from 'react';
+import Faker from 'faker';
 import './style.scss';
 import {
     Button,
@@ -14,6 +15,7 @@ import Chat from '../../screens/Chat';
 import Pagination from '../../components/Pagination';
 import bicycle from '../../images/bicycle.jpg';
 import test from '../../images/test.jpg';
+import eraiza from '../../images/eraiza.png';
 
 let valueOfTextarea ;
 
@@ -112,113 +114,31 @@ const messages =[
 
 ]
 
+
+
 const friends = [
     {
         name: "池田エライザ",
-        image: test,
+        image: eraiza,
         numOfCards: 3,
         numOfGood: 100,
         lastMessage: "近い！"
-    },
-    {
-        name: "Friend B",
-        image: test,
-        numOfCards: 4,
-        numOfGood: 120,
-        lastMessage: ""
-    },
-    {
-        name: "Friend C",
-        image: bicycle,
-        numOfCards: 5,
-        numOfGood: 40,
-        lastMessage: ""
-    },
-    {
-        name: "Friend D",
-        image: bicycle,
-        numOfCards: 6,
-        numOfGood: 3,
-        lastMessage: ""
-    },
-    {
-        name: "Friend E",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 11,
-        lastMessage: ""
-    },
-    {
-        name: "Friend F",
-        image: bicycle,
-        numOfCards: 2,
-        numOfGood: 438,
-        lastMessage: "了解"
-    },
-    {
-        name: "Friend A",
-        image: bicycle,
-        numOfCards: 3,
-        numOfGood: 109,
-        lastMessage: ""
-    },
-    {
-        name: "Friend B",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 39,
-        lastMessage: ""
-    },
-    {
-        name: "Friend C",
-        image: bicycle,
-        numOfCards: 5,
-        numOfGood: 21,
-    },
-    {
-        name: "Friend B",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 39,
-        lastMessage: ""
-    },
-    {
-        name: "Friend C",
-        image: bicycle,
-        numOfCards: 5,
-        numOfGood: 21,
-    },
-    {
-        name: "Friend B",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 39,
-        lastMessage: ""
-    },
-    {
-        name: "Friend C",
-        image: bicycle,
-        numOfCards: 5,
-        numOfGood: 21,
-    },
-    {
-        name: "Friend B",
-        image: bicycle,
-        numOfCards: 4,
-        numOfGood: 39,
-        lastMessage: ""
-    },
-    {
-        name: "Friend C",
-        image: bicycle,
-        numOfCards: 5,
-        numOfGood: 21,
     },
 ]
 
 
 
-
+for(let i= 0; i<30; i++){
+    friends.push(
+        {
+            name: Faker.internet.userName(),
+            image: Faker.internet.avatar(),
+            numOfCards: Faker.random.number(),
+            numOfGood: Faker.random.number(),
+            lastMessage: Faker.lorem.words(),
+        }
+    )
+}
 
 
 

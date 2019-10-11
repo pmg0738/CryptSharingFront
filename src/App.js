@@ -17,6 +17,7 @@ import MainSearch from './screens/MainSearch';
 import MyPage from './screens/MyPage';
 import History from './screens/History';
 import ItemPostConfirm from './screens/ItemPostConfirm';
+import SearchByOption from './screens/SearchByOption';
 
 import Navbar from './components/Navbar';
 // import NavbarNoLogo from './components/NavbarNoLogo';
@@ -40,6 +41,7 @@ export default class App extends React.Component{
               <Route exact path='/mypage' component={MyPage}/>
               <Route exact path='/history' component={History}/>
               <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
+              <Route exact path='/searchbyoption' component={SearchByOption}/>
             </div>
             <Navbar/>
         </BrowserRouter>        

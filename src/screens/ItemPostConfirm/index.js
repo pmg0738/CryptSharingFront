@@ -61,7 +61,32 @@ export default class ItemPostConfirm extends React.Component {
     render() {
         return (
             <div>
-               <Container>
+                <Container>
+                    <p className="item-post-confirm-header">確認してください！</p>
+                    <Row>
+                        <Col sm={12} md={6} lg={6} className="item-post-confirm-image-container">
+                            <p className="item-post-confirm-image-header">登録した写真</p>
+                                <Row>
+                                    {this.state.images.map(item => 
+                                        <Col sm={12} md={4}>
+                                            <Image src={item} className="item-post-confrim-image"/>
+                                        </Col>
+                                    )}
+                                </Row>
+                        </Col>
+                        <Col sm={12} md={6} lg={6} className="item-post-confirm-info-container">
+                            <p className="item-post-confirm-item-name">商品名：モニター</p>
+                            <p className="item-post-confirm-fee">料金：900円/1日</p>
+                            <p className="item-post-confirm-extra-info-header">その他の情報</p>
+                            <p className="item-post-confirm-extra-infor-text">
+                                Dell モニター / 27インチ/ Full HD/ HDMI/ 購入価額：￥17,180
+                                <br/>参考url<br/>
+                                https://www.amazon.co.jp/
+                            </p>
+                        </Col>
+                    </Row>
+                </Container>
+               {/* <Container>
                    <p className="item-post-confirm-header">確認してください！</p>
                    <Row>
                        <Col sm={12} md={6} lg={6} className="item-post-confirm-image-container">
@@ -111,7 +136,7 @@ export default class ItemPostConfirm extends React.Component {
                             </Row>
                         </Col>
                    </Row>
-               </Container>
+               </Container> */}
             </div>
 
         )

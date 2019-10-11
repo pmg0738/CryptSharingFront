@@ -59,6 +59,10 @@ export default class Chat extends React.Component {
                 messages: latestMessages,
                 inputtingMessage: '',
             })
+            setTimeout(() => {
+                this.scrollToBottom();
+              }, 100)
+            
           }
     }
 
@@ -75,6 +79,9 @@ export default class Chat extends React.Component {
             messages: latestMessages,
             inputtingMessage: '',
         })
+        setTimeout(() => {
+            this.scrollToBottom();
+          }, 50)
     }
 
     
@@ -92,9 +99,9 @@ export default class Chat extends React.Component {
         this.scrollToBottom();
       }
       
-      componentDidUpdate() {
-        this.scrollToBottom();
-      }
+    //   componentDidUpdate() {
+    //     this.scrollToBottom();
+    //   }
 
     render() {
         return (

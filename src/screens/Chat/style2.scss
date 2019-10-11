@@ -5,8 +5,8 @@
     // width:35%;
     // height:50px;
     // margin-top: 20px;
-    width: 440px;
-    position: fixed;
+    width: 500px;
+    // position: fixed;
     bottom: 20px;
     // right: 0px;
 }
@@ -16,8 +16,8 @@
     // margin-top:441px;
     // margin-left:960px;
     height:87px;
-    background-color: #002739;
-    border-color: #002739;
+    background-color: #035e88;
+    border-color: #035e88;
 }
 #chat-view-container{
     overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
@@ -39,7 +39,7 @@
 .chat-message{
     margin: 0px;
     padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
-    font-size: 16px;
+    font-size: 6px;
     word-wrap: break-word;/* 吹き出し内で自動で改行 */
     white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
 }
@@ -51,7 +51,7 @@
 }
 
 .chat-message-content{
-    padding: 20px;
+    padding: 15px;
 }
 
 .chat-left{
