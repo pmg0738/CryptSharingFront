@@ -53,7 +53,7 @@ export default class Navbar extends React.Component {
             <Card className="navbar-hamburger-menu-button-items">
                 <ListGroup variant="flush">
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/search' className="navbar-hamburger-menu-button-item">Search</Link>
+                        <Link to='/searchbyoption' className="navbar-hamburger-menu-button-item">Search</Link>
                     </ListGroup.Item>
                     <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
