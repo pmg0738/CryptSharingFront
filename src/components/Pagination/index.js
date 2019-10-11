@@ -58,12 +58,15 @@ export default class MyPagination extends React.Component{
     }
 
     render(){
-        return(
-            // <div className="pagination-container">
-            <Container className="pagination-container">                
-                <Pagination>{this.state.paginationItems}</Pagination>
-            {/* </div> */}
-            </Container>
-        );
+        if(this.state.paginationItems.length<=1){
+            return null;
+        }
+        else {
+            return(
+                <Container className="pagination-container">                
+                    <Pagination>{this.state.paginationItems}</Pagination>
+                </Container>
+            );
+        }        
     }
 }

@@ -15,7 +15,7 @@ import Chat from '../../screens/Chat';
 import Pagination from '../../components/Pagination';
 import bicycle from '../../images/bicycle.jpg';
 import test from '../../images/test.jpg';
-import eraiza from '../../images/eraiza.png';
+// import eraiza from '../../images/eraiza.png';
 
 let valueOfTextarea ;
 
@@ -119,7 +119,7 @@ const messages =[
 const friends = [
     {
         name: "池田エライザ",
-        image: eraiza,
+        image: test,
         numOfCards: 3,
         numOfGood: 100,
         lastMessage: "近い！"

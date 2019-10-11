@@ -8,6 +8,7 @@ import {
     Button,
 } from 'react-bootstrap';
 
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../../components/Navbar';
 
 let valueOfTextarea ;
@@ -121,7 +122,8 @@ export default class Chat extends React.Component {
                         </div>
 
                         <Form.Row>
-                            <Form.Group as={Col}>
+                            <Form.Group>
+                            {/* <Form.Group as={Col}> */}
                                 <Form.Control 
                                     className="chat-textarea" 
                                     as="textarea" 
@@ -132,7 +134,8 @@ export default class Chat extends React.Component {
                                     onKeyDown={(e) => this.sendMessage(e)}
                                 ></Form.Control>
                             </Form.Group>
-                            <Form.Group as={Col}>
+                            {/* <Form.Group as={Col}> */}
+                            <Form.Group>
                             <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
                             </Form.Group>
                         </Form.Row>

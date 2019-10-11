@@ -13,36 +13,45 @@
   }
    
 .item-list-add-button {
-    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
+    background:#ea4335;
     border-color: #ea4335;
-    border-radius: 25px;
-    font-size: 20px;
+    border-radius: 50px;
+    // font-size: 20px;
     font-weight: bold;
-    height: 50px;
+    height: 100px;
     position: fixed;
     bottom: 40px;
     right: 40px;
-    width: 50px;
+    width: 100px;
 }
 .item-list-add-button:hover {
-    // background-color: #fbbc05;
-    background: linear-gradient(to bottom,#F9C936,#fbbc05 30%,#C69B17); 
+    background: #fbbc05;
     border-color: #fbbc05;
-    border-radius: 25px;
-    font-size: 20px;
+    border-radius: 50px;
+    // font-size: 20px;
     font-weight: bold;
-    height: 50px;
+    height: 100px;
     position: fixed;
     bottom: 40px;
     right: 40px;
-    width: 50px;
+    width: 100px;
 }
+.item-list-add-button-label {
+    font-size: 14px;
+}
+.item-list-add-button-camera-icon {
+    margin-top: -30px;
+    font-size: 30px;    
+}
+
 // .item-list-container {
 //     // padding-top: 100px;
 // }
 .item-list-item-card {
+    background-color: transparent;
     border-width: 0px;
     margin-bottom: 20px;
+    // padding-top: 100%;
 }
 .item-list-item-card:hover {
     border-width: 0px;
@@ -53,22 +62,22 @@
 .item-list-item-card-image {
     border-color: #ffffff;
     width: 100%;
+    height: 240px;
+    // width: 200px;
+    // padding-top: 100%;
+    // position: absolute;
     // transition-duration: 0.5s;
     // -webkit-transform: scale(1.5,1.5);
 	// transform: scale(1.5,1.5);
-}
-.item-list-item-card-image:hover {
-    border-color: #ffffff;
-    width: 100%;
-    // transform: scale(1.2);
-    // transition-duration: 0.5s;  
 }
 .item-list-item-card-image-smoke {    
     background-color: #ffffff;
     // height: 250px;
     // width: 250px;
     width: 100%;
-    padding-top: 100%;
+    height: 100%;
+    // width: 200px;
+    // padding-top: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -93,20 +102,21 @@
 //     bottom: -5px;
 //     left: 15px;
 // }
-.item-list-item-card-status-unavailable {
-    // color: #ff6967;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    position: absolute;
-    bottom: -5px;
-    left: 15px;
-}
+
+// .item-list-item-card-status-unavailable {
+//     // color: #ff6967;
+//     color: #ffffff;
+//     font-size: 12px;
+//     font-weight: bold;
+//     position: absolute;
+//     bottom: -5px;
+//     left: 15px;
+// }
 $title-top: 7px;
 $title-left: 7px;
 $price-bottom: -5px;
 $price-right: 10px;
-.item-list-item-card-title-red {
+.item-list-item-card-title {
     // background-color: #ea4335;
     background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
     // border-radius: 20px;
@@ -119,112 +129,38 @@ $price-right: 10px;
     position: absolute;
     top: $title-top;
     left: $title-left;
-}
-.item-list-item-card-title-yellow {
-    background-color: #fbbc05;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    top: $title-top;
-    left: $title-left;
-}
-.item-list-item-card-title-blue {
-    background-color: #4285f4;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    top: $title-top;
-    left: $title-left;
-}
-.item-list-item-card-title-green {
-    background-color: #34a853;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    top: $title-top;
-    left: $title-left;
-}
-.item-list-item-card-price-red {
-    // background-color: #ea4335;
-    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    bottom: $price-bottom;
-    right: $price-right;
-}
-.item-list-item-card-price-yellow {
-    background-color: #fbbc05;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    bottom: $price-bottom;
-    right: $price-right;
-}
-.item-list-item-card-price-blue {
-    background-color: #4285f4;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    bottom: $price-bottom;
-    right: $price-right;
-}
-.item-list-item-card-price-green {
-    background-color: #34a853;
-    // border-radius: 20px;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: absolute;
-    bottom: $price-bottom;
-    right: $price-right;
 }
 .item-list-item-card-price {
-    background-color: #ffffff;
-    opacity: 0.8;
-    border-radius: 8px;
-    color: #ffffff;
-    // color: #000000;
-    font-size: 20px;
+    background: #ffffff;
+    // background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    // border-radius: 20px;
+    // color: #ffffff;
+    color: #333333;
+    font-size: 18px;
     font-weight: bold;
+    // height: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 10px;
     position: absolute;
-    // bottom: 10px;
-    top: 10px;
-    right: 20px;
+    bottom: -5px;
+    right: 0px;
 }
+// .item-list-item-card-price {
+//     background-color: #ffffff;
+//     opacity: 0.8;
+//     border-radius: 8px;
+//     color: #ffffff;
+//     // color: #000000;
+//     font-size: 20px;
+//     font-weight: bold;
+//     position: absolute;
+//     // bottom: 10px;
+//     top: 10px;
+//     right: 20px;
+// }
 .item-list-item-card-price-under {
     color: #ffffff;
     font-size: 18px;
@@ -243,8 +179,9 @@ $price-right: 10px;
 .item-list-item-card-detail-button-red {
     // background-color: #002739;
     // border-color: #002739;
-    background-color: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B);
-    border-color: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B);
+    background-color: #ea4335;
+    border-color: #ea4335;
+    // border-color: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B);
     width: 60px;
     padding: 5px;
     position: absolute;
