@@ -27,16 +27,16 @@ export default class MainSearch extends React.Component {
 
                 <Container>
                     <Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
-                        <Tab eventKey="rent-now" title="Rent Now">
-                            <div className="my-page-tab-explanation">What You rent now</div>
+                        <Tab eventKey="rent-now" title="借りてる">
+                            <div className="my-page-tab-explanation">現在借りているもの</div>
                             <MyPageRentNow/>
                         </Tab>
-                        <Tab eventKey="booked" title="Booked">
-                            <div className="my-page-tab-explanation">What You have booked (NOT RENT YET)</div>
+                        <Tab eventKey="booked" title="予約">
+                            <div className="my-page-tab-explanation">予約一覧</div>
                             <MyPageBooked/>
                         </Tab>
-                        <Tab eventKey="posted" title="Posted">
-                            <div className="my-page-tab-explanation">What You Posted Before</div>
+                        <Tab eventKey="posted" title="投稿一覧">
+                            <div className="my-page-tab-explanation">投稿一覧</div>
                             <MyPagePosted/>
                         </Tab>    
                     </Tabs>
