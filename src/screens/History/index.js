@@ -25,12 +25,12 @@ export default class MainSearch extends React.Component {
         return (
 
                 <Container>
-                    <Tabs defaultActiveKey="booked history" id="uncontrolled-tab-example">
-                        <Tab eventKey="booked history" title="Booked History">
+                    <Tabs defaultActiveKey="used history" id="uncontrolled-tab-example">
+                        <Tab eventKey="used history" title="使用履歴">
                             <div className="history-tab-explanation">What You Booked Before</div>
                             <HistoryBooked/>
                         </Tab>
-                        <Tab eventKey="posted history" title="Posted History">
+                        <Tab eventKey="" title="貸し出し履歴">
                             <div className="history-tab-explanation">What You Posted Before</div>
                             <HistoryPosted/>
                         </Tab>    

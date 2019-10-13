@@ -54,19 +54,19 @@ export default class Navbar extends React.Component {
             <Card className="navbar-hamburger-menu-button-items">
                 <ListGroup variant="flush">
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/searchbyoption' className="navbar-hamburger-menu-button-item">Search</Link>
+                        <Link to='/searchbyoption' className="navbar-hamburger-menu-button-item">検索</Link>
                     </ListGroup.Item>
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/items' className="navbar-hamburger-menu-button-item">Items</Link>
+                        <Link to='/items' className="navbar-hamburger-menu-button-item">物品一覧</Link>
                     </ListGroup.Item>
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/chats' className="navbar-hamburger-menu-button-item">Chat</Link>
+                        <Link to='/chats' className="navbar-hamburger-menu-button-item">チャット</Link>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                            <Link to='/mypage' className="navbar-hamburger-menu-button-item">MyPage</Link>
+                            <Link to='/mypage' className="navbar-hamburger-menu-button-item">マイページ</Link>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                            <Link to='/history' className="navbar-hamburger-menu-button-item">History</Link>
+                            <Link to='/history' className="navbar-hamburger-menu-button-item">履歴</Link>
                     </ListGroup.Item>
                 </ListGroup>
             </Card>            
