@@ -1,13 +1,13 @@
 import React from 'react';
 import './app.scss';
 
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
 
-import {
-  Col,
-  Row,  
-} from 'react-bootstrap';
-
+import reducer from './reduceers/api';
+// screens
 import Chat from './screens/Chat';
 import ChatList from './screens/ChatList';
 import ItemList from './screens/ItemList';
@@ -18,11 +18,12 @@ import MyPage from './screens/MyPage';
 import History from './screens/History';
 import ItemPostConfirm from './screens/ItemPostConfirm';
 import SearchByOption from './screens/SearchByOption';
-
+// components
 import Navbar from './components/Navbar';
 // import NavbarNoLogo from './components/NavbarNoLogo';
 
 
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default class App extends React.Component{
   render(){
@@ -31,17 +32,19 @@ export default class App extends React.Component{
         {/* <Route path='/search' component={MainSearch}/> */}
         <BrowserRouter>
             <div className="screen-container">
-              <Route exact path='/search' component={MainSearch}/>
-              <Route exact path='/items' component={ItemList}/>
-              <Route exact path='/items/post' component={ItemPost}/>
-              {/* <Route exact path='/items/:id' component={ItemDetail}/> */}
-              <Route exact path='/chats' component={ChatList}/>
-              <Route exact path='/items/1' component={ItemDetail}/>
-              <Route exact path='/chats/1' component={Chat}/>
-              <Route exact path='/mypage' component={MyPage}/>
-              <Route exact path='/history' component={History}/>
-              <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
-              <Route exact path='/searchbyoption' component={SearchByOption}/>
+              <Provider store={store}>
+                <Route exact path='/search' component={MainSearch}/>
+                <Route exact path='/items' component={ItemList}/>
+                <Route exact path='/items/post' component={ItemPost}/>
+                {/* <Route exact path='/items/:id' component={ItemDetail}/> */}
+                <Route exact path='/chats' component={ChatList}/>
+                <Route exact path='/items/1' component={ItemDetail}/>
+                <Route exact path='/chats/1' component={Chat}/>
+                <Route exact path='/mypage' component={MyPage}/>
+                <Route exact path='/history' component={History}/>
+                <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
+                <Route exact path='/searchbyoption' component={SearchByOption}/>
+              </Provider>
             </div>
             <Navbar/>
         </BrowserRouter>        

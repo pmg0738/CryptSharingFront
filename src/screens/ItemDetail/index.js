@@ -96,8 +96,8 @@ export default class ItemDetail extends React.Component {
                             </Row>
                         </Col>
                         <Col sm={12} md={6} className="item-detail-info">
-                            <Button className="item-detail-goto-chat">チャット</Button>
-                            <Button className="item-detail-goto-request">リクエスト</Button>
+                            {/* <Button className="item-detail-goto-chat">チャット</Button> */}
+                            <Button className="item-detail-goto-request">借りる</Button>
                             <div className="item-detail-owner">出品者 : park　★★★★★</div>
                             <div className="item-detail-rent-state">貸出状況 : 貸し出し可能</div>
                             <div className="item-detail-charge">利用料：1000円/日</div>
