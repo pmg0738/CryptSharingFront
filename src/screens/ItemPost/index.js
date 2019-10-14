@@ -11,7 +11,9 @@ import {
     Card,
 } from 'react-bootstrap';
 import loadImage from 'blueimp-load-image';
+// import { connect } from 'react-redux';
 
+// import { getItem } from '../../actions/api'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +21,7 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 import Navbar from '../../components/Navbar';
 import test from '../../images/test.jpg';
 
-import icon from '../../images/crypt_sharing_icon.png';
+import placeholderImage from '../../images/rain.png';
 import S__23519271 from '../../images/S__23519271.jpg';
 import S__23519273 from '../../images/S__23519273.jpg';
 import S__23519274 from '../../images/S__23519274.jpg';
@@ -33,7 +35,7 @@ import S__23519281 from '../../images/S__23519281.jpg';
 
 
 
-export default class ItemPost extends React.Component {
+class ItemPost extends React.Component {
     constructor(props){
         super(props);
 
@@ -123,11 +125,11 @@ export default class ItemPost extends React.Component {
     }   
 
 
-    renderCryptSharingImage = (images) => {
+    renderPlaceholderImage = (images) => {
         if(images.length==0){
             return (
-                <img src={icon} 
-                    className="item-post-crypt-sharing-icon-image"
+                <img src={placeholderImage} 
+                    className="item-post-placeholder-image"
                 />
             );
         }
@@ -149,7 +151,7 @@ export default class ItemPost extends React.Component {
                                 onClick={() => console.log('@@@@')}
                                 onChange={e => this.imageChangeHandler(e)}
                             />
-                            {this.renderCryptSharingImage(this.state.images)}
+                            {this.renderPlaceholderImage(this.state.images)}
                             <Row>                                
                                 {this.state.images.map((image, index) => 
                                     <ItemPostCard 
@@ -161,6 +163,9 @@ export default class ItemPost extends React.Component {
                             </Row>
                         </Col>
                         <Col sm={12} md={6} className="item-post-item-info">
+                            <Link to='/items'>
+                                <Button className="item-detail-button-to-item-list">一覧に戻る</Button>
+                            </Link>
                             <Form>
                                 <Form.Group controlId="formBasicEmail">
                                     {/* <Form.Label>Email address</Form.Label> */}
@@ -293,3 +298,15 @@ const toBlob = (base64, reject) => {
       });
     });
   };
+
+
+//   const mapStateToProps = (items, ownProps) => {
+//     // console.log('items', state);
+
+//     const item = items[ownProps.match.params.id]
+//     return { item: item };
+// }
+// const mapDispatchToProps = ({ getItem })
+
+// export default connect(mapStateToProps, mapDispatchToProps)(ItemPost)
+export default ItemPost

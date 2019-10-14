@@ -53,7 +53,7 @@ export default class FriendList extends React.Component{
     render(){
         return(
             <Container className="friend-list-container">
-                <Row>
+                <Row className="chat-container-row">
                     <Col sm={12} md={6} className={this.state.listStyle}
                         onMouseOver={this.onList}
                     >

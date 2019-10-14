@@ -1,61 +1,38 @@
-.navbar-logo-image{
-    // height: 60px;
-    // height: 50px;
-    height: 40px;
-    margin-left: 15px;
-    margin-top: 10px;
-}
-
 .navbar-container{
     background-color: #282c34;
     position: fixed;
     top: 0px;
     width: 100%;
 }
-.navbar-container-dummy {
-    // height: 390px;
-}
-
 .navbar-hamburger-menu-button{
-    color : #282c34;
     background-color: white;
     border-color: #282c34;
+    color : #282c34;
     position: fixed;
     top: 15px;
     right: 20px;
 }
 .navbar-hamburger-menu-button:hover{
-    color : #282c34;
     background-color: #999999;
     border-color: #282c34;
+    color : #282c34;
     position: absolute;
     top: 15px;
     right: 20px;
 }
-
-.navbar-hamburger-menu-button-items{
-    position: fixed;
-    top: 55px;
-    right:20px;
-}
-
 .navbar-hamburger-menu-button-item{
     background-color: white;
     border-color: #282c34;
     color: #282c34;
     width: 80px;
 }
-
-// .navbar-menu-items {
-//     background-color: #282c34;
-//     // height: 100px;
-//     // padding-left: 30px;
-//     margin-right: 80px;
-//     padding-top: 20px;
-//     padding-bottom: 10px;
-//     text-align: right;
-// }
-// .navbar-menu-item {
-//     // background-color: aqua;
-//     color: #ffffff;
-// }
+.navbar-hamburger-menu-button-items{
+    position: fixed;
+    top: 55px;
+    right:20px;
+}
+.navbar-logo-image{
+    height: 60px;
+    margin-left: 15px;
+    margin-top: 10px;
+}

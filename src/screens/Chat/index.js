@@ -8,7 +8,6 @@ import {
     Button,
 } from 'react-bootstrap';
 
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../../components/Navbar';
 
 let valueOfTextarea ;

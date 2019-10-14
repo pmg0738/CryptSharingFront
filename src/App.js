@@ -10,13 +10,14 @@ import reducer from './reduceers/api';
 // screens
 import Chat from './screens/Chat';
 import ChatList from './screens/ChatList';
+import History from './screens/History';
 import ItemList from './screens/ItemList';
 import ItemDetail from './screens/ItemDetail';
 import ItemPost from './screens/ItemPost';
+import ItemPostConfirm from './screens/ItemPostConfirm';
+import Login from './screens/Login';
 import MainSearch from './screens/MainSearch';
 import MyPage from './screens/MyPage';
-import History from './screens/History';
-import ItemPostConfirm from './screens/ItemPostConfirm';
 import SearchByOption from './screens/SearchByOption';
 // components
 import Navbar from './components/Navbar';
@@ -35,13 +36,14 @@ export default class App extends React.Component{
               <Provider store={store}>
                 <Route exact path='/search' component={MainSearch}/>
                 <Route exact path='/items' component={ItemList}/>
-                <Route exact path='/items/post' component={ItemPost}/>
+                <Route exact path='/items/new/post' component={ItemPost}/>
+                <Route exact path='/items/:id' component={ItemDetail}/>
                 {/* <Route exact path='/items/:id' component={ItemDetail}/> */}
                 <Route exact path='/chats' component={ChatList}/>
-                <Route exact path='/items/1' component={ItemDetail}/>
                 <Route exact path='/chats/1' component={Chat}/>
                 <Route exact path='/mypage' component={MyPage}/>
                 <Route exact path='/history' component={History}/>
+                <Route exact path='/login' component={Login}/>
                 <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
                 <Route exact path='/searchbyoption' component={SearchByOption}/>
               </Provider>

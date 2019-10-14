@@ -48,6 +48,7 @@ export default class MyPagination extends React.Component{
                             this.state.currentPage,
                             number
                         )
+                        this.props.handlePagination(number)
                         window.scrollTo(0, 0);
                     // do something ex) console.log("called");
                 }}
