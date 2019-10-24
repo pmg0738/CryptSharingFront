@@ -18,12 +18,13 @@ import { getItems, getItemCount } from '../../actions/api';
 import './style.scss';
 // import { API_BASE_URL } from '../../config.js'
 
- import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 import Pagination from '../../components/Pagination';
 import Item from '../../components/Item';
 
+import eraiza from '../../images/eraiza.png';
 
 
 
@@ -32,7 +33,7 @@ class ItemList extends React.Component {
         super(props);
 
         this.state = {
-            items: [],
+            items: [eraiza, eraiza, eraiza, eraiza, eraiza, eraiza, eraiza, eraiza, eraiza, eraiza,],
         }
     }
 
@@ -86,7 +87,7 @@ class ItemList extends React.Component {
         return (
             <Container className="item-list-container">
                 <Row>
-                {/* {this.state.items.map((item) => 
+                {this.state.items.map((item) => 
                     <Col xc={6} sm={6} md={4} lg={3}>
                         <Item 
                             to='/items/1'
@@ -95,9 +96,9 @@ class ItemList extends React.Component {
                             status={1}
                         />
                     </Col>                    
-                )} */}
+                )}
                 
-                {this.renderItems()}
+                {/* {this.renderItems()} */}
                 </Row>
                 <Link to='/items/new/post'>
                     <Button className="item-list-add-button">
