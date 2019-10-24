@@ -14,8 +14,8 @@ import { Link } from 'react-router-dom';
 import Chat from '../../screens/Chat';
 import Pagination from '../../components/Pagination';
 import bicycle from '../../images/bicycle.jpg';
-import test from '../../images/test.jpg';
-// import eraiza from '../../images/eraiza.png';
+// import test from '../../images/test.jpg';
+import eraiza from '../../images/eraiza.png';
 
 let valueOfTextarea ;
 
@@ -119,7 +119,7 @@ const messages =[
 const friends = [
     {
         name: "池田エライザ",
-        image: test,
+        image: eraiza,
         numOfCards: 3,
         numOfGood: 100,
         lastMessage: "近い！"

@@ -19,7 +19,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Navbar from '../../components/Navbar';
-import test from '../../images/test.jpg';
+import eraiza from '../../images/eraiza.png';
+
 
 import placeholderImage from '../../images/rain.png';
 import S__23519271 from '../../images/S__23519271.jpg';

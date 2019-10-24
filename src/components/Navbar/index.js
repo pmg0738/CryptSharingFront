@@ -66,9 +66,6 @@ export default class Navbar extends React.Component {
                             <Link to='/mypage' className="navbar-hamburger-menu-button-item">マイページ</Link>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                            <Link to='/history' className="navbar-hamburger-menu-button-item">履歴</Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
                             <Link to='/login' className="navbar-hamburger-menu-button-item">ログイン</Link>
                     </ListGroup.Item>
                 </ListGroup>
