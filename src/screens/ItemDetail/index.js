@@ -101,7 +101,10 @@ class ItemDetail extends React.Component {
                             <div className="item-detail-charge-per-hour">1時間：100円</div>
                             <div className="item-detail-charge-per-day">1　日：1000円</div>
                             
-                            <Button className="item-detail-goto-request">借りる</Button>
+                            <Link to='/request'>
+                                <Button className="item-detail-goto-request">借りる</Button>
+                            </Link>
+                            
                             {/* <div className="item-detail-owner">{this.props.item.name}</div> */}
                             <div className="item-detail-owner">
                                 {/* <Image src={this.props.item.image} className="item-detail-item-owner-image"/> */}

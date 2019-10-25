@@ -1,0 +1,110 @@
+.request-detail-button-to-request-list {
+    background-color: #426e86;
+    border-color: #426e86;
+    margin-bottom: 20px;
+    position: absolute;
+    right: 50px;
+}
+.request-detail-favorite-icon {
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+.request-detail-request-owner-image {
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+}
+.request-detail-selected-pic{
+    width: 480px;
+    height: 480px;
+    margin-bottom: 20px;
+}
+.request-detail-not-selected-pic{
+    // width: 120px;
+    // margin-right: 5px;
+    height: 150px;
+    width: 150px;
+}
+.request-detail-non-selected-pic-container{
+    margin-right: 5px;
+}
+
+.request-detail-chevron-left{
+    align-self: center;
+    color: white;
+    margin-right:15px;
+    font-size: 30px;
+}
+.request-detail-chevron-right{
+    align-self: center;
+    color: white;
+    margin-left:15px;
+    font-size: 30px;
+}
+.request-detail-info{
+    color: white;
+    padding-left: 25px;
+}
+.request-detail-more-detail-info-contents{
+    width: 500px;
+    height: 500px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    color: black;
+    padding: 15px;
+}
+.request-detail-goto-chat{
+    margin-right:20px;
+    margin-bottom:20px;
+    // margin-left:20px;
+}
+.request-detail-goto-request {
+    background-color: #e29930;
+    border-color: #e29930;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom:20px;
+    width: 90%;   
+}
+.request-detail-goto-request:hover {
+    background-color: #4285f4;
+    border-color: #4285f4;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom:20px;    
+}
+
+$info-font-size: 20px;
+$info-margin-left: 0px;
+// $title-left: 7px;
+
+.request-detail-owner{
+    font-size: $info-font-size;
+    // margin-left: $info-margin-left;
+    margin-bottom: 20px;
+}
+
+.request-detail-rent-state{
+    font-size: $info-font-size;
+    // margin-left: $info-margin-left;
+    margin-bottom: 20px;
+}
+
+.request-detail-charge-per-day {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;    
+}
+.request-detail-charge-per-hour {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.request-detail-more-detail-info-header{
+    font-size: $info-font-size;
+    // margin-left: $info-margin-left;
+    margin-bottom: 8px;
+}
