@@ -14,10 +14,8 @@ import {
     Image,
   } from 'react-bootstrap';
 
-import speaker from '../../../images/speaker.jpg';
-import cap from '../../../images/cap.jpg';
-import cup from '../../../images/cup.jpg';
-
+  import Item from '../../Item';
+  import eraiza from '../../../images/eraiza.png';
 
 
 export default class MyPagePosted extends React.Component {
@@ -27,23 +25,18 @@ export default class MyPagePosted extends React.Component {
         this.state = {
             items: [
                 {
-                    color: "red",
-                    image: speaker,
-                    title: "スピーカ",
-                    status: 0,
-                }, 
+                    image: eraiza,
+                    price: 990000,
+                },
                 {
-                    color: "yellow",
-                    image: cap,
-                    title: "キャップ",
-                    status: 1,
-                }, 
+                    image: eraiza,
+                    price: 10000,
+                },
                 {
-                    color: "green",
-                    image: cup,
-                    title: "コップ",
-                    status: 1,
-                }, 
+                    image: eraiza,
+                    price: 100,
+                },
+                
             ]
         }
     }
@@ -51,19 +44,17 @@ export default class MyPagePosted extends React.Component {
     render() {
         return (
             <Container>
-                <Row>
-                    {this.state.items.map(item =>
-                        <Col xc={6} sm={6} md={4} lg={3}>
-                            <Card className="mypage-posted-item-card">
-                                <div className="mypage-posted-item-card-image-container">
-                                    <Image src={item.image} className="mypage-posted-item-card-image"/>
-                                    {[<div className="mypage-posted-item-card-image-smoke-not-available" />,<div/>][item.status]}
-                                </div>
-                                <p className={"mypage-posted-item-card-title-" + item.color}>{item.title}</p>
-                                {/* {this.renderRentaringMessage(!item.status)} */}
-                            </Card>
-                        </Col>
-                    )}
+               <Row>
+                {this.state.items.map((item) => 
+                    <Col xc={6} sm={6} md={4} lg={4}>
+                        <Item 
+                            to='/items/1'
+                            image={item.image}
+                            pricePerHour={item.price}
+                            status={1}
+                        />
+                    </Col>                    
+                )}
                 </Row>
             </Container>
         )

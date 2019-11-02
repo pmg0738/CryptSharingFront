@@ -11,7 +11,9 @@ import {
     Dropdown,
     DropdownButton,
     Image,
-    ButtonToolbar
+    ButtonToolbar,
+    InputGroup,
+    FormControl,
 } from 'react-bootstrap';
 
 export default class SearchByOptionComponent extends React.Component {
@@ -81,7 +83,24 @@ export default class SearchByOptionComponent extends React.Component {
                                         variant={this.state.periodVarientOneDay}
                                         onClick={this.changeVarientOneday}>1日</Button>                                      
                             </Row>
-                            <Row className="option-search-lent-price-head">料金</Row>
+                            <Row className="option-search-lent-price-head">
+                                最大料金 (円)
+                                <FormControl
+                                    className="option-search-distance-input"
+                                    placeholder="ex)200"
+                                    value={this.state.priceValue.max}
+                                    onChange={value => this.setState({distance: value})}
+                                />
+                            </Row>
+                            <Row className="option-search-lent-price-head">
+                                最小料金 (円)
+                                <FormControl
+                                    className="option-search-distance-input"
+                                    placeholder="ex)1"
+                                    value={this.state.priceValue.min}
+                                    onChange={value => this.setState({distance: value})}
+                                />
+                            </Row>
                             <Row className="option-search-lent-price-row">
                                 <InputRange
                                     className="option-search-price-input-range"
@@ -93,7 +112,26 @@ export default class SearchByOptionComponent extends React.Component {
                                     onChange={value => this.setState({priceValue:value})}
                                 />
                             </Row>
-                            <Row className="option-search-distance-head">距離</Row>
+                            <Row className="option-search-distance-head">
+                                最大距離 (km)
+                                <FormControl
+                                    className="option-search-distance-input"
+                                    placeholder="ex) 5"
+                                    value={this.state.distance.max}
+                                    onChange={value => this.setState({distance: value})}
+                                />
+                            </Row>
+
+                            <Row className="option-search-distance-head">
+                                最小距離 (km)
+                                <FormControl
+                                    className="option-search-distance-input"
+                                    placeholder="ex) 5"
+                                    value={this.state.distance.min}
+                                    onChange={value => this.setState({distance: value})}
+                                />
+                            </Row>
+                            
                             <Row className="option-search-distance-row">
                                 <InputRange
                                     className="option-search-distance-input-range"

@@ -71,7 +71,7 @@ export default class ItemListComponent extends React.Component {
     }
 
     handlePagination = (page) => {
-        this.props.getItems(page);
+        // this.props.getItems(page);
     }
 
     render() {

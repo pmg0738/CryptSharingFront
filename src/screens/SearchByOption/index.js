@@ -43,10 +43,10 @@ export default class SearchByOption extends React.Component {
         return (
                 <Container>
                     <Row>
-                        <Col lg={4} xl={2}>
+                        <Col lg={2} xl={2}>
                             <SearchByOptionComponent/>
                         </Col>
-                        <Col lg={8} xl={10}>
+                        <Col lg={10} xl={10}>
                             <ItemListComponent/>
                         </Col>
                     </Row>
