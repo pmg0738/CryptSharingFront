@@ -50,50 +50,51 @@ export default class Request extends React.Component {
                         </Col>
                         <Col sm={12} md={6} className="right">
                         <Form>
-                            <Form.Group controlId="formBasicEmail">
-                            <div className="item-post-form-label">料金</div>                                                        
-                                    <Row>
-                                    <Form.Control 
-                                        className="item-post-price-form"
-                                        type="number" placeholder="20"/>
-                                    <p className="item-post-price-label">円　 /</p>
-                                    <select
-                                        className="item-post-unit-time-select"
-                                        // value={this.state.tag}
-                                        onChange={(e) => this.setState({tag: e.target.value})}
-                                    >
-                                        <option>１分</option>
-                                        <option>５分</option>
-                                        <option>１０分</option>
-                                        <option>１５分</option>
-                                        <option>３０分</option>
-                                        <option>１時間</option>
-                                        <option>１週間</option>
-                                        <option>１ヶ月</option>
-                                        <option>１年</option>
+                            <p>
+                                使用時間：<input type="text" name="num" size="10"/>
+                                        <select name="time" className="request-use-time">
+                                            <option value="hour">時間</option>
+                                            <option value="day">日</option>
+                                        </select>
+                            </p>
+                            <p>
+                                金額：<input type="text" name="money" size="20"/>円
+                            </p> 
+                            <p> 
+                                希望日：<select name="month">
+                                            <option value="1">1月</option>
+                                            <option value="2">2月</option>
+                                            <option value="3">3月</option>
+                                            <option value="4">4月</option>
+                                            <option value="5">5月</option>
+                                            <option value="6">6月</option>
+                                            <option value="7">7月</option>
+                                            <option value="8">8月</option>
+                                            <option value="9">9月</option>
+                                            <option value="10">10月</option>
+                                            <option value="11">11月</option>
+                                            <option value="12">12月</option>
                                     </select>
-                                    </Row>
-                                    <Row>
-                                    <Form.Control 
-                                        className="item-post-price-form"
-                                        type="number" placeholder="20"/>
-                                    <p className="item-post-price-label">円　 /</p>
-                                    <select
-                                        className="item-post-unit-time-select"
-                                        // value={this.state.tag}
-                                        onChange={(e) => this.setState({tag: e.target.value})}
-                                    >
-                                        <option>１年</option>
-                                    </select>
-                                    </Row>
-                                    <div className="item-post-form-label">その他の情報</div>                                                        
+                                    <input type="text" name="days" size="2"/>日
+                            </p>
+                            <p>
+                                受け渡し場所：<input type="text" name="place" size="30"/>
+                            </p>
+
+
+                                            
+                                    <div className="item-post-form-label">コメント</div>                                                        
                                     <textarea
                                         className="item-post-item-detail-textarea"
                                         type="text"
-                                        placeholder='購入価格: 32400円'
+                                        placeholder='メッセージを記入してください'
                                     />
-                            </Form.Group>
+                
                         </Form>
+                        <Button variant="warning"
+                                className="request-request-button"
+                                >リクエストを送る</Button>
+                        
                         </Col>
                     </Row>
                 </Container>

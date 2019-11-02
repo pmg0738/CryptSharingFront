@@ -1,5 +1,5 @@
 .left{
-    background: yellow;
+    background: rgb(172, 172, 163);
 }
 
 .right{
@@ -25,4 +25,15 @@
 .request-lent-time-header{
     // font-size:25px;
     // background-color: aquamarine;
+}
+
+.request-use-time{
+    width: 80;
+    height: 60;
+    margin-left: 20px;
+}
+
+.request-request-button{
+    width: 400px;
+    margin-left: 65px;
 }
