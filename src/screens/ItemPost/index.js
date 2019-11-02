@@ -13,7 +13,7 @@ import {
 import loadImage from 'blueimp-load-image';
 // import { connect } from 'react-redux';
 
-// import { getItem } from '../../actions/api'
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'

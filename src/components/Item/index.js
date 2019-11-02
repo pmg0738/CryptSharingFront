@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 import { Card, Image } from 'react-bootstrap';
 
 import './style.scss';
-import { connect } from 'react-redux';
-
-import { getItem, getItemImages } from '../../actions/api'
 
 
-class Item extends React.Component {
+export default class Item extends React.Component {
     constructor(props) {
         super(props);
 
@@ -33,9 +30,7 @@ class Item extends React.Component {
     }
 
     getItemDetail = () => {
-        console.log('getItemDetail ---------');
-        this.props.getItem(this.props.id)
-        // this.props.getItemImages(this.props.id, [1, 2])
+        // this.props.getItem(this.props.id)
     }    
 
     render() {
@@ -58,15 +53,3 @@ class Item extends React.Component {
     }
 }
 
-
-const mapStateToProps = (items, ownProps) => {
-    // console.log('items', state);
-    // console.log('items', items);
-    // const item = items[ownProps.match.params.id]
-    const item = items[ownProps.id]
-    return { item: item };
-}
-
-const mapDispatchToProps = ({ getItem, getItemImages })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item)

@@ -12,7 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getItem, getItemImages } from '../../actions/api'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 

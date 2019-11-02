@@ -14,6 +14,8 @@ import {
     Image,
   } from 'react-bootstrap';
 
+import Item from '../../Item';
+
 import speaker from '../../../images/speaker.jpg';
 import cap from '../../../images/cap.jpg';
 import cup from '../../../images/cup.jpg';
@@ -52,7 +54,8 @@ export default class MyPageRentNow extends React.Component {
         return (
             <Container>
                 <Row>
-                    {this.state.items.map(item =>
+                    <Item/>
+                    {/* {this.state.items.map(item =>
                         <Col xc={6} sm={6} md={4} lg={3}>
                             <Card className="mypage-posted-item-card">
                                 <div className="mypage-posted-item-card-image-container">
@@ -60,10 +63,9 @@ export default class MyPageRentNow extends React.Component {
                                     {[<div className="mypage-posted-item-card-image-smoke-not-available" />,<div/>][item.status]}
                                 </div>
                                 <p className={"mypage-posted-item-card-title-" + item.color}>{item.title}</p>
-                                {/* {this.renderRentaringMessage(!item.status)} */}
                             </Card>
                         </Col>
-                    )}
+                    )} */}
                 </Row>
             </Container>
         )

@@ -9,36 +9,23 @@ import {
     Row,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { getItem, getItemImages } from '../../actions/api'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import Navbar from '../../components/Navbar';
 
 
-class ItemDetail extends React.Component {
+export default class ItemDetail extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
             images: [],
             imageStartIndex: 0,                
-            // selectedImage: this.props.item.image,
-            // selectedImage: S__23519271,
         }
     }
-
-    // componentWillMount() {
-    //     // console.log('componentWillMoun', this.props.item);
-
-    //     const { id } = this.props.match.params;
-    //     if (id) {
-    //         // this.props.getItem(id)
-    //         // this.props.getItemImages(id, [1, 2])ß
-    //     }
-    // }
 
 
     threeArray = (array, index) => {
@@ -63,7 +50,7 @@ class ItemDetail extends React.Component {
     }
 
     render() {
-        // console.log('this.props', this.props);
+
 
         return (
             <div>
@@ -131,13 +118,10 @@ class ItemDetail extends React.Component {
 
 
 
-const mapStateToProps = (items, ownProps) => {
-    // console.log('items', state);
-    // console.log('items', items);
-    const item = items[ownProps.match.params.id]
-    return { item: item };
-}
+// const mapStateToProps = (items, ownProps) => {
+//     // console.log('items', state);
+//     // console.log('items', items);
+//     const item = items[ownProps.match.params.id]
+//     return { item: item };
+// }
 
-const mapDispatchToProps = ({ getItem, getItemImages })
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemDetail)

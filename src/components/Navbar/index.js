@@ -11,8 +11,7 @@ import {
     Nav,
   } from 'react-bootstrap';
 
-//   import logo from '../../images/logo.png';
-  import logo from '../../images/knock_logo.png';
+import logo from '../../images/knock_logo.png';
   
 
 
@@ -54,10 +53,7 @@ export default class Navbar extends React.Component {
             <Card className="navbar-hamburger-menu-button-items">
                 <ListGroup variant="flush">
                     <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/searchbyoption' className="navbar-hamburger-menu-button-item">検索</Link>
-                    </ListGroup.Item>
-                    <ListGroup.Item onClick={this.closeMenu}>
-                        <Link to='/items' className="navbar-hamburger-menu-button-item">物品一覧</Link>
+                        <Link to='/items' className="navbar-hamburger-menu-button-item">検索</Link>
                     </ListGroup.Item>
                     <ListGroup.Item onClick={this.closeMenu}>
                         <Link to='/chats' className="navbar-hamburger-menu-button-item">チャット</Link>
@@ -70,17 +66,6 @@ export default class Navbar extends React.Component {
                     </ListGroup.Item>
                 </ListGroup>
             </Card>            
-            // <div className="navbar-menu-items">
-            //     <Link to='/search'>
-            //         <p className="navbar-menu-item">Search</p>
-            //     </Link>
-            //     <Link to='/items'>
-            //         <p className="navbar-menu-item">Items</p>
-            //     </Link>
-            //     <Link to='/chat'>
-            //         <p className="navbar-menu-item">Chat</p>
-            //     </Link>
-            // </div>
         )
     }
 
@@ -90,7 +75,7 @@ export default class Navbar extends React.Component {
         return (
             <div>
                 <Nav className="navbar-container">
-                    <Link to='/search'>
+                    <Link to='/'>
                         <img className="navbar-logo-image" src={logo}/>
                     </Link>
                     <Button className="navbar-hamburger-menu-button" 
