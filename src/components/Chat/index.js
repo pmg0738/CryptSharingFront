@@ -1,5 +1,5 @@
 import React from 'react';
-import './style2.scss';
+import './style.scss';
 import { 
     Container,
     Form,
@@ -7,8 +7,6 @@ import {
     Col,
     Button,
 } from 'react-bootstrap';
-
-import Navbar from '../../components/Navbar';
 
 let valueOfTextarea ;
 
@@ -106,7 +104,6 @@ export default class Chat extends React.Component {
     render() {
         return (
             <div>
-                <Navbar/>
                 <Container>
                         <div id="chat-view-container" className="chat-view-container">
                             <div className="chat-view">

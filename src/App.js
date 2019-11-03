@@ -6,7 +6,6 @@ import {BrowserRouter, Route } from 'react-router-dom';
 
 
 // screens
-import Chat from './screens/Chat';
 import ChatList from './screens/ChatList';
 import History from './screens/History';
 import ItemDetail from './screens/ItemDetail';
@@ -31,7 +30,7 @@ export default class App extends React.Component{
                 <Route exact path='/items/new/post' component={ItemPost}/>
                 <Route exact path='/items/:id' component={ItemDetail}/>
                 <Route exact path='/chats' component={ChatList}/>
-                <Route exact path='/chats/1' component={Chat}/>
+                {/* <Route exact path='/chats/1' component={Chat}/> */}
                 <Route exact path='/mypage' component={MyPage}/>
                 <Route exact path='/history' component={History}/>
                 <Route exact path='/login' component={Login}/>

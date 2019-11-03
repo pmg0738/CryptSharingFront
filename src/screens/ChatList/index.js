@@ -11,10 +11,8 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
-import Chat from '../../screens/Chat';
+import Chat from '../../components/Chat';
 import Pagination from '../../components/Pagination';
-import bicycle from '../../images/bicycle.jpg';
-// import test from '../../images/test.jpg';
 import eraiza from '../../images/eraiza.png';
 
 let valueOfTextarea ;
@@ -33,8 +31,6 @@ export default class FriendList extends React.Component{
         }
     }
 
-// showSelectedChatRoom = () =>{
-// }
     onList = () => {
         this.setState({
             listStyle: "chat-list-absolute",
@@ -54,7 +50,7 @@ export default class FriendList extends React.Component{
         return(
             <Container className="friend-list-container">
                 <Row className="chat-container-row">
-                    <Col sm={12} md={6} className={this.state.listStyle}
+                    <Col md={12} lg={6} className={this.state.listStyle}
                         onMouseOver={this.onList}
                     >
                         {
@@ -76,15 +72,12 @@ export default class FriendList extends React.Component{
                                 numOfPage={2}
                             />
                     </Col>
-                    <Col sm={12} md={6} className={this.state.chatStyle}
+                    <Col md={12} lg={6} className={this.state.chatStyle}
                         onMouseOver={this.onChat}
                     >
                         <Chat/>
                     </Col>
                 </Row>
-                {/* <Pagination
-                    numOfPage={2}
-                /> */}
             </Container>
         )
     }
@@ -138,52 +131,4 @@ for(let i= 0; i<30; i++){
             lastMessage: Faker.lorem.words(),
         }
     )
-}
-
-
-
-
-class ChatBoxMe extends React.Component{
-    constructor(props){
-        super(props);
-
-    }
-
-    render(){
-        return(
-            <div>
-                <div class="chat-message chat-right">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
-                </div>
-                </div>
-                <div class="chat-message-clear"></div>
-            </div>
-        )
-    }
-}
-
-
-class ChatBoxOther extends React.Component{
-    constructor(props){
-        super(props);
-        
-    }
-
-    render(){
-        return(
-            <div>
-                <div class="chat-message chat-left">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
-                </div>
-                </div>
-                <div class="chat-message-clear"></div>
-            </div>
-        )
-    }
 }
