@@ -12,6 +12,8 @@ import {
 import { Link } from 'react-router-dom';
 
 import Chat from '../../components/Chat';
+import ChatListComponent from '../../components/ChatListComponent';
+
 import Pagination from '../../components/Pagination';
 import eraiza from '../../images/eraiza.png';
 
@@ -24,7 +26,6 @@ export default class FriendList extends React.Component{
         this.state = {
             friends: friends,
             inputtingMessage: '',
-            messages: messages,
             selectedChatroom: '',
             listStyle: "chat-list-absolute",
             chatStyle: "chat-view-fixed",
@@ -45,69 +46,62 @@ export default class FriendList extends React.Component{
         })
     }
 
+    showSelectedChatRoom = (e) =>{
+        console.log('selectedroomid', e);
+    }
 
     render(){
         return(
-            <Container className="friend-list-container">
-                <Row className="chat-container-row">
-                    <Col md={12} lg={6} className={this.state.listStyle}
-                        onMouseOver={this.onList}
-                    >
-                        {
-                            this.state.friends.map(friend => 
-                            <Card className="friend-card">
-                                <img src={friend.image} className="friend-card-image"/>
-                                <h6 className="friend-card-name">{friend.name}</h6>
-                                <h6 className="friend-card-lastMessage">{friend.lastMessage}</h6>
-                                    <Button 
-                                        className="friend-card-button"
-                                        onClick={this.showSelectedChatRoom}
-                                    >
-                                        <h6>トーク</h6>
-                                    </Button>                                    
-                            </Card>
-                            )
-                        }
-                        <Pagination
-                                numOfPage={2}
-                            />
-                    </Col>
-                    <Col md={12} lg={6} className={this.state.chatStyle}
+            <Container>
+                <Row>
+                <Col md={12} lg={6}>
+                    <ChatListComponent
+                        friends = {this.state.friends}
+                        onClick = {(e)=> this.showSelectedChatRoom(e)}
+                    />
+                </Col>
+                <Col md={12} lg={6} className={this.state.chatStyle}
                         onMouseOver={this.onChat}
                     >
                         <Chat/>
-                    </Col>
+                </Col>
                 </Row>
             </Container>
+            // <Container className="friend-list-container">
+            //     <Row className="chat-container-row">
+            //         <Col md={12} lg={6} className={this.state.listStyle}
+            //             onMouseOver={this.onList}
+            //         >
+            //             {
+            //                 this.state.friends.map(friend => 
+            //                 <Card className="friend-card">
+            //                     <img src={friend.image} className="friend-card-image"/>
+            //                     <h4 className="friend-card-name">{friend.name}</h4>
+            //                     <h6 className="friend-card-lastMessage">{friend.lastMessage}</h6>
+            //                         <Button 
+            //                             className="friend-card-button"
+            //                             onClick={(e)=> this.showSelectedChatRoom(e)}
+            //                             id={friends.userId}
+            //                         >
+            //                             <h6>トーク</h6>
+            //                         </Button>                                    
+            //                 </Card>
+            //                 )
+            //             }
+            //             <Pagination
+            //                     numOfPage={2}
+            //                 />
+            //         </Col>
+            //         <Col md={12} lg={6} className={this.state.chatStyle}
+            //             onMouseOver={this.onChat}
+            //         >
+            //             <Chat/>
+            //         </Col>
+            //     </Row>
+            // </Container>
         )
     }
 }
-
-const messages =[
-    {
-        id: 0,
-        message: 'こんにちは！そのモニター借りたいです！',
-    },
-    {
-        id: 1,
-        message: 'あざす！とりま俺んちの近く着て～',
-    },
-    {
-        id: 0,
-        message: 'どこなん？',
-    },
-    {
-        id: 1,
-        message: '九工大の近くだよん～',
-    },
-    {
-        id: 0,
-        message: '近い!'
-    },
-
-]
-
-
 
 const friends = [
     {
@@ -115,13 +109,14 @@ const friends = [
         image: eraiza,
         numOfCards: 3,
         numOfGood: 100,
-        lastMessage: "近い！"
+        lastMessage: "近い！",
+        userId: 1,
     },
 ]
 
 
 
-for(let i= 0; i<30; i++){
+for(let i= 0; i<10; i++){
     friends.push(
         {
             name: Faker.internet.userName(),
@@ -129,6 +124,7 @@ for(let i= 0; i<30; i++){
             numOfCards: Faker.random.number(),
             numOfGood: Faker.random.number(),
             lastMessage: Faker.lorem.words(),
+            userId: i+2,
         }
     )
 }

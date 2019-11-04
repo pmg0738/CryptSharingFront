@@ -1,43 +1,48 @@
-.option-search-search-form{
-    position: fixed;
-    padding-left:20px;
-    padding-top:80px;
-    left: 0px;
-    top: 0px;
-    bottom:0px;
-}
+// .option-search-search-form{
+//     // position: fixed;
+//     // padding-left:20px;
+//     // padding-top:80px;
+//     // left: 0px;
+//     // top: 0px;
+//     // bottom:0px;
+// }
 .option-search-free-word-search-row{
-    margin-left:10px;
+    // margin-left:10px;
     margin-bottom:20px;
 }
 
 .option-search-category-row{
-    margin-left:10px;
+    // margin-left:10px;
+    margin-bottom:30px;
+}
+
+.option-search-prefecture-row{
+    // margin-left:10px;
     margin-bottom:30px;
 }
 
 .option-search-free-word-search-form {
     border-radius: 25px;
     height: 50px;
-    padding-left: 20px;
+    // padding-left: 20px;
     // width: 100%;
     width: 300px;
 }
 
 .option-search-lent-price-row{
-    margin-left:10px;
+    // margin-left:10px;
     margin-bottom: 50px;
 }
 
 .option-search-lent-period-head{
-    margin-left: 10px;
+    // margin-left: 10px;
     margin-bottom:20px;
     color:white;
     font-size: 20px;
 }
 
 .option-search-lent-period-button{
-    margin-left: 10px;
+    // margin-left: 10px;
     margin-bottom:30px;
     color:white;
     font-size: 20px;
@@ -53,26 +58,18 @@
 }
 
 .option-search-lent-price-head{
-    margin-left: 10px;
+    // margin-left: 10px;
     margin-bottom:30px;
     color:white;
     font-size: 20px;
 }
 .option-search-price-input-range{
-    width: 300px;
+    // width: 300px;
     margin-bottom:20px;
+    // margin-left: 30px;
+
 }
 
 .option-search-min-price-input{
     margin-bottom:20px;
 }
-
-// .dropdown-default-color{
-//     background-color: aliceblue;
-//     color:black
-// }
-
-// .dropdown-selected-color{
-//     background-color: rgb(0, 95, 236);
-//     color:white;
-// }

@@ -22,9 +22,13 @@ export default class SearchByOptionComponent extends React.Component {
 
         this.state = {
             selectedCategory:"カテゴリー",
+            categoryDropdownVarient:"outline-primary",
+
             selectedPrefecture: "都道府県",
+            prefectureDropdownVarient:"outline-primary",
+
             dropdownColor: "dropdown-default-color",
-            periodVarientOneHour:"outline-primary", 
+            periodVarientOneHour:"outline-info", 
             periodVarientOneDay:"outline-success",
             periodStyle: '',
             priceValue: {min:10, max:2000},
@@ -34,23 +38,24 @@ export default class SearchByOptionComponent extends React.Component {
 
     changeSelectedCategory = (categoryName) =>{
         this.setState({selectedCategory: categoryName})
-        this.setState({dropdownColor: "dropdown-selected-color"})
+        this.setState({categoryDropdownVarient: "primary"})
     }
 
     changeSelectedPrefecture = (prefecture) =>{
-        this.setState({selectedCategory: prefecture})
-        this.setState({dropdownColor: "dropdown-selected-color"})
+        this.setState({selectedPrefecture: prefecture})
+        console.log(this.state.selectedPrefecture);
+        this.setState({prefectureDropdownVarient: "primary"})
     }
 
     changeVarientOnehour = () =>{
         this.setState({
-            periodVarientOneHour:"primary",
+            periodVarientOneHour:"info",
             periodVarientOneDay:"outline-success"
         })
     }
     changeVarientOneday = () =>{
         this.setState({
-            periodVarientOneHour:"outline-primary",
+            periodVarientOneHour:"outline-info",
             periodVarientOneDay:"success"
         })
     }
@@ -81,7 +86,7 @@ export default class SearchByOptionComponent extends React.Component {
                                         size="lg"
                                         title={this.state.selectedCategory}
                                         className={this.state.dropdownColor}
-                                        // variant="primary"
+                                        variant={this.state.categoryDropdownVarient}
                                     >
                                         <Dropdown.Item eventKey="1" onClick={()=>{this.changeSelectedCategory("レディース")}}>レディース</Dropdown.Item>
                                         <Dropdown.Item eventKey="2" onClick={()=>{this.changeSelectedCategory("メンズ")}}>メンズ</Dropdown.Item>
@@ -105,15 +110,14 @@ export default class SearchByOptionComponent extends React.Component {
                                     variant={this.state.periodVarientOneDay}
                                     onClick={this.changeVarientOneday}>1日</Button>                 
                             </Row>
-                            <Row>
+                            <Row className="option-search-prefecture-row">
                             <ButtonToolbar>
                                     <DropdownButton
                                         size="lg"
                                         title={this.state.selectedPrefecture}
-                                        className={this.state.dropdownColor}
-                                        // variant="primary"
+                                        variant={this.state.prefectureDropdownVarient}
                                     >
-                                        {prefectures.map(prefecture => <Dropdown.Item onClick={()=>{this.changeSelectedPrefecture({prefecture})}}>{prefecture}</Dropdown.Item> )}
+                                        {prefectures.map(prefecture => <Dropdown.Item onClick={()=>{this.changeSelectedPrefecture({prefecture})}}>{prefecture}</Dropdown.Item>)}
                                     </DropdownButton>   
                                 </ButtonToolbar>   
                             </Row>

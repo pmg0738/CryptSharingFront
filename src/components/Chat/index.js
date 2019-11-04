@@ -15,28 +15,48 @@ export default class Chat extends React.Component {
         super(props);
 
         this.state = {
-            messages: [
+            selectedchatRoom: 0,
+            chatRoom :[
                 {
-                    id: 0,
-                    message: 'こんにちは！そのモニター借りたいです！',
+                    id:'1',
+                    messages: [
+                        {
+                            id: 0,
+                            message: 'こんにちは！そのモニター借りたいです！',
+                        },
+                        {
+                            id: 1,
+                            message: 'あざす！とりま俺んちの近く着て～',
+                        },
+                        {
+                            id: 0,
+                            message: 'どこなん？',
+                        },
+                        {
+                            id: 1,
+                            message: '九工大の近くだよん～',
+                        },
+                        {
+                            id: 0,
+                            message: '近い!'
+                        },
+                        
+                    ],
                 },
+
                 {
-                    id: 1,
-                    message: 'あざす！とりま俺んちの近く着て～',
+                    id:'2',
+                    messages: [
+                        {
+                            id: 0,
+                            message: 'こんにちは！',
+                        },
+                        {
+                            id: 1,
+                            message: 'えぐい',
+                        },
+                    ],
                 },
-                {
-                    id: 0,
-                    message: 'どこなん？',
-                },
-                {
-                    id: 1,
-                    message: '九工大の近くだよん～',
-                },
-                {
-                    id: 0,
-                    message: '近い!'
-                },
-                
             ],
             inputtingMessage: '',
         }
@@ -44,42 +64,43 @@ export default class Chat extends React.Component {
 
     sendMessage = (e) =>{
         if (e.keyCode === 13) {
-            console.log('if no naka', e.keyCode);
-            console.log('value', e.target.value);
-            let latestMessages = this.state.messages;
+            if(e.target.value!=""){
+                let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
+                latestMessages.push(
+                    {
+                        id: 0,   // 0自分が送ったやつ
+                        message: e.target.value
+                        }
+                    );
+                this.setState({
+                    messages: latestMessages,
+                    inputtingMessage: '',
+                })
+                setTimeout(() => {
+                    this.scrollToBottom();
+                }, 100)
+          }
+        }
+    }
+
+    sendMessageByButton = (e) =>{
+        console.log('return e.target.value by global variable', valueOfTextarea);
+        let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
+        if(latestMessages!=""){
             latestMessages.push(
                 {
-                    id: 0,   // 0自分が送ったやつ
-                    message: e.target.value
-                    }
-                );
+                    id: 0,
+                    message: valueOfTextarea
+                }
+            )
             this.setState({
                 messages: latestMessages,
                 inputtingMessage: '',
             })
             setTimeout(() => {
                 this.scrollToBottom();
-              }, 100)
-            
-          }
-    }
-
-    sendMessageByButton = (e) =>{
-        console.log('return e.target.value by global variable', valueOfTextarea);
-        let latestMessages = this.state.messages;
-        latestMessages.push(
-            {
-                id: 0,
-                message: valueOfTextarea
-            }
-        )
-        this.setState({
-            messages: latestMessages,
-            inputtingMessage: '',
-        })
-        setTimeout(() => {
-            this.scrollToBottom();
-          }, 50)
+            }, 50)
+        }
     }
 
     
@@ -97,17 +118,13 @@ export default class Chat extends React.Component {
         this.scrollToBottom();
       }
       
-    //   componentDidUpdate() {
-    //     this.scrollToBottom();
-    //   }
-
     render() {
         return (
             <div>
                 <Container>
                         <div id="chat-view-container" className="chat-view-container">
                             <div className="chat-view">
-                                {this.state.messages.map(item =>
+                                {this.state.chatRoom[this.state.selectedchatRoom].messages.map(item =>
                                     [
                                     <ChatBoxMe message = {item.message}/>,
                                     <ChatBoxOther message = {item.message}/>,
@@ -119,18 +136,15 @@ export default class Chat extends React.Component {
 
                         <Form.Row>
                             <Form.Group>
-                            {/* <Form.Group as={Col}> */}
                                 <Form.Control 
                                     className="chat-textarea" 
                                     as="textarea" 
                                     rows="3"
                                     value={this.state.inputtingMessage}
                                     onChange = {this.inputTextInTextarea}
-                                    // onChange={(e) => this.setState({inputtingMessage: e.target.value})}
                                     onKeyDown={(e) => this.sendMessage(e)}
                                 ></Form.Control>
                             </Form.Group>
-                            {/* <Form.Group as={Col}> */}
                             <Form.Group>
                             <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
                             </Form.Group>
