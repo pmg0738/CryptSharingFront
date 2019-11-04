@@ -31,14 +31,17 @@ export default class ItemListComponent extends React.Component {
         this.state = {
             items: [
                 {
+                    item_id: 1,
                     image: eraiza,
                     price: 990000,
                 },
                 {
+                    item_id: 2,
                     image: eraiza,
                     price: 10000,
                 },
                 {
+                    item_id: 3,
                     image: eraiza,
                     price: 100,
                 },
@@ -81,7 +84,7 @@ export default class ItemListComponent extends React.Component {
                 {this.state.items.map((item) => 
                     <Col xc={6} sm={6} md={4} lg={4}>
                         <Item 
-                            to='/items/1'
+                            to={'/items/' + item.item_id}
                             image={item.image}
                             pricePerHour={item.price}
                             status={1}

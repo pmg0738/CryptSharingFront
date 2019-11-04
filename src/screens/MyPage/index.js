@@ -12,6 +12,7 @@ import MyPagePosted from '../../components/MyPageComponents/MyPagePosted';
 import Item from '../../components/Item';
 import Navbar from '../../components/NavbarNoLogo';
 import logo from '../../images/logo.png';
+import MyPageUsedHistory from '../../components/MyPageComponents/MyPageUsedHistory';
 
 
 export default class MainSearch extends React.Component {
@@ -25,7 +26,6 @@ export default class MainSearch extends React.Component {
 
     render() {
         return (
-
                 <Container>
                     <Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
                         <Tab eventKey="rent-now" title="レンタル中">
@@ -35,8 +35,10 @@ export default class MainSearch extends React.Component {
                             {/* <div className="my-page-tab-explanation">リクエスト中</div> */}
                             <MyPageBooked/>
                         </Tab>
-                        <Tab eventKey="used-history" title="使用履歴">
-                            <MyPagePosted/>
+                        <Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
+                            <MyPageUsedHistory/>
+                            <MyPageUsedHistory/>
+                            <MyPageUsedHistory/>
                         </Tab>
                         <Tab eventKey="posted-history" title="投稿済み">
                             <MyPagePosted/>

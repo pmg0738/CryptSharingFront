@@ -15,15 +15,56 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import Navbar from '../../components/Navbar';
-
+import { items } from '../../datas/items.js';
 
 export default class ItemDetail extends React.Component {
     constructor(props){
         super(props);
-
+        
+        console.log(this.props.location.pathname)
+        console.log(this.props.location.pathname.slice('/items/'.length,))
         this.state = {
             images: [],
-            imageStartIndex: 0,                
+            imageStartIndex: 0, 
+            me: {
+                id: "1234",
+                name: "yushi",
+                likeItemId:[2],
+                usedHistoryItemId:[4],
+                rentalItemId:[3], 
+                requestItemId:[5,6,7,8]
+
+            },
+            item: 
+                // {
+                // id: "1",
+                // name: "Dell",
+                // feePerHour: 10,
+                // ownerId: "1234"
+                // },
+                items[this.props.location.pathname.slice('/items/'.length,)],
+                // bookedItems["5"]
+                // {
+                // // id: this.props.location.pathname.slice('/items/'.length, -1),
+                // id: this.props.location.pathname.slice('/items/'.length,),
+                // name: "Dell",
+                // feePerHour: 10,
+                // ownerId: "2345"
+                // },
+
+            //     {
+            //     id: "3",
+            //     name: "Dell",
+            //     feePerHour: 10,
+            //     ownerId: "3456"
+            //     },
+            //     {
+            //     id: "4",
+            //     name: "Dell",
+            //     feePerHour: 10,
+            //     ownerId: "4567"
+            //     } 
+            // ],               
         }
     }
 
@@ -48,6 +89,73 @@ export default class ItemDetail extends React.Component {
             this.setState({imageStartIndex: this.state.imageStartIndex+1})
         }
     }
+
+
+    renderButton = () => {
+        const myId = this.state.me.id;
+        const likedId = this.state.me.likeItemId;
+        const usedHistoryId = this.state.me.usedHistoryItemId;
+        const rentalId = this.state.me.rentalItemId;
+        const requestId = this.state.me.requestItemId;
+        const itemId = this.state.item.id;
+        const ownerId = this.state.item.ownerId;
+        const isMine = myId == ownerId;
+        const liked = likedId == itemId;
+        const usedHistory = usedHistoryId == itemId;
+        const rentaling = rentalId == itemId;
+        const requesting = requestId == itemId
+
+
+        if(isMine) {
+            return (
+                <div>
+                <Link to='/items/new/post'>
+                    <p><Button className="item-detail-edit">編集</Button></p>
+                </Link>
+
+                <Link to='/items/new/post'>    
+                    <p><Button className="item-detail-delete">削除</Button></p>
+                </Link>
+                </div>
+            )
+        }
+        else if(liked) {
+            return (
+                <Link to='/request'>
+                    <Button className="item-detail-goto-request">借りる</Button>
+                </Link>
+            )
+        }
+        else if(usedHistory) {
+            return (
+                <Link to='/request'>
+                    <Button className="item-detail-goto-request">借りる</Button>
+                </Link>
+            )
+        }
+        else if(rentaling) {
+            return (
+                <Link to='/request'>
+                    <div>レンタル中</div>
+                </Link>
+            )
+        }
+        else {
+            return (
+                <Link to='/request'>
+                <Button >リクエストを取り消す</Button>
+                </Link> 
+            )
+        }
+        
+            // return (
+            //     <Link to='/request'>
+            //         <Button className="item-detail-goto-request">借りる</Button>
+            //     </Link>
+            // )
+        
+    }
+
 
     render() {
 
@@ -88,9 +196,11 @@ export default class ItemDetail extends React.Component {
                             <div className="item-detail-charge-per-hour">1時間：100円</div>
                             <div className="item-detail-charge-per-day">1　日：1000円</div>
                             
-                            <Link to='/request'>
+                            {/* <Link to='/request'>
                                 <Button className="item-detail-goto-request">借りる</Button>
-                            </Link>
+                            </Link> */}
+
+                            {this.renderButton()}
                             
                             {/* <div className="item-detail-owner">{this.props.item.name}</div> */}
                             <div className="item-detail-owner">
