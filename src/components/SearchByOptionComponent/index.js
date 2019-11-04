@@ -1,16 +1,16 @@
 import React from 'react';
 import InputRange from 'react-input-range';
+
 import 'react-input-range/lib/css/index.css';
+import {prefectures} from './prefectures';
 import './style.scss';
 import { 
-    Container,
     Form,
     Row,
     Col,
     Button,
     Dropdown,
     DropdownButton,
-    Image,
     ButtonToolbar,
     InputGroup,
     FormControl,
@@ -22,17 +22,26 @@ export default class SearchByOptionComponent extends React.Component {
 
         this.state = {
             selectedCategory:"カテゴリー",
+            selectedPrefecture: "都道府県",
+            dropdownColor: "dropdown-default-color",
             periodVarientOneHour:"outline-primary", 
             periodVarientOneDay:"outline-success",
             periodStyle: '',
-            priceValue: {min:0, max:3500},
+            priceValue: {min:10, max:2000},
             distance: {min:0, max:30},
         }
     }
 
     changeSelectedCategory = (categoryName) =>{
         this.setState({selectedCategory: categoryName})
+        this.setState({dropdownColor: "dropdown-selected-color"})
     }
+
+    changeSelectedPrefecture = (prefecture) =>{
+        this.setState({selectedCategory: prefecture})
+        this.setState({dropdownColor: "dropdown-selected-color"})
+    }
+
     changeVarientOnehour = () =>{
         this.setState({
             periodVarientOneHour:"primary",
@@ -45,6 +54,18 @@ export default class SearchByOptionComponent extends React.Component {
             periodVarientOneDay:"success"
         })
     }
+
+    onFormControlChangeMaxPrice = (e)=>{
+        this.setState({priceValue: { max: e.target.value, min: this.state.priceValue.min　}});
+        console.log(e.target.value)
+    }
+
+    onFormControlChangeMinPrice = (e)=>{
+        this.setState({priceValue: {max: this.state.priceValue.max, min: e.target.value}});
+    }
+
+
+
     render() {
         return (
                 <div>
@@ -59,7 +80,8 @@ export default class SearchByOptionComponent extends React.Component {
                                     <DropdownButton
                                         size="lg"
                                         title={this.state.selectedCategory}
-                                        className="option-search-category-dropdown-button"
+                                        className={this.state.dropdownColor}
+                                        // variant="primary"
                                     >
                                         <Dropdown.Item eventKey="1" onClick={()=>{this.changeSelectedCategory("レディース")}}>レディース</Dropdown.Item>
                                         <Dropdown.Item eventKey="2" onClick={()=>{this.changeSelectedCategory("メンズ")}}>メンズ</Dropdown.Item>
@@ -74,73 +96,55 @@ export default class SearchByOptionComponent extends React.Component {
 
                             <Row className="option-search-lent-period-head">レンタル期間</Row>
                             <Row className="option-search-lent-period-button">
-                                    <Button 
-                                        className="button-one-hour" 
-                                        variant={this.state.periodVarientOneHour}
-                                        onClick={this.changeVarientOnehour}>1時間</Button>
-                                    <Button 
-                                        className="button-one-day"　
-                                        variant={this.state.periodVarientOneDay}
-                                        onClick={this.changeVarientOneday}>1日</Button>                                      
+                                <Button 
+                                    className="button-one-hour" 
+                                    variant={this.state.periodVarientOneHour}
+                                    onClick={this.changeVarientOnehour}>1時間</Button>
+                                <Button 
+                                    className="button-one-day"　
+                                    variant={this.state.periodVarientOneDay}
+                                    onClick={this.changeVarientOneday}>1日</Button>                 
+                            </Row>
+                            <Row>
+                            <ButtonToolbar>
+                                    <DropdownButton
+                                        size="lg"
+                                        title={this.state.selectedPrefecture}
+                                        className={this.state.dropdownColor}
+                                        // variant="primary"
+                                    >
+                                        {prefectures.map(prefecture => <Dropdown.Item onClick={()=>{this.changeSelectedPrefecture({prefecture})}}>{prefecture}</Dropdown.Item> )}
+                                    </DropdownButton>   
+                                </ButtonToolbar>   
                             </Row>
                             <Row className="option-search-lent-price-head">
                                 最大料金 (円)
                                 <FormControl
-                                    className="option-search-distance-input"
-                                    placeholder="ex)200"
+                                    className="option-search-max-price-input"
+                                    placeholder="2000"
                                     value={this.state.priceValue.max}
-                                    onChange={value => this.setState({distance: value})}
+                                    onChange={this.onFormControlChangeMaxPrice}
                                 />
                             </Row>
                             <Row className="option-search-lent-price-head">
                                 最小料金 (円)
                                 <FormControl
-                                    className="option-search-distance-input"
-                                    placeholder="ex)1"
+                                    className="option-search-min-price-input"
+                                    placeholder="10"
                                     value={this.state.priceValue.min}
-                                    onChange={value => this.setState({distance: value})}
+                                    onChange={this.onFormControlChangeMinPrice}
                                 />
                             </Row>
                             <Row className="option-search-lent-price-row">
                                 <InputRange
                                     className="option-search-price-input-range"
-                                    step={2}
+                                    step={5}
                                     formatLabel = {value => `${value}円`}
                                     maxValue={10000}
                                     minValue={0}
                                     value={this.state.priceValue}
                                     onChange={value => this.setState({priceValue:value})}
-                                />
-                            </Row>
-                            <Row className="option-search-distance-head">
-                                最大距離 (km)
-                                <FormControl
-                                    className="option-search-distance-input"
-                                    placeholder="ex) 5"
-                                    value={this.state.distance.max}
-                                    onChange={value => this.setState({distance: value})}
-                                />
-                            </Row>
-
-                            <Row className="option-search-distance-head">
-                                最小距離 (km)
-                                <FormControl
-                                    className="option-search-distance-input"
-                                    placeholder="ex) 5"
-                                    value={this.state.distance.min}
-                                    onChange={value => this.setState({distance: value})}
-                                />
-                            </Row>
-                            
-                            <Row className="option-search-distance-row">
-                                <InputRange
-                                    className="option-search-distance-input-range"
-                                    step={2}
-                                    formatLabel = {value => `${value}km`}
-                                    maxValue={60}
-                                    minValue={0}
-                                    value={this.state.distance}
-                                    onChange={value => this.setState({distance:value})}
+                                    draggableTrack={true}
                                 />
                             </Row>
                         </Form>
@@ -149,3 +153,5 @@ export default class SearchByOptionComponent extends React.Component {
         )
     }
 }
+
+

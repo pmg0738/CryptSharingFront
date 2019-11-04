@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
+import Faker from 'faker';
+
+
 import _ from 'lodash';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
     Button,
@@ -44,6 +45,15 @@ export default class ItemListComponent extends React.Component {
                 },
                 
             ]
+        }
+
+        for(let i= 0; i<30; i++){
+            this.state.items.push(
+                {
+                    image: Faker.internet.avatar(),
+                    price: Faker.random.number(),
+                }
+            )
         }
     }
 
@@ -103,3 +113,6 @@ export default class ItemListComponent extends React.Component {
         );
     }
 }
+
+
+

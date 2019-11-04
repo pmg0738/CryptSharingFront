@@ -8,6 +8,7 @@ import {
     Container,
     Row,
     Col,
+    Button,
 } from 'react-bootstrap';
 
 export default class SearchByOption extends React.Component {
@@ -15,6 +16,8 @@ export default class SearchByOption extends React.Component {
         super(props);
 
         this.state = {
+            
+
             selectedCategory:"カテゴリー",
             periodVarientOneHour:"outline-primary", 
             periodVarientOneDay:"outline-success",
@@ -23,6 +26,8 @@ export default class SearchByOption extends React.Component {
             distance: {min:0, max:30},
         }
     }
+
+
 
     changeSelectedCategory = (categoryName) =>{
         this.setState({selectedCategory: categoryName})
@@ -43,10 +48,10 @@ export default class SearchByOption extends React.Component {
         return (
                 <Container>
                     <Row>
-                        <Col lg={2} xl={2}>
+                        <Col md={12} xl={3}>
                             <SearchByOptionComponent/>
                         </Col>
-                        <Col lg={10} xl={10}>
+                        <Col md={12} xl={9}>
                             <ItemListComponent/>
                         </Col>
                     </Row>
