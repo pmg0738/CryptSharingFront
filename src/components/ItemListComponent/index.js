@@ -101,15 +101,15 @@ export default class ItemListComponent extends React.Component {
                         />
                     </Col>                    
                 )}
-                
-                {/* {this.renderItems()} */}
-                </Row>
-                <Link to='/items/new/post'>
+                 <Link to='/items/new/post'>
                     <Button className="item-list-add-button">
                         <p className="item-list-add-button-label">出品する</p>
                         <FontAwesomeIcon className="item-list-add-button-camera-icon" icon={faCamera}/>
                     </Button>
                 </Link>
+                {/* {this.renderItems()} */}
+                </Row>
+               
                 <Pagination numOfPage={2} handlePagination={this.handlePagination}/>
                 {/* <Pagination numOfPage={this.state.numOfItems} /> */}
             </Container>
