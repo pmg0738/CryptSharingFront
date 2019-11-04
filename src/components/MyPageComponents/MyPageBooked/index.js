@@ -35,13 +35,18 @@ export default class MyPageBooked extends React.Component {
     getBookedItems = () => {
         // Axios.get('/itesm')
         const items = {
-            "4": {
-                id: "4",
+            "5": {
+                id: "5",
                 price: 10,
                 image: eraiza,
             }, 
-            "5": {
-                id: "5",
+            "6": {
+                id: "6",
+                price: 20,
+                image: eraiza,
+            },
+            "7": {
+                id: "7",
                 price: 20,
                 image: eraiza,
             }

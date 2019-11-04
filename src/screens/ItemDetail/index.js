@@ -21,50 +21,21 @@ export default class ItemDetail extends React.Component {
     constructor(props){
         super(props);
         
-        console.log(this.props.location.pathname)
-        console.log(this.props.location.pathname.slice('/items/'.length,))
         this.state = {
+            itemDetailFavoriteIcon: "default",
             images: [],
             imageStartIndex: 0, 
             me: {
                 id: "1234",
                 name: "yushi",
-                likeItemId:[2],
-                usedHistoryItemId:[4],
-                rentalItemId:[3], 
-                requestItemId:[5,6,7,8]
+                favoriteItemId:["2"],
+                usedHistoryItemId:["4"],
+                rentalItemId:["3"], 
+                requestItemId:["5","6","7","8"]
 
             },
             item: 
-                // {
-                // id: "1",
-                // name: "Dell",
-                // feePerHour: 10,
-                // ownerId: "1234"
-                // },
-                items[this.props.location.pathname.slice('/items/'.length,)],
-                // bookedItems["5"]
-                // {
-                // // id: this.props.location.pathname.slice('/items/'.length, -1),
-                // id: this.props.location.pathname.slice('/items/'.length,),
-                // name: "Dell",
-                // feePerHour: 10,
-                // ownerId: "2345"
-                // },
-
-            //     {
-            //     id: "3",
-            //     name: "Dell",
-            //     feePerHour: 10,
-            //     ownerId: "3456"
-            //     },
-            //     {
-            //     id: "4",
-            //     name: "Dell",
-            //     feePerHour: 10,
-            //     ownerId: "4567"
-            //     } 
-            // ],               
+                items[this.props.location.pathname.slice('/items/'.length,)], //URLの最後に来るidを指定
         }
     }
 
@@ -91,41 +62,84 @@ export default class ItemDetail extends React.Component {
     }
 
 
+    handleFavoriteButtonClassName = (favorite) => {
+        this.setState({itemDetailFavoriteIconClassName: favorite ? "item-liked": "default" })
+    }
+
+    clickFavoriteButton = () => {
+        const favoriteItemId = this.state.me.favoriteItemId;
+        console.log("favorite BEFORE", favoriteItemId)
+        
+        const itemId = this.state.item.id;
+       
+        const favorite = favoriteItemId.indexOf(itemId) >= 0;
+        console.log('favorite', favorite);
+
+        // const itemId = this.state.item.id;
+        // const favorite
+        // let { favoriteItemId } = this.state.me;
+
+        let newFavoriteItemId = [];
+        if(favorite) {
+            const index = favoriteItemId.indexOf(itemId);
+            newFavoriteItemId = favoriteItemId.splice(index, 1);
+            console.log("favorite TRUE", newFavoriteItemId);
+        }
+        else {
+            newFavoriteItemId = favoriteItemId
+            newFavoriteItemId.push(itemId);
+            console.log("favorite FALSE", newFavoriteItemId);
+        }
+        
+        const { me } = this.state;
+        console.log("me", me);
+        this.setState({
+            me: {
+                id: me.id,
+                name: me.name,
+                usedHistoryItemId: me.usedHistoryItemId,
+                rentalItemId: me.rentalItemId,
+                requestItemId: me.requestItemId,
+                favoriteItemId: newFavoriteItemId // ここだけ更新
+            }
+        })
+
+        // ボタンのデザインを変える
+        this.handleFavoriteButtonClassName(!favorite)
+    }
+
     renderButton = () => {
         const myId = this.state.me.id;
-        const likedId = this.state.me.likeItemId;
         const usedHistoryId = this.state.me.usedHistoryItemId;
         const rentalId = this.state.me.rentalItemId;
         const requestId = this.state.me.requestItemId;
         const itemId = this.state.item.id;
         const ownerId = this.state.item.ownerId;
         const isMine = myId == ownerId;
-        const liked = likedId == itemId;
         const usedHistory = usedHistoryId == itemId;
         const rentaling = rentalId == itemId;
-        const requesting = requestId == itemId
-
-
+        const requesting = requestId == itemId;
+    
         if(isMine) {
             return (
                 <div>
-                <Link to='/items/new/post'>
-                    <p><Button className="item-detail-edit">編集</Button></p>
-                </Link>
+                    <Link to='/items/new/post'>
+                        <p><Button className="item-detail-edit">編集</Button></p>
+                    </Link>
 
-                <Link to='/items/new/post'>    
-                    <p><Button className="item-detail-delete">削除</Button></p>
-                </Link>
+                    <Link to='/items/new/post'>    
+                        <p><Button className="item-detail-delete">削除</Button></p>
+                    </Link>
                 </div>
             )
         }
-        else if(liked) {
-            return (
-                <Link to='/request'>
-                    <Button className="item-detail-goto-request">借りる</Button>
-                </Link>
-            )
-        }
+        // else if(favorite) {
+        //     return (
+        //         <Link to='/request'>
+        //             <Button className="item-detail-goto-request">借りる</Button>
+        //         </Link>
+        //     )
+        // }
         else if(usedHistory) {
             return (
                 <Link to='/request'>
@@ -135,16 +149,14 @@ export default class ItemDetail extends React.Component {
         }
         else if(rentaling) {
             return (
-                <Link to='/request'>
-                    <div>レンタル中</div>
-                </Link>
+                
+                <div className = "item-detail-rent-now">レンタル中です</div>
+                
             )
         }
         else {
             return (
-                <Link to='/request'>
                 <Button >リクエストを取り消す</Button>
-                </Link> 
             )
         }
         
@@ -189,8 +201,9 @@ export default class ItemDetail extends React.Component {
                                 <Link to='/items'>
                                     <Button className="item-detail-button-to-item-list">一覧に戻る</Button>
                                 </Link>
-                                <FontAwesomeIcon className="item-detail-favorite-icon" icon={faHeart}
-                                    onClick={this.forwardOneStep}
+                                <FontAwesomeIcon className={this.state.itemDetailFavoriteIconClassName} icon={faHeart}
+                                    onClick={this.clickFavoriteButton}
+
                                 />
                             </Row>
                             <div className="item-detail-charge-per-hour">1時間：100円</div>

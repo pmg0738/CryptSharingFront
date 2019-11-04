@@ -13,6 +13,7 @@ import Item from '../../components/Item';
 import Navbar from '../../components/NavbarNoLogo';
 import logo from '../../images/logo.png';
 import MyPageUsedHistory from '../../components/MyPageComponents/MyPageUsedHistory';
+import MyPageFavorite from '../../components/MyPageComponents/MyPageFavorite';
 
 
 export default class MainSearch extends React.Component {
@@ -36,7 +37,8 @@ export default class MainSearch extends React.Component {
                             <MyPageBooked/>
                         </Tab>
                         <Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
-                            <MyPageUsedHistory/>
+                            <MyPageUsedHistory
+                            />
                             <MyPageUsedHistory/>
                             <MyPageUsedHistory/>
                         </Tab>
@@ -44,7 +46,7 @@ export default class MainSearch extends React.Component {
                             <MyPagePosted/>
                         </Tab> 
                         <Tab eventKey="Like" title="お気に入り">
-                            <MyPagePosted/>
+                            <MyPageFavorite/>
                         </Tab> 
                     </Tabs>
                 </Container>

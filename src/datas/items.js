@@ -7,6 +7,14 @@ export const items = {
         price: 990000,
         id: "1",
         name: "Dell",
+        ownerId: "1234"
+    },
+    "2": {
+        image: eraiza,
+        price: 10000,
+        id: "2",
+        name: "Dell",
+        feePerHour: 10,
         ownerId: "2345"
     },
     "3": {

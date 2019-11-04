@@ -24,13 +24,37 @@ import eroi from '../../../images/eraiza.png';
 export default class MyPageUsedHistory extends React.Component {
     constructor(props) {
         super(props);
-                
+
+        this.state = {
+            items: [],
+        }
     }
+
+    // componentWillMount() {
+    //     this.getBookedItems();
+    // }
+
+    // getBookedItems = () => {
+    //     // Axios.get('/items')
+    //     const items = {
+    //         "4": {
+    //             id: "4",
+    //             price: 10,
+    //             image: eraiza,
+    //         }
+    //     }
+
+    //     this.setState({items: items})
+    // }
+        
 
     
     
 
     render() {
+        const { items } = this.state;
+
+
         return (
             <Container>
                 <Card>
@@ -57,7 +81,7 @@ export default class MyPageUsedHistory extends React.Component {
                                     <Col> 
                                         <p>支払金額：500円</p>
                                         <div>
-                                            <Link to='/items/2'>
+                                            <Link to='/items/new/post'>
                                                 <Button variant="primary" className="mypage-used-history-detail-button">詳細</Button>
                                             </Link>
                                         </div>   

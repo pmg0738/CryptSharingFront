@@ -49,7 +49,7 @@ export default class ItemListComponent extends React.Component {
                 
             ]
         }
-
+        
         for(let i= 0; i<30; i++){
             this.state.items.push(
                 {

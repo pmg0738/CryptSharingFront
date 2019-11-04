@@ -14,11 +14,12 @@ import {
     Image,
   } from 'react-bootstrap';
 
-import Item from '../../Item';
-import eraiza from '../../../images/eraiza.png';
+  import Item from '../../Item';
+  import eraiza from '../../../images/eraiza.png';
+  import { items } from '../../../datas/items.js'
 
 
-export default class MyPageRentNow extends React.Component {
+export default class MyPageFavorite extends React.Component {
     constructor(props) {
         super(props);
         
@@ -28,17 +29,17 @@ export default class MyPageRentNow extends React.Component {
     }
 
     componentWillMount() {
-        this.getRentNowItems();
+        this.getFavoriteItems();
     }
 
-    getRentNowItems = () => {
-        // Axios.get('/itesm')
+    getFavoriteItems = () => {
+        // Axios.get('/items')
         const items = {
-            "3": {
-                id: "3",
+            "2": {
+                id: "2",
                 price: 10,
                 image: eraiza,
-            }
+            } 
         }
 
         this.setState({items: items})
@@ -67,4 +68,3 @@ export default class MyPageRentNow extends React.Component {
         )
     }
 }
-
