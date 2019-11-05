@@ -11,50 +11,21 @@ import {
     Card,
 } from 'react-bootstrap';
 import loadImage from 'blueimp-load-image';
-// import { connect } from 'react-redux';
-
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Navbar from '../../components/Navbar';
 import eraiza from '../../images/eraiza.png';
 
 
 import placeholderImage from '../../images/rain.png';
-import S__23519271 from '../../images/S__23519271.jpg';
-import S__23519273 from '../../images/S__23519273.jpg';
-import S__23519274 from '../../images/S__23519274.jpg';
-import S__23519275 from '../../images/S__23519275.jpg';
-import S__23519276 from '../../images/S__23519276.jpg';
-import S__23519277 from '../../images/S__23519277.jpg';
-import S__23519278 from '../../images/S__23519278.jpg';
-import S__23519279 from '../../images/S__23519279.jpg';
-import S__23519280 from '../../images/S__23519280.jpg';
-import S__23519281 from '../../images/S__23519281.jpg';
 
 
-
-class ItemPost extends React.Component {
+export default class ItemPost extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            images: [
-                // S__23519271,
-                // S__23519273,
-                // S__23519274,
-                // S__23519275,
-                // S__23519276,
-                // S__23519277,
-                // S__23519278,
-                // S__23519279,
-                // S__23519280,
-                // S__23519281,
-            ],
+            images: [],
             imageStartIndex: 0,                
-            selectedImage: S__23519271,
             isOverNumOfImage: false,
         }
     }
@@ -67,18 +38,6 @@ class ItemPost extends React.Component {
         }
         return newArray;
     }
-    
-    // backOneStep = () => {
-    //     if(this.state.imageStartIndex>0){
-    //         this.setState({imageStartIndex: this.state.imageStartIndex-1})
-    //     }
-    // }
-
-    // forwardOneStep = () => {
-    //     if(this.state.imageStartIndex+2<this.state.images.length-1){
-    //         this.setState({imageStartIndex: this.state.imageStartIndex+1})
-    //     }
-    // }
 
     deleteImage = (index) => {
         let { images } = this.state;
@@ -88,16 +47,6 @@ class ItemPost extends React.Component {
             isOverNumOfImage: false,
         });
     }
-
-    // uploadFile = (e) => {
-    //     let { images } = this.state;
-    //     images.push(e.target.value);
-    //     console.log('target', e.target);
-    //     console.log('result', e.target.result);
-    //     console.log('value', e.target.value);
-    //     this.setState({images: images})
-    // }
-
 
     async imageChangeHandler(e) {
         const { imageUri } = await resizeImage(e);
@@ -136,8 +85,6 @@ class ItemPost extends React.Component {
         }
     }
     
-
-
     render() {
         return (
             <div>
@@ -165,7 +112,7 @@ class ItemPost extends React.Component {
                         </Col>
                         <Col sm={12} md={6} className="item-post-item-info">
                             <Link to='/items'>
-                                <Button className="item-detail-button-to-item-list">一覧に戻る</Button>
+                                {/* <Button className="item-detail-button-to-item-list">一覧に戻る</Button> */}
                             </Link>
                             <Form>
                                 <Form.Group controlId="formBasicEmail">
@@ -176,12 +123,30 @@ class ItemPost extends React.Component {
                                         className="item-post-item-name-form"
                                         type="text" placeholder="Dell モニター 24インチ"/>
                                     </Row>
-                                    <div className="item-post-form-label">料金</div>                                                        
-                                    <Row>
-                                    <Form.Control 
+                                    {/* <div className="item-post-form-label">料金</div>                                                         */}
+                                    
+                                    <Form.Group as={Row}>
+                                        <Form.Label column sm="3">
+                                            <div className="item-post-one-hour-fee">1時間 料金</div>
+                                        </Form.Label>
+                                        <Col sm="4">
+                                            <Form.Control/>
+                                        </Col>
+                                        <p className="yen">円</p>
+                                    </Form.Group>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column sm="3">
+                                            <div className="item-post-one-hour-fee">1日 料金</div>
+                                        </Form.Label>
+                                        <Col sm="4">
+                                            <Form.Control/>
+                                        </Col>
+                                        <p className="yen">円</p>
+                                    </Form.Group>
+                                    {/* <Form.Control 
                                         className="item-post-price-form"
-                                        type="number" placeholder="20"/>
-                                    <p className="item-post-price-label">円　 /</p>
+                                        type="number" placeholder="20"/> */}
+                                    {/* <p className="item-post-price-label">円　 /</p>
                                     <select
                                         className="item-post-unit-time-select"
                                         // value={this.state.tag}
@@ -196,8 +161,8 @@ class ItemPost extends React.Component {
                                         <option>１週間</option>
                                         <option>１ヶ月</option>
                                         <option>１年</option>
-                                    </select>
-                                    </Row>
+                                    </select> */}
+                                    
                                 </Form.Group>
                             </Form>
                             <div className="item-post-form-label">その他の情報</div>                                                        
@@ -299,15 +264,3 @@ const toBlob = (base64, reject) => {
       });
     });
   };
-
-
-//   const mapStateToProps = (items, ownProps) => {
-//     // console.log('items', state);
-
-//     const item = items[ownProps.match.params.id]
-//     return { item: item };
-// }
-// const mapDispatchToProps = ({ getItem })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ItemPost)
-export default ItemPost

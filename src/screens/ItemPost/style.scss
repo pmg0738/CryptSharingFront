@@ -53,6 +53,7 @@
 
 .item-post-form-label {
     margin-bottom: 10px;
+    font-size: 20px;
 }
 .item-post-item-name-form {
     height: 40px;
@@ -150,4 +151,16 @@ $info-margin-left: 20px;
     font-size: $info-font-size;
     margin-left: $info-margin-left;
     margin-bottom: 8px;
+}
+
+.item-post-one-hour-fee{
+    font-size: 20px;
+    color:white;
+    // margin-left:20px;
+    // background-color: #4285f4;
+}
+
+.yen{
+    margin-top:7px;
+    font-size: 20px;
 }
