@@ -15,7 +15,7 @@ export default class Chat extends React.Component {
         super(props);
 
         this.state = {
-            selectedchatRoom: 0,
+            selectedchatRoom: 1,
             chatRoom :[
                 {
                     id:'1',

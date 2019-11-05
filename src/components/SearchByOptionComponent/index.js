@@ -22,7 +22,7 @@ export default class SearchByOptionComponent extends React.Component {
 
         this.state = {
             selectedCategory:"カテゴリー",
-            categoryDropdownVarient:"outline-primary",
+            categoryDropdownVarient:"outline-secondary",
 
             selectedPrefecture: "都道府県",
             prefectureDropdownVarient:"outline-primary",
@@ -38,12 +38,12 @@ export default class SearchByOptionComponent extends React.Component {
 
     changeSelectedCategory = (categoryName) =>{
         this.setState({selectedCategory: categoryName})
-        this.setState({categoryDropdownVarient: "primary"})
+        this.setState({categoryDropdownVarient: "secondary"})
     }
 
     changeSelectedPrefecture = (prefecture) =>{
-        this.setState({selectedPrefecture: prefecture})
-        console.log(this.state.selectedPrefecture);
+        console.log('prefecture', prefecture.prefecture)
+        this.setState({selectedPrefecture: prefecture.prefecture})
         this.setState({prefectureDropdownVarient: "primary"})
     }
 
@@ -61,7 +61,7 @@ export default class SearchByOptionComponent extends React.Component {
     }
 
     onFormControlChangeMaxPrice = (e)=>{
-        this.setState({priceValue: { max: e.target.value, min: this.state.priceValue.min　}});
+        this.setState({priceValue: {max: e.target.value, min: this.state.priceValue.min}});
         console.log(e.target.value)
     }
 
@@ -83,10 +83,12 @@ export default class SearchByOptionComponent extends React.Component {
                             <Row className="option-search-category-row">
                                 <ButtonToolbar>
                                     <DropdownButton
-                                        size="lg"
+                                        style={{fontWeight: "bold"}}
+                                        size="md"
                                         title={this.state.selectedCategory}
                                         className={this.state.dropdownColor}
                                         variant={this.state.categoryDropdownVarient}
+                                        
                                     >
                                         <Dropdown.Item eventKey="1" onClick={()=>{this.changeSelectedCategory("レディース")}}>レディース</Dropdown.Item>
                                         <Dropdown.Item eventKey="2" onClick={()=>{this.changeSelectedCategory("メンズ")}}>メンズ</Dropdown.Item>
@@ -113,7 +115,7 @@ export default class SearchByOptionComponent extends React.Component {
                             <Row className="option-search-prefecture-row">
                             <ButtonToolbar>
                                     <DropdownButton
-                                        size="lg"
+                                        size="md"
                                         title={this.state.selectedPrefecture}
                                         variant={this.state.prefectureDropdownVarient}
                                     >
