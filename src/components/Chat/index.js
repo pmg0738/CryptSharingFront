@@ -121,35 +121,37 @@ export default class Chat extends React.Component {
     render() {
         return (
             <div>
-                <Container>
-                        <div id="chat-view-container" className="chat-view-container">
-                            <div className="chat-view">
-                                {this.state.chatRoom[this.state.selectedchatRoom].messages.map(item =>
-                                    [
-                                    <ChatBoxMe message = {item.message}/>,
-                                    <ChatBoxOther message = {item.message}/>,
-                                ][item.id]                
-                                    )}
-                            </div>
-                            <div ref={(el) => {this.messagesEnd = el;}}></div>
-                        </div>
+                <div id="chat-view-container" className="chat-view-container">
+                    <div className="chat-view">
+                        {this.state.chatRoom[this.state.selectedchatRoom].messages.map(item =>
+                            [
+                            <ChatBoxMe message = {item.message}/>,
+                            <ChatBoxOther message = {item.message}/>,
+                        ][item.id]                
+                            )}
+                    </div>
+                    <div ref={(el) => {this.messagesEnd = el;}}></div>
+                </div>
 
-                        <Form.Row>
-                            <Form.Group>
+                <div className="chat-form-container">
+                    <Form.Row>
+                        <Form.Group>
+                            <div className="chat-textarea-container">
                                 <Form.Control 
                                     className="chat-textarea" 
                                     as="textarea" 
-                                    rows="3"
+                                    rows="5"
                                     value={this.state.inputtingMessage}
                                     onChange = {this.inputTextInTextarea}
                                     onKeyDown={(e) => this.sendMessage(e)}
-                                ></Form.Control>
-                            </Form.Group>
-                            <Form.Group>
+                                />
+                            </div>
+                            <div className="chat-send-button-container">
                             <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
-                            </Form.Group>
-                        </Form.Row>
-                </Container>
+                            </div>
+                        </Form.Group>
+                    </Form.Row>
+                </div>
             </div>
         )
     }

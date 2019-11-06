@@ -17,7 +17,7 @@ export default class FriendList extends React.Component{
 
     render(){
         return(
-            <Row>
+            <Row className="chat-screen-contaienr">
                 <div className="chat-list-container">
                     <ChatListComponent/>
                 </div>

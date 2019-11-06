@@ -122,11 +122,14 @@
     bottom: 0px;
 }
 
-
+.chat-screen-container {
+    padding-top: 50px;
+}
 .chat-list-container {
     height: 100%;
     width: 50%;
-    padding-left: 80px;
+    // padding-left: 80px;
+    padding-top: 80px;
     position: fixed;
     left: 0px;
     bottom: 0px;
