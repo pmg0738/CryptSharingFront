@@ -44,15 +44,15 @@
     position: absolute;
     // position: absolute;
     left: 0px;    
-    overflow: auto;
+    // overflow: scroll;
+    // overflow-y: scroll;
     width:100%
 }
 .chat-list-fixed {
     // background-color: #fbbc05;
     position: fixed;
     left: 0px;    
-    overflow: auto;
+    // overflow: scroll;
+    // overflow-y:scroll;
     width:100%
 }
-
-
