@@ -142,7 +142,8 @@ export default class Chat extends React.Component {
                                 <Form.Control 
                                     className="chat-textarea" 
                                     as="textarea" 
-                                    rows="5"
+                                    rows="4"
+                                    placeholder="Ctrl + Enterで送信"
                                     value={this.state.inputtingMessage}
                                     onChange = {this.inputTextInTextarea}
                                     onKeyDown={(e) => this.sendMessage(e)}
