@@ -63,16 +63,16 @@ export default class SearchByOption extends React.Component {
     }
     render() {
         return (
-                <Container>
+                <div>
                     <Row>
                         <Col md={12} xl={3} className="search-by-option-search-form-col">
                             <SearchByOptionComponent/>
                         </Col>
-                    <Col md={12} xl={9} className="search-by-option-item-list-component-col">
+                        <Col md={12} xl={9} className="search-by-option-item-list-component-col">
                             <ItemListComponent/>
                         </Col>
                     </Row>
-                </Container>
+                </div>
             
         )
     }
