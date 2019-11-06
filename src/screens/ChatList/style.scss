@@ -122,3 +122,21 @@
     bottom: 0px;
 }
 
+
+.chat-list-container {
+    height: 100%;
+    width: 50%;
+    padding-left: 80px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    overflow-x:scroll;
+}
+
+.chat-main-container {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+}
