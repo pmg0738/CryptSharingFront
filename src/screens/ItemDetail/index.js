@@ -68,31 +68,20 @@ export default class ItemDetail extends React.Component {
 
     clickFavoriteButton = () => {
         const favoriteItemId = this.state.me.favoriteItemId;
-        console.log("favorite BEFORE", favoriteItemId)
-        
+
         const itemId = this.state.item.id;
-       
+
         const favorite = favoriteItemId.indexOf(itemId) >= 0;
-        console.log('favorite', favorite);
 
-        // const itemId = this.state.item.id;
-        // const favorite
-        // let { favoriteItemId } = this.state.me;
-
-        let newFavoriteItemId = [];
         if(favorite) {
             const index = favoriteItemId.indexOf(itemId);
-            newFavoriteItemId = favoriteItemId.splice(index, 1);
-            console.log("favorite TRUE", newFavoriteItemId);
+            delete favoriteItemId[index];
         }
         else {
-            newFavoriteItemId = favoriteItemId
-            newFavoriteItemId.push(itemId);
-            console.log("favorite FALSE", newFavoriteItemId);
+            favoriteItemId.push(itemId);
         }
         
         const { me } = this.state;
-        console.log("me", me);
         this.setState({
             me: {
                 id: me.id,
@@ -100,10 +89,9 @@ export default class ItemDetail extends React.Component {
                 usedHistoryItemId: me.usedHistoryItemId,
                 rentalItemId: me.rentalItemId,
                 requestItemId: me.requestItemId,
-                favoriteItemId: newFavoriteItemId // ここだけ更新
+                favoriteItemId: favoriteItemId // ここだけ更新
             }
         })
-
         // ボタンのデザインを変える
         this.handleFavoriteButtonClassName(!favorite)
     }
