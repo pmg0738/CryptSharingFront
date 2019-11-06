@@ -1,11 +1,22 @@
-// .search-by-option-item-list-component-col{
-//     margin-right: 110px;
+// .search-by-option-container{
+//     padding-top: 50px;
 // }
 
-.search-by-option-item-list-component-col{
-    // margin-left:10px;
+.search-by-option-search-form-col{
+    position: fixed;
+    width: 30%;
+    height: 100%;
+
 }
 
-.search-by-option-search-form-col{
-    // margin-right:10px;
+.search-by-option-item-list-component-col{
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 80px;
+    margin-left: 20px;
+    height:100%;
+    width: 70%;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 }
