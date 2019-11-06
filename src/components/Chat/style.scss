@@ -63,12 +63,15 @@
 }
 
 .chat-send-button{
-    height:87px;
+    height:100px;
     background-color: #035e88;
     border-color: #035e88;
-    // position: absolute;
-    // right: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
     width: 100px;
+    margin-left: 20px;
+
 }
 .chat-send-button-container {
     position: absolute;
@@ -87,4 +90,5 @@
     left: 0px;
     height: 200px;
     width: calc(100% - 150px);
+    margin-left: 10px;
 }

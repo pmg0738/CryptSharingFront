@@ -63,23 +63,25 @@ export default class Chat extends React.Component {
     }
 
     sendMessage = (e) =>{
-        if (e.keyCode === 13) {
-            if(e.target.value!=""){
-                let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
-                latestMessages.push(
-                    {
-                        id: 0,   // 0自分が送ったやつ
-                        message: e.target.value
-                        }
-                    );
-                this.setState({
-                    messages: latestMessages,
-                    inputtingMessage: '',
-                })
-                setTimeout(() => {
-                    this.scrollToBottom();
-                }, 100)
-          }
+        if(e.ctrlKey){
+            if (e.keyCode === 13) {
+                if(e.target.value!=""){
+                    let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
+                    latestMessages.push(
+                        {
+                            id: 0,   // 0自分が送ったやつ
+                            message: e.target.value
+                            }
+                        );
+                    this.setState({
+                        messages: latestMessages,
+                        inputtingMessage: '',
+                    })
+                    setTimeout(() => {
+                        this.scrollToBottom();
+                    }, 100)
+                }
+            }
         }
     }
 
