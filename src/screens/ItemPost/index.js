@@ -142,27 +142,7 @@ export default class ItemPost extends React.Component {
                                             <Form.Control/>
                                         </Col>
                                         <p className="yen">円</p>
-                                    </Form.Group>
-                                    {/* <Form.Control 
-                                        className="item-post-price-form"
-                                        type="number" placeholder="20"/> */}
-                                    {/* <p className="item-post-price-label">円　 /</p>
-                                    <select
-                                        className="item-post-unit-time-select"
-                                        // value={this.state.tag}
-                                        onChange={(e) => this.setState({tag: e.target.value})}
-                                    >
-                                        <option>１分</option>
-                                        <option>５分</option>
-                                        <option>１０分</option>
-                                        <option>１５分</option>
-                                        <option>３０分</option>
-                                        <option>１時間</option>
-                                        <option>１週間</option>
-                                        <option>１ヶ月</option>
-                                        <option>１年</option>
-                                    </select> */}
-                                    
+                                    </Form.Group>    
                                 </Form.Group>
                             </Form>
                             <div className="item-post-form-label">その他の情報</div>                                                        
@@ -171,10 +151,6 @@ export default class ItemPost extends React.Component {
                                 type="text"
                                 placeholder='購入価格: 32400円'
                             />
-
-                            {/* <div className="item-detail-more-detail-info-contents">
-                                
-                            </div> */}
                             <Row className="item-post-confirm-button-container">
                                 <Link to='/itempostconfirm'>
                                     <Button className="item-post-confirm-button">確認</Button>

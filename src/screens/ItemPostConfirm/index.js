@@ -39,18 +39,26 @@ export default class ItemPostConfirm extends React.Component {
         super(props);
 
         this.state = {
-            images: [
-                S__23519271,
-                S__23519273,
-                S__23519274,
-                S__23519275,
-                S__23519276,
-                S__23519277,
-                S__23519278,
-                S__23519279,
-                S__23519280,
-                S__23519281,
-            ],
+            item:{
+                images: [
+                    S__23519271,
+                    S__23519273,
+                    S__23519274,
+                    S__23519275,
+                    S__23519276,
+                    S__23519277,
+                    S__23519278,
+                    S__23519279,
+                    S__23519280,
+                    S__23519281,
+                ],
+                name: "Dell モニター 25インチ",
+                price:{
+                    oneHourPrice: 50,
+                    oneDayPrice: 500,
+                },
+            },
+            
             imageStartIndex: 0,                
             selectedImage: S__23519271,
             isOverNumOfImage: false,
@@ -67,23 +75,69 @@ export default class ItemPostConfirm extends React.Component {
                         <Col sm={12} md={6} lg={6} className="item-post-confirm-image-container">
                             <p className="item-post-confirm-image-header">登録した写真</p>
                                 <Row>
-                                    {this.state.images.map(item => 
+                                    {this.state.item.images.map(image => 
                                         <Col sm={12} md={4}>
-                                            <Image src={item} className="item-post-confrim-image"/>
+                                            <Image src={image} className="item-post-confrim-image"/>
                                         </Col>
                                     )}
                                 </Row>
                         </Col>
-                        <Col sm={12} md={6} lg={6} className="item-post-confirm-info-container">
-                            <p className="item-post-confirm-item-name">商品名：モニター</p>
-                            <p className="item-post-confirm-fee">料金：900円/1日</p>
+                        <Col sm={12} md={6} className="item-post-item-info">
+                            <Form>
+                                <Form.Group controlId="formBasicEmail">
+                                    <div className="item-post-form-label">商品名</div>                                                        
+                                    <Row>
+                                    <Form.Control 
+                                        className="item-post-item-name-form"
+                                        readOlny
+                                        defaultValue={this.state.item.name}/>
+                                    </Row>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column sm="3">
+                                            <div className="item-post-one-hour-fee">1時間 料金</div>
+                                        </Form.Label>
+                                        <Col sm="4">
+                                            <Form.Control readOnly defaultValue={this.state.item.price.oneHourPrice}/>
+                                        </Col>
+                                        <p className="yen">円</p>
+                                    </Form.Group>
+                                    <Form.Group as={Row}>
+                                        <Form.Label column sm="3">
+                                            <div className="item-post-one-hour-fee">1日 料金</div>
+                                        </Form.Label>
+                                        <Col sm="4">
+                                            <Form.Control readOlny defaultValue={this.state.item.price.oneDayPrice}/>
+                                        </Col>
+                                        <p className="yen">円</p>
+                                    </Form.Group>    
+                                </Form.Group>
+                            </Form>
+                            <div className="item-post-form-label">その他の情報</div>                                                        
+                            <textarea
+                                className="item-post-item-detail-textarea"
+                                type="text"
+                                placeholder="Dell モニター / 27インチ/ Full HD/ HDMI/ 購入価額：￥17,180
+                                <br/>参考url<br/>
+                                https://www.amazon.co.jp/"
+                            />
+                            <Row className="item-post-confirm-button-container">
+                                <Button className="item-post-confirm-button">登録</Button>
+                                <Link to='/items/new/post'>
+                                    <Button className="item-post-confirm-button">修正</Button>
+                                </Link>
+                            </Row>
+                        </Col>
+                        {/* <Col sm={12} md={6} lg={6} className="item-post-confirm-info-container">
+                            <p className="item-post-confirm-item-name">商品名：{this.state.item.name}</p>
+                            <p className="item-post-confirm-fee">{this.state.item.price.oneHourPrice}円/1時間</p>
+                            <p className="item-post-confirm-fee">{this.state.item.price.oneDayPrice}円/1日</p>
                             <p className="item-post-confirm-extra-info-header">その他の情報</p>
                             <p className="item-post-confirm-extra-infor-text">
                                 Dell モニター / 27インチ/ Full HD/ HDMI/ 購入価額：￥17,180
                                 <br/>参考url<br/>
                                 https://www.amazon.co.jp/
                             </p>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
                {/* <Container>

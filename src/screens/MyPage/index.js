@@ -32,8 +32,10 @@ export default class MainSearch extends React.Component {
                         <Tab eventKey="rent-now" title="レンタル中">
                             <MyPageRentNow/>
                         </Tab>
-                        <Tab eventKey="requesting" title="リクエスト中">
-                            {/* <div className="my-page-tab-explanation">リクエスト中</div> */}
+                        <Tab eventKey="requesting" title="リクエスト">
+                            <div className="my-page-tab-explanation">届いた リクエスト</div>
+                            <MyPageBooked/>
+                            <div className="my-page-tab-explanation">リクエスト中</div>
                             <MyPageBooked/>
                         </Tab>
                         <Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">

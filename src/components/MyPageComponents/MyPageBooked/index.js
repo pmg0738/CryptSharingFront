@@ -71,7 +71,7 @@ export default class MyPageBooked extends React.Component {
                                 pricePerHour={items[id].price}
                                 status={1}
                             />
-                        </Col>                    
+                        </Col>            
                     )}
                 </Row>
             </Container>

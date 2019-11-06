@@ -57,7 +57,9 @@ export default class FriendList extends React.Component{
                 <Col md={12} lg={6} className={this.state.chatStyle}
                         onMouseOver={this.onChat}
                     >
-                        <Chat/>
+                        <Chat 
+                            // className={this.state.chatStyle}
+                        />
                 </Col>
                 </Row>
             </Container>
