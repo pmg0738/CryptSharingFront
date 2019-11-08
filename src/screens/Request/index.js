@@ -50,17 +50,17 @@ export default class Request extends React.Component {
                         </Col>
                         <Col sm={12} md={6} className="right">
                         <Form>
-                            <p>
-                                使用時間：<input type="text" name="num" size="10"/>
+                            <p className="request-item-use-period">
+                                使用時間：<input type="text" name="num" size="5"/>
                                         <select name="time" className="request-use-time">
                                             <option value="hour">時間</option>
                                             <option value="day">日</option>
                                         </select>
                             </p>
-                            <p>
+                            <p className="request-item-price">
                                 金額：<input type="text" name="money" size="20"/>円
                             </p> 
-                            <p> 
+                            <p className="request-item-preferred-date">
                                 希望日：<select name="month">
                                             <option value="1">1月</option>
                                             <option value="2">2月</option>
@@ -75,9 +75,9 @@ export default class Request extends React.Component {
                                             <option value="11">11月</option>
                                             <option value="12">12月</option>
                                     </select>
-                                    <input type="text" name="days" size="2"/>日
+                                    <input type="text" className="request-item-preferred-date-text" size="3"></input>日
                             </p>
-                            <p>
+                            <p className="request-item-deliver-place">
                                 受け渡し場所：<input type="text" name="place" size="30"/>
                             </p>
 
