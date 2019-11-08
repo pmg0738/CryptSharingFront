@@ -18,6 +18,7 @@ import SearchByOption from './screens/SearchByOption';
 import Request from './screens/Request';
 // components
 import Navbar from './components/Navbar';
+import Drower from './components/Drower';
 
 
 export default class App extends React.Component{
@@ -38,7 +39,9 @@ export default class App extends React.Component{
                 <Route exact path='/items' component={SearchByOption}/>
                 <Route exact path='/request' component={Request}/>
             </div>
-            <Navbar/>
+            {/* <Navbar/> */}
+            <Drower/>
+
         </BrowserRouter>        
       </div>
     )
