@@ -203,8 +203,8 @@ export default class MainSearch extends React.Component {
                                 </Form.Group>
                             </Row>
                         </Form>
-                            <Link to='/items'>
-                                <p className="main-search-category-search-button">カテゴリから探す</p>
+                            <Link to='/filter'>
+                                <p className="main-search-category-search-button">絞り込みで探す</p>
                             </Link>
                                 <Row className="main-search-category-button-row">
                                     <Col>

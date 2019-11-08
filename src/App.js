@@ -16,6 +16,8 @@ import MainSearch from './screens/MainSearch';
 import MyPage from './screens/MyPage';
 import SearchByOption from './screens/SearchByOption';
 import Request from './screens/Request';
+import Filter from './screens/Filter';
+
 // components
 import Navbar from './components/Navbar';
 import Drower from './components/Drower';
@@ -38,6 +40,7 @@ export default class App extends React.Component{
                 <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
                 <Route exact path='/items' component={SearchByOption}/>
                 <Route exact path='/request' component={Request}/>
+                <Route exact path='/filter' component={Filter}/>
             </div>
             {/* <Navbar/> */}
             <Drower/>
