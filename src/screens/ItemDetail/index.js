@@ -130,9 +130,14 @@ export default class ItemDetail extends React.Component {
         // }
         else if(usedHistory) {
             return (
-                <Link to='/request'>
-                    <Button className="item-detail-goto-request">借りる</Button>
-                </Link>
+                <div>
+                    <p>
+                        使用期間：2019年5月20日～2019年5月25日
+                    </p>
+                    <Link to='/request'>
+                        <Button className="item-detail-goto-request">借りる</Button>
+                    </Link>
+                </div>
             )
         }
         else if(rentaling) {

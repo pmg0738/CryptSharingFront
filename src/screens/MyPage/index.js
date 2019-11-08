@@ -39,10 +39,9 @@ export default class MainSearch extends React.Component {
                             <MyPageBooked/>
                         </Tab>
                         <Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
-                            <MyPageUsedHistory
-                            />
-                            <MyPageUsedHistory/>
-                            <MyPageUsedHistory/>
+                            <MyPageUsedHistory to= {'/items/4'}/>
+                            <MyPageUsedHistory to={'/items/4'}/>
+                            <MyPageUsedHistory to={'/items/4'}/>
                         </Tab>
                         <Tab eventKey="posted-history" title="投稿済み">
                             <MyPagePosted/>

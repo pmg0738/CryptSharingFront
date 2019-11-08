@@ -81,7 +81,7 @@ export default class MyPageUsedHistory extends React.Component {
                                     <Col> 
                                         <p>支払金額：500円</p>
                                         <div>
-                                            <Link to='/items/new/post'>
+                                            <Link to={this.props.to}>
                                                 <Button variant="primary" className="mypage-used-history-detail-button">詳細</Button>
                                             </Link>
                                         </div>   
