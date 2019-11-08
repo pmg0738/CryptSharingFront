@@ -57,16 +57,13 @@ export default class ChatListComponent extends React.Component{
                 >
                     {
                         this.state.friends.map(friend=>
-                            <Card className="friend-card">
+                            <Card className="friend-card"
+                                onClick={(res) => console.log(res)}
+                            >
                                 <img src={friend.image} className="friend-card-image"/>
                                 <h4 className="friend-card-name">{friend.name}</h4>
-                                <h6 className="friend-card-lastMessage">{friend.lastMessage}</h6>
-                                    <Button 
-                                        className="friend-card-button"
-                                        onClick={()=>this.showSelectedChatRoom(friend.userId)}
-                                    >
-                                        <h6>開く</h6>
-                                    </Button>                                 
+                                <h6 className="friend-card-last-message">{friend.lastMessage}</h6>
+                                <h6 className="friend-card-last-message-date-time">5分前</h6>
                             </Card>
                         )
                     }
