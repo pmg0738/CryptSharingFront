@@ -63,22 +63,16 @@ export default class SearchByOption extends React.Component {
     }
     render() {
         return (
-                <div>
-                    <Row className="search-by-option-container">
-                        {/* <Col md={12} xl={3} className="search-by-option-search-form-col">
-                            <SearchByOptionComponent/>
-                        </Col>
-                        <Col md={12} xl={9} className="search-by-option-item-list-component-col">
-                            <ItemListComponent/>
-                        </Col> */}
-                        <div className="search-by-option-search-form-col">
+                
+                    <div className="search-by-option-container">
+                        <div className="search-by-option-search-form">
                             <SearchByOptionComponent/>
                         </div>
-                        <div className="search-by-option-item-list-component-col">
+                        <div className="search-by-option-item-list-component">
                             <ItemListComponent/>
                         </div>
-                    </Row>
-                </div>
+                    </div>
+                
             
         )
     }

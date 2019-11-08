@@ -1,33 +1,40 @@
+$marginLeft: 30px;
+
 .option-search-free-word-search-row{
-    margin-left:40px;
+    width: 190px;
+    margin-left: $marginLeft;
     margin-bottom:20px;
 }
 
 .option-search-category-row{
-    margin-left:40px;
-    margin-bottom:30px;
+    width: 190px;
+    margin-left: $marginLeft;
+    margin-bottom:20px;
 }
 
 .option-search-prefecture-row{
-    margin-left:40px;
-    margin-bottom:30px;
+    width: 190px;
+    margin-left: $marginLeft;
+    margin-bottom:20px;
 }
 
 .option-search-free-word-search-form {
     border-radius: 25px;
     height: 50px;
-    padding-left: 40px;
+    // padding-left: 40px;
     // width: 100%;
-    width: 300px;
+    width: 230px;
 }
 
 .option-search-lent-price-row{
-    margin-left:40px;
-    margin-bottom: 50px;
+    width: 190px;
+    margin-left:$marginLeft;
+    margin-bottom: 30px;
 }
 
 .option-search-lent-period-head{
-    margin-left: 40px;
+    width: 190px;
+    margin-left: $marginLeft;
     margin-bottom:5px;
     color:white;
     font-size: 20px;
@@ -35,8 +42,8 @@
 }
 
 .option-search-lent-period-button{
-    margin-left: 40px;
-    margin-bottom:30px;
+    margin-left: $marginLeft;
+    margin-bottom:20px;
     color:white;
     font-size: 20px;
     font-weight: bold;
@@ -55,17 +62,26 @@
 }
 
 .option-search-lent-price-head{
-    margin-left: 40px;
-    margin-bottom:30px;
+    margin-left: $marginLeft;
+    margin-bottom:20px;
     color:white;
     font-size: 20px;
 }
-.option-search-price-input-range{
-    // width: 300px;
-    margin-bottom:20px;
-    margin-left: 40px;
+
+.option-search-lent-price-row{
+    margin-left: 35px;
 }
 
+// .option-search-price-input-range{
+//     margin-bottom:10px;
+//     margin-left: 20px;
+// }
+
 .option-search-min-price-input{
-    margin-bottom:20px;
+    margin-bottom:10px;
+    width: 190px;
+}
+
+.option-search-max-price-input{
+    width:190px;
 }

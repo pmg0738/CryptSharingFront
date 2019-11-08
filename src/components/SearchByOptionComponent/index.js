@@ -73,7 +73,7 @@ export default class SearchByOptionComponent extends React.Component {
 
     render() {
         return (
-                <div>
+                <div className="">
                         <Form className="option-search-search-form">
                             <Row className="option-search-free-word-search-row">
                                 <Form.Group controlId="formBasicEmail">
