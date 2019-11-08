@@ -13,6 +13,8 @@ export default class Item extends React.Component {
             cardClassName: "item-list-item-card-out",
             priceClassName: "item-list-item-card-price-out"
         }
+        this.data = this.props.data;
+        this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
     }
 
     handleMouseOver = () => {
@@ -42,11 +44,12 @@ export default class Item extends React.Component {
                     onClick={this.getItemDetail}
                 >
                     <div className="item-list-item-card-image-container">
-                        <Image src={this.props.image} className="item-list-item-card-image"/>
+                        <Image src={this.image} className="item-list-item-card-image"/>
                         <div className="item-list-item-card-image-smoke" />
                         {[<div className="item-list-item-card-image-smoke-not-available" />,<div/>][this.props.status]}
                     </div>
-                    <p className={this.state.priceClassName}>{this.props.pricePerHour}円/1時間</p>
+
+                    <p className={this.state.priceClassName}>{this.data.fee_per_hour}円/1時間</p>
                 </Card>
             </Link>
         );

@@ -3,17 +3,19 @@ import Faker from 'faker';
 import './style.scss';
 import {
     Button,
-    Card,
+    // Card,
     Container,
     Col,
     Form, 
     Row,    
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+
 import eraiza from '../../images/eraiza.png';
 
 
-import Pagination from '../../components/Pagination';
+import Pagination from '../Pagination';
 
 export default class ChatListComponent extends React.Component{
     constructor(props){
@@ -63,7 +65,7 @@ export default class ChatListComponent extends React.Component{
                                         className="friend-card-button"
                                         onClick={()=>this.showSelectedChatRoom(friend.userId)}
                                     >
-                                        <h6>トーク</h6>
+                                        <h6>開く</h6>
                                     </Button>                                 
                             </Card>
                         )
@@ -87,7 +89,7 @@ const friends = [
 
 
 
-for(let i= 0; i<10; i++){
+for(let i= 0; i<20; i++){
     friends.push(
         {
             name: Faker.internet.userName(),

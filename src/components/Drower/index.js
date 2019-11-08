@@ -77,7 +77,7 @@ export default function TemporaryDrawer() {
       <List>
           <ListItem button key={1}>
             <ListItemIcon><AddAPhotoIcon className="navbar-menu-add-icon" /></ListItemIcon>
-            <Link to='/items' className="navbar-hamburger-menu-button-item">出品する</Link>
+            <Link to='/items/new/post' className="navbar-hamburger-menu-button-item">出品する</Link>
           </ListItem>
       </List>
       <List>

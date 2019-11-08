@@ -3,7 +3,7 @@ import './style.scss';
 import { Row } from 'react-bootstrap'
 
 import Chat from '../../components/Chat';
-import ChatListComponent from '../../components/ChatListComponent';
+import ChatListComponent from '../../components/ChatListItem';
 
 import io from 'socket.io-client';
 

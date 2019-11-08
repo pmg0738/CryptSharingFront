@@ -4,10 +4,10 @@
 
 .chat-list-container {
     height: 100%;
-    width: 50%;
+    width: calc(50% - 10px);
     padding-top: 80px;
     position: fixed;
-    left: 0px;
+    left: 10px;
     bottom: 0px;
     overflow-y: scroll;
 }

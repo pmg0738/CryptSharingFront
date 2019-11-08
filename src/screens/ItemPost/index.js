@@ -3,21 +3,72 @@ import './style.scss';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import { 
     Alert,
-    Container,
-    Button,
+    // Container,
+    // Button,
     Form,
     Row,
     Col,
-    Card,
+    // Card,
 } from 'react-bootstrap';
+
+// import { Button } from '@material-ui/core';
+// import { CheckCircleIcon } from '@material-ui/icons';
+
+
+import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+// import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
+// import Icon from '@material-ui/core/Icon';
+// import SaveIcon from '@material-ui/icons/Save';
+// import { makeStyles } from '@material-ui/core/styles';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+
+
+import Card from '@material-ui/core/Card';
+// import clsx from 'clsx';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardActions from '@material-ui/core/CardActions';
+// import Collapse from '@material-ui/core/Collapse';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
+import ImageIcon from '@material-ui/icons/Image';
+import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import AlarmIcon from '@material-ui/icons/Alarm';
+// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+// import Typography from '@material-ui/core/Typography';
+// import { red } from '@material-ui/core/colors';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import ShareIcon from '@material-ui/icons/Share';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+import TextField from '@material-ui/core/TextField';
+
+
 import loadImage from 'blueimp-load-image';
 
 import Navbar from '../../components/Navbar';
-import eraiza from '../../images/eraiza.png';
+// import eraiza from '../../images/eraiza.png';
+import Container from '@material-ui/core/Container';
 
 
 import placeholderImage from '../../images/rain.png';
 
+
+const MAX_NUM_OF_IMAGE = 9
 
 export default class ItemPost extends React.Component {
     constructor(props){
@@ -52,7 +103,7 @@ export default class ItemPost extends React.Component {
         const { imageUri } = await resizeImage(e);
         let { images } = this.state;
 
-        if(images.length<10){
+        if(images.length<MAX_NUM_OF_IMAGE){
             images.push(imageUri);
             this.setState({
                 images: images,
@@ -64,107 +115,166 @@ export default class ItemPost extends React.Component {
         }
     }
 
-    renderAlert = (isOver) => {
-        if(isOver) {
-            return (
-                <Alert variant="danger">
-                    添付できる画像は１０枚までです
-                </Alert>
-            );
-        }
-    }   
+    // renderAlert = (isOver) => {
+    //     if(isOver) {
+    //         return (
+    //             <Alert variant="danger">
+    //                 添付できる画像は１０枚までです
+    //             </Alert>
+    //         );
+    //     }
+    // }   
 
 
-    renderPlaceholderImage = (images) => {
-        if(images.length==0){
-            return (
-                <img src={placeholderImage} 
-                    className="item-post-placeholder-image"
-                />
-            );
+    // renderPlaceholderImage = (images) => {
+    //     if(images.length==0){
+    //         return (
+    //             <img src={placeholderImage} 
+    //                 className="item-post-placeholder-image"
+    //             />
+    //         );
+    //     }
+    // }
+
+    renderImagePlaceholder = (numOfImages) => {
+
+        let placeholders = [];
+
+        if(numOfImages<MAX_NUM_OF_IMAGE) {
+            placeholders.push(
+                <Card className="item-post-image-container">
+                    <div  className="item-post-image-placeholder">
+                        <label htmlFor="icon-button-file">
+                            <IconButton
+                                color="primary"
+                                className="item-post-image-input-button"
+                                aria-label="upload picture"
+                                component="span"
+                                style={{marginTop: 35}}
+                            >
+                            <AddAPhotoIcon style={{ width: 60, height: 60}}/>
+                            </IconButton>
+                        </label>
+                    </div>
+                </Card>
+            )
         }
+        
+        for(let i=numOfImages+1; i<MAX_NUM_OF_IMAGE; i++) {
+            placeholders.push(
+                <Card className="item-post-image-container">
+                    <div  className="item-post-image-placeholder"/>
+                </Card>
+            )
+        }
+        return placeholders;
     }
+
+    
     
     render() {
+
         return (
             <div>
-                <Container>            
-                    {this.renderAlert(this.state.isOverNumOfImage)}
-                    <Row>                        
-                        <Col sm={12} md={6} lg={6} className="item-detail-pic">
-                            <input type="file" className="item-post-select-file-input"
-                                value={this.state.file}
-                                // onChange={this.uploadFile}
-                                accept='image/*'
-                                onClick={() => console.log('@@@@')}
-                                onChange={e => this.imageChangeHandler(e)}
-                            />
-                            {this.renderPlaceholderImage(this.state.images)}
-                            <Row>                                
-                                {this.state.images.map((image, index) => 
-                                    <ItemPostCard 
-                                        image={image} 
-                                        index={index}
-                                        deleteImage={() => this.deleteImage(index)}
-                                    />
-                                )}
-                            </Row>
-                        </Col>
-                        <Col sm={12} md={6} className="item-post-item-info">
-                            <Link to='/items'>
-                                {/* <Button className="item-detail-button-to-item-list">一覧に戻る</Button> */}
+                <Container maxWidth="lg" className="item-post-container">
+                    <Link to='/items'>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className="item-post-back-to-list-button"
+                            size="large"
+                            startIcon={<SettingsBackupRestoreIcon />}
+                            style={{marginBottom: 20}}
+                        >一覧に戻る</Button>
+                    </Link>
+                    <Card className="item-post-card">
+                        <CardHeader
+                            avatar={<Avatar aria-label="recipe" className="">R</Avatar>}
+                            action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
+                            title="Shrimp and Chorizo Paella"
+                            subheader="September 14, 2016"
+                        />
+                        <CardMedia
+                            className=""
+                            image="/static/images/cards/paella.jpg"
+                            title="Paella dish"
+                        />
+                        <Grid container direction="row" justify="center">
+                            <Grid item direction="column" justify="center" alignItems="center" xs={6}>                           
+                                <TextField
+                                    id="standard-multiline-flexible"
+                                    label="商品名"
+                                    multiline
+                                    rowsMax="4"
+                                    // value={value}
+                                    // onChange={handleChange}
+                                    className="item-post-item-name"
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                                <TextField
+                                    id="standard-multiline-flexible"
+                                    label="1時間当たりの料金"
+                                    multiline
+                                    rowsMax="4"
+                                    // value={value}
+                                    // onChange={handleChange}
+                                    // className="item-post-item-name"
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                                <p className="yen">円</p>
+                                <TextField
+                                    id="outlined-multiline-static"
+                                    label="その他の情報"
+                                    multiline
+                                    rows="10"
+                                    // defaultValue="Default Value"
+                                    className="item-post-else-info"
+                                    placeholder='購入価格: 32400円'
+                                    margin="normal"
+                                    variant="outlined"
+                                    />                            
+                            </Grid>
+                            <Grid item direction="column" justify="center"
+                                alignItems="center" xs={6}>                      
+                                <input 
+                                    accept="image/*"
+                                    className="item-post-image-input"
+                                    id="icon-button-file"
+                                    type="file"
+                                    onChange={e => this.imageChangeHandler(e)}
+                                />            
+                                <Grid container direction="row" justify="center">
+                                    {this.state.images.map((image, index) => 
+                                        <ItemPostCard 
+                                            image={image} 
+                                            index={index}
+                                            deleteImage={() => this.deleteImage(index)}
+                                        />
+                                    )}
+                                    {this.renderImagePlaceholder(this.state.images.length)}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid container direction="row" justify="flex-end" style={{marginTop: 40}}>
+                            <Link to='/itempostconfirm'>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className=""
+                                    size="large"
+                                    startIcon={<CheckCircleIcon />}
+                                >確認</Button>
                             </Link>
-                            <Form>
-                                <Form.Group controlId="formBasicEmail">
-                                    {/* <Form.Label>Email address</Form.Label> */}
-                                    <div className="item-post-form-label">商品名</div>                                                        
-                                    <Row>
-                                    <Form.Control 
-                                        className="item-post-item-name-form"
-                                        type="text" placeholder="Dell モニター 24インチ"/>
-                                    </Row>
-                                    {/* <div className="item-post-form-label">料金</div>                                                         */}
-                                    
-                                    <Form.Group as={Row}>
-                                        <Form.Label column sm="3">
-                                            <div className="item-post-one-hour-fee">1時間 料金</div>
-                                        </Form.Label>
-                                        <Col sm="4">
-                                            <Form.Control/>
-                                        </Col>
-                                        <p className="yen">円</p>
-                                    </Form.Group>
-                                    <Form.Group as={Row}>
-                                        <Form.Label column sm="3">
-                                            <div className="item-post-one-hour-fee">1日 料金</div>
-                                        </Form.Label>
-                                        <Col sm="4">
-                                            <Form.Control/>
-                                        </Col>
-                                        <p className="yen">円</p>
-                                    </Form.Group>    
-                                </Form.Group>
-                            </Form>
-                            <div className="item-post-form-label">その他の情報</div>                                                        
-                            <textarea
-                                className="item-post-item-detail-textarea"
-                                type="text"
-                                placeholder='購入価格: 32400円'
-                            />
-                            <Row className="item-post-confirm-button-container">
-                                <Link to='/itempostconfirm'>
-                                    <Button className="item-post-confirm-button">確認</Button>
-                                </Link>
-                            </Row>
-                        </Col>
-                    </Row>
+                        </Grid>
+                    </Card>
                 </Container>
-                <Navbar/>
             </div>
-
         )
     }
 }
+
 
 class ItemPostCard extends React.Component {
     constructor(props){

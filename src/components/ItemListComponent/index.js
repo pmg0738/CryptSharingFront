@@ -1,6 +1,6 @@
 import React from 'react';
 import Faker from 'faker';
-
+import axios from 'axios';
 
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import {
 
 
 import './style.scss';
-// import { API_BASE_URL } from '../../config.js'
+import { API_ROOT } from '../../config.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
@@ -31,33 +31,47 @@ export default class ItemListComponent extends React.Component {
         super(props);
         this.state = {
             items: [
-                {
-                    item_id: 1,
-                    image: eraiza,
-                    price: 990000,
-                },
-                {
-                    item_id: 2,
-                    image: eraiza,
-                    price: 10000,
-                },
-                {
-                    item_id: 3,
-                    image: eraiza,
-                    price: 100,
-                },
-                
+                // {
+                //     item_id: 1,
+                //     image: eraiza,
+                //     price: 990000,
+                // },
+                // {
+                //     item_id: 2,
+                //     image: eraiza,
+                //     price: 10000,
+                // },
+                // {
+                //     item_id: 3,
+                //     image: eraiza,
+                //     price: 100,
+                // },                
             ]
         }
         
-        for(let i= 0; i<30; i++){
-            this.state.items.push(
-                {
-                    image: Faker.internet.avatar(),
-                    price: Faker.random.number(),
-                }
-            )
-        }
+        // for(let i= 0; i<30; i++){
+        //     this.state.items.push(
+        //         {
+        //             image: Faker.internet.avatar(),
+        //             price: Faker.random.number(),
+        //         }
+        //     )
+        // }
+    }
+
+    componentWillMount() {
+        this.getItems();
+    }
+
+    getItems = () => {
+        console.log("GET");
+        axios.get(API_ROOT + 'items/')
+            .then(res => {
+                this.setState({items: res.data});
+                console.log("GET", res);
+                console.log("GET", res.data);
+                console.log("GET", res.data[0]);
+            })
     }
 
     renderRentaringMessage = (isRented) => {
@@ -93,10 +107,9 @@ export default class ItemListComponent extends React.Component {
                 <Row>
                 {this.state.items.map((item) => 
                     <Col xc={6} sm={6} md={4} lg={4}>
-                        <Item 
+                        <Item
+                            data={item}
                             to={'/items/' + item.item_id}
-                            image={item.image}
-                            pricePerHour={item.price}
                             status={1}
                         />
                     </Col>                    
