@@ -24,6 +24,7 @@ export default class Filter extends Component {
             category:'',
             age:'',
             prefecture:'',
+            lentPeriod:'onehour',
         }
     }
 
@@ -37,6 +38,10 @@ export default class Filter extends Component {
 
     onChangePrefecture = (e) =>{
         this.setState({prefecture: e.target.value})
+    }
+
+    onChangeLentPeriod = (e) =>{
+        this.setState({lentPeriod: e.target.value})
     }
 
     render() {
@@ -90,15 +95,15 @@ export default class Filter extends Component {
                     <Grid item style={{width:"25%", backgroundColor:"yellow", textAlign:"center"}}>
                         <FormControl component="fieldset" style={{textAlign:"center", padding:"50px"}}>
                             <FormLabel component="legend">使用期間</FormLabel>
-                            <RadioGroup aria-label="position" name="position" value="aa" row>
+                            <RadioGroup aria-label="position" name="position" value={this.state.onChangelentPeriod} onChange={(e)=>{this.onChangeLentPeriod(e)}} row>
                                 <FormControlLabel
-                                    value="top"
+                                    value="onehour"
                                     control={<Radio color="primary" />}
                                     label="1時間"
                                     labelPlacement="start"
                                 />
                                 <FormControlLabel
-                                    value="start"
+                                    value="oneday"
                                     control={<Radio color="primary"/>}
                                     label="1日"
                                     labelPlacement="start"
