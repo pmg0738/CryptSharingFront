@@ -5,13 +5,17 @@ import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
-    marginLeft: '100px',
-    color: 'white',
-    backgroundColor: 'blue',
+    // width: "90%",
+    padding: "50px",
+    // backgroundColor:"purple",
+    // marginLeft: '100px',
+    // color: 'white',
+    // backgroundColor: 'blue',
   },
   feeSlider: {
     // color: 'red',
+    // color: 'white',
+
   }
 });
 
