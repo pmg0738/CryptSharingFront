@@ -3,7 +3,8 @@ import FeeSlider from '../../components/FeeSlider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import './style.scss'
 
@@ -19,20 +20,30 @@ export default class Filter extends Component {
                     margin="normal"
                 />
                 </div>
-                <Grid container spacing={1}>
-                    <Grid container item xs={3} spacing={4} className="filter-container1">
-                        aaa
+                <Grid container>
+                    <Grid container item xs={3}  className="filter-container1">
+                    <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled"
+                        // value="カテゴリー"
+                        // onChange={handleChange}
+                        >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>    
+                    </Select>
                     </Grid>
-                    <Grid container item xs={3} spacing={4} className="filter-container2">
+                    <Grid container item xs={3} className="filter-container2">
                         aaaa
                     </Grid>
-                    <Grid container item xs={3} spacing={4} className="filter-container3">
+                    <Grid container item xs={3} className="filter-container3">
+                        sdf
                     </Grid>
-                    <Grid container item xs={3} spacing={4} className="filter-container4">
+                    <Grid container item xs={3} className="filter-container4">
                         aaa
                     </Grid>
                 </Grid>
-                {/* <FeeSlider/> */}
+                <FeeSlider/>
             </div>
         )
     }
