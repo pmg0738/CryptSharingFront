@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { 
     Alert,
     Container,
@@ -13,8 +13,6 @@ import {
 import loadImage from 'blueimp-load-image';
 
 import Navbar from '../../components/Navbar';
-import eraiza from '../../images/eraiza.png';
-
 
 import placeholderImage from '../../images/rain.png';
 
@@ -76,7 +74,7 @@ export default class ItemPost extends React.Component {
 
 
     renderPlaceholderImage = (images) => {
-        if(images.length==0){
+        if(images.length===0){
             return (
                 <img src={placeholderImage} 
                     className="item-post-placeholder-image"

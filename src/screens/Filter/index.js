@@ -92,10 +92,10 @@ export default class Filter extends Component {
                     </Grid>
 
                     {/* lent-period */}
-                    <Grid item style={{width:"25%", backgroundColor:"yellow", textAlign:"center"}}>
+                    <Grid item style={{width:"25%", backgroundColor:"yellow", textAlign:"center"}} alignItems="center" justify="center">
                         <FormControl component="fieldset" style={{textAlign:"center", padding:"50px"}}>
                             <FormLabel component="legend">使用期間</FormLabel>
-                            <RadioGroup aria-label="position" name="position" value={this.state.onChangelentPeriod} onChange={(e)=>{this.onChangeLentPeriod(e)}} row>
+                            <RadioGroup aria-label="position" name="position" value={this.state.lentPeriod} onChange={(e)=>{this.onChangeLentPeriod(e)}} row>
                                 <FormControlLabel
                                     value="onehour"
                                     control={<Radio color="primary" />}
@@ -118,7 +118,7 @@ export default class Filter extends Component {
 
                     {/* prefecture */}
                     <Grid item style={{width:"25%", backgroundColor:"ff0f01", textAlign:"center"}}>
-                    <FormControl style={{textAlign:"center"}} variant="outlined">
+                    <FormControl style={{textAlign:"center", padding:60, alignItems:"center"}} variant="outlined">
                             <InputLabel id="demo-simple-select-label">都道府県</InputLabel>
                                 <Select style={{width:"200px"}} value={this.state.prefecture} onChange={(e)=>this.onChangePrefecture(e)}>
                                     {prefectures.map(

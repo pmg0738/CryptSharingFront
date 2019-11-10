@@ -7,12 +7,10 @@ import './style.scss';
 import { 
     Form,
     Row,
-    Col,
     Button,
     Dropdown,
     DropdownButton,
     ButtonToolbar,
-    InputGroup,
     FormControl,
 } from 'react-bootstrap';
 

@@ -103,10 +103,10 @@ export default class ItemDetail extends React.Component {
         const requestId = this.state.me.requestItemId;
         const itemId = this.state.item.id;
         const ownerId = this.state.item.ownerId;
-        const isMine = myId == ownerId;
-        const usedHistory = usedHistoryId == itemId;
-        const rentaling = rentalId == itemId;
-        const requesting = requestId == itemId;
+        const isMine = myId === ownerId;
+        const usedHistory = usedHistoryId === itemId;
+        const rentaling = rentalId === itemId;
+        const requesting = requestId === itemId;
     
         if(isMine) {
             return (
