@@ -61,37 +61,46 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
         <List>
-          <ListItem button key={1}>
-            <ListItemIcon><CloseIcon /></ListItemIcon>
-            <Button className="close-drower-button" onClick={toggleDrawer('right', false)}>閉じる</Button>
-          </ListItem>
+          {/* <Button className="close-drower-button" onClick={toggleDrawer('right', false)}> */}
+            <ListItem button key={1} onClick={toggleDrawer('right', false)}>
+              <ListItemIcon><CloseIcon /></ListItemIcon>
+              閉じる
+            </ListItem>
+          {/* </Button> */}
       </List>
       <Divider />
-
       <List>
+        <Link to='/items' className="navbar-hamburger-menu-button-item">
           <ListItem button key={1}>
             <ListItemIcon><SearchIcon className="navbar-menu-search-icon" /></ListItemIcon>
-            <Link to='/items' className="navbar-hamburger-menu-button-item">探す</Link>
+            探す
           </ListItem>
+        </Link>
       </List>
       <List>
-          <ListItem button key={1}>
-            <ListItemIcon><AddAPhotoIcon className="navbar-menu-add-icon" /></ListItemIcon>
-            <Link to='/items/new/post' className="navbar-hamburger-menu-button-item">出品する</Link>
-          </ListItem>
+          <Link to='/items/new/post' className="navbar-hamburger-menu-button-item">
+            <ListItem button key={1}>
+              <ListItemIcon><AddAPhotoIcon className="navbar-menu-add-icon" /></ListItemIcon>
+              出品する
+            </ListItem>
+          </Link>
       </List>
       <List>
-          <ListItem button key={1}>
-            <ListItemIcon><ChatIcon className="navbar-menu-chat-icon" /></ListItemIcon>
-            {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
-            <Link to='/chats' className="navbar-hamburger-menu-button-item">メッセージ</Link>
-          </ListItem>
+          <Link to='/chats' className="navbar-hamburger-menu-button-item">
+            <ListItem button key={1}>
+              <ListItemIcon><ChatIcon className="navbar-menu-chat-icon" /></ListItemIcon>
+              {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
+              メッセージ
+            </ListItem>
+          </Link>
       </List>
       <List>
-          <ListItem button key={1}>
-            <ListItemIcon><PersonIcon className="navbar-menu-person-icon"/></ListItemIcon>
-            <Link to='/mypage' className="navbar-hamburger-menu-button-item">マイページ</Link>
-          </ListItem>
+          <Link to='/mypage' className="navbar-hamburger-menu-button-item">
+            <ListItem button key={1}>
+              <ListItemIcon><PersonIcon className="navbar-menu-person-icon"/></ListItemIcon>
+              マイページ
+            </ListItem>
+          </Link>
       </List>
       {/* <List>
           <ListItem button key={1}>
@@ -101,10 +110,12 @@ export default function TemporaryDrawer() {
       </List> */}
       <Divider />
       <List>
-          <ListItem button key={1}>
-            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-            <Link to='#' className="navbar-hamburger-menu-button-item">ログアウト</Link>
-          </ListItem>
+          <Link to='#' className="navbar-hamburger-menu-button-item">
+            <ListItem button key={1}>
+              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+              ログアウト
+            </ListItem>
+          </Link>
       </List>
       {/* <Divider /> */}
       

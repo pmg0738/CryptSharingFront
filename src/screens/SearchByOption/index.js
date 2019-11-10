@@ -1,20 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 
 import SearchByOptionComponent from '../../components/SearchByOptionComponent';
 import ItemListComponent from '../../components/ItemListComponent';
 import 'react-input-range/lib/css/index.css';
 import './style.scss';
-import { 
-    Container,
-    Row,
-    Col,
-    Button,
-} from 'react-bootstrap';
-import Axios from 'axios';
 
-const API_URL = "http://192.168.3.3:8000/api/v1/items/"
+import { connect　} from 'react-redux';
+import { getItems } from '../../redux/actions/items.js';
 
-export default class SearchByOption extends React.Component {
+
+
+class ItemFilterAndList extends React.Component {
     constructor(props){
         super(props);
 
@@ -29,51 +26,65 @@ export default class SearchByOption extends React.Component {
         }
     }
 
-    componentWillMount(){
-        this.getItemData();
+    componentDidMount(){
+        // console.log("111111111111111111111111");
+        this.props.getItems();
+        // console.log("111111111111111111111111");
     }
 
-    getItemData = () =>{
-        Axios.get(API_URL,{
-            params: {
-                category: "メンズ"
-            }
-        })
-            .then(res =>{
-                console.log('axios no res.data', res);
-                this.setState({items: res.data})
-            })
-    }
+    // getItemData = () =>{
+    //     Axios.get(API_URL,{
+    //         params: {
+    //             category: "メンズ"
+    //         }
+    //     })
+    //         .then(res =>{
+    //             console.log('axios no res.data', res);
+    //             this.setState({items: res.data})
+    //         })
+    // }
 
 
-    changeSelectedCategory = (categoryName) =>{
-        this.setState({selectedCategory: categoryName})
-    }
-    changeVarientOnehour = () =>{
-        this.setState({
-            periodVarientOneHour:"primary",
-            periodVarientOneDay:"outline-success"
-        })
-    }
-    changeVarientOneday = () =>{
-        this.setState({
-            periodVarientOneHour:"outline-primary",
-            periodVarientOneDay:"success"
-        })
-    }
+    // changeSelectedCategory = (categoryName) =>{
+    //     this.setState({selectedCategory: categoryName})
+    // }
+    // changeVarientOnehour = () =>{
+    //     this.setState({
+    //         periodVarientOneHour:"primary",
+    //         periodVarientOneDay:"outline-success"
+    //     })
+    // }
+    // changeVarientOneday = () =>{
+    //     this.setState({
+    //         periodVarientOneHour:"outline-primary",
+    //         periodVarientOneDay:"success"
+    //     })
+    // }
+    
     render() {
+        console.log("@@@@@@@@@@@@@@@@@@@@@", this.props);
+
         return (
-                
-                    <div className="search-by-option-container">
-                        <div className="search-by-option-search-form">
-                            <SearchByOptionComponent/>
-                        </div>
-                        <div className="search-by-option-item-list-component">
-                            <ItemListComponent/>
-                        </div>
-                    </div>
-                
-            
+            <div className="search-by-option-container">
+                <div className="search-by-option-search-form">
+                    <SearchByOptionComponent/>
+                </div>
+                <div className="search-by-option-item-list-component">
+                    <ItemListComponent items={this.props.items} />
+                </div>
+            </div>            
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        items: state
+    }
+}
+
+const mapDispatchToProps = ({ getItems })
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemFilterAndList)

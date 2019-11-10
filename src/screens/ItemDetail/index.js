@@ -14,12 +14,18 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-import Navbar from '../../components/Navbar';
+// import Navbar from '../../components/Navbar';
 import { items } from '../../datas/items.js';
 
-export default class ItemDetail extends React.Component {
+import { connect　} from 'react-redux';
+import { getItems, getItem } from '../../redux/actions/items.js';
+
+class ItemDetail extends React.Component {
     constructor(props){
         super(props);
+
+        const itemId = this.props.match.params.id;
+        const item   = this.props.items.item[itemId];
         
         this.state = {
             itemDetailFavoriteIcon: "default",
@@ -32,11 +38,30 @@ export default class ItemDetail extends React.Component {
                 usedHistoryItemId:["4"],
                 rentalItemId:["3"], 
                 requestItemId:["5","6","7","8"]
-
-            },
-            item: 
-                items[this.props.location.pathname.slice('/items/'.length,)], //URLの最後に来るidを指定
+            },            
+            // item: item,                
+                // items[this.props.location.pathname.slice('/items/'.length,)], //URLの最後に来るidを指定
+            selectedImage: item ? item.images[0].url : "",
         }
+        this.item = {
+            fee_per_hour: 0,  
+            fee_per_day: 0,  
+            images: [],
+        };
+        console.log(this.props)
+        console.log("DETAIL", this.props);
+    }
+
+    componentWillMount() {
+        this.props.getItem(this.props.match.params.id);
+        console.log("RES Will", this.props);
+        // this.item = this.props.items.item[this.props.match.params.id];
+    }
+
+    componentDidMount() {
+        // this.props.getItem(this.props.match.params.id);
+        console.log("RES Did", this.props);
+        // this.item = this.props.items.item[this.props.match.params.id];
     }
 
 
@@ -97,17 +122,18 @@ export default class ItemDetail extends React.Component {
     }
 
     renderButton = () => {
-        const myId = this.state.me.id;
-        const usedHistoryId = this.state.me.usedHistoryItemId;
-        const rentalId = this.state.me.rentalItemId;
-        const requestId = this.state.me.requestItemId;
-        const itemId = this.state.item.id;
-        const ownerId = this.state.item.ownerId;
-        const isMine = myId == ownerId;
-        const usedHistory = usedHistoryId == itemId;
-        const rentaling = rentalId == itemId;
-        const requesting = requestId == itemId;
-    
+        // const myId = this.state.me.id;
+        // const usedHistoryId = this.state.me.usedHistoryItemId;
+        // const rentalId = this.state.me.rentalItemId;
+        // const requestId = this.state.me.requestItemId;
+        // const itemId = this.state.item.id;
+        // const ownerId = this.state.item.ownerId;
+        // const isMine = myId == ownerId;
+        // const usedHistory = usedHistoryId == itemId;
+        // const rentaling = rentalId == itemId;
+        // const requesting = requestId == itemId;
+
+        const isMine =　false;
         if(isMine) {
             return (
                 <div>
@@ -121,6 +147,8 @@ export default class ItemDetail extends React.Component {
                 </div>
             )
         }
+
+
         // else if(favorite) {
         //     return (
         //         <Link to='/request'>
@@ -128,31 +156,34 @@ export default class ItemDetail extends React.Component {
         //         </Link>
         //     )
         // }
-        else if(usedHistory) {
-            return (
-                <div>
-                    <p>
-                        使用期間：2019年5月20日～2019年5月25日
-                    </p>
-                    <Link to='/request'>
-                        <Button className="item-detail-goto-request">借りる</Button>
-                    </Link>
-                </div>
-            )
-        }
-        else if(rentaling) {
-            return (
+
+
+        // else if(usedHistory) {
+        //     return (
+        //         <div>
+        //             <p>
+        //                 使用期間：2019年5月20日～2019年5月25日
+        //             </p>
+        //             <Link to='/request'>
+        //                 <Button className="item-detail-goto-request">借りる</Button>
+        //             </Link>
+        //         </div>
+        //     )
+        // }
+        // else if(rentaling) {
+        //     return (
                 
-                <div className = "item-detail-rent-now">レンタル中です</div>
+        //         <div className = "item-detail-rent-now">レンタル中です</div>
                 
-            )
-        }
-        else {
-            return (
-                <Button >リクエストを取り消す</Button>
-            )
-        }
+        //     )
+        // }
+        // else {
+        //     return (
+        //         <Button >リクエストを取り消す</Button>
+        //     )
+        // }
         
+
             // return (
             //     <Link to='/request'>
             //         <Button className="item-detail-goto-request">借りる</Button>
@@ -191,7 +222,7 @@ export default class ItemDetail extends React.Component {
                         <Col sm={12} md={6} className="item-detail-info">
                             {/* <Button className="item-detail-goto-chat">チャット</Button> */}
                             <Row>
-                                <Link to='/items'>
+                                <Link to='/items/'>
                                     <Button className="item-detail-button-to-item-list">一覧に戻る</Button>
                                 </Link>
                                 <FontAwesomeIcon className={this.state.itemDetailFavoriteIconClassName} icon={faHeart}
@@ -199,8 +230,8 @@ export default class ItemDetail extends React.Component {
 
                                 />
                             </Row>
-                            <div className="item-detail-charge-per-hour">1時間：100円</div>
-                            <div className="item-detail-charge-per-day">1　日：1000円</div>
+                            <div className="item-detail-charge-per-hour">1時間：{this.item.fee_per_hour}円</div>
+                            <div className="item-detail-charge-per-day">1　日：{this.item.fee_per_day}円</div>
                             
                             {/* <Link to='/request'>
                                 <Button className="item-detail-goto-request">借りる</Button>
@@ -225,7 +256,7 @@ export default class ItemDetail extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <Navbar/>
+                {/* <Navbar/> */}
             </div>
 
         )
@@ -234,10 +265,15 @@ export default class ItemDetail extends React.Component {
 
 
 
-// const mapStateToProps = (items, ownProps) => {
-//     // console.log('items', state);
-//     // console.log('items', items);
-//     const item = items[ownProps.match.params.id]
-//     return { item: item };
-// }
+const mapStateToProps = (state) => {
+    return {
+        items: state
+    }
+}
+
+const mapDispatchToProps = ({ getItem })
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemDetail)
+
 

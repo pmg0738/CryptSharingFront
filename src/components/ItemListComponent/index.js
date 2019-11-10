@@ -1,8 +1,8 @@
 import React from 'react';
 import Faker from 'faker';
-import axios from 'axios';
 
-import _ from 'lodash';
+import _ from 'lodash'
+
 import { Link } from 'react-router-dom';
 import {
     Button,
@@ -30,49 +30,9 @@ export default class ItemListComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [
-                // {
-                //     item_id: 1,
-                //     image: eraiza,
-                //     price: 990000,
-                // },
-                // {
-                //     item_id: 2,
-                //     image: eraiza,
-                //     price: 10000,
-                // },
-                // {
-                //     item_id: 3,
-                //     image: eraiza,
-                //     price: 100,
-                // },                
-            ]
-        }
-        
-        // for(let i= 0; i<30; i++){
-        //     this.state.items.push(
-        //         {
-        //             image: Faker.internet.avatar(),
-        //             price: Faker.random.number(),
-        //         }
-        //     )
-        // }
-    }
-
-    componentWillMount() {
-        this.getItems();
-    }
-
-    getItems = () => {
-        console.log("GET");
-        axios.get(API_ROOT + 'items/')
-            .then(res => {
-                this.setState({items: res.data});
-                console.log("GET", res);
-                console.log("GET", res.data);
-                console.log("GET", res.data[0]);
-            })
-    }
+            items: []
+        }        
+    }   
 
     renderRentaringMessage = (isRented) => {
         if(isRented){
@@ -101,19 +61,39 @@ export default class ItemListComponent extends React.Component {
         // this.props.getItems(page);
     }
 
+    renderItems = () => {
+        console.log("1111", this.props);
+        console.log("2222", this.props.items);
+        console.log("3333", typeof(this.props.items));
+
+        const array = _.map(this.props.items.item, item => (
+            <Col sm={12} md={6} lg={4}>
+                <Item
+                    data={item}
+                    to={'/items/' + item.item_id}
+                    status={1}
+                />
+            </Col>
+        ));
+
+        console.log("array", array);
+        return array;
+    }
+
     render() {
         return (
             <Container className="item-list-container">
                 <Row>
-                {this.state.items.map((item) => 
-                    <Col xc={6} sm={6} md={4} lg={4}>
+                {/* {this.state.items.map((item) => 
+                    <Col sm={12} md={6} lg={4}>
                         <Item
                             data={item}
                             to={'/items/' + item.item_id}
                             status={1}
                         />
                     </Col>                    
-                )}
+                )} */}
+                {this.renderItems()}
                  <Link to='/items/new/post'>
                     <Button className="item-list-add-button">
                         <p className="item-list-add-button-label">出品する</p>
@@ -129,6 +109,5 @@ export default class ItemListComponent extends React.Component {
         );
     }
 }
-
 
 

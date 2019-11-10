@@ -173,7 +173,6 @@ export default class ItemPost extends React.Component {
     
     
     render() {
-
         return (
             <div>
                 <Container maxWidth="lg" className="item-post-container">
@@ -212,18 +211,28 @@ export default class ItemPost extends React.Component {
                                     margin="normal"
                                     variant="outlined"
                                 />
-                                <TextField
-                                    id="standard-multiline-flexible"
-                                    label="1時間当たりの料金"
-                                    multiline
-                                    rowsMax="4"
-                                    // value={value}
-                                    // onChange={handleChange}
-                                    // className="item-post-item-name"
-                                    margin="normal"
-                                    variant="outlined"
-                                />
-                                <p className="yen">円</p>
+                                <Grid container direction="row" justify="flex-start" alignItems="center">                           
+                                    <TextField
+                                        id="standard-multiline-flexible"
+                                        label="1時間当たりの料金"
+                                        type="number"
+                                        style={{ color: "#ffffff" }}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <p className="item-post-yen">円</p>
+                                </Grid>
+                                <Grid container direction="row" justify="flex-start" alignItems="center">                           
+                                    <TextField
+                                        id="standard-multiline-flexible"
+                                        label="1日当たりの料金"
+                                        type="number"
+                                        style={{ color: "#ffffff" }}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    <p className="item-post-yen">円</p>
+                                </Grid>
                                 <TextField
                                     id="outlined-multiline-static"
                                     label="その他の情報"
@@ -245,7 +254,7 @@ export default class ItemPost extends React.Component {
                                     type="file"
                                     onChange={e => this.imageChangeHandler(e)}
                                 />            
-                                <Grid container direction="row" justify="center">
+                                <Grid container direction="row" justify="flex-start">
                                     {this.state.images.map((image, index) => 
                                         <ItemPostCard 
                                             image={image} 
@@ -276,7 +285,7 @@ export default class ItemPost extends React.Component {
 }
 
 
-class ItemPostCard extends React.Component {
+export class ItemPostCard extends React.Component {
     constructor(props){
         super(props);
 

@@ -2,9 +2,7 @@ import React from 'react';
 import './app.scss';
 
 import {BrowserRouter, Route } from 'react-router-dom';
-
-
-
+import { Provider } from 'react-redux';
 // screens
 import ChatList from './screens/ChatList';
 import History from './screens/History';
@@ -20,28 +18,58 @@ import Request from './screens/Request';
 import Navbar from './components/Navbar';
 import Drower from './components/Drower';
 
+// Redux
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { itemReducer } from './redux/reducers/item.js';
+import { userReducer } from './redux/reducers/user.js';
+
+
+const allReducers = combineReducers({
+  item: itemReducer,
+  user: userReducer,
+});
+
+const store = createStore(allReducers, applyMiddleware(thunk));
+
+// store が変更された時に呼び出す
+store.subscribe(() => {
+  // console.log(store.getState());
+})
+
+// store.dispatch({type: "GET_ITEMS", payload: { num: 2}})
+
+// const action = {
+//   type: 'getItems',
+//   payload: {
+//     newState: 'New State'
+//   }
+// }
+
+// store.dispatch(action);
 
 export default class App extends React.Component{
   render(){
   return (
       <div className="App">
         <BrowserRouter>
-            <div className="screen-container">
-                <Route exact path='/' component={MainSearch}/>
-                <Route exact path='/items/new/post' component={ItemPost}/>
-                <Route exact path='/items/:id' component={ItemDetail}/>
-                <Route exact path='/chats' component={ChatList}/>
-                {/* <Route exact path='/chats/1' component={Chat}/> */}
-                <Route exact path='/mypage' component={MyPage}/>
-                <Route exact path='/history' component={History}/>
-                <Route exact path='/login' component={Login}/>
-                <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
-                <Route exact path='/items' component={SearchByOption}/>
-                <Route exact path='/request' component={Request}/>
-            </div>
+            <Provider store={store}>
+              <div className="screen-container">
+                  <Route exact path='/' component={MainSearch}/>
+                  <Route exact path='/items/new/post' component={ItemPost}/>
+                  <Route exact path='/items/:id' component={ItemDetail}/>
+                  <Route exact path='/chats' component={ChatList}/>
+                  {/* <Route exact path='/chats/1' component={Chat}/> */}
+                  <Route exact path='/mypage' component={MyPage}/>
+                  <Route exact path='/history' component={History}/>
+                  <Route exact path='/login' component={Login}/>
+                  <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
+                  <Route exact path='/items' component={SearchByOption}/>
+                  <Route exact path='/request' component={Request}/>
+              </div>
+            </Provider>
             {/* <Navbar/> */}
             <Drower/>
-
         </BrowserRouter>        
       </div>
     )
