@@ -7,7 +7,6 @@ import './style.scss';
 import { 
     Form,
     Row,
-    Col,
     Button,
     Dropdown,
     DropdownButton,
@@ -224,7 +223,12 @@ export default class SearchByOptionComponent extends React.Component {
                                         title={this.state.selectedPrefecture}
                                         variant={this.state.prefectureDropdownVarient}
                                     >
-                                        {prefectures.map(prefecture => <Dropdown.Item onClick={()=>{this.changeSelectedPrefecture({prefecture})}}>{prefecture}</Dropdown.Item>)}
+                                        {prefectures.map(
+                                            prefecture => <Dropdown.Item 
+                                                            onClick={()=>{this.changeSelectedPrefecture({prefecture})}}>{prefecture}
+                                                          </Dropdown.Item>
+                                                        )
+                                        }
                                     </DropdownButton>   
                                 </ButtonToolbar>   
                             </Row> */}

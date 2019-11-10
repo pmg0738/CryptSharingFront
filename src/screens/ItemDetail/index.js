@@ -10,15 +10,11 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons'
 
-// import Navbar from '../../components/Navbar';
-import { items } from '../../datas/items.js';
-
 import { connect　} from 'react-redux';
-import { getItems, getItem } from '../../redux/actions/items.js';
+import { getItem } from '../../redux/actions/items.js';
 
 class ItemDetail extends React.Component {
     constructor(props){
@@ -122,18 +118,8 @@ class ItemDetail extends React.Component {
     }
 
     renderButton = () => {
-        // const myId = this.state.me.id;
-        // const usedHistoryId = this.state.me.usedHistoryItemId;
-        // const rentalId = this.state.me.rentalItemId;
-        // const requestId = this.state.me.requestItemId;
-        // const itemId = this.state.item.id;
-        // const ownerId = this.state.item.ownerId;
-        // const isMine = myId == ownerId;
-        // const usedHistory = usedHistoryId == itemId;
-        // const rentaling = rentalId == itemId;
-        // const requesting = requestId == itemId;
-
         const isMine =　false;
+
         if(isMine) {
             return (
                 <div>

@@ -1,71 +1,24 @@
 import React from 'react';
 import './style.scss';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
-import { 
-    Alert,
-    // Container,
-    // Button,
-    Form,
-    Row,
-    Col,
-    // Card,
-} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
-// import { Button } from '@material-ui/core';
-// import { CheckCircleIcon } from '@material-ui/icons';
-
-
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-// import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
-// import Icon from '@material-ui/core/Icon';
-// import SaveIcon from '@material-ui/icons/Save';
-// import { makeStyles } from '@material-ui/core/styles';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-
-
-
 import Card from '@material-ui/core/Card';
-// import clsx from 'clsx';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
-import ImageIcon from '@material-ui/icons/Image';
-import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import AlarmIcon from '@material-ui/icons/Alarm';
-// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
-// import Typography from '@material-ui/core/Typography';
-// import { red } from '@material-ui/core/colors';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import TextField from '@material-ui/core/TextField';
 
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 
 import loadImage from 'blueimp-load-image';
 
-import Navbar from '../../components/Navbar';
-// import eraiza from '../../images/eraiza.png';
-import Container from '@material-ui/core/Container';
-
-
-import placeholderImage from '../../images/rain.png';
 
 
 const MAX_NUM_OF_IMAGE = 9
@@ -115,29 +68,8 @@ export default class ItemPost extends React.Component {
         }
     }
 
-    // renderAlert = (isOver) => {
-    //     if(isOver) {
-    //         return (
-    //             <Alert variant="danger">
-    //                 添付できる画像は１０枚までです
-    //             </Alert>
-    //         );
-    //     }
-    // }   
-
-
-    // renderPlaceholderImage = (images) => {
-    //     if(images.length==0){
-    //         return (
-    //             <img src={placeholderImage} 
-    //                 className="item-post-placeholder-image"
-    //             />
-    //         );
-    //     }
-    // }
 
     renderImagePlaceholder = (numOfImages) => {
-
         let placeholders = [];
 
         if(numOfImages<MAX_NUM_OF_IMAGE) {
