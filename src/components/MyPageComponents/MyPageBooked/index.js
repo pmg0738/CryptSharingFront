@@ -1,22 +1,16 @@
 import React from 'react';
 import './style.scss';
 
-import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {
-    Button,
-    Card,
     Container,
     Row,
     Col,
-    Nav,
-    Image,
   } from 'react-bootstrap';
 
-  import Item from '../../Item';
-  import eraiza from '../../../images/eraiza.png';
-  import { items } from '../../../datas/items.js'
+import Item from '../../Item';
+import eraiza from '../../../images/eraiza.png';
+import { items } from '../../../datas/items.js'
+
 
 
 export default class MyPageBooked extends React.Component {

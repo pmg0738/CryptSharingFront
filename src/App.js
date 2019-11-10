@@ -68,6 +68,7 @@ export default class App extends React.Component{
                   <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
                   <Route exact path='/items' component={SearchByOption}/>
                   <Route exact path='/request' component={Request}/>
+                  <Route exact path='/filter' component={Filter}/>
               </div>
             </Provider>
             <Drower/>
