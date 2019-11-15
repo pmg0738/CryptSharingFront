@@ -117,6 +117,9 @@ export default class ItemDetail extends React.Component {
 
 	renderButton = () => {
 		const isMine =　false;
+		const favorite = true;
+		const usedHistory = true;
+		const rentaling = true;
 
 		if(isMine) {
 			return (

@@ -31,7 +31,7 @@ export default class Item extends React.Component {
             // priceClassName: "item-list-item-card-price-out",
             numOfGood: 2,
         }
-        this.data = this.props.data;
+        // this.data = this.props.data;
         this.image = "";
         // this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
     }
@@ -121,7 +121,7 @@ export default class Item extends React.Component {
                         <Typography paragraph>Method:</Typography>
                     </CardContent>
                 </Collapse>
-                <p className="item-price">{this.data.fee_per_hour}円/1時間</p>
+                <p className="item-price">100円/1時間</p>                
             </Card>
         </Link>
         )

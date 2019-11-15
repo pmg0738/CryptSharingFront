@@ -61,7 +61,7 @@ export default class ItemFilterAndList extends React.Component {
 					<SearchByOptionComponent/>
 				</div>
 				<div className="search-by-option-item-list-component">
-					<ItemListComponent items={this.props.items} />
+					<ItemListComponent items={this.state.items} />
 				</div>
 			</div>
 		)
