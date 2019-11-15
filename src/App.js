@@ -22,28 +22,28 @@ import Drower from './components/Drower';
 
 
 export default class App extends React.Component{
-  render(){
-  return (
-      <div className="App">
-        <BrowserRouter>
-            <div className="screen-container">
-                <Route exact path='/' component={MainSearch}/>
-                <Route exact path='/items/new/post' component={ItemPost}/>
-                <Route exact path='/items/:id' component={ItemDetail}/>
-                <Route exact path='/chats' component={ChatList}/>
-                {/* <Route exact path='/chats/1' component={Chat}/> */}
-                <Route exact path='/mypage' component={MyPage}/>
-                <Route exact path='/history' component={History}/>
-                <Route exact path='/login' component={Login}/>
-                <Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
-                <Route exact path='/items' component={SearchByOption}/>
-                <Route exact path='/request' component={Request}/>
-            </div>
-            <Drower/>
-        </BrowserRouter>        
-      </div>
-    )
-  }
+	render(){
+		return (
+		  <div className="App">
+				<BrowserRouter>
+					<div className="screen-container">
+						<Route exact path='/' component={MainSearch}/>
+						<Route exact path='/items/new/post' component={ItemPost}/>
+						<Route exact path='/items/:id' component={ItemDetail}/>
+						<Route exact path='/chats' component={ChatList}/>
+						{/* <Route exact path='/chats/1' component={Chat}/> */}
+						<Route exact path='/mypage' component={MyPage}/>
+						<Route exact path='/history' component={History}/>
+						<Route exact path='/login' component={Login}/>
+						<Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
+						<Route exact path='/items' component={SearchByOption}/>
+						<Route exact path='/request' component={Request}/>
+					</div>
+					<Drower/>
+				</BrowserRouter>
+		  </div>
+		)
+	}
 }
 
 

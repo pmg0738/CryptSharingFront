@@ -32,8 +32,8 @@ export default class Item extends React.Component {
             numOfGood: 2,
         }
         this.data = this.props.data;
-        // this.image = "";
-        this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
+        this.image = "";
+        // this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
     }
 
     handleMouseOver = () => {
