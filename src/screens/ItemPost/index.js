@@ -28,7 +28,7 @@ export default class ItemPost extends React.Component {
 
 		this.state = {
 			images: [],
-			imageStartIndex: 0,                
+			imageStartIndex: 0,
 			isOverNumOfImage: false,
 		}
 	}

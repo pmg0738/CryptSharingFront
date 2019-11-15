@@ -19,7 +19,7 @@ export default class ItemDetail extends React.Component {
 		super(props);
 
 		const itemId = this.props.match.params.id;
-		const item   = this.props.items.item[itemId];
+		const item   = {};
 		
 		this.state = {
 			itemDetailFavoriteIcon: "default",
@@ -33,31 +33,16 @@ export default class ItemDetail extends React.Component {
 				rentalItemId:["3"], 
 				requestItemId:["5","6","7","8"]
 			},            
-			// item: item,                
-				// items[this.props.location.pathname.slice('/items/'.length,)], //URLの最後に来るidを指定
-			selectedImage: item ? item.images[0].url : "",
 		}
 		this.item = {
 			fee_per_hour: 0,  
 			fee_per_day: 0,  
 			images: [],
 		};
-		console.log(this.props)
-		console.log("DETAIL", this.props);
 	}
 
 	componentWillMount() {
-		this.props.getItem(this.props.match.params.id);
-		console.log("RES Will", this.props);
-		// this.item = this.props.items.item[this.props.match.params.id];
 	}
-
-	componentDidMount() {
-		// this.props.getItem(this.props.match.params.id);
-		console.log("RES Did", this.props);
-		// this.item = this.props.items.item[this.props.match.params.id];
-	}
-
 
 	threeArray = (array, index) => {
 		let newArray = [];
