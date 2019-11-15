@@ -11,14 +11,16 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Link } from 'react-router-dom';
 
-
+// Material Icon
 import AddIcon from '@material-ui/icons/Add';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import ChatIcon from '@material-ui/icons/Chat';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import './style.scss';
 
@@ -59,46 +61,60 @@ export default function TemporaryDrawer() {
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
+      style={{backgroundColor: "#282c34", height: "100%"}}
     >
         <List>
           {/* <Button className="close-drower-button" onClick={toggleDrawer('right', false)}> */}
-            <ListItem button key={1} onClick={toggleDrawer('right', false)}>
-              <ListItemIcon><CloseIcon /></ListItemIcon>
-              閉じる
+            <ListItem className="drower-menu-title" button key={1} onClick={toggleDrawer('right', false)}>
+              <ListItemIcon><CloseIcon className="navbar-menu-icon"/>
+                <p className="drower-menu-title">閉じる</p>
+              </ListItemIcon>
             </ListItem>
           {/* </Button> */}
       </List>
       <Divider />
       <List>
         <Link to='/items' className="navbar-hamburger-menu-button-item">
-          <ListItem button key={1}>
-            <ListItemIcon><SearchIcon className="navbar-menu-search-icon" /></ListItemIcon>
-            探す
+          <ListItem className="drower-menu-title" button key={1}>
+            <ListItemIcon><SearchIcon className="navbar-menu-search-icon" />
+              <p className="drower-menu-title">探す</p>
+            </ListItemIcon>
           </ListItem>
         </Link>
       </List>
       <List>
+          <Link to='/items/requests/list' className="navbar-hamburger-menu-button-item">
+            <ListItem button key={1}>
+              <ListItemIcon><LibraryAddIcon className="navbar-menu-request-icon"/>
+                <p className="drower-menu-title">リクエスト</p>
+              </ListItemIcon>
+            </ListItem>
+          </Link>
+      </List>
+      <List>
           <Link to='/items/new/post' className="navbar-hamburger-menu-button-item">
             <ListItem button key={1}>
-              <ListItemIcon><AddAPhotoIcon className="navbar-menu-add-icon" /></ListItemIcon>
-              出品する
+              <ListItemIcon><AddAPhotoIcon className="navbar-menu-add-icon" />
+                <p className="drower-menu-title">出品する</p>
+              </ListItemIcon>
             </ListItem>
           </Link>
       </List>
       <List>
           <Link to='/chats' className="navbar-hamburger-menu-button-item">
             <ListItem button key={1}>
-              <ListItemIcon><ChatIcon className="navbar-menu-chat-icon" /></ListItemIcon>
-              {/* <ListItemIcon><MailIcon /></ListItemIcon> */}
-              メッセージ
+              <ListItemIcon><ChatIcon className="navbar-menu-chat-icon" />
+                <p className="drower-menu-title">メッセージ</p>
+              </ListItemIcon>
             </ListItem>
           </Link>
       </List>
       <List>
           <Link to='/mypage' className="navbar-hamburger-menu-button-item">
             <ListItem button key={1}>
-              <ListItemIcon><PersonIcon className="navbar-menu-person-icon"/></ListItemIcon>
-              マイページ
+              <ListItemIcon><PersonIcon className="navbar-menu-person-icon"/>
+                <p className="drower-menu-title">マイページ</p>
+              </ListItemIcon>
             </ListItem>
           </Link>
       </List>
@@ -112,8 +128,10 @@ export default function TemporaryDrawer() {
       <List>
           <Link to='#' className="navbar-hamburger-menu-button-item">
             <ListItem button key={1}>
-              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-              ログアウト
+              <ListItemIcon>
+                <ExitToAppIcon className="navbar-menu-icon"/>
+                <p className="drower-menu-title">ログアウト</p>
+              </ListItemIcon>
             </ListItem>
           </Link>
       </List>

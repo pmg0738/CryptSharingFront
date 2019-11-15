@@ -9,6 +9,7 @@ import History from './screens/History';
 import ItemDetail from './screens/ItemDetail';
 import ItemPost from './screens/ItemPost';
 import ItemPostConfirm from './screens/ItemPostConfirm';
+import ItemRequestList from './screens/ItemRequestList';
 import Login from './screens/Login';
 import MainSearch from './screens/MainSearch';
 import MyPage from './screens/MyPage';
@@ -30,6 +31,8 @@ export default class App extends React.Component{
 						<Route exact path='/' component={MainSearch}/>
 						<Route exact path='/items/new/post' component={ItemPost}/>
 						<Route exact path='/items/:id' component={ItemDetail}/>
+						<Route exact path='/items/requests/list' component={ItemRequestList}/>
+						{/* <Route exact path='/items/requests/:id' component={ItemRequestList}/> */}
 						<Route exact path='/chats' component={ChatList}/>
 						{/* <Route exact path='/chats/1' component={Chat}/> */}
 						<Route exact path='/mypage' component={MyPage}/>
