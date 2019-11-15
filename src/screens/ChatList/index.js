@@ -5,31 +5,28 @@ import { Row } from 'react-bootstrap'
 import Chat from '../../components/Chat';
 import ChatListComponent from '../../components/ChatListItem';
 
-import io from 'socket.io-client';
-
 
 export default class FriendList extends React.Component{
-    constructor(props){
-        super(props);
-    }
+	constructor(props){
+		super(props);
+	}
 
-    showSelectedChatRoom = (userId) =>{
-        console.log('userId',userId);
-    }
+	showSelectedChatRoom = (userId) =>{
+		console.log('userId',userId);
+	}
 
-    render(){
-        return(
-            <Row className="chat-screen-contaienr">
-                <div className="chat-list-container">
-                    <ChatListComponent/>
-                </div>
-                <div className="chat-main-container">
-                    <Chat/>
-                </div>
-            </Row>
-        );
-    }
+	render(){
+		return(
+			<Row className="chat-screen-contaienr">
+				<div className="chat-list-container">
+					<ChatListComponent/>
+				</div>
+				<div className="chat-main-container">
+					<Chat/>
+				</div>
+			</Row>
+		);
+	}
 }
 
 
-// const socket = io('http://localhost:4000');
