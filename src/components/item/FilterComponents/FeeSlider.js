@@ -40,7 +40,7 @@ const marks = [
 
   ];
 
-export default function Filter() {
+export default function FeeSlider() {
   const classes = useStyles();
   const [value, setValue] = React.useState([100, 3000]);
 
