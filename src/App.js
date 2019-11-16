@@ -4,20 +4,20 @@ import './app.scss';
 import {BrowserRouter, Route } from 'react-router-dom';
 
 // screens
-import ChatList from './screens/ChatList';
-import History from './screens/HistoryList';
-import ItemDetail from './screens/ItemDetail';
-import ItemPost from './screens/ItemPost';
-import ItemPostConfirm from './screens/ItemPostConfirm';
-import ItemRequestList from './screens/ItemRequestList';
-import Login from './screens/Login';
-import MainSearch from './screens/MainSearch';
-import MyPage from './screens/MyPage';
-import SearchByOption from './screens/SearchByOption';
-import Request from './screens/Request';
-import Filter from './screens/Filter';
+import ChatList from './screens/chat/ChatList';
+import History from './screens/history/HistoryList';
+import ItemDetail from './screens/item/ItemDetail';
+import ItemPost from './screens/item/ItemPost';
+import ItemPostConfirm from './screens/item/ItemPostConfirm';
+import ItemRequestList from './screens/item/ItemRequestList';
+import Login from './screens/user/Login';
+import MainSearch from './screens/item/MainSearch';
+import MyPage from './screens/user/MyPage';
+import SearchByOption from './screens/item/SearchByOption';
+import RentalRequest from './screens/item/RentalRequest';
+import Filter from './screens/item/Filter';
 // components
-import Drower from './components/Drower';
+import Drower from './components/common/Drower';
 
 
 
@@ -40,7 +40,7 @@ export default class App extends React.Component{
 						<Route exact path='/login' component={Login}/>
 						<Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
 						<Route exact path='/items' component={SearchByOption}/>
-						<Route exact path='/request' component={Request}/>
+						<Route exact path='/request' component={RentalRequest}/>
 					</div>
 					<Drower/>
 				</BrowserRouter>
