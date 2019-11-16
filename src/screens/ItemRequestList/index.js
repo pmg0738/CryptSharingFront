@@ -28,105 +28,105 @@ import ItemRequestCard from '../../components/ItemRequestCard';
 
 
 const useStyles = makeStyles(theme => ({
-    fab: {
-        height: 80,
-        width:  80,
-        margin: theme.spacing(1),
-        position: "fixed",
-        bottom: 50,
-        right: 50,
-    },
-    root: {
-        color: '#ffffff',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        overflow: 'hidden',
-    },
-        gridList: {
-        width: "80%",
-    },
-        icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
-    },
-    postDialog: {
-        minWidth: "80%"
-    }
+	fab: {
+		height: 80,
+		width:  80,
+		margin: theme.spacing(1),
+		position: "fixed",
+		bottom: 50,
+		right: 50,
+	},
+	root: {
+		color: '#ffffff',
+		display: 'flex',
+		flexWrap: 'wrap',
+		justifyContent: 'center',
+		overflow: 'hidden',
+	},
+		gridList: {
+		width: "80%",
+	},
+		icon: {
+		color: 'rgba(255, 255, 255, 0.54)',
+	},
+	postDialog: {
+		minWidth: "80%"
+	}
 }));
 
 
 const DialogContent = withStyles(theme => ({
-    root: {
-        padding: theme.spacing(2),
-    },
-    }))(MuiDialogContent);
+	root: {
+		padding: theme.spacing(2),
+	},
+}))(MuiDialogContent);
 
 const DialogActions = withStyles(theme => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(1),
-    },
+	root: {
+		margin: 0,
+		padding: theme.spacing(1),
+	},
 }))(MuiDialogActions);
 
 
 // 商品リクエストの一覧
 export default function ItemRequestList() {
 
-    // スタイリングに使うクラス名
-    const classes = useStyles();
+	// スタイリングに使うクラス名
+	const classes = useStyles();
 
-    // stateを定義
-    const [open, setOpen] = React.useState(false);
+	// stateを定義
+	const [open, setOpen] = React.useState(false);
 
-    // 投稿画面のダイアログを開く
-    const openPostDialog = () => {
-        setOpen(true);
-    };
+	// 投稿画面のダイアログを開く
+	const openPostDialog = () => {
+		setOpen(true);
+	};
 
-    // 投稿画面のダイアログを閉じる
-    const closePostDialog = () => {
-        setOpen(false);
-    };
+	// 投稿画面のダイアログを閉じる
+	const closePostDialog = () => {
+		setOpen(false);
+	};
 
-    return (
-        <div className={classes.root}>
-            <GridList cellHeight={260} className={classes.gridList}>
-                <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-                    <ListSubheader component="div" style={{color: "#ffffff", fontSize: 24}}>REQUESTS</ListSubheader>
-                </GridListTile>
-                {itemRequests.map(itemRequest => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-                        <ItemRequestCard itemRequest={itemRequest} />
-                    </Grid>
-                ))}
-            </GridList>
-            <Fab color="primary" aria-label="add" className={classes.fab} onClick={openPostDialog}>
-                <AddIcon />
-            </Fab>
-            {/* 投稿画面 */}
-            <Dialog className={classes.postDialog} onClose={closePostDialog} aria-labelledby="customized-dialog-title" open={open}>        
-                <CardHeader
-                    avatar={<Avatar aria-label="recipe" className={classes.avatar}
-                    style={{backgroundColor: "#ff6967"}}
-                    >H</Avatar>}
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Hayato Koba"
-                    subheader="September 14, 2016"
-                />
-                <DialogContent dividers>
-                    {/* ここにフォームを書く */}
-                </DialogContent>
-                <DialogActions>
-                <Button autoFocus onClick={() => console.log("POST")} color="primary">投稿する</Button>
-                <Button autoFocus onClick={closePostDialog} color="primary">閉じる</Button>
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
+	return (
+		<div className={classes.root}>
+			<GridList cellHeight={260} className={classes.gridList}>
+				<GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
+					<ListSubheader component="div" style={{color: "#ffffff", fontSize: 24}}>REQUESTS</ListSubheader>
+				</GridListTile>
+				{itemRequests.map(itemRequest => (
+					<Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+						<ItemRequestCard itemRequest={itemRequest} />
+					</Grid>
+				))}
+			</GridList>
+			<Fab color="primary" aria-label="add" className={classes.fab} onClick={openPostDialog}>
+				<AddIcon />
+			</Fab>
+			{/* 投稿画面 */}
+			<Dialog className={classes.postDialog} onClose={closePostDialog} aria-labelledby="customized-dialog-title" open={open}>
+				<CardHeader
+					avatar={<Avatar aria-label="recipe" className={classes.avatar}
+					style={{backgroundColor: "#ff6967"}}
+					>H</Avatar>}
+					action={
+						<IconButton aria-label="settings">
+							<MoreVertIcon />
+						</IconButton>
+					}
+					title="Hayato Koba"
+					subheader="September 14, 2016"
+				/>
+				<DialogContent dividers>
+					{/* ここにフォームを書く */}
+				</DialogContent>
+				<DialogActions>
+				<Button autoFocus onClick={() => console.log("POST")} color="primary">投稿する</Button>
+				<Button autoFocus onClick={closePostDialog} color="primary">閉じる</Button>
+				</DialogActions>
+			</Dialog>
+		</div>
+	);
 };
 
 
