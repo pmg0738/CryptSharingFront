@@ -6,7 +6,7 @@ import {
     Col,
   } from 'react-bootstrap';
 
-import Item from '../../Item';
+import Item from '../../ItemCard';
 import eraiza from '../../../images/eraiza.png';
 import { items } from '../../../datas/items.js'
 

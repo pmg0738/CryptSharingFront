@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import { Row } from 'react-bootstrap'
 
-import Chat from '../../components/Chat';
+import Chat from '../../components/ChatMain';
 import ChatListComponent from '../../components/ChatListItem';
 
 

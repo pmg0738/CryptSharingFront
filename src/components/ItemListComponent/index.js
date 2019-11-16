@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 import Pagination from '../../components/Pagination';
-import Item from '../../components/Item';
+import Item from '../ItemCard';
 
 import eraiza from '../../images/eraiza.png';
 

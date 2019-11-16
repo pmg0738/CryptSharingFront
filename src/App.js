@@ -5,7 +5,7 @@ import {BrowserRouter, Route } from 'react-router-dom';
 
 // screens
 import ChatList from './screens/ChatList';
-import History from './screens/History';
+import History from './screens/HistoryList';
 import ItemDetail from './screens/ItemDetail';
 import ItemPost from './screens/ItemPost';
 import ItemPostConfirm from './screens/ItemPostConfirm';

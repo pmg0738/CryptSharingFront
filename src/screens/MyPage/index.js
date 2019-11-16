@@ -7,7 +7,7 @@ import { Button, Card, Container, Col, Form, Row,
 import { Link } from 'react-router-dom';
 
 // コンポーネント
-import Item from '../../components/Item';
+import Item from '../../components/ItemCard';
 import MyPageBooked from '../../components/MyPageComponents/MyPageBooked';
 import MyPageFavorite from '../../components/MyPageComponents/MyPageFavorite';
 import MyPagePosted from '../../components/MyPageComponents/MyPagePosted';
