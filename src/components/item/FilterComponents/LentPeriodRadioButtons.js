@@ -8,11 +8,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function LentPeriodRadioButton (){
     return(
         <div>
-            <FormControl component="fieldset" style={{textAlign:"center", padding:"20px", marginTop:"20px"}}>
-                <FormLabel component="legend">使用期間</FormLabel>
-                <RadioGroup aria-label="position" name="position" row
-                            // value={this.state.lentPeriod} onChange={(e)=>{this.onChangeLentPeriod(e)}}
-                >
+            <FormControl component="fieldset" style={{textAlign:"center", padding:"35px", marginTop:"20px"}}>
+                {/* <FormLabel component="legend">使用期間</FormLabel> */}
+                {/* <FormLabel component="legend" style={{fontSize:"20px"}}>使用時間</FormLabel> */}
+                <RadioGroup aria-label="position" name="position" row>
                     <FormControlLabel
                         value="onehour"
                         control={<Radio color="primary" />}

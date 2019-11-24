@@ -1,22 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 const useStyles = makeStyles({
   root: {
-    // width: "90%",
     padding: "50px",
     // backgroundColor:"purple",
-    // marginLeft: '100px',
-    // color: 'white',
-    // backgroundColor: 'blue',
   },
-  feeSlider: {
-    // color: 'red',
-    // color: 'white',
-
-  }
 });
 
 function valuetext(value) {
@@ -50,9 +44,15 @@ export default function FeeSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-        料金
-      </Typography>
+      {/* <FormLabel component="legend" style={{fontSize:"20px"}}>料金</FormLabel> */}
+      <Grid container style={{marginBottom:"20px"}}>
+        <Grid sm={12} md={6} style={{padding:"3px"}}>
+          <TextField id="outlined-basic" label="最小料金" variant="outlined"/>
+        </Grid>
+        <Grid sm={12} md={6} style={{padding:"3px"}}>
+          <TextField id="outlined-basic" label="最大料金" variant="outlined" />
+        </Grid>
+      </Grid>
       <Slider
         value={value}
         onChange={handleChange}

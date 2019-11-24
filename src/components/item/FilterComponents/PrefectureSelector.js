@@ -4,18 +4,17 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FormLabel from '@material-ui/core/FormLabel';
 
 import {prefectures} from '../../../datas/prefectures';
+import { isUserWhitespacable } from '@babel/types';
 
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
     minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+  }
 }));
 
 export default function PrefectureSelector() {
@@ -34,6 +33,7 @@ export default function PrefectureSelector() {
 
   return (
     <div>
+    {/* <FormLabel component="legend">labelPlacement</FormLabel> */}
     <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">都道府県</InputLabel>
         <Select
