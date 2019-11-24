@@ -17,6 +17,8 @@ import MyPage from './screens/MyPage';
 import SearchByOption from './screens/SearchByOption';
 import Request from './screens/Request';
 import UsedHistoryDetail from './screens/UsedHistoryDetail';
+import fabo from './screens/fabo';
+
 // components
 import Navbar from './components/Navbar';
 import Drower from './components/Drower';
@@ -40,6 +42,8 @@ export default class App extends React.Component{
                 <Route exact path='/items' component={SearchByOption}/>
                 <Route exact path='/request' component={Request}/>
                 <Route exact path='/usedhistorydetail' component={UsedHistoryDetail}/>
+                <Route exact path='/fabo' component={fabo}/>
+
             </div>
             {/* <Navbar/> */}
             <Drower/>
