@@ -3,14 +3,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 
 export default function LentPeriodRadioButton (){
     return(
         <div>
             <FormControl component="fieldset" style={{textAlign:"center", padding:"35px", marginTop:"20px"}}>
-                {/* <FormLabel component="legend">使用期間</FormLabel> */}
-                {/* <FormLabel component="legend" style={{fontSize:"20px"}}>使用時間</FormLabel> */}
                 <RadioGroup aria-label="position" name="position" row>
                     <FormControlLabel
                         value="onehour"

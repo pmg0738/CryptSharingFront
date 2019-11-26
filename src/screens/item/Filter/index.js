@@ -17,13 +17,13 @@ export default class Filter extends Component {
 		super(props);
 
 		this.state={
-			category:'',
+			category:[],
 			age:'',
 			prefecture:'',
 			lentPeriod:'onehour',
 		}
 	}
-
+	
 	onChangeCategory = (e) =>{
 		this.setState({category: e.target.value});
 	}
@@ -50,7 +50,7 @@ export default class Filter extends Component {
 					variant="outlined"
 					style={{marginLeft:"20px"}}
 				/>
-				<Grid container style={{width:"100%", backgroundColor:"yellow"}}>
+				<Grid container style={{width:"100%"}}>
 					<Grid container xs={12} sm={12} md={4} style={{width:"30%", backgroundColor:"#1998AD", }} alignItems="center" justify="center">
 						<CategoryAutoComplete/>
 					</Grid>

@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { Component,} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import FormLabel from '@material-ui/core/FormLabel';
-
 
 const useStyles = makeStyles({
   root: {
     padding: "50px",
-    // backgroundColor:"purple",
   },
 });
 
@@ -17,54 +14,58 @@ function valuetext(value) {
   return `${value}円`;
 }
 
+const classes = useStyles;
+
 const marks = [
-    {
-        value: 1000,
-        label: '1000円'
-    },
-    {
-        value: 5000,
-        label: '5000円'
-    },
-   
-    {
-        value: 10000,
-        label: '10000円'
-    },
+  {
+    value: 0,
+    label: '0円',
+  },
+];
 
-  ];
 
-export default function FeeSlider() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState([100, 3000]);
+export default class FeeSlider extends Component{
+  constructor(props){
+		super(props);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    this.state = {
+      priceRange:{
+        min: 0,
+        max: 10000,
+      },
+      priceSet:[300,3000]
+    }
+  }
+  
+  // changePriceSet = (e) =>{
+  //   console.log('aaaa', e.target.valuetext);
+  //   this.setState({priceSet: e.target.getAriaValueText})
+  // }
 
+  render(){
   return (
     <div className={classes.root}>
-      {/* <FormLabel component="legend" style={{fontSize:"20px"}}>料金</FormLabel> */}
       <Grid container style={{marginBottom:"20px"}}>
         <Grid sm={12} md={6} style={{padding:"3px"}}>
           <TextField id="outlined-basic" label="最小料金" variant="outlined"/>
         </Grid>
         <Grid sm={12} md={6} style={{padding:"3px"}}>
-          <TextField id="outlined-basic" label="最大料金" variant="outlined" />
+          <TextField id="outlined-basic" label="最大料金" variant="outlined"/>
         </Grid>
       </Grid>
       <Slider
-        value={value}
-        onChange={handleChange}
+        value={this.state.priceSet}
+        onChange={this.changePriceSet}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         step={10}
-        min={0}
-        max={10000}
-        marks={marks}
+        mark={marks}
+        min={this.state.priceRange.min}
+        max={this.state.priceRange.max}
         className={classes.feeSlider}
       />
     </div>
-  );
+  )
+  }
 }
