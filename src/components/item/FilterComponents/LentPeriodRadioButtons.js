@@ -7,7 +7,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 export default function LentPeriodRadioButton (){
     return(
         <div>
-            <FormControl component="fieldset" style={{textAlign:"center", padding:"35px", marginTop:"20px"}}>
+            <FormControl 
+                component="fieldset"
+                // style={{textAlign:"center", padding:"35px", marginTop:"20px"}}
+            >
                 <RadioGroup aria-label="position" name="position" row>
                     <FormControlLabel
                         value="onehour"

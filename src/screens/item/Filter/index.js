@@ -42,7 +42,7 @@ export default class Filter extends Component {
 
 	render() {
 		return (
-			<div style={{backgroundColor: "#1998FA"}}>
+			<div style={{backgroundColor: "white"}}>
 				 <TextField
 					id="outlined-basic"
 					label="フリーワード検索"
@@ -51,20 +51,20 @@ export default class Filter extends Component {
 					style={{marginLeft:"20px"}}
 				/>
 				<Grid container style={{width:"100%"}}>
-					<Grid container xs={12} sm={12} md={4} style={{width:"30%", backgroundColor:"#1998AD", }} alignItems="center" justify="center">
+					<Grid container xs={12} sm={12} md={4} style={{width:"30%", backgroundColor:"white", }} alignItems="center" justify="center">
 						<CategoryAutoComplete/>
 					</Grid>
-					<Grid container xs={12} sm={12} md={3} style={{width:"25%", backgroundColor:"#1AACAD", textAlign:"center"}} alignItems="center" justify="center">
+					<Grid container xs={12} sm={12} md={3} style={{width:"25%", backgroundColor:"white", textAlign:"center"}} alignItems="center" justify="center">
 						<LentPeriodRadioButton/>
 					</Grid>
-					<Grid container xs={12} sm={12} md={3} style={{width:"25%", backgroundColor:"#19988A", textAlign:"center"}}　alignItems="center" justify="center">
+					<Grid container xs={12} sm={12} md={3} style={{width:"25%", backgroundColor:"white", textAlign:"center"}}　alignItems="center" justify="center">
 						<FeeSlider/>
 					</Grid>
-					<Grid container xs={12} sm={12} md={2} style={{width:"20%", backgroundColor:"#19A8AD", textAlign:"center"}} alignItems="center" justify="center">
+					<Grid container xs={12} sm={12} md={2} style={{width:"20%", backgroundColor:"white", textAlign:"center"}} alignItems="center" justify="center">
 						<PrefectureSelector/>
 					</Grid>
 				</Grid>
-				<Grid container direction="row" justify="center" style={{backgroundColor:"#1998FA", marginTop:"20px"}}>
+				<Grid container direction="row" justify="center" style={{backgroundColor:"white", marginTop:"20px"}}>
 					<Button
 						variant="contained"
 						color="primary"

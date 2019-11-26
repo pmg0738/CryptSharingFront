@@ -23,8 +23,6 @@ export default class ItemFilterAndList extends React.Component {
 			distance: {min:0, max:30},
 		}
 	}
-
-
 	//getItemData = () =>{
 	//    Axios.get(API_URL,{
 	//        params: {
@@ -37,23 +35,6 @@ export default class ItemFilterAndList extends React.Component {
 	//        })
 	//}
 
-
-	//changeSelectedCategory = (categoryName) =>{
-	//    this.setState({selectedCategory: categoryName})
-	//}
-	//changeVarientOnehour = () =>{
-	//    this.setState({
-	//        periodVarientOneHour:"primary",
-	//        periodVarientOneDay:"outline-success"
-	//    })
-	//}
-	//changeVarientOneday = () =>{
-	//    this.setState({
-	//        periodVarientOneHour:"outline-primary",
-	//        periodVarientOneDay:"success"
-	//    })
-	//}
-
 	render() {
 		return (
 			<div className="search-by-option-container">
@@ -61,7 +42,9 @@ export default class ItemFilterAndList extends React.Component {
 					<SearchByOptionComponent/>
 				</div>
 				<div className="search-by-option-item-list-component">
-					<ItemListComponent items={this.state.items} />
+					<ItemListComponent 
+						// items={this.state.items}
+					/>
 				</div>
 			</div>
 		)
