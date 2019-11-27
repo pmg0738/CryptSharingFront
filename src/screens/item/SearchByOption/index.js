@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './style.scss';
 
 
@@ -23,17 +22,6 @@ export default class ItemFilterAndList extends React.Component {
 			distance: {min:0, max:30},
 		}
 	}
-	//getItemData = () =>{
-	//    Axios.get(API_URL,{
-	//        params: {
-	//            category: "メンズ"
-	//        }
-	//    })
-	//        .then(res =>{
-	//            console.log('axios no res.data', res);
-	//            this.setState({items: res.data})
-	//        })
-	//}
 
 	render() {
 		return (
@@ -42,9 +30,7 @@ export default class ItemFilterAndList extends React.Component {
 					<SearchByOptionComponent/>
 				</div>
 				<div className="search-by-option-item-list-component">
-					<ItemListComponent 
-						// items={this.state.items}
-					/>
+					<ItemListComponent/>
 				</div>
 			</div>
 		)

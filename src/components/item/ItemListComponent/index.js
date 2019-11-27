@@ -20,8 +20,7 @@ import Pagination from '../../../components/common/Pagination';
 import Item from '../ItemCard';
 
 
-
-export default class ItemListComponent extends React.Component {
+class ItemListComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,10 +30,8 @@ export default class ItemListComponent extends React.Component {
     componentWillMount(){
 		axios.get('https://challecara-pok-2019.lolipop.io/api/v1/items/')
 			.then(res => {
-                console.log('res', res.data);
                 let allItems = res.data;
                 this.setState({items: allItems});
-                console.log('image', res.data[0].images[0].url);
             })
     }
 
@@ -60,7 +57,6 @@ export default class ItemListComponent extends React.Component {
                 />
             </Col>
         ));
-        console.log('aaaaaaaaaa');
     }
 
     render() {
@@ -71,7 +67,7 @@ export default class ItemListComponent extends React.Component {
                     <Col sm={12} md={6} lg={4}>
                         <Item
                             to={'/items/' + item.item_id}
-                            image={item.images.url}
+                            image={item.images[0].url}
                             price={item.fee_per_hour}
                         />
                     </Col>
@@ -89,5 +85,10 @@ export default class ItemListComponent extends React.Component {
         );
     }
 }
+
+
+
+
+export default ItemListComponent;
 
 
