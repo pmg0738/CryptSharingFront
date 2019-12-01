@@ -1,22 +1,15 @@
 import React from 'react';
-import InputRange from 'react-input-range';
 
 import 'react-input-range/lib/css/index.css';
-import {prefectures} from './prefectures';
 import './style.scss';
-import { 
-    Form,
-    Row
-} from 'react-bootstrap';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Select from '@material-ui/core/Select';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Grid from '@material-ui/core/Grid';
 
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+
+import PrefectureSelector from '../../../components/item/FilterComponents/PrefectureSelector';
+import CategoryAutoComplete from '../../../components/item/FilterComponents/CategoryAutoComplete';
+import LentPeriodRadioButton from '../../../components/item/FilterComponents/LentPeriodRadioButtons';
+import FeeSlider from '../FilterComponents/FeeSlider';
 
 
 export default class SearchByOptionComponent extends React.Component {
@@ -72,18 +65,34 @@ export default class SearchByOptionComponent extends React.Component {
     onFormControlChangeMinPrice = (e)=>{
         this.setState({priceValue: {max: this.state.priceValue.max, min: e.target.value}});
     }
-
-
-
+    
     render() {
         return (
-                <div className="search-by-option-container">
-                        <Form className="option-search-search-form">
-                            <Row className="option-search-free-word-search-row">
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Control className="option-search-free-word-search-form" type="text" placeholder="フリーワード検索" />
-                                </Form.Group>
-                            </Row>
+                <div>
+                    <Grid contianer>
+                        <Grid container style={{backgroundColor:"#yellow", marginBottom:"20px"}} alignItems="center" justify="center">
+                            <TextField
+                                id="outlined-basic"
+                                label="フリーワード検索"
+                                margin="normal"
+                                variant="outlined"
+                                style={{marginLeft:"0px", width:"260px"}}
+                            />
+                        </Grid>
+                        <Grid container style={{backgroundColor:"00F10F", marginBottom:"20px"}} alignItems="center" justify="center">
+                            <CategoryAutoComplete/>
+                        </Grid>
+                        <Grid container style={{backgroundColor:"33AAAA", marginBottom:"10px"}} alignItems="center" justify="center">
+                            <LentPeriodRadioButton/>
+                        </Grid>
+                        <Grid container style={{backgroundColor:"DDABCD", marginBottom:"20px", padding:"20px"}} alignItems="center" justify="center">
+                            <FeeSlider/>
+                        </Grid>
+                        <Grid container style={{backgroundColor:"AA3F51", marginBottom:"20px"}} alignItems="center" justify="center">
+                            <PrefectureSelector/>
+                        </Grid>
+                    </Grid>
+                        {/* <Form className="option-search-search-form">
                              <Grid
                                 container
                                 direction="column"
@@ -169,38 +178,8 @@ export default class SearchByOptionComponent extends React.Component {
                                 </Grid>
                             </FormControl>
 
-                            </Grid>
-                            <Row className="option-search-lent-price-head">
-                                最大料金 (円)
-                                <FormControl
-                                    className="option-search-max-price-input"
-                                    placeholder="2000"
-                                    value={this.state.priceValue.max}
-                                    onChange={this.onFormControlChangeMaxPrice}
-                                />
-                            </Row>
-                            <Row className="option-search-lent-price-head">
-                                最小料金 (円)
-                                <FormControl
-                                    className="option-search-min-price-input"
-                                    placeholder="10"
-                                    value={this.state.priceValue.min}
-                                    onChange={this.onFormControlChangeMinPrice}
-                                />
-                            </Row>
-                            <Row className="option-search-lent-price-row">
-                                <InputRange
-                                    className="option-search-price-input-range"
-                                    step={5}
-                                    formatLabel = {value => `${value}円`}
-                                    maxValue={10000}
-                                    minValue={0}
-                                    value={this.state.priceValue}
-                                    onChange={value => this.setState({priceValue:value})}
-                                    draggableTrack={true}
-                                />
-                            </Row>
-                        </Form>
+                            </Grid>            
+                        </Form> */}
                 </div>
             
         )

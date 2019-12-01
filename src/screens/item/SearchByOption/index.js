@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './style.scss';
 
 
@@ -24,36 +23,6 @@ export default class ItemFilterAndList extends React.Component {
 		}
 	}
 
-
-	//getItemData = () =>{
-	//    Axios.get(API_URL,{
-	//        params: {
-	//            category: "メンズ"
-	//        }
-	//    })
-	//        .then(res =>{
-	//            console.log('axios no res.data', res);
-	//            this.setState({items: res.data})
-	//        })
-	//}
-
-
-	//changeSelectedCategory = (categoryName) =>{
-	//    this.setState({selectedCategory: categoryName})
-	//}
-	//changeVarientOnehour = () =>{
-	//    this.setState({
-	//        periodVarientOneHour:"primary",
-	//        periodVarientOneDay:"outline-success"
-	//    })
-	//}
-	//changeVarientOneday = () =>{
-	//    this.setState({
-	//        periodVarientOneHour:"outline-primary",
-	//        periodVarientOneDay:"success"
-	//    })
-	//}
-
 	render() {
 		return (
 			<div className="search-by-option-container">
@@ -61,7 +30,7 @@ export default class ItemFilterAndList extends React.Component {
 					<SearchByOptionComponent/>
 				</div>
 				<div className="search-by-option-item-list-component">
-					<ItemListComponent items={this.state.items} />
+					<ItemListComponent/>
 				</div>
 			</div>
 		)

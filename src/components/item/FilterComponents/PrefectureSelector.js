@@ -10,12 +10,9 @@ import {prefectures} from '../../../datas/prefectures';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
     minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+  }
 }));
 
 export default function PrefectureSelector() {
@@ -34,7 +31,7 @@ export default function PrefectureSelector() {
 
   return (
     <div>
-    <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">都道府県</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"

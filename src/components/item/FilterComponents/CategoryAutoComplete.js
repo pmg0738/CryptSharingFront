@@ -1,57 +1,46 @@
 import React from 'react';
+import axios from 'axios';
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-export default function Tags() {
-  return (
-    <div style={{ width: 500 }}>
-      <Autocomplete
-        style={{ marginLeft: '20px'}}
-        multiple
-        id="tags-outlined"
-        options={categories}
-        getOptionLabel={option => option.title}
-        defaultValue={[categories[13]]}
-        filterSelectedOptions
-        renderInput={params => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="カテゴリー"
-            placeholder="メンズ"
-            margin="normal"
-            fullWidth
-          />
-        )}
-      />
-    </div>
-  );
-}
+export default class Tags extends React.Component{
+  constructor(props){
+    super(props);
 
-const categories = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'レディース' },
-  { title: 'メンズ' },
-  { title: 'メンズ服' },
-  { title: 'メンズ靴' },
-  { title: 'メンズ冬' },
-  { title: 'メンズ夏' },
-  { title: 'メンズ春' },
-  { title: 'メンズ秋' },
-  { title: 'メンズ洋服' },
-  { title: 'メンズスーツ' },
-  { title: 'メンズバック' },
-  { title: 'メンズシューズ' },
-  { title: 'メンズＴシャツ' },
-  { title: 'メンズパンツ' },
-  { title: 'メンズジャケット' },
-  { title: 'スポーツ' },
-  { title: 'レジャー' },
-  { title: 'ゲーム' },
-  { title: '本' },
-  { title: '工具' },
-  { title : 'ジュエリー'},
-  { title : '靴'},
-  { title : 'キャンプ'},
-  { title : 'クリスマス'} 
-];
+    this.state ={
+      categories:[],
+    }
+  }
+	componentWillMount(){
+		axios.get('https://challecara-pok-2019.lolipop.io/api/v1/categories/')
+			.then(res => {
+        let newestCategories = res.data;
+        this.setState({categories: newestCategories});
+			})
+  }
+  
+  render(){
+    return(
+      <div style={{ width: 500 }}>
+        <Autocomplete
+            style={{ marginLeft: '20px', marginRight: "20px"}}
+            multiple
+            id="tags-outlined"
+            options={this.state.categories}
+            getOptionLabel={option => option.title}
+            filterSelectedOptions
+            renderInput={params => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="カテゴリー"
+                margin="normal"
+                fullWidth
+              />
+            )}
+        />
+      </div>
+    )
+  }
+}
