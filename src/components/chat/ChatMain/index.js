@@ -68,7 +68,9 @@ export default class Chat extends React.Component {
 
 		const roomId = 1;
 
-		db.collection('/rooms/' + roomId + '/messages').add({
+		const timestamp = String(new Date().getTime());
+
+		db.collection('/rooms/' + roomId + '/messages').doc(timestamp).set({
 			sender: this.myUserId,
 			message: message,
 			is_read: false,
