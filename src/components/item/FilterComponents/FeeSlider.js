@@ -44,12 +44,26 @@ export default class FeeSlider extends Component{
 
 	changeMinPriceSetbyTextField = (e)=>{
 		console.log('textvalue e',e.target.value);
-		this.setState({priceSet:[e.target.value, this.state.priceSet[1]]})
+		var minPrice = e.target.value;
+		var maxPrice = this.state.priceSet[1];
+		if( minPrice > maxPrice){
+			var tmp = minPrice;
+			minPrice = maxPrice;
+			maxPrice = tmp;
+		}
+		this.setState({priceSet:[minPrice, maxPrice]})
 	}
 
 	changeMaxPriceSetbyTextField = (e)=>{
 		console.log('textvalue e',e.target.value);
-		this.setState({priceSet:[this.state.priceSet[0], e.target.value]})
+		var maxPrice = e.target.value;
+		var minPrice = this.state.priceSet[0];
+		if( maxPrice < minPrice){
+			var tmp = minPrice;
+			minPrice = maxPrice;
+			maxPrice = tmp;
+		}
+		this.setState({priceSet:[minPrice, maxPrice]})
 	}
 
 	render(){
