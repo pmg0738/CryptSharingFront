@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import './app.scss';
 
 import {BrowserRouter, Route } from 'react-router-dom';
@@ -19,7 +20,20 @@ import Filter from './screens/item/Filter';
 // components
 import Drower from './components/common/Drower';
 
+import ENV from './firebase';
 
+var firebaseConfig = {
+	apiKey: ENV.API_KEY,
+	authDomain: ENV.AUTH_DOMAIN,
+	databaseURL: ENV.DATABASE_URL,
+	projectId: ENV.PROJECT_ID,
+	storageBucket: ENV.STORAGE_BUCKET,
+	messagingSenderId: ENV.MESSAGING_SENDER_ID,
+	appId: ENV.APP_ID,
+	measurementId: ENV.MEASUREMENT_ID,
+};
+
+firebase.initializeApp(firebaseConfig);
 
 
 export default class App extends React.Component{
@@ -43,6 +57,7 @@ export default class App extends React.Component{
 						<Route exact path='/request' component={RentalRequest}/>
 						<Route exact path='/filter' component={Filter}/>
 					</div>
+					{/* Navbarの裏を埋める */}
 					<Drower/>
 				</BrowserRouter>
 		  </div>

@@ -1,231 +1,257 @@
 import React from 'react';
+import firebase from 'firebase';
+import axios from 'axios';
 import './style.scss';
 import { 
-    Container,
-    Form,
-    Row,
-    Col,
-    Button,
+	Form,
 } from 'react-bootstrap';
+import dogImage from '../../../images/dog.png';
+// Material UI Component
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
 
-let valueOfTextarea ;
+// Material UI Icon
+import CloseIcon from '@material-ui/icons/Close';
+import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
+
+
 
 export default class Chat extends React.Component {
-    constructor(props){
-        super(props);
+	constructor(props){
+		super(props);
 
-        this.state = {
-            selectedchatRoom: 1,
-            chatRoom :[
-                {
-                    id:'1',
-                    messages: [
-                        {
-                            id: 0,
-                            message: 'こんにちは！そのモニター借りたいです！',
-                        },
-                        {
-                            id: 1,
-                            message: 'あざす！とりま俺んちの近く着て～',
-                        },
-                        {
-                            id: 0,
-                            message: 'どこなん？',
-                        },
-                        {
-                            id: 1,
-                            message: '九工大の近くだよん～',
-                        },
-                        {
-                            id: 0,
-                            message: '近い!'
-                        },
-                        
-                    ],
-                },
+		this.state = {
+			inputtingMessage: '',
+			sendButtonStyle: styles.sendButtonDeactive,
+		}
+		this.myUserId = 1;
+	}
 
-                {
-                    id:'2',
-                    messages: [
-                        {
-                            id: 0,
-                            message: 'こんにちは！\n明日の9時から自転車借りれませんか',
-                        },
-                        {
-                            id: 1,
-                            message: '何時まで使われますか？',
-                        },
-                        {
-                            id: 0,
-                            message: '昼までには返せるとおもます🤔',
-                        },
-                        {
-                            id: 1,
-                            message: '13時頃に外出する予定があるので、12時までとか大丈夫ですか？',
-                        },
-                        {
-                            id: 0,
-                            message: '大丈夫です!',
-                        },
-                        {
-                            id: 0,
-                            message: '遅くとも12時までには返せます！',
-                        },
-                        {
-                            id: 1,
-                            message: 'わかりました',
-                        },
-                        {
-                            id: 1,
-                            message: 'では、明日の8時45分頃受け渡しとかでいいですか？',
-                        },
-                    ],
-                },
-            ],
-            inputtingMessage: '',
-        }
-    }
+	componentDidMount() {
+		this.scrollToBottom();
+	}
 
-    sendMessage = (e) =>{
-        if(e.ctrlKey){
-            if (e.keyCode === 13) {
-                if(e.target.value!=""){
-                    let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
-                    latestMessages.push(
-                        {
-                            id: 0,   // 0自分が送ったやつ
-                            message: e.target.value
-                            }
-                        );
-                    this.setState({
-                        messages: latestMessages,
-                        inputtingMessage: '',
-                    })
-                    setTimeout(() => {
-                        this.scrollToBottom();
-                    }, 100)
-                }
-            }
-        }
-    }
+	// メッセージを送信
+	sendMessage = () => {
+		if(this.state.inputtingMessage!="") {
+			const newMessage = this.state.inputtingMessage;
+			let messages = this.props.messages;
 
-    sendMessageByButton = (e) =>{
-        console.log('return e.target.value by global variable', valueOfTextarea);
-        let latestMessages = this.state.chatRoom[this.state.selectedchatRoom].messages;
-        if(latestMessages!=""){
-            latestMessages.push(
-                {
-                    id: 0,
-                    message: valueOfTextarea
-                }
-            )
-            this.setState({
-                messages: latestMessages,
-                inputtingMessage: '',
-            })
-            setTimeout(() => {
-                this.scrollToBottom();
-            }, 50)
-        }
-    }
+			messages.push({
+				id: 0,   // 0自分が送ったやつ
+				message: newMessage,
+			});
 
-    
+			// メッセージを追加
+			this.props.setMessages(this.props.roomId, messages);
 
-    inputTextInTextarea = (e) =>{
-        this.setState({inputtingMessage: e.target.value});
-        valueOfTextarea = e.target.value;
-    }
+			// Firestoreに保存
+			this.postMessageToFirestore(newMessage);
 
-    scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ block: "end" });
-      }
-      
-      componentDidMount() {
-        this.scrollToBottom();
-      }
-      
-    render() {
-        return (
-            <div>
-                <div id="chat-view-container" className="chat-view-container">
-                    <div className="chat-view">
-                        {this.state.chatRoom[this.state.selectedchatRoom].messages.map(item =>
-                            [
-                            <ChatBoxMe message = {item.message}/>,
-                            <ChatBoxOther message = {item.message}/>,
-                        ][item.id]                
-                            )}
-                    </div>
-                    <div ref={(el) => {this.messagesEnd = el;}}></div>
-                </div>
+			// テキストエリアの中身を空にする
+			this.setState({
+				inputtingMessage: '',
+				sendButtonStyle: styles.sendButtonDeactive,
+			})
 
-                <div className="chat-form-container">
-                    <Form.Row>
-                        <Form.Group>
-                            <div className="chat-textarea-container">
-                                <Form.Control 
-                                    className="chat-textarea" 
-                                    as="textarea" 
-                                    rows="4"
-                                    placeholder="Ctrl + Enterで送信"
-                                    value={this.state.inputtingMessage}
-                                    onChange = {this.inputTextInTextarea}
-                                    onKeyDown={(e) => this.sendMessage(e)}
-                                />
-                            </div>
-                            <div className="chat-send-button-container">
-                            <Button className="chat-send-button" onClick={this.sendMessageByButton}>送信</Button>
-                            </div>
-                        </Form.Group>
-                    </Form.Row>
-                </div>
-            </div>
-        )
-    }
+	
+			setTimeout(() => {
+				this.scrollToBottom();
+			}, 100)
+		}
+	}
+
+	// Firestoreにデータを保存する
+	postMessageToFirestore = (message) => {
+		const db = firebase.firestore();
+
+		const roomId = 1;
+
+		db.collection('/rooms/' + roomId + '/messages').add({
+			sender: this.myUserId,
+			message: message,
+			is_read: false,
+			sent_date_time: new Date(),
+		}).then((docRef) => console.log('docRef', docRef))
+	}
+
+	// Ctrl + Enter でメッセージを送信
+	sendMessageByKeyboard = (e) => {
+		// if(e.ctrlKey){
+		// 	if (e.keyCode === 13) {
+		// 		this.sendMessage();
+		// 	}
+		// }
+		if(e.ctrlKey && e.keyCode===13){
+			this.sendMessage();
+		}
+	}
+
+	// テキストを入力
+	inputTextInTextarea = (e) => {
+		const text = e.target.value;
+
+		// テキストが入力されていたら送信ボタンをアクティブにする
+		if (text=="") {
+			this.setState({sendButtonStyle: styles.sendButtonDeactive});
+		} else {
+			this.setState({sendButtonStyle: styles.sendButtonActive});
+		}
+		this.setState({ inputtingMessage: text });
+	}
+
+
+	scrollToBottom = () => {
+		// this.messagesEnd.scrollIntoView({ block: "end" });
+	}
+
+	// 自分と相手を判別してメッセージコンポーネントを表示
+	renderMessages = () => {
+		return (
+			this.props.messages.map(item =>
+				[
+					<ChatBoxMe message = {item.message}/>,
+					<ChatBoxOther message = {item.message}/>,
+				][Number(this.myUserId==item.id)]
+			)
+		);
+	}
+
+	render() {
+		if(this.props.roomId==0) {
+			return (
+				<div className="chat-main-not-selected">
+					<p>Chat !!</p>
+					<img src={dogImage} />
+				</div>
+			);
+		}
+		else {
+			return (
+				<div>
+					<div id="chat-view-container" className="chat-view-container">
+						<div className="chat-view">
+							{this.renderMessages()}
+						</div>
+						<div ref={(el) => {this.messagesEnd = el;}}></div>
+					</div>
+					<div className="chat-form-container">
+							<div className="chat-textarea-container">
+								<TextField
+									id="outlined-multiline-static"
+									multiline
+									rows="4"
+									placeholder="テキストを入力"
+									style={styles.textfield}
+									margin="normal"
+									variant="outlined"
+									onChange={this.inputTextInTextarea}
+									value={this.state.inputtingMessage}
+									onKeyDown={(e) => this.sendMessageByKeyboard(e)}
+								/>
+							</div>
+							<div className="chat-send-button-container">
+								<div>
+									<IconButton aria-label="delete" onClick={() => console.log("画像を選択")}>
+										<PhotoLibraryOutlinedIcon style={styles.imageButtonIcon} />
+									</IconButton>
+								</div>
+								<Button onClick={this.sendMessage} style={this.state.sendButtonStyle}>送信</Button>
+							</div>
+						
+					</div>
+					<IconButton aria-label="delete" style={styles.closeButton} onClick={this.props.close}>
+						<CloseIcon style={styles.closeButtonIcon} />
+					</IconButton>
+				</div>
+			);
+		}
+	}
 }
 
 
-class ChatBoxMe extends React.Component{
-    constructor(props){
-        super(props);
+class ChatBoxMe extends React.Component {
+	constructor(props){
+		super(props);
+	}
 
-    }
-
-    render(){
-        return(
-            <div>
-                <div class="chat-message chat-right">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
-                </div>
-                </div>
-                <div class="chat-message-clear"></div>
-            </div>
-        )
-    }
+	render(){
+		return (
+			<div>
+				<div class="chat-message chat-right">
+				<div class="chat-message-box">
+					<div class="chat-message-content">
+						<div class="chat-message-text">{this.props.message}</div>
+					</div>
+				</div>
+				</div>
+				<div class="chat-message-clear"></div>
+			</div>
+		);
+	}
 }
 
 
 class ChatBoxOther extends React.Component{
-    constructor(props){
-        super(props);
-        
-    }
+	constructor(props){
+		super(props);
+	}
 
-    render(){
-        return(
-            <div>
-                <div class="chat-message chat-left">
-                <div class="chat-message-box">
-                    <div class="chat-message-content">
-                        <div class="chat-message-text">{this.props.message}</div>
-                    </div>
-                </div>
-                </div>
-                <div class="chat-message-clear"></div>
-            </div>
-        )
-    }
+	render(){
+		return (
+			<div>
+				<div class="chat-message chat-left">
+				<div class="chat-message-box">
+					<div class="chat-message-content">
+						<div class="chat-message-text">{this.props.message}</div>
+					</div>
+				</div>
+				</div>
+				<div class="chat-message-clear"></div>
+			</div>
+		)
+	}
+}
+
+
+const styles = {
+	closeButton: {
+		backgroundColor: "#282c34",
+		color: "#ffffff",
+		position: "absolute",
+		top: 80,
+		left: 20,
+	},
+	closeButtonIcon: {
+		color: "#ffffff",
+		fontSize: 30,
+	},
+	imageButtonIcon: {
+		color: "#ffffff",
+		fontSize: 40,
+	},
+	sendButtonActive: {
+		backgroundColor: "#34a853",
+		color: "#ffffff",
+		fontSize: 20,
+		fontWeight: "bold",
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	sendButtonDeactive: {
+		backgroundColor: "#999999",
+		color: "#ffffff",
+		fontSize: 20,
+		fontWeight: "bold",
+		paddingLeft: 20,
+		paddingRight: 20,
+	},
+	textfield: {
+		backgroundColor: "#ffffff",
+		color: "#ffffff",
+		borderRadius: 8,
+		width: "100%",
+		maxHeight: 300,
+	}
 }

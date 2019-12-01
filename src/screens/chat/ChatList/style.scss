@@ -1,21 +1,39 @@
 .chat-screen-container {
-    padding-top: 50px;
+	padding-top: 50px;
 }
-
-.chat-list-container {
-    height: 100%;
-    width: calc(50% - 10px);
-    padding-top: 80px;
-    position: fixed;
-    left: 10px;
-    bottom: 0px;
-    overflow-y: scroll;
+.chat-list-container-half {
+	height: calc(100% - 10px);
+	width: calc(50% - 10px - 100px - 20px);
+	padding-top: 80px;
+	position: fixed;
+	bottom: 0px;
+	left: 10px;
+	overflow-y: scroll;
+	margin-left: 100px;
 }
-
+.chat-list-container-wide {
+	height: calc(100% - 10px);
+	width: calc(100% - 10px - 100px - 20px);
+	padding-top: 80px;
+	position: fixed;
+	bottom: 0px;
+	left: 10px;
+	overflow-y: scroll;
+	margin-left: 100px;
+}
 .chat-main-container {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
+	height: 100%;
+	width: 50%;
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+}
+.chat-menu-container {
+	background-color: #f0f0f0;
+	height: 100%;
+	width: 90px;
+	position: fixed;
+	top: 90px;
+	left: 0px;
+	text-align: center;
 }

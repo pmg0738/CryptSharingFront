@@ -1,60 +1,75 @@
-.friend-card {
-    align-items: center;
-    flex-direction: row;
-    padding: 5px;
-    padding-left: 10px;
-    margin-bottom: 5px;
-    height:70px;
-    position: relative;
+.add-chat-card {
+	// position: relative;
+	color: #000000;
+	padding: 20px;
+	text-align: left;
+}
+.chat-friend-card {
+	align-items: center;
+	border-radius: 0px;
+	flex-direction: row;
+	height:70px;
+	width: 100%;
+	padding: 5px;
+	padding-left: 10px;
+	position: relative;
+	margin-bottom: 5px;
 }
 .friend-card-image {
-    background-color: #999;
-    border-radius: 30px;
-    height: 60px;
-    width: 60px;
+	background-color: #999;
+	border-radius: 30px;
+	height: 60px;
+	width: 60px;
 }
 .friend-card-name {
-    position: absolute;
-    top: 8px;
-    left: 90px;
-    font-size: 22px;
-    font-weight: bold;
-    // align-self: center;
-    // margin-top: 8px;
-    // margin-left: 20px;
+	position: absolute;
+	top: 8px;
+	left: 90px;
+	font-size: 22px;
+	font-weight: bold;
+	// align-self: center;
+	// margin-top: 8px;
+	// margin-left: 20px;
 }
 .friend-card-num-of-cards {
-    // align-self: center;
-    color: #999999;
-    position: absolute;
-    right: 100px;
+	// align-self: center;
+	color: #999999;
+	position: absolute;
+	right: 100px;
 }
 .friend-card-last-message {
-    color: #999999;
-    position: absolute;
-    bottom: 3px;
-    left: 90px;
+	color: #999999;
+	position: absolute;
+	bottom: 3px;
+	left: 90px;
 }
 .friend-card-last-message-date-time {
-    color: #999999;
-    position: absolute;
-    top: 10px;
-    right: 20px;
+	color: #999999;
+	position: absolute;
+	top: 10px;
+	right: 20px;
 }
 .chat-list-absolute {
-    // background-color: #ea4335;
-    position: absolute;
-    // position: absolute;
-    left: 0px;    
-    // overflow: scroll;
-    // overflow-y: scroll;
-    width:100%
+	// background-color: #ea4335;
+	position: absolute;
+	// position: absolute;
+	left: 0px;    
+	// overflow: scroll;
+	// overflow-y: scroll;
+	width:100%
 }
 .chat-list-fixed {
-    // background-color: #fbbc05;
-    position: fixed;
-    left: 0px;    
-    // overflow: scroll;
-    // overflow-y:scroll;
-    width:100%
+	// background-color: #fbbc05;
+	position: fixed;
+	left: 0px;    
+	// overflow: scroll;
+	// overflow-y:scroll;
+	width:100%
+}
+.chat-list-no-meesage-container {
+	color: #ffffff;
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 10%;
+	text-align: center;
 }
