@@ -162,6 +162,28 @@ export default class ItemPost extends React.Component {
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
+								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+									<TextField
+										id="standard-multiline-flexible"
+										label="1週間当たりの料金"
+										type="number"
+										style={{ color: "#ffffff" }}
+										margin="normal"
+										variant="outlined"
+									/>
+									<p className="item-post-yen">円</p>
+								</Grid>
+								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+									<TextField
+										id="standard-multiline-flexible"
+										label="担保"
+										type="number"
+										style={{ color: "#ffffff" }}
+										margin="normal"
+										variant="outlined"
+									/>
+									<p className="item-post-yen">円</p>
+								</Grid>
 								<TextField
 									id="outlined-multiline-static"
 									label="その他の情報"

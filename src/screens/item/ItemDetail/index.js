@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+import cat from '../../../images/cup.jpg';
+
 class ItemDetail extends React.Component {
 	constructor(props){
 		super(props);
@@ -39,6 +41,7 @@ class ItemDetail extends React.Component {
 	}
 
 	componentWillMount() {
+		window.scrollTo(0, 0)
 		this.props.fetchClickedItem(this.itemId);
 		console.log('asdfasdflksadfsfj', this.props.item);
 		console.log('#$#$#$#$#$#$', this.itemId);
@@ -164,12 +167,15 @@ class ItemDetail extends React.Component {
 
 
 	render() {
+		console.log('after component will mount..', this.props.item)
+		console.log('after component will mount.. image', this.props.item.images);
+
 		return (
 			<div>
 				<Container>
 					<Row>
 						<Col sm={12} md={6} className="item-detail-pic">
-							<Image className="item-detail-selected-pic" src={this.state.selectedImage}/>
+							<Image className="item-detail-selected-pic" src={cat}/>
 							<Row>
 								<FontAwesomeIcon className="item-detail-chevron-left" icon={faChevronLeft}
 									onClick={this.backOneStep}
@@ -198,8 +204,8 @@ class ItemDetail extends React.Component {
 
 								/>
 							</Row>
-							<div className="item-detail-charge-per-hour">1時間：円</div>
-							<div className="item-detail-charge-per-day">1　日：円</div>
+							<div className="item-detail-charge-per-hour">1時間：{this.props.item.fee_per_hour}円</div>
+							<div className="item-detail-charge-per-day">1　日：{this.props.item.fee_per_day}円</div>
 							
 							{/* <Link to='/request'>
 								<Button className="item-detail-goto-request">借りる</Button>
