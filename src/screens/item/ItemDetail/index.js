@@ -1,5 +1,7 @@
 import React from 'react';
 import './style.scss';
+import { connect } from 'react-redux';
+import { fetchClickedItem } from '../../../redux/actions';
 import { 
 	Button,
 	Card,
@@ -13,13 +15,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-
-export default class ItemDetail extends React.Component {
+class ItemDetail extends React.Component {
 	constructor(props){
 		super(props);
 
-		const itemId = this.props.match.params.id;
-		const item   = {};
 		
 		this.state = {
 			itemDetailFavoriteIcon: "default",
@@ -29,19 +28,26 @@ export default class ItemDetail extends React.Component {
 				id: "1234",
 				name: "yushi",
 				favoriteItemId:["2"],
-				usedHistoryItemId:["4"],
+				usedHistoryItemId:["4"
+			],
 				rentalItemId:["3"], 
 				requestItemId:["5","6","7","8"]
 			},            
 		}
-		this.item = {
-			fee_per_hour: 0,  
-			fee_per_day: 0,  
-			images: [],
-		};
+		this.itemId = this.props.match.params.id;
+		// this.item = this.props.item[this.itemId];
 	}
 
 	componentWillMount() {
+		this.props.fetchClickedItem(this.itemId);
+		console.log('asdfasdflksadfsfj', this.props.item);
+		console.log('#$#$#$#$#$#$', this.itemId);
+		// const existInStore = Object.keys(this.props.items).indexOf(this.itemId) !== -1;
+		// const existInStore = this.props.items.hasOwnProperty(this.itemId);
+
+		// if(!existInStore){
+		// 	this.props.fetchItems
+		// }
 	}
 
 	threeArray = (array, index) => {
@@ -192,8 +198,8 @@ export default class ItemDetail extends React.Component {
 
 								/>
 							</Row>
-							<div className="item-detail-charge-per-hour">1時間：{this.item.fee_per_hour}円</div>
-							<div className="item-detail-charge-per-day">1　日：{this.item.fee_per_day}円</div>
+							<div className="item-detail-charge-per-hour">1時間：円</div>
+							<div className="item-detail-charge-per-day">1　日：円</div>
 							
 							{/* <Link to='/request'>
 								<Button className="item-detail-goto-request">借りる</Button>
@@ -224,5 +230,12 @@ export default class ItemDetail extends React.Component {
 		)
 	}
 }
+
+
+const mapStateProps = (state) => {
+    return { item: state.item };
+}
+
+export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);
 
 
