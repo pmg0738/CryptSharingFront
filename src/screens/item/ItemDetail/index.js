@@ -226,29 +226,30 @@ renderFeeTable = () => {
 }
 
 renderStar = (valueOfPostUser) =>{
-								
-	let FullStar = <StarIcon style={{color:"yellow", marginTop:"10px"}}/>;
-	let HalfStar = <StarHalfIcon style={{color:"yellow", marginTop:"10px"}}/>;
-	let EmptyStar = <StarBorderIcon style={{color:"yellow", marginTop:"10px"}}/>;
-	let StarArray = [];
-	switch(valueOfPostUser){
-		case 5:
-			StarArray = [FullStar,FullStar,FullStar,FullStar,FullStar];
-			return StarArray;
-		case 4:
-			StarArray = [FullStar,FullStar,FullStar,FullStar,EmptyStar];
-			return StarArray;
-		case 3:
-			StarArray = [FullStar,FullStar,FullStar,EmptyStar,EmptyStar];
-			return StarArray;
-		case 2:
-			StarArray = [FullStar,FullStar,EmptyStar,EmptyStar,EmptyStar];
-			return StarArray;
-		case 1:
-			StarArray = [FullStar,EmptyStar,EmptyStar,EmptyStar,EmptyStar];
-			return StarArray;
+
+	let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+	let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+	let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+
+	let starArray = [];
+
+	while (starArray.length<5) {
+
+		if(valueOfPostUser >= 1) {
+			valueOfPostUser -= 1;
+			starArray.push(FullStar);
+		}
+
+		else if(valueOfPostUser >= 0.5) {
+			starArray.push(HalfStar);
+			valueOfPostUser = 0;
+		}
+
+		else {
+			starArray.push(EmptyStar);
+		}
 	}
-		
+	return starArray;
 }
 
 	render() {
