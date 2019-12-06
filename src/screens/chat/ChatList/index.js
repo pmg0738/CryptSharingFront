@@ -129,14 +129,7 @@ export default class Chat extends React.Component {
 				.onSnapshot(querySnapshot => {
 					const messages = this.querySnapshotToArray(querySnapshot);
 					this.setRoomMessage(roomId, messages);
-					console.log('messages', messages);
 				})
-	
-				// .then(querySnapshot => {
-				// 	const messages = this.querySnapshotToArray(querySnapshot);
-				// 	this.setRoomMessage(roomId, messages);
-				// 	console.log('messages', messages);
-				// })
 		}
 	}
 
