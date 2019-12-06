@@ -1,26 +1,39 @@
 import React from 'react';
 import './style.scss';
+import { connect } from 'react-redux';
+import { fetchClickedItem } from '../../../redux/actions';
 import { 
-	Button,
-	Card,
-	Container,
-	Col,
 	Image,
-	Row,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft, faHeart } from '@fortawesome/free-solid-svg-icons';
+
+import Grid from '@material-ui/core/Grid';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import StarIcon from '@material-ui/icons/Star';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import Avatar from '@material-ui/core/Avatar';
+import { green, red, blue } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
+import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 
-export default class ItemDetail extends React.Component {
+import cat from '../../../images/cup.jpg';
+
+
+
+class ItemDetail extends React.Component {
 	constructor(props){
 		super(props);
-
-		const itemId = this.props.match.params.id;
-		const item   = {};
-		
 		this.state = {
 			itemDetailFavoriteIcon: "default",
 			images: [],
@@ -34,14 +47,23 @@ export default class ItemDetail extends React.Component {
 				requestItemId:["5","6","7","8"]
 			},            
 		}
-		this.item = {
-			fee_per_hour: 0,  
-			fee_per_day: 0,  
-			images: [],
-		};
+		this.itemId = this.props.match.params.id;
+		// this.item = this.props.item[this.itemId];
 	}
 
 	componentWillMount() {
+		window.scrollTo(0, 0)
+		// this.props.fetchClickedItem(this.itemId);
+		console.log('asdfasdflksadfsfj', this.props.item);
+		console.log('#$#$#$#$#$#$', this.itemId);
+		const existInStore = Object.keys(this.props.item).indexOf(this.itemId) !== -1;
+		// existInStore = this.props.items.hasOwnProperty(this.itemId);
+		if(!existInStore){
+			this.props.fetchClickedItem(this.itemId);
+			console.log('not exist');
+		}else{
+			console.log('already seen this item haha');
+		}
 	}
 
 	threeArray = (array, index) => {
@@ -156,73 +178,142 @@ export default class ItemDetail extends React.Component {
 	)
 }
 
+renderImage = (itemLendStatus) => {
+    if((this.props.item.images) && (itemLendStatus)) {
+		return <Image style={styles.selectedImage} src={this.props.item.images[0].url} />
+	}
+	if((this.props.item.images) && (!itemLendStatus)) {
+		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.props.item.images[0].url} />
+	}
+    return <div/>
+}
+  
+showEmoticon = (itemLendStatus) =>{
+	if(itemLendStatus){			
+		return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
+	}else{
+		return(
+				<div>
+					<SentimentVeryDissatisfiedRoundedIcon style={{color:red[500], width:"40px", height:"40px"}}/>
+					<div style={{fontSize:"10px", opacity:"0.7"}}>12/25から可能</div>
+				</div>
+			)
+	}
+}
+
+renderFeeTable = () => {	
+	return (
+			<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
+			<TableHead>
+				<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1時間</TableCell>
+				<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
+				<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
+				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
+				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
+			</TableHead>
+			<TableBody>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥500</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+					{this.showEmoticon(0)}
+					{/* <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/> */}
+				</TableCell>
+			</TableBody>
+			</Table>
+	);
+}
+
+renderStar = (valueOfPostUser) =>{
+
+	let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+	let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+	let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+
+	let starArray = [];
+
+	while (starArray.length<5) {
+
+		if(valueOfPostUser >= 1) {
+			valueOfPostUser -= 1;
+			starArray.push(FullStar);
+		}
+
+		else if(valueOfPostUser >= 0.5) {
+			starArray.push(HalfStar);
+			valueOfPostUser = 0;
+		}
+
+		else {
+			starArray.push(EmptyStar);
+		}
+	}
+	return starArray;
+}
 
 	render() {
 		return (
-			<div>
-				<Container>
-					<Row>
-						<Col sm={12} md={6} className="item-detail-pic">
-							<Image className="item-detail-selected-pic" src={this.state.selectedImage}/>
-							<Row>
-								<FontAwesomeIcon className="item-detail-chevron-left" icon={faChevronLeft}
-									onClick={this.backOneStep}
-								/>
-								
-								{/* {this.threeArray(this.props.item.images, this.state.imageStartIndex).map(image =>  */}
-									{this.threeArray(this.state.images, this.state.imageStartIndex).map(image => 
-										<Card className="item-detail-non-selected-pic-container" onClick={() => this.setState({selectedImage: image})}>
-											<img className="item-detail-not-selected-pic" src={image}></img>
-										</Card>
+				<div>
+					<Link to='/items'>
+						<KeyboardBackspaceIcon style={{position:"fixed", color:blue[500], left:"30px",width:"50px", height:"50px"}}/>
+					</Link>
+					<Grid container>
+						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
+							{this.renderImage()}
+							<Grid>
+								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
+								{this.threeArray(this.state.images, this.state.imageStartIndex).map(image => 
+									<img 
+										className="item-detail-not-selected-pic" 
+										src={image} 
+										onClick={() => this.setState({selectedImage: image})}
+									/>
 								)}
-								
-								<FontAwesomeIcon className="item-detail-chevron-right" icon={faChevronRight}
-									onClick={this.forwardOneStep}
-								/>
-							</Row>
-						</Col>
-						<Col sm={12} md={6} className="item-detail-info">
-							{/* <Button className="item-detail-goto-chat">チャット</Button> */}
-							<Row>
-								<Link to='/items/'>
-									<Button className="item-detail-button-to-item-list">一覧に戻る</Button>
-								</Link>
-								<FontAwesomeIcon className={this.state.itemDetailFavoriteIconClassName} icon={faHeart}
-									onClick={this.clickFavoriteButton}
-
-								/>
-							</Row>
-							<div className="item-detail-charge-per-hour">1時間：{this.item.fee_per_hour}円</div>
-							<div className="item-detail-charge-per-day">1　日：{this.item.fee_per_day}円</div>
+								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
+							</Grid>
+						</Grid>
+						<Grid sm={12} md={6} style={{backgroundColor:""}}>
+							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
+								<Avatar src={cat} style={{width:"45px", height:"45px"}}/>
+								<div style={{fontSize:"20px", color:"white", margin:"7px"}}>upallnight0738</div>
+								{this.renderStar(3)}
+							</Grid>
+							<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
+							{this.renderFeeTable()}
 							
-							{/* <Link to='/request'>
-								<Button className="item-detail-goto-request">借りる</Button>
-							</Link> */}
-
-							{this.renderButton()}
-							
-							{/* <div className="item-detail-owner">{this.props.item.name}</div> */}
-							<div className="item-detail-owner">
-								{/* <Image src={this.props.item.image} className="item-detail-item-owner-image"/> */}
-								park　★★★★★</div>
-							<div className="item-detail-rent-state">貸し出し可能</div>
-							{/* <div className="item-detail-charge">利用料：1000円/日</div> */}
-							<div className="item-detail-more-detail-info-header">
-								その他の情報
-							</div>
-							<div className="item-detail-more-detail-info-contents">
-								ブランド名：DELL<br/>
-								サイズ：24インチ<br/>
-								購入時価格：21600円<br/>
-							</div>
-						</Col>
-					</Row>
-				</Container>
-				{/* <Navbar/> */}
-			</div>
-
+							<TextField
+								id="outlined-multiline-static"
+								placeholder={"Air Jordan\nサイズ：29\n購入時価格：21600円"}
+								disabled
+								multiline
+								rows="10"
+								className="item-post-else-info"
+								// placeholder=''
+								margin="normal"
+								variant="outlined"
+								InputProps={{reaOnly:true}}
+								style={{backgroundColor:"white", width:"500px"}}
+							/>
+							<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>リクエスト画面に進む</Button>
+						</Grid>
+					</Grid>
+				</div>
 		)
 	}
 }
 
 
+const mapStateProps = (state) => {
+    return { item: state.item };
+}
+
+export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);
+
+const styles = {
+    selectedImage: {
+        width:"450px",
+        height:"100px",
+        marginBottom:"10px"
+    }
+}
