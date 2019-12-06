@@ -19,13 +19,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import Avatar from '@material-ui/core/Avatar';
-import { green, red } from '@material-ui/core/colors';
+import { green, red, blue } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
 import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
 
 import cat from '../../../images/cup.jpg';
 
@@ -53,15 +53,17 @@ class ItemDetail extends React.Component {
 
 	componentWillMount() {
 		window.scrollTo(0, 0)
-		this.props.fetchClickedItem(this.itemId);
+		// this.props.fetchClickedItem(this.itemId);
 		console.log('asdfasdflksadfsfj', this.props.item);
 		console.log('#$#$#$#$#$#$', this.itemId);
-		// const existInStore = Object.keys(this.props.items).indexOf(this.itemId) !== -1;
-		// const existInStore = this.props.items.hasOwnProperty(this.itemId);
-
-		// if(!existInStore){
-		// 	this.props.fetchItems
-		// }
+		const existInStore = Object.keys(this.props.item).indexOf(this.itemId) !== -1;
+		// existInStore = this.props.items.hasOwnProperty(this.itemId);
+		if(!existInStore){
+			this.props.fetchClickedItem(this.itemId);
+			console.log('not exist');
+		}else{
+			console.log('already seen this item haha');
+		}
 	}
 
 	threeArray = (array, index) => {
@@ -176,15 +178,18 @@ class ItemDetail extends React.Component {
 	)
 }
 
-renderImage = () => {
-    if(this.props.item.images) {
+renderImage = (itemLendStatus) => {
+    if((this.props.item.images) && (itemLendStatus)) {
+		return <Image style={styles.selectedImage} src={this.props.item.images[0].url} />
+	}
+	if((this.props.item.images) && (!itemLendStatus)) {
 		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.props.item.images[0].url} />
 	}
     return <div/>
 }
   
-showEmoticon = (itemStatus) =>{
-	if(itemStatus){			
+showEmoticon = (itemLendStatus) =>{
+	if(itemLendStatus){			
 		return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
 	}else{
 		return(
@@ -207,11 +212,11 @@ renderFeeTable = () => {
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				<TableCell align='center' style={{color:"white", fontSize:"15px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"15px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"15px", fontWeight:"900"}}>￥500</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"15px", fontWeight:"900"}}>￥2000</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"15px", fontWeight:"900"}}>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥500</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
 					{this.showEmoticon(0)}
 					{/* <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/> */}
 				</TableCell>
@@ -249,12 +254,14 @@ renderStar = (valueOfPostUser) =>{
 	render() {
 		return (
 				<div>
+					<Link to='/items'>
+						<KeyboardBackspaceIcon style={{position:"fixed", color:blue[500], left:"30px",width:"50px", height:"50px"}}/>
+					</Link>
 					<Grid container>
-					<Button variant="contained" color="primary" style={{position:"fixed", right:"50px"}}>一覧に戻る</Button>
 						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
 							{this.renderImage()}
 							<Grid>
-								<ArrowBackIosIcon style={{color: green[500]}}/>
+								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
 								{this.threeArray(this.state.images, this.state.imageStartIndex).map(image => 
 									<img 
 										className="item-detail-not-selected-pic" 
@@ -262,7 +269,7 @@ renderStar = (valueOfPostUser) =>{
 										onClick={() => this.setState({selectedImage: image})}
 									/>
 								)}
-								<ArrowForwardIosIcon style={{color: green[500]}}/>
+								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
 							</Grid>
 						</Grid>
 						<Grid sm={12} md={6} style={{backgroundColor:""}}>
@@ -276,12 +283,12 @@ renderStar = (valueOfPostUser) =>{
 							
 							<TextField
 								id="outlined-multiline-static"
-								label={"Air Jordan\nサイズ：29\n購入時価格：21600円"}
+								placeholder={"Air Jordan\nサイズ：29\n購入時価格：21600円"}
 								disabled
 								multiline
 								rows="10"
 								className="item-post-else-info"
-								placeholder=''
+								// placeholder=''
 								margin="normal"
 								variant="outlined"
 								InputProps={{reaOnly:true}}
@@ -290,54 +297,6 @@ renderStar = (valueOfPostUser) =>{
 							<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>リクエスト画面に進む</Button>
 						</Grid>
 					</Grid>
-					
-					
-					{/* <Container>
-						<Row>
-							<Col sm={12} md={6} className="item-detail-pic">
-								{this.renderImage()}
-								<Row>
-									<FontAwesomeIcon className="item-detail-chevron-left" icon={faChevronLeft}
-										onClick={this.backOneStep}
-									/>
-										{this.threeArray(this.state.images, this.state.imageStartIndex).map(image => 
-											<Card className="item-detail-non-selected-pic-container" onClick={() => this.setState({selectedImage: image})}>
-												<img className="item-detail-not-selected-pic" src={image}></img>
-											</Card>
-									)}
-									
-									<FontAwesomeIcon className="item-detail-chevron-right" icon={faChevronRight}
-										onClick={this.forwardOneStep}
-									/>
-								</Row>
-							</Col>
-							<Col sm={12} md={6} className="item-detail-info">
-								<Row>
-									<Link to='/items/'>
-										<Button className="item-detail-button-to-item-list">一覧に戻る</Button>
-									</Link>
-									<FontAwesomeIcon className={this.state.itemDetailFavoriteIconClassName} icon={faHeart}
-										onClick={this.clickFavoriteButton}
-					
-									/>
-								</Row>
-								<div className="item-detail-charge-per-hour">1時間：{this.props.item.fee_per_hour}円</div>
-								<div className="item-detail-charge-per-day">1　日：{this.props.item.fee_per_day}円</div>
-								{this.renderButton()}
-								<div className="item-detail-owner">
-									park　★★★★★</div>
-								<div className="item-detail-rent-state">貸し出し可能</div>
-								<div className="item-detail-more-detail-info-header">
-									その他の情報
-								</div>
-								<div className="item-detail-more-detail-info-contents">
-									ブランド名：DELL<br/>
-									サイズ：24インチ<br/>
-									購入時価格：21600円<br/>
-								</div>
-							</Col>
-						</Row>
-					</Container> */}
 				</div>
 		)
 	}
@@ -349,3 +308,11 @@ const mapStateProps = (state) => {
 }
 
 export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);
+
+const styles = {
+    selectedImage: {
+        width:"450px",
+        height:"100px",
+        marginBottom:"10px"
+    }
+}
