@@ -3,6 +3,6 @@ import getItemListReducer from './getItemListReducer';
 import getClickedItemReducer from './getClickedItemReducer';
 
 export default combineReducers({
-    items: getItemListReducer,
-    item: getClickedItemReducer,
+	items: getItemListReducer,
+	item: getClickedItemReducer,
 });
