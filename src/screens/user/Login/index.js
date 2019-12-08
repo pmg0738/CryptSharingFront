@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 });
 
 const login = async (email, password, props) => {
-	const response = await axios.post('http://localhost:8000/api/v1/users/token/', {
+	const response = await axios.post('https://challecara-pok-2019.lolipop.io/api/v1/users/token/', {
 		email: email,
 		password: password
 	}).catch(() => {
