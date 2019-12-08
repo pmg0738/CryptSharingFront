@@ -274,7 +274,7 @@ renderStar = (valueOfPostUser) =>{
 							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
 								<Avatar src={cat} style={{width:"45px", height:"45px"}}/>
 								<div style={{fontSize:"20px", color:"white", margin:"7px"}}>upallnight0738</div>
-								{this.renderStar(3)}
+								{this.renderStar(2.5)}
 							</Grid>
 							<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
 							{this.renderFeeTable()}
