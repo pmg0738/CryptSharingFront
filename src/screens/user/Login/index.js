@@ -1,57 +1,131 @@
-import React from 'react';
-import {
-	Button,
-	Card,
-	Container,
-	Col,
-	Form,
-	Image,
-	Row,
-} from 'react-bootstrap';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import { Link } from 'react-router-dom';
 import './style.scss';
-import logo from '../../../images/knock_black.png';
 
-export default class Login extends React.Component{
-	constructor(props){
-		super(props);
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
+
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+
+import backgroundImage from '../../../images/space.png';
+import leftImagep from '../../../images/logo-background.png';
+import logo from '../../../images/logo-login.png';
+
+
+const useStyles = makeStyles({
+	root: {
+		background: 'linear-gradient(45deg, #886Dff 30%, #4285F4 90%)',
+		border: 0,
+		borderRadius: 3,
+		boxShadow: '0 3px 5px 2px rgba(130, 105, 255, .3)',
+		color: 'white',
+		fontSize: 20,
+		fontWeight: "bold",
+		height: 60,
+		marginTop: 20,
+		padding: '0 30px',
+		width: "100%",
+	},
+});
+
+const login = async (email, password, props) => {
+	const response = await axios.post('http://localhost:8000/api/v1/users/token/', {
+		email: email,
+		password: password
+	}).catch(() => {
+		alert("ログイン失敗");
+	})
+
+	if(response && response.status===200){
+		const token = response.data.token;
+		// 画面遷移
+		// トークンをcookieまたはストアに保存
+		props.history.push('/')
 	}
+}
 
-	render(){
-		return(
-			<div className="login-background">
-				<div className="login-background-image-smoke"/>
-					<Container className="login-container">
-						<Row className="login-card-row-contaienr">
-							<Card className="login-card">
-								{/* <h6 className="signin-title">ログイン</h6> */}
-								{/* <h6 className="signin-title">KNOCK</h6>    */}
-								<Image src={logo} className="login-logo-image" />
-								<Form>
-									<Form.Group controlId="formBasicEmail">
-										<Form.Label>Email address</Form.Label>
-										<Form.Control type="email" placeholder="Enter email" />
-										{/* <Form.Text className="text-muted">
-										We'll never share your email with anyone else.
-										</Form.Text> */}
-									</Form.Group>
-									<Form.Group controlId="formBasicPassword">
-										<Form.Label>Password</Form.Label>
-										<Form.Control type="password" placeholder="Password" />
-									</Form.Group>
-									<Link to='/signup' className="go-to-sign-up-button">
-										<p className="go-to-sign-up-button">Sing Up</p>
-									</Link>
-								</Form>
-								<Link to='/years'>
-									<Button className="login-button">
-										<h6 className="login-button-text">LINE ログイン</h6>
-									</Button>
-								</Link>
-							</Card>
-						</Row>
-					</Container>
-			</div>
-		)
+
+
+export default function Login(props) {
+
+	const classes = useStyles();
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	return(
+		<div>
+			<img src={backgroundImage} className="background-image"/>
+			<Container maxWidth="lg" className="item-post-container">
+				<Card style={styles.card}>
+					<div className="login-card-inside-contaienr">
+						<div className="login-card-left-container">
+							{/* <img src={leftImageba} className="login-left-image"/> */}
+						</div>
+						<div className="login-card-right-container">
+							<img src={logo} className="login-logo"/>
+							<TextField
+								required
+								label="Email"
+								placeholder="Email"
+								// className={classes.textField}
+								margin="normal"
+								type="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								variant="outlined"
+								style={styles.textField}
+							/>
+							<TextField
+								required
+								label="Password"
+								placeholder="Password"
+								className={classes.textField}
+								margin="normal"
+								type="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								variant="outlined"
+								style={styles.textField}
+							/>
+							<Button className={classes.root}
+								onClick={() => login(email, password, props)}
+							>
+								L O G I N</Button>
+							<Link to='/signup'>
+								<p className="login-sign-up-button">新規登録はこちら</p>
+							</Link>
+						</div>
+					</div>
+				</Card>
+			</Container>
+		</div>
+	)
+}
+
+
+const styles = {
+	card: {
+		backgroundColor: "#ffffff",
+		height: 800,
+	},
+	textField: {
+		background: "#ffffff",
+		backgroundColor: "#ffffff",
+		marginTop: 20,
+		width: "100%",
 	}
 }

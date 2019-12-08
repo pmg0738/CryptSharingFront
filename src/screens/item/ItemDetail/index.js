@@ -54,15 +54,12 @@ class ItemDetail extends React.Component {
 	componentWillMount() {
 		window.scrollTo(0, 0)
 		// this.props.fetchClickedItem(this.itemId);
-		console.log('asdfasdflksadfsfj', this.props.item);
-		console.log('#$#$#$#$#$#$', this.itemId);
+
 		const existInStore = Object.keys(this.props.item).indexOf(this.itemId) !== -1;
 		// existInStore = this.props.items.hasOwnProperty(this.itemId);
 		if(!existInStore){
 			this.props.fetchClickedItem(this.itemId);
-			console.log('not exist');
 		}else{
-			console.log('already seen this item haha');
 		}
 	}
 

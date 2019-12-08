@@ -2,10 +2,13 @@ import React from 'react';
 import firebase from 'firebase';
 import './app.scss';
 
-import {BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Auth from './Auth';
 
 // screens
 import ChatList from './screens/chat/ChatList';
+import Filter from './screens/item/Filter';
 import History from './screens/history/HistoryList';
 import ItemDetail from './screens/item/ItemDetail';
 import ItemPost from './screens/item/ItemPost';
@@ -15,8 +18,9 @@ import Login from './screens/user/Login';
 import MainSearch from './screens/item/MainSearch';
 import MyPage from './screens/user/MyPage';
 import SearchByOption from './screens/item/SearchByOption';
+import SignUp from './screens/user/SignUp';
 import RentalRequest from './screens/item/RentalRequest';
-import Filter from './screens/item/Filter';
+import UserDetail from './screens/user/UserDetail';
 // components
 import Drower from './components/common/Drower';
 
@@ -40,29 +44,38 @@ export default class App extends React.Component{
 	render(){
 		return (
 		  <div className="App">
+			  <div className="screen-container">
 				<BrowserRouter>
-					<div className="screen-container">
-						<Route exact path='/' component={MainSearch}/>
-						<Route exact path='/items/new/post' component={ItemPost}/>
-						<Route exact path='/items/:id' component={ItemDetail}/>
-						<Route exact path='/items/requests/list' component={ItemRequestList}/>
-						{/* <Route exact path='/items/requests/:id' component={ItemRequestList}/> */}
-						<Route exact path='/chats' component={ChatList}/>
-						{/* <Route exact path='/chats/1' component={Chat}/> */}
-						<Route exact path='/mypage' component={MyPage}/>
-						<Route exact path='/history' component={History}/>
-						<Route exact path='/login' component={Login}/>
-						<Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
-						<Route exact path='/items' component={SearchByOption}/>
-						<Route exact path='/request' component={RentalRequest}/>
-						<Route exact path='/filter' component={Filter}/>
-					</div>
-					{/* Navbarの裏を埋める */}
-					<Drower/>
+					<Switch>
+						<Route exact path="/login" component={Login}/>
+						<Route exact path="/signup" component={SignUp}/>
+						<Auth>
+							<Switch>
+								<Route exact path='/' component={MainSearch}/>
+								<Route exact path='/items/new/post' component={ItemPost}/>
+								<Route exact path='/items/:id' component={ItemDetail}/>
+								<Route exact path='/items/requests/list' component={ItemRequestList}/>
+								{/* <Route exact path='/items/requests/:id' component={ItemRequestList}/> */}
+								<Route exact path='/chats' component={ChatList}/>
+								{/* <Route exact path='/chats/1' component={Chat}/> */}
+								<Route exact path='/mypage' component={MyPage}/>
+								<Route exact path='/history' component={History}/>
+								<Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
+								{/* <Route exact path='/items/post/confirm' component={ItemPostConfirm}/> */}
+								<Route exact path='/items' component={SearchByOption}/>
+								<Route exact path='/request' component={RentalRequest}/>
+								<Route exact path='/filter' component={Filter}/>
+								<Route exact path='/users/:id' component={UserDetail}/>
+							</Switch>
+							<Drower/>
+						</Auth>
+					</Switch>
 				</BrowserRouter>
+			  </div>
 		  </div>
 		)
 	}
 }
+
 
 

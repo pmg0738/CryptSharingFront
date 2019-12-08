@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './style.scss';
 import {Link} from 'react-router-dom';
 
@@ -19,6 +20,9 @@ import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 
 import loadImage from 'blueimp-load-image';
 
+import eraiza from '../../../images/eraiza.png';
+
+
 
 const MAX_NUM_OF_IMAGE = 9
 
@@ -31,15 +35,6 @@ export default class ItemPost extends React.Component {
 			imageStartIndex: 0,
 			isOverNumOfImage: false,
 		}
-	}
-
-	myArray = (array, index) => {
-		let newArray = [];
-
-		for(let i=index; i<index+3; i++){
-			newArray.push(array[i])
-		}
-		return newArray;
 	}
 
 	deleteImage = (index) => {
@@ -101,6 +96,55 @@ export default class ItemPost extends React.Component {
 		return placeholders;
 	}
 
+	postImages = async () => {
+		// console.log(this.state.images);
+
+		// const imageBlob = this.state.images[0];
+
+		// const data = new FormData();
+		// data.append('url', imageBlob, 'bike.png');
+
+		// const response = await axios.post('http://localhost:8000/api/v1/images/', data, {
+		// 	headers: { 'content-type': 'multipart/form-data' }
+		// })
+		// console.log('response', response);
+		// return response;
+
+		console.log(this.state);
+		let form_data = new FormData();
+
+		form_data.append('image', eraiza, 'emaiza.png');
+
+		
+
+		axios.post('http://localhost:8000/api/v1/images/', form_data, {
+			headers: { 'content-type': 'multipart/form-data' }
+		}).catch(error => console.log('error', error))
+	}
+
+	selectImage = (event) => {
+		// 画像を選択
+		let { images } = this.state;
+		images.push(event.target.files[0]);
+		this.setState({images: images})
+	}
+
+
+	uploadImage = async () => {
+		// 画像をサーバーに送信
+		const formData = new FormData();
+		const timestamp = new Date().getTime();
+
+		for(let i=0; i<this.state.images.length; i++ ) {
+			formData.append(`url${i}`, this.state.images[i], `${timestamp}${i}.png`);
+		}
+
+		const response = await axios.post('http://localhost:8000/api/v1/images/create_many/', formData);
+		return response.data;
+	}
+
+
+
 	render() {
 		return (
 			<div>
@@ -128,7 +172,7 @@ export default class ItemPost extends React.Component {
 							title="Paella dish"
 						/>
 						<Grid container direction="row" justify="center">
-							<Grid item direction="column" justify="center" alignItems="center" xs={6}>                           
+							<Grid item direction="column" justify="center" alignItems="center" xs={6}>
 								<TextField
 									id="standard-multiline-flexible"
 									label="商品名"
@@ -140,7 +184,7 @@ export default class ItemPost extends React.Component {
 									margin="normal"
 									variant="outlined"
 								/>
-								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+								<Grid container direction="row" justify="flex-start" alignItems="center">
 									<TextField
 										id="standard-multiline-flexible"
 										label="1時間当たりの料金"
@@ -151,7 +195,7 @@ export default class ItemPost extends React.Component {
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
-								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+								<Grid container direction="row" justify="flex-start" alignItems="center">
 									<TextField
 										id="standard-multiline-flexible"
 										label="1日当たりの料金"
@@ -162,7 +206,7 @@ export default class ItemPost extends React.Component {
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
-								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+								<Grid container direction="row" justify="flex-start" alignItems="center">
 									<TextField
 										id="standard-multiline-flexible"
 										label="1週間当たりの料金"
@@ -173,7 +217,7 @@ export default class ItemPost extends React.Component {
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
-								<Grid container direction="row" justify="flex-start" alignItems="center">                           
+								<Grid container direction="row" justify="flex-start" alignItems="center">
 									<TextField
 										id="standard-multiline-flexible"
 										label="担保"
@@ -194,17 +238,18 @@ export default class ItemPost extends React.Component {
 									placeholder='購入価格: 32400円'
 									margin="normal"
 									variant="outlined"
-									/>                            
+									/>
 							</Grid>
 							<Grid item direction="column" justify="center"
-								alignItems="center" xs={6}>                      
+								alignItems="center" xs={6}>
 								<input 
 									accept="image/*"
 									className="item-post-image-input"
 									id="icon-button-file"
 									type="file"
-									onChange={e => this.imageChangeHandler(e)}
-								/>            
+									// onChange={e => this.imageChangeHandler(e)}
+									onChange={this.selectImage}
+								/>
 								<Grid container direction="row" justify="flex-start">
 									{this.state.images.map((image, index) => 
 										<ItemPostCard 
@@ -218,15 +263,16 @@ export default class ItemPost extends React.Component {
 							</Grid>
 						</Grid>
 						<Grid container direction="row" justify="flex-end" style={{marginTop: 40}}>
-							<Link to='/itempostconfirm'>
+							{/* <Link to='/itempostconfirm'> */}
 								<Button
 									variant="contained"
 									color="primary"
 									className=""
 									size="large"
 									startIcon={<CheckCircleIcon />}
+									onClick={this.postImages}
 								>確認</Button>
-							</Link>
+							{/* </Link> */}
 						</Grid>
 					</Card>
 				</Container>
@@ -256,9 +302,9 @@ export class ItemPostCard extends React.Component {
 					<div>
 						<div className="item-post-image-smoke"/>
 						<Button className="item-post-image-delete-button"
-							onClick={this.props.deleteImage}                        
+							onClick={this.props.deleteImage}
 						>削除</Button>
-					</div>,                    
+					</div>,
 				][Number(this.state.selected)]
 				}
 			</Card>
@@ -267,46 +313,46 @@ export class ItemPostCard extends React.Component {
 }
 
 
-
-
 const toBlob = (base64, reject) => {
 	const bin = atob(base64.replace(/^.*,/, ''));
 	const buffer = new Uint8Array(bin.length);
+
 	for (let i = 0; i < bin.length; i += 1) {
-	  buffer[i] = bin.charCodeAt(i);
+		buffer[i] = bin.charCodeAt(i);
 	}
 	// Blobを作成
 	try {
-	  const blob = new Blob([buffer.buffer], {
-		type: 'image/jpg',
-	  });
-	  return blob;
-	} catch (e) {
-	  reject();
-	  return false;
+		const blob = new Blob([buffer.buffer], {
+			type: 'image/jpg',
+		});
+		return blob;
+	}
+	catch (e) {
+		reject();
+		return false;
 	}
 }
-  
+
 
 export const resizeImage = (event, maxWidth = 1024) => {
 	return new Promise((resolve, reject) => {
-	  const file = event.target.files[0];
-	  loadImage.parseMetaData(file, (data) => {
+		const file = event.target.files[0];
+		loadImage.parseMetaData(file, (data) => {
 		const options = {
-		  maxWidth,
-		  canvas: true,
+			maxWidth,
+			canvas: true,
 		};
 		if (data.exif) {
-		  options.orientation = data.exif.get('Orientation');
+			options.orientation = data.exif.get('Orientation');
 		}
 		loadImage(file, (canvas) => {
-		  const imageUri = canvas.toDataURL('image/jpg');
-		  const imageFile = toBlob(imageUri, reject);
-		  resolve({
-			imageFile,
-			imageUri,
-		  });
+			const imageUri = canvas.toDataURL('image/jpg');
+			const imageFile = toBlob(imageUri, reject);
+			resolve({
+				imageFile,
+				imageUri,
+			});
 		}, options);
-	  });
+		});
 	});
 };

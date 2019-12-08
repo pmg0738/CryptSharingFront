@@ -1,0 +1,118 @@
+import React from 'react';
+import axios from 'axios';
+import './style.scss';
+
+// Material UI component
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Rating from '@material-ui/lab/Rating';
+// Material UI Layout
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+
+
+export default class UserDetail extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			evaluations: [
+				{rate: 3, comment: "good" },
+				{rate: 2, comment: "mm..." },
+				{rate: 4, comment: "very good" },
+				{rate: 5, comment: "perfect" },
+			],
+		}
+	}
+
+	fetchEvaluations = () => {
+		// 評価を受け取る
+		axios.get('http://localhost:8000/evaluations/')
+			.then(res => {
+				console.log('evaluations', res.data);
+				this.setState({evaluations: res.data});
+			})
+	}
+
+	renderEvaluations = () => {
+		return (
+			this.state.evaluations.map((item) => <Grid item md={8} lg={12}>
+				<Card style={styles.card}>
+					<CardContent>
+						<Grid container spacing={2}>
+							<div style={styles.rateContainer}>
+								<Rating name="half-rating" value={item.rate} precision={0.5} readOnly size="large"/>({item.rate})
+							</div>
+							<div className="profile-container" style={styles.profileContainer}>
+								<div className="avatar-container">
+									<Avatar alt="Remy Sharp" src="http://challecara-pok-2019.lolipop.io/images/images/S__23519281.jpg"
+										style={styles.avatar}
+										className="avatar"
+									/>
+								</div>
+								<div className="name">Hayato Koba</div>
+							</div>
+							<div className="comment-container">{item.comment}</div>
+						</Grid>
+					</CardContent>
+					</Card>
+				</Grid>
+			)
+		);
+	}
+
+	render() {
+		return (
+			<Container maxWidth="lg" className="item-post-container">
+				{/* Write User Profile Here. */}
+				{this.renderEvaluations()}
+			</Container>
+		)
+	}
+}
+
+
+const styles = {	
+	avatar: {
+		height: 60,
+		width: 60,
+		// backgroundColor: "#ff00ff",
+	},
+	avatarContainer: {
+		// backgroundColor: "#ff9900",
+		textAlign: "center",
+		alignItems: "center",
+		justifyContent: "center",
+		// width: 70,
+	},
+	container: {
+		// backgroundColor: "#ff6967",
+		// textAlign: "center",
+		// alignItems: "center",
+	},
+	card: {
+		marginBottom: 10,
+	},
+	nameContainer: {
+		// backgroundColor: "#8790f2",
+		color: "#555555",
+		fontWeigth: "bold",
+		paddingLeft: 10,
+		paddingRight: 10,
+		// width: 200,
+	},
+	rateContainer: {
+		// backgroundColor: "#879002",
+		flexDirection: "row",
+		position: "relative",
+		// width: 400,
+		// width: "100%"
+		width: 200
+	},
+	profileContainer: {
+		// backgroundColor: "#ff9999",
+		// width: 400,
+		// width: "100%" - ,
+	}
+}
