@@ -32,8 +32,8 @@ import GenderRadios from '../../../components/common/GenderRadios';
 
 import backgroundImage from '../../../images/space.png';
 // import leftImage from '../../../images/logo-background.png';
-import leftImage from '../../../images/color-left-image.png';
-import logo from '../../../images/logo-login.png';
+// import leftImage from '../../../images/color-left-image.png';
+// import logo from '../../../images/logo-login.png';
 
 
 const useStyles = makeStyles({

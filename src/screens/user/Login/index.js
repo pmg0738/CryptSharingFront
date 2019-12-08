@@ -21,7 +21,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 
 import backgroundImage from '../../../images/space.png';
-import leftImagep from '../../../images/logo-background.png';
+// import leftImagep from '../../../images/logo-background.png';
 import logo from '../../../images/logo-login.png';
 
 
