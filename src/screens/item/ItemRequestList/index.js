@@ -1,8 +1,6 @@
 import React from 'react';
 
-// // Material UI Style
-// import { makeStyles } from '@material-ui/core/styles';
-// import { withStyles } from '@material-ui/core/styles';
+import './style.scss';
 
 // // Material UI Component
 // import Avatar from '@material-ui/core/Avatar';
@@ -10,7 +8,6 @@ import React from 'react';
 // import CardHeader from '@material-ui/core/CardHeader';
 // import Dialog from '@material-ui/core/Dialog';
 // import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
 // import GridList from '@material-ui/core/GridList';
 // import GridListTile from '@material-ui/core/GridListTile';
 // import ListSubheader from '@material-ui/core/ListSubheader';
@@ -27,28 +24,119 @@ import Grid from '@material-ui/core/Grid';
 // import { StylesContext } from '@material-ui/styles/StylesProvider';
 // import { getDefaultSettings } from 'http2';
 
+import { Link } from 'react-router-dom';
+
+import Grid from '@material-ui/core/Grid';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+
+import Typography from '@material-ui/core/Typography';
+
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+// import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import { TextField } from '@material-ui/core';
+
+import cup from '../../../images/cup.jpg';
+
 
 export default class ItemRequestList extends React.Component{
     constructor(props) {
         super(props);
-    
+        
+        this.state = {
+            
+        }
     }
     
     render() {
         return (
-            <Grid container>
-               <div style={styles.asap}>ASAP</div>
+            <Grid container direction="row">
+               <Grid md={8} style={styles.post}>
+                   <SimpleExpansionPanel/>
+               </Grid>
+               <Grid md={4} style={styles.search}>
+                    search
+               </Grid>
             </Grid>
         );
     }
 }
 
-
 const styles = {
-    asap:{
-        color:"white",
+    post:{
+        backgroundColor:"white",
+    },
+    search:{
+        backgroundColor:"skyblue",
+    },
+    postaddIcon:{
+        width:"50px",
+        height:"50px",
     }
 }
+
+function SimpleExpansionPanel() {
+    return (
+      <div>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<PostAddIcon style={{color:"#ea4335"}}/>}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography style={{fontSize:"20px", fontWeight:"900"}}>なんか借りたくない？</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+          <Grid container direction="row">
+                <Grid sm={12} md={6} container direction="column">
+                    <TextField variant="outlined"  label="借りたいもの" style={{width:"300px"}}/>
+                 <Grid container direction="row" style={{marginTop:"20px"}}>
+                    <LocationOnIcon style={{height:"30px", width:"30px"}}/>
+                    <TextField variant="standard" placeholder="福岡県 福岡市" style={{width:"150px"}}/>    
+                </Grid>
+                </Grid>
+                <Grid sm={12} md={6}>
+
+                </Grid>
+            </Grid>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </div>
+    );
+}
+
+
+
+// class PostAddDrawer extends React.Component{
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             left: false,
+//         }        
+//     }   
+
+
+//     toggleDrawer = (sample) = (e) =>{
+//         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+//             return;
+//           }
+//           this.setState({left: sample});
+//     }
+
+//     render(){
+//         return(
+//             <div>
+//                 <PostAddIcon style={styles.postaddIcon} onClick={this.toggleDrawer(true)}/>
+//                 <Drawer open={this.state.left}>
+//                     <CancelPresentationIcon onClose={this.toggleDrawer(false)}/>
+//                 </Drawer>
+//             </div>
+//         )
+//     }
+// }
+
 
 
 // const useStyles = makeStyles(theme => ({
