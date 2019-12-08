@@ -94,7 +94,8 @@ function SimpleExpansionPanel() {
                     <TextField variant="outlined"  label="借りたいもの" style={{width:"300px"}}/>
                  <Grid container direction="row" style={{marginTop:"20px"}}>
                     <LocationOnIcon style={{height:"30px", width:"30px"}}/>
-                    <TextField variant="standard" placeholder="福岡県 福岡市" style={{width:"150px"}}/>    
+                    <TextField variant="standard" placeholder="福岡県 福岡市" style={{width:"150px"}}/>
+                      
                 </Grid>
                 </Grid>
                 <Grid sm={12} md={6}>
