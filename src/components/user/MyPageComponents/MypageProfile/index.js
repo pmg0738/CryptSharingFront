@@ -97,8 +97,7 @@ export default class Mypage extends React.Component {
 
 const styles = {
     mypageContainer:{
-        backgroundColor:'white',
-        height:'300px'
+        backgroundColor:'white'
     },
 
     eraiza:{
@@ -151,7 +150,8 @@ const styles = {
     mypageSelfIntroduce:{
         marginTop:'20px',
         color:'black',
-        fontSize:'20px'
+        fontSize:'20px',
+        marginBottom:'20px'
     }
 
 }
