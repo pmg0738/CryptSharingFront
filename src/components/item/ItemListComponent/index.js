@@ -1,15 +1,12 @@
 import React from 'react';
-import axios from 'axios';
-
-import _ from 'lodash'
-
+import { connect } from 'react-redux';
+import { fetchItems } from '../../../redux/actions';
 import { Link } from 'react-router-dom';
-import {
-    Button,
-    Container,
-    Col,
-    Row,    
- } from 'react-bootstrap';
+
+// Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 import './style.scss';
 
@@ -21,74 +18,85 @@ import Item from '../ItemCard';
 
 
 class ItemListComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: []
-        }        
-    }   
-    componentWillMount(){
-		axios.get('https://challecara-pok-2019.lolipop.io/api/v1/items/')
-			.then(res => {
-                let allItems = res.data;
-                this.setState({items: allItems});
-            })
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			items: []
+		}
+	}
+	componentWillMount(){
+		if(this.props.items.length <= 1){
+			console.log("@".repeat(100));
+			this.props.fetchItems();
+		}
+	}
 
-    renderRentaringMessage = (isRented) => {
-        if(isRented){
-            return(
-            <p className="item-list-item-card-status-unavailable">貸出中</p>
-            )
-        }
-    }
 
-    handlePagination = (page) => {
-        // this.props.getItems(page);
-    }
+	renderItems = () =>{
+		console.log(this.props.items);
+		return Object.keys(this.props.items).map(itemId => {
+			const item = this.props.items[itemId]
+			return(
+				<Grid sm={12} md={6} lg={4} key={itemId}>
+					<Item
+						to={'/items/' + itemId}
+						image={item.images[0].url}
+						price={item.fee_per_hour}
+					/>
+				</Grid>
+			);
+		})
+	}
 
-    renderItems = () => {
-       this.state.items.map(item => (
-            <Col sm={12} md={6} lg={4}>
-                <Item
-                    to={'/items/' + item.item_id}
-                    image={item.images}
-                    price={item.fee_per_hour}
-                />
-            </Col>
-        ));
-    }
+	render() {
+		
+		
+		return (
+			<Grid container>
+				{this.renderItems()}
+				 <Link to='/items/new/post'>
+					<ItemPostButton/>
+				</Link>
+				<Pagination numOfPage={2} handlePagination={this.handlePagination}/>
+			</Grid>
+		);
+	}
+}
+const useStyles = makeStyles({
+	root: {
+		background: 'linear-gradient(45deg, #886Dff 30%, #4285F4 90%)',
+		border: 0,
+		borderRadius: 60,
+		boxShadow: '0 3px 5px 2px rgba(130, 105, 255, .3)',
+		color: 'white',
+		fontSize: 20,
+		fontWeight: "bold",
+		height: 120,
+		width: 120,
+		padding: '0 30px',
+		position: "fixed",
+		bottom: 50,
+		right: 50,
+	},
+});
 
-    render() {
-        return (
-            <Container className="item-list-container">
-                <Row>
-                {this.state.items.map(item => (
-                    <Col sm={12} md={6} lg={4}>
-                        <Item
-                            to={'/items/' + item.item_id}
-                            image={item.images[0].url}
-                            price={item.fee_per_hour}
-                        />
-                    </Col>
-                ))}
-                 <Link to='/items/new/post'>
-                    <Button className="item-list-add-button">
-                        <p className="item-list-add-button-label">出品する</p>
-                        <FontAwesomeIcon className="item-list-add-button-camera-icon" icon={faCamera}/>
-                    </Button>
-                </Link>
-                </Row>
-                <Pagination numOfPage={2} handlePagination={this.handlePagination}/>
-                {/* <Pagination numOfPage={this.state.numOfItems} /> */}
-            </Container>
-        );
-    }
+
+const ItemPostButton = () => {
+	const classes = useStyles();
+
+	return(
+		<Button className={classes.root}>
+			<p className="item-list-add-button-label">出品する</p>
+			<FontAwesomeIcon className="item-list-add-button-camera-icon" icon={faCamera}/>
+		</Button>
+	);
+}
+
+const mapStateProps = (state) => {
+	return { items: state.items };
 }
 
 
-
-
-export default ItemListComponent;
+export default connect( mapStateProps, { fetchItems })(ItemListComponent);
 
 

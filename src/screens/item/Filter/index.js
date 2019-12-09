@@ -8,7 +8,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 import './style.scss'
 import FeeSlider from '../../../components/item/FilterComponents/FeeSlider';
-import PrefectureSelector from '../../../components/item/FilterComponents/PrefectureSelector';
+import PrefectureSelector from '../../../components/item/FilterComponents/PrefectureSelectorOutlined';
 import CategoryAutoComplete from '../../../components/item/FilterComponents/CategoryAutoComplete';
 import LentPeriodRadioButton from '../../../components/item/FilterComponents/LentPeriodRadioButtons';
 

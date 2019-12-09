@@ -1,72 +1,48 @@
-.form-label {
-    align-self: flex-start;
-    color: #282c34;
-    text-align: left;
-    width: 100%;
+.background-image {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;	
 }
-.go-to-sign-up-button {    
-    padding: 0px;
-    padding-right: 10px;
-    text-align: right;
+.login-card-inside-contaienr {
+	position: relative;
+	height: 100%;
 }
-.login-card {
-    align-self: center;
-    background-color: #ffffff;
-    border-color: #ffffff;
-    margin-top: 50px;
-    padding: 30px;
-    width: 400px;
+.login-card-left-container {
+	background-color: #282c34;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	height: 100%;
+	width: 50%;
+	position: relative;
+	top: 0px;
+	left: 0px;
 }
-.login-card-row-contaienr {
-    justify-content: center;
+
+.login-card-right-container {
+	background-color: #ffffff;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	height: 100%;
+	width: 50%;
+	padding: 40px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }
-.login-container {
-    justify-content: center;
-    padding-top: 50px;
-    text-align: center;
+.login-left-image {
+	height: 100%;
 }
-.login-button {
-    align-self: center;
-    background-color: #e29930;
-    border-color: #e29930;
-    border-radius: 25px;
-    height: 50px;
-    width: 100%;
+
+.login-logo {
+	margin-top: 150px;
+	margin-bottom: 80px;
+	width: 90%;
+	margin-left: 4%;
 }
-.login-button:hover {
-    align-self: center;
-    background-color: #1dcd00;
-    border-color: #1dcd00;
-    border-radius: 25px;
-    height: 50px;
-    width: 100%;
-}
-.login-button-text {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 5px;
-}
-.login-logo-image {
-    margin-top: 30px;
-    margin-bottom: 50px;
-    width: 100%;
-}
-.login-background {
-    background-size: cover;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%; 
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;    
-}
-.signin-title {
-    color: #4a4c68;
-    font-size: 50px;
-    font-weight: bold;
-    padding-bottom: 50px;
-    padding-top: 30px;
+.login-sign-up-button {
+	margin-top: 20px;
+	margin-right: 10px;
+	text-align: right;
 }

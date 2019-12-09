@@ -1,9 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
 import './style.scss';
 
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { Link } from 'react-router-dom';
 
+// Material UI Component
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,12 +12,15 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import TextField from '@material-ui/core/TextField';
-
+// Material UI Icon
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+// Material UI Layout
+import Grid from '@material-ui/core/Grid';
+
 
 // TODO: コンポーネント化する
 import { ItemPostCard } from '../ItemPost'
@@ -41,6 +45,19 @@ export default class ItemPostConfirm extends React.Component {
 			selectedImage: "",
 			isOverNumOfImage: false,
 		}
+	}
+
+	postImages = async () => {
+		const response = await axios.post('http://localhost:8000/api/v1/images/', {
+			url: eraiza,
+		})
+		console.log('response', response);
+		return response;
+	}
+
+	postItem = () => {
+		this.postImages();
+		// axios.post()
 	}
 
 	render() {
@@ -134,6 +151,7 @@ export default class ItemPostConfirm extends React.Component {
 									className=""
 									size="large"
 									startIcon={<CheckCircleIcon />}
+									onClick={this.postItem}
 								>確認</Button>
 							</Link>
 						</Grid>

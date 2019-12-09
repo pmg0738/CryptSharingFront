@@ -22,9 +22,9 @@ export default class Tags extends React.Component{
   
   render(){
     return(
-      <div style={{ width: 500 }}>
+      <div style={styles.div}>
         <Autocomplete
-            style={{ marginLeft: '20px', marginRight: "20px"}}
+            style={styles.autoComplete}
             multiple
             id="tags-outlined"
             options={this.state.categories}
@@ -37,10 +37,30 @@ export default class Tags extends React.Component{
                 label="カテゴリー"
                 margin="normal"
                 fullWidth
+                style={styles.textfield}
               />
             )}
         />
       </div>
     )
+  }
+}
+
+
+const styles = {
+  div:{
+    color:"#ffffff",
+    textColor:"white",
+    width: 500,
+  },
+	autoComplete: {
+    marginLeft: '20px', 
+    marginRight: "20px",
+    color: "white",
+  },
+  textfield:{
+    textColor:"white",
+    color:"#FFFFFF",
+    // backgroundColor:"white",
   }
 }
