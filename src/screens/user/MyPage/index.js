@@ -9,7 +9,9 @@ export default class Mypage extends React.Component {
 	render() {
 		return (
 			<div>
-				<MypageProfile/>
+				<MypageProfile
+					name="朴民圭"
+				/>
 			</div>
 		)
 	}

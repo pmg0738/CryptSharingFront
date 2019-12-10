@@ -11,57 +11,57 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 export default class Item extends React.Component {
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-        this.state = {
-            // cardClassName: "item-list-item-card-out",
-            // priceClassName: "item-list-item-card-price-out",
-            numOfLike: 2298,
-        }
-        // this.data = this.props.data;
-        this.image = "";
-        // this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
-    }
+		this.state = {
+			// cardClassName: "item-list-item-card-out",
+			// priceClassName: "item-list-item-card-price-out",
+			numOfLike: 2298,
+		}
+		// this.data = this.props.data;
+		this.image = "";
+		// this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
+	}
 
-    handleMouseOver = () => {
-        this.setState({
-            cardClassName: "item-list-item-card-over",
-            priceClassName: "item-list-item-card-price-over"
-        })
-    }
+	handleMouseOver = () => {
+		this.setState({
+			cardClassName: "item-list-item-card-over",
+			priceClassName: "item-list-item-card-price-over"
+		})
+	}
 
-    handleMouseOut = () => {
-        this.setState({
-            cardClassName: "item-list-item-card-out",
-            priceClassName: "item-list-item-card-price-out"
-        })
-    }
+	handleMouseOut = () => {
+		this.setState({
+			cardClassName: "item-list-item-card-out",
+			priceClassName: "item-list-item-card-price-out"
+		})
+	}
 
-    getItemDetail = () => {
-        // this.props.getItem(this.props.id)
-    }
-    render() {
-        return (
-         <Link to={this.props.to}>
-            <Card className="" style={{marginBottom: 30}}>
-                <CardMedia
-                    className=""
-                    image={this.props.image}
-                    title="Paella dish"
-                    style={{width: "100%", height: 250}}
-                />
-                <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites"
-                        onClick={() => this.setState({numOfGood: this.state.numOfGood+1})}
-                    >
-                        <FavoriteIcon />
-                    </IconButton>
-                    <p className="item-num-of-good">{this.state.numOfLike}</p>
-                </CardActions>
-                <p className="item-price">￥{this.props.price}/h</p>                
-            </Card>
-        </Link>
-        )
-    }
+	getItemDetail = () => {
+		// this.props.getItem(this.props.id)
+	}
+	render() {
+		return (
+		 <Link to={this.props.to}>
+			<Card className="" style={{marginBottom: 30, position: "relative"}}>
+				<CardMedia
+					className=""
+					image={this.props.image}
+					title="Paella dish"
+					style={{width: "100%", height: 250}}
+				/>
+				<CardActions disableSpacing>
+					<IconButton aria-label="add to favorites"
+						onClick={() => this.setState({numOfGood: this.state.numOfGood+1})}
+					>
+						<FavoriteIcon />
+					</IconButton>
+					<p className="item-num-of-good">{this.state.numOfLike}</p>
+				</CardActions>
+				<p className="item-price">￥{this.props.price}/h</p>                
+			</Card>
+		</Link>
+		)
+	}
 }

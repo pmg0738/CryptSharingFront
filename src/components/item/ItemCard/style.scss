@@ -3,6 +3,7 @@
     border-width: 0px;
     margin-bottom: 20px;
     // padding-top: 100%;
+    position: relative;
 }
 // .item-list-item-card:hover {
 //     border-width: 0px;
@@ -95,9 +96,9 @@ $price-right: 10px;
 }
 .item-price {
     font-size: 20px;
-    font-weight: bold;    
+    font-weight: bold;
     position: absolute;
-    bottom: 30px;
+    bottom: 0px;
     right: 30px;
 }
 .item-num-of-good {
