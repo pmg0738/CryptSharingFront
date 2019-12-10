@@ -1,30 +1,32 @@
 import React from 'react';
 import axios from 'axios';
+// import axios from '../../../redux/apis/apis';
 import './style.scss';
 import {Link} from 'react-router-dom';
 
+// Material UI Component
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 
+// Material UI Icon
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 
 import loadImage from 'blueimp-load-image';
-
-import eraiza from '../../../images/eraiza.png';
-
+import ConfirmDialog from '../../../components/item/ItemPostConfirmDialog';
 
 
 const MAX_NUM_OF_IMAGE = 9
+
 
 export default class ItemPost extends React.Component {
 	constructor(props){
@@ -32,8 +34,10 @@ export default class ItemPost extends React.Component {
 
 		this.state = {
 			images: [],
+			previewImages: [],
 			imageStartIndex: 0,
 			isOverNumOfImage: false,
+			showConfirmDialog: false,
 		}
 	}
 
@@ -46,14 +50,14 @@ export default class ItemPost extends React.Component {
 		});
 	}
 
-	async imageChangeHandler(e) {
+	addPreviewImages = async (e) => {
 		const { imageUri } = await resizeImage(e);
-		let { images } = this.state;
+		let images = this.state.previewImages;
 
 		if(images.length<MAX_NUM_OF_IMAGE){
 			images.push(imageUri);
 			this.setState({
-				images: images,
+				previewImages: images,
 				isOverNumOfImage: false
 			});
 		}
@@ -68,7 +72,7 @@ export default class ItemPost extends React.Component {
 
 		if(numOfImages<MAX_NUM_OF_IMAGE) {
 			placeholders.push(
-				<Card className="item-post-image-container">
+				<Card className="item-post-image-container" key={100}>
 					<div  className="item-post-image-placeholder">
 						<label htmlFor="icon-button-file">
 							<IconButton
@@ -78,7 +82,7 @@ export default class ItemPost extends React.Component {
 								component="span"
 								style={{marginTop: 35}}
 							>
-							<AddAPhotoIcon style={{ width: 60, height: 60}}/>
+								<AddAPhotoIcon style={{ width: 60, height: 60, color: "#FBBC05"}}/>
 							</IconButton>
 						</label>
 					</div>
@@ -88,7 +92,7 @@ export default class ItemPost extends React.Component {
 		
 		for(let i=numOfImages+1; i<MAX_NUM_OF_IMAGE; i++) {
 			placeholders.push(
-				<Card className="item-post-image-container">
+				<Card className="item-post-image-container" key={i}>
 					<div  className="item-post-image-placeholder"/>
 				</Card>
 			)
@@ -96,51 +100,55 @@ export default class ItemPost extends React.Component {
 		return placeholders;
 	}
 
-	postImages = async () => {
-		// console.log(this.state.images);
-
-		// const imageBlob = this.state.images[0];
-
-		// const data = new FormData();
-		// data.append('url', imageBlob, 'bike.png');
-
-		// const response = await axios.post('http://localhost:8000/api/v1/images/', data, {
-		// 	headers: { 'content-type': 'multipart/form-data' }
-		// })
-		// console.log('response', response);
-		// return response;
-
-		console.log(this.state);
-		let form_data = new FormData();
-
-		form_data.append('image', eraiza, 'emaiza.png');
-
-		
-
-		axios.post('http://localhost:8000/api/v1/images/', form_data, {
-			headers: { 'content-type': 'multipart/form-data' }
-		}).catch(error => console.log('error', error))
+	// 画像が選択されていたら、確認ダイアログを表示する
+	handleConfirm = () => {
+		if(this.state.images.length > 0) {
+			this.setState({showConfirmDialog: true})
+		} else {
+			alert("画像を1枚以上選択してください");
+		}
 	}
 
+	// 画像を選択
 	selectImage = (event) => {
-		// 画像を選択
+
+		this.addPreviewImages(event);
+
 		let { images } = this.state;
 		images.push(event.target.files[0]);
 		this.setState({images: images})
 	}
 
-
-	uploadImage = async () => {
-		// 画像をサーバーに送信
+	// 画像をサーバーに送信
+	uploadImages = async () => {
 		const formData = new FormData();
 		const timestamp = new Date().getTime();
 
 		for(let i=0; i<this.state.images.length; i++ ) {
 			formData.append(`url${i}`, this.state.images[i], `${timestamp}${i}.png`);
 		}
-
+		// const response = await axios.post('/images/create_many/', formData);
 		const response = await axios.post('http://localhost:8000/api/v1/images/create_many/', formData);
 		return response.data;
+	}
+
+	// 商品を登録する（サーバーにリクエスト送信）
+	postItem = async () => {
+
+		const images = await this.uploadImages();
+
+		const postData = {
+			name: "Name",
+			fee_per_hour: 10,
+			fee_per_day:  100,
+			fee_per_week: 1000,
+			images: images.map(obj => obj.image_id),
+			categories: [1],
+			owner: 1,
+			require_mortgaged_mount: 2000,
+		}
+
+		const response = await axios.post('http://localhost:8000/api/v1/items/', postData);
 	}
 
 
@@ -156,8 +164,8 @@ export default class ItemPost extends React.Component {
 							className="item-post-back-to-list-button"
 							size="large"
 							startIcon={<SettingsBackupRestoreIcon />}
-							style={{marginBottom: 20}}
-						>一覧に戻る</Button>
+							style={{marginBottom: 20, background: "#282c34", fontWeight: "bold"}}
+						>一覧</Button>
 					</Link>
 					<Card className="item-post-card">
 						<CardHeader
@@ -172,7 +180,7 @@ export default class ItemPost extends React.Component {
 							title="Paella dish"
 						/>
 						<Grid container direction="row" justify="center">
-							<Grid item direction="column" justify="center" alignItems="center" xs={6}>
+							<Grid item container direction="column" justify="center" alignItems="center" xs={6}>
 								<TextField
 									id="standard-multiline-flexible"
 									label="商品名"
@@ -189,18 +197,18 @@ export default class ItemPost extends React.Component {
 										id="standard-multiline-flexible"
 										label="1時間当たりの料金"
 										type="number"
-										style={{ color: "#ffffff" }}
+										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
 									/>
 									<p className="item-post-yen">円</p>
-								</Grid>
-								<Grid container direction="row" justify="flex-start" alignItems="center">
+								{/* </Grid>
+								<Grid container direction="row" justify="flex-start" alignItems="center" xs={6}> */}
 									<TextField
 										id="standard-multiline-flexible"
 										label="1日当たりの料金"
 										type="number"
-										style={{ color: "#ffffff" }}
+										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
 									/>
@@ -211,7 +219,7 @@ export default class ItemPost extends React.Component {
 										id="standard-multiline-flexible"
 										label="1週間当たりの料金"
 										type="number"
-										style={{ color: "#ffffff" }}
+										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
 									/>
@@ -222,7 +230,7 @@ export default class ItemPost extends React.Component {
 										id="standard-multiline-flexible"
 										label="担保"
 										type="number"
-										style={{ color: "#ffffff" }}
+										style={styles.textfieldFull}
 										margin="normal"
 										variant="outlined"
 									/>
@@ -240,21 +248,21 @@ export default class ItemPost extends React.Component {
 									variant="outlined"
 									/>
 							</Grid>
-							<Grid item direction="column" justify="center"
+							<Grid item container direction="column" justify="center"
 								alignItems="center" xs={6}>
 								<input 
 									accept="image/*"
 									className="item-post-image-input"
 									id="icon-button-file"
 									type="file"
-									// onChange={e => this.imageChangeHandler(e)}
 									onChange={this.selectImage}
 								/>
 								<Grid container direction="row" justify="flex-start">
-									{this.state.images.map((image, index) => 
+									{this.state.previewImages.map((image, index) => 
 										<ItemPostCard 
 											image={image} 
 											index={index}
+											key={index}
 											deleteImage={() => this.deleteImage(index)}
 										/>
 									)}
@@ -263,21 +271,25 @@ export default class ItemPost extends React.Component {
 							</Grid>
 						</Grid>
 						<Grid container direction="row" justify="flex-end" style={{marginTop: 40}}>
-							{/* <Link to='/itempostconfirm'> */}
-								<Button
-									variant="contained"
-									color="primary"
-									className=""
-									size="large"
-									startIcon={<CheckCircleIcon />}
-									onClick={this.postImages}
-								>確認</Button>
-							{/* </Link> */}
+							<Button
+								variant="contained"
+								// color="primary"
+								className=""
+								size="large"
+								startIcon={<CheckCircleIcon />}
+								onClick={this.handleConfirm}
+								style={this.state.images.length > 0 ? styles.confirmButtonActive : styles.confirmButtonDeactive}
+							>確認</Button>
 						</Grid>
 					</Card>
 				</Container>
+				<ConfirmDialog
+					show={this.state.showConfirmDialog}
+					close={() => this.setState({showConfirmDialog: false})}
+					postItem={this.postItem}
+				/>
 			</div>
-		)
+		);
 	}
 }
 
@@ -334,7 +346,7 @@ const toBlob = (base64, reject) => {
 }
 
 
-export const resizeImage = (event, maxWidth = 1024) => {
+const resizeImage = (event, maxWidth = 1024) => {
 	return new Promise((resolve, reject) => {
 		const file = event.target.files[0];
 		loadImage.parseMetaData(file, (data) => {
@@ -356,3 +368,25 @@ export const resizeImage = (event, maxWidth = 1024) => {
 		});
 	});
 };
+
+
+
+const styles = {
+	confirmButtonDeactive: {
+		backgroundColor: "#999999",
+		color: "#ffffff",
+		fontWeight: "bold",
+	},
+	confirmButtonActive: {
+		backgroundColor: "#fbbc05",
+		color: "#ffffff",
+		fontWeight: "bold",
+	},
+	textfield: {
+		marginLeft: 30,
+	},
+	textfieldFull: {
+		width: "80%",
+		marginLeft: 30,
+	}
+}

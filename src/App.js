@@ -12,7 +12,6 @@ import Filter from './screens/item/Filter';
 import History from './screens/history/HistoryList';
 import ItemDetail from './screens/item/ItemDetail';
 import ItemPost from './screens/item/ItemPost';
-import ItemPostConfirm from './screens/item/ItemPostConfirm';
 import ItemRequestList from './screens/item/ItemRequestList';
 import Login from './screens/user/Login';
 import MainSearch from './screens/item/MainSearch';
@@ -60,8 +59,6 @@ export default class App extends React.Component{
 								{/* <Route exact path='/chats/1' component={Chat}/> */}
 								<Route exact path='/mypage' component={MyPage}/>
 								<Route exact path='/history' component={History}/>
-								<Route exact path='/itempostconfirm' component={ItemPostConfirm}/>
-								{/* <Route exact path='/items/post/confirm' component={ItemPostConfirm}/> */}
 								<Route exact path='/items' component={SearchByOption}/>
 								<Route exact path='/request' component={RentalRequest}/>
 								<Route exact path='/filter' component={Filter}/>
@@ -73,7 +70,7 @@ export default class App extends React.Component{
 				</BrowserRouter>
 			  </div>
 		  </div>
-		)
+		);
 	}
 }
 

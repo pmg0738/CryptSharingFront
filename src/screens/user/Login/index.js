@@ -48,6 +48,7 @@ const login = async (email, password, props) => {
 	}).catch(() => {
 		alert("ログイン失敗");
 	})
+	console.log('response', response);
 
 	if(response && response.status===200){
 		const token = response.data.token;

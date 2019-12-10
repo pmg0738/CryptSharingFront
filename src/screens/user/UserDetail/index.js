@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios';
+import axios from 'axios'
+// import axios from '../../../redux/apis/apis';
 import './style.scss';
 
 // Material UI component
@@ -28,6 +29,7 @@ export default class UserDetail extends React.Component {
 
 	fetchEvaluations = () => {
 		// 評価を受け取る
+		// axios.get('/evaluations/')
 		axios.get('http://localhost:8000/evaluations/')
 			.then(res => {
 				console.log('evaluations', res.data);
