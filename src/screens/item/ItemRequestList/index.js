@@ -27,16 +27,28 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-
+import Avatar from '@material-ui/core/Avatar';
+import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
-
+import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 // import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGrinStars } from '@fortawesome/free-solid-svg-icons'
+
+
 
 import cup from '../../../images/cup.jpg';
 
@@ -52,24 +64,26 @@ export default class ItemRequestList extends React.Component{
     
     render() {
         return (
-            <Grid container direction="row">
-               <Grid md={8} style={styles.post}>
-                   <SimpleExpansionPanel/>
-               </Grid>
-               <Grid md={4} style={styles.search}>
-                    search
-               </Grid>
+            <Grid container direction="column">
+                <Grid style={styles.search}>
+                   <SearchBar/>
+                </Grid>
+                <Grid style={styles.postList} alignItems="center">
+                   <RequestListCard/>
+                   <RequestListCard/>
+                </Grid>
             </Grid>
         );
     }
 }
 
 const styles = {
-    post:{
+    search:{
         backgroundColor:"white",
     },
-    search:{
-        backgroundColor:"skyblue",
+    postList:{
+        // backgroundColor:"skyblue",
+        marginTop:"20px"
     },
     postaddIcon:{
         width:"50px",
@@ -77,35 +91,154 @@ const styles = {
     }
 }
 
-function SimpleExpansionPanel() {
-    return (
-      <div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<PostAddIcon style={{color:"#ea4335"}}/>}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography style={{fontSize:"20px", fontWeight:"900"}}>なんか借りたくない？</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-          <Grid container direction="row">
-                <Grid sm={12} md={6} container direction="column">
-                    <TextField variant="outlined"  label="借りたいもの" style={{width:"300px"}}/>
-                 <Grid container direction="row" style={{marginTop:"20px"}}>
-                    <LocationOnIcon style={{height:"30px", width:"30px"}}/>
-                    <TextField variant="standard" placeholder="福岡県 福岡市" style={{width:"150px"}}/>
-                      
-                </Grid>
-                </Grid>
-                <Grid sm={12} md={6}>
+class RequestListCard extends React.Component{
+    constructor(props){
+        super(props);
 
-                </Grid>
+        this.state={
+
+        }
+    }
+
+    render(){
+        return(
+            <Grid container justify="center" alignItems="center">
+                <Box border={1} borderColor="white" style={{width:"70%"}}>
+                    <Grid container direction="column" style={{color:"white"}}>
+                        <Grid container direction="row">
+                            <Avatar style={{width:"50px", height:"50px"}} src={cup}/>
+                            <div style={{fontSize:"16px", fontWeight:"500", marginLeft:"20px", marginTop:"10px"}}>upallnight0738</div>
+                            <div style={{opacity:"0.5", marginLeft:"50px", marginTop:"10px"}}>20分前</div>
+                        </Grid>
+                        <Grid container direction="row" style={{marginTop:"30px"}}>
+                            <FontAwesomeIcon icon={faGrinStars} style={{color:"#ea4335", fontSize:"30px"}}/>
+                            <div>たこ焼き機</div>
+                        </Grid>
+                        <Grid container direction="row" style={{marginTop:"30px"}}>
+                            <LocationOnIcon/>
+                            <div>福岡市 早良区</div>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Grid>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
-    );
+        )
+    }
+}
+
+
+class SearchBar extends React.Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            lentPeriod:"onehour",
+        }
+    }
+    
+    handleLentPeriod = (e) =>{
+        console.log(e.target.value);
+        this.setState({lentPeriod: e.target.value})
+    }
+
+    renderPriceByLentPeriod = () =>{
+        if(this.state.lentPeriod === "onehour"){
+            return(
+                    <Input
+                        style={{width:"150px"}}
+                        // onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start">￥</InputAdornment>}
+                        endAdornment={<InputAdornment position="end">/1時間</InputAdornment>}
+                        labelWidth={60}
+                    />
+                )
+        }
+        if(this.state.lentPeriod === "oneday"){
+            return(
+                    <Input
+                        style={{width:"150px"}}
+                        // onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start">￥</InputAdornment>}
+                        endAdornment={<InputAdornment position="end">/1日</InputAdornment>}
+                        labelWidth={60}
+                    />
+                )
+        }
+        if(this.state.lentPeriod === "oneweek"){
+            return(
+                    <Input
+                        style={{width:"150px"}}
+                        // onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start">￥</InputAdornment>}
+                        endAdornment={<InputAdornment position="end">/1週間</InputAdornment>}
+                        labelWidth={60}
+                    />
+                )
+        }
+    }
+
+    render(){
+        return (
+            <div>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary
+                        expandIcon={<SearchIcon style={{color:"#ea4335"}}/>}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <Typography style={{fontSize:"20px", fontWeight:"900"}}>貸せるものある？</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Grid container direction="column">
+                            <Grid container direction="row" justify="space-evenly">
+                                <TextField variant="outlined"  label="貸せるもの" style={{width:"300px"}}/>
+                                <Grid style={{marginLeft:"20px", marginTop:"10px"}}>
+                                    <TextField
+                                        style={{width:"200px"}}
+                                        InputProps={{
+                                            startAdornment :(
+                                                <InputAdornment position="start">
+                                                    <LocationOnIcon/>
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                        variant="standard" 
+                                        placeholder="福岡県 福岡市"
+                                    />
+                                </Grid>
+                                <RadioGroup row value={this.state.lentPeriod} onChange={this.handleLentPeriod}>
+                                    <FormControlLabel
+                                        value="onehour"
+                                        control={<Radio color="primary" />}
+                                        label="1時間"
+                                        labelPlacement="start"
+                                    />
+                                    <FormControlLabel
+                                        value="oneday"
+                                        control={<Radio color="primary"/>}
+                                        label="1日"
+                                        labelPlacement="start"
+                                    />
+                                    <FormControlLabel
+                                        value="oneweek"
+                                        control={<Radio color="primary"/>}
+                                        label="1週間"
+                                        labelPlacement="start"
+                                    />
+                                </RadioGroup>
+                                <Grid direction="column" style={{marginLeft:"20px",marginBottom:"20px"}}>
+                                    <div>希望金額</div>
+                                    {this.renderPriceByLentPeriod()}
+                                </Grid>
+                            </Grid>
+                            <Grid container justify="center" style={{marginTop:"20px"}}>
+                                <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", width:"200px", height:"50px"}}>この条件で検索</Button>
+                            </Grid>
+                        </Grid>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </div>
+          )
+    }
 }
 
 
