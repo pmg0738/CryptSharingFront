@@ -5,6 +5,7 @@ import MypageProfile from '../../../components/user/MyPageComponents/MypageProfi
 import { Grid } from '@material-ui/core';
 import { Button, Card, Container, Col, Form, Row,ListGroup, Tabs, Tab,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 // ???????
 import Item from '../../../components/item/ItemCard';
@@ -26,6 +27,9 @@ export default class Mypage extends React.Component {
 	render() {
 		return (
 			<Grid container direction="column">
+				<Grid container direction="row" justify="flex-end">
+					<SettingsIcon style={styles.mypageSetting} />
+				</Grid>
 				<MypageProfile
 					avatar={eraiza}
 					star="3.5"
@@ -71,5 +75,13 @@ export default class Mypage extends React.Component {
 const styles = {
 	tabBox:{
 		marginTop:'30px'
+	},
+
+	mypageSetting:{
+		marginRight:'20px',
+		marginTop:'20px',
+		width:'50px',
+		height:'50px',
+		color:'blue'
 	}
 }

@@ -10,7 +10,6 @@ import { fontSize, border, borderColor } from '@material-ui/system';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import SettingsIcon from '@material-ui/icons/Settings';
 import { borders } from '@material-ui/system';
 
 export default class Mypage extends React.Component {
@@ -60,9 +59,6 @@ export default class Mypage extends React.Component {
 							<Grid container direction="row" justify="space-between">
 								<Grid style={styles.mypageName}>
 									{this.props.name}
-								</Grid>
-								<Grid>
-									<SettingsIcon style={styles.mypageSetting} />
 								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
@@ -114,13 +110,6 @@ const styles = {
 		fontSize:'50px'
 	},
 
-	mypageSetting:{
-		marginRight:'20px',
-		marginTop:'20px',
-		width:'50px',
-		height:'50px',
-		color:'blue'
-	},
 
 	mypagePostNum:{
 		marginTop:'20px',
