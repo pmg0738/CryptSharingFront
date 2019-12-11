@@ -46,7 +46,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGrinStars } from '@fortawesome/free-solid-svg-icons'
+import { faGrinStars, faHourglassStart, faYenSign, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -69,6 +69,16 @@ export default class ItemRequestList extends React.Component{
                    <SearchBar/>
                 </Grid>
                 <Grid style={styles.postList} alignItems="center">
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
+                   <RequestListCard/>
                    <RequestListCard/>
                    <RequestListCard/>
                 </Grid>
@@ -104,20 +114,39 @@ class RequestListCard extends React.Component{
         return(
             <Grid container justify="center" alignItems="center">
                 <Box border={1} borderColor="white" style={{width:"70%"}}>
-                    <Grid container direction="column" style={{color:"white"}}>
-                        <Grid container direction="row">
-                            <Avatar style={{width:"50px", height:"50px"}} src={cup}/>
-                            <div style={{fontSize:"16px", fontWeight:"500", marginLeft:"20px", marginTop:"10px"}}>upallnight0738</div>
-                            <div style={{opacity:"0.5", marginLeft:"50px", marginTop:"10px"}}>20分前</div>
+                    <Grid container direction="row">
+                        <Grid sm={12} md={4} container direction="column" style={{color:"white", marginLeft:"80px"}}>
+                            <Grid container direction="row" style={{marginTop:"20px"}}>
+                                <Avatar style={{width:"50px", height:"50px"}} src={cup}/>
+                                <div style={{fontSize:"16px", fontWeight:"500", marginLeft:"20px", marginTop:"10px"}}>upallnight0738</div>
+                                <div style={{opacity:"0.5", marginLeft:"50px", marginTop:"10px"}}>20分前</div>
+                            </Grid>
+                            <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px"}}>
+                                <FontAwesomeIcon icon={faGrinStars} style={{fontSize:"30px"}}/>
+                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>たこ焼き機</div>
+                            </Grid>
+                            <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px", marginBottom:"20px"}}>
+                                <FontAwesomeIcon icon={faMapMarkerAlt} style={{fontSize:"30px"}}/>
+                                <div style={{fontSize:"20px", fontWeight:"600", marginLeft:"10px"}}>福岡市 早良区</div>
+                            </Grid>
                         </Grid>
-                        <Grid container direction="row" style={{marginTop:"30px"}}>
-                            <FontAwesomeIcon icon={faGrinStars} style={{color:"#ea4335", fontSize:"30px"}}/>
-                            <div>たこ焼き機</div>
+                        <Grid sm={12} md={4} container direction="column" style={{color:"white", marginLeft:"80px", marginTop:"80px"}}>
+                            <Grid container direction="row" style={{marginTop:"20px"}}>
+                                <FontAwesomeIcon icon={faHourglassStart} style={{fontSize:"30px"}}/>
+                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>1日</div>                        
+                            </Grid>
+                            <Grid container direction="row" style={{marginTop:"30px"}}>
+                                <FontAwesomeIcon icon={faYenSign} style={{fontSize:"30px"}}/>
+                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>200</div>
+                                <div style={{fontSize:"20px", fontWeight:"800"}}>/時間</div>                            
+                            </Grid>
                         </Grid>
-                        <Grid container direction="row" style={{marginTop:"30px"}}>
-                            <LocationOnIcon/>
-                            <div>福岡市 早良区</div>
-                        </Grid>
+                    </Grid>
+                    <Grid style={{marginLeft:"100px"}}>
+                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>12/25に友達とタコパしたい！誰か貸してください！！。。</div>
+                    </Grid>
+                    <Grid container justify="flex-end">
+                        <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", height:"50px", fontWeight:"600", fontSize:"20px", marginRight:"10px", marginBottom:"10px"}}>交渉する！</Button>
                     </Grid>
                 </Box>
             </Grid>
@@ -231,7 +260,7 @@ class SearchBar extends React.Component{
                                 </Grid>
                             </Grid>
                             <Grid container justify="center" style={{marginTop:"20px"}}>
-                                <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", width:"200px", height:"50px"}}>この条件で検索</Button>
+                                <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", width:"200px", height:"50px", fontWeight:"600" ,fontSize:"20px"}}>この条件で検索</Button>
                             </Grid>
                         </Grid>
                     </ExpansionPanelDetails>
