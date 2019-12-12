@@ -11,7 +11,13 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
@@ -41,20 +47,24 @@ const useStyles = makeStyles({
 	},
 });
 
-const login = async (email, password, props) => {
+const login = async (email, password, props, done) => {
 	const response = await axios.post('https://challecara-pok-2019.lolipop.io/api/v1/users/token/', {
+	// const response = await axios.post('http://localhost:8000/api/v1/users/token/', {
 		email: email,
 		password: password
 	}).catch(() => {
+		done();
 		alert("ログイン失敗");
 	})
-	console.log('response', response);
+
 
 	if(response && response.status===200){
 		const token = response.data.token;
-		// 画面遷移
 		// トークンをcookieまたはストアに保存
-		props.history.push('/')
+		localStorage.setItem('token', token);
+		// ホーム画面に移動
+		props.history.push('/');
+		done();
 	}
 }
 
@@ -66,6 +76,7 @@ export default function Login(props) {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading, setLoading] = React.useState(false);
 
 	return(
 		<div>
@@ -103,7 +114,10 @@ export default function Login(props) {
 								style={styles.textField}
 							/>
 							<Button className={classes.root}
-								onClick={() => login(email, password, props)}
+								onClick={() => {
+									setLoading(true);
+									login(email, password, props, () => setLoading(false))
+								}}
 							>
 								L O G I N</Button>
 							<Link to='/signup'>
@@ -113,6 +127,22 @@ export default function Login(props) {
 					</div>
 				</Card>
 			</Container>
+				<Dialog
+					open={loading}
+					// onClose={handleClose}
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DialogTitle id="alert-dialog-title">ログイン処理中</DialogTitle>
+					<DialogContent>
+						<CircularProgress
+							variant="indeterminate"
+							disableShrink
+							// className={classes.bottom}
+							thickness={4}
+						/>
+					</DialogContent>
+				</Dialog>
 		</div>
 	)
 }
@@ -122,6 +152,10 @@ const styles = {
 	card: {
 		backgroundColor: "#ffffff",
 		height: 800,
+		// height: "80%",
+		// position: "fixed",
+		// top: 0,
+		// left: 0,
 	},
 	textField: {
 		background: "#ffffff",

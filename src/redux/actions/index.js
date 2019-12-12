@@ -3,10 +3,13 @@ import apis from '../apis/apis';
 import axios from 'axios';
 
 export const fetchItems = () => async dispatch => {
+	// ローカルストレージに保存したトークンを取得する
+	const token = localStorage.getItem("token");
+
 	const response = await apis.get('/items/', {
 		headers: { 
 			"Content-Type": "application/json",
-			"Authorization": "Token df1729f871144bda4763278343d55668aee25064"
+			"Authorization": "Token " + token
 		},
 		data: {}
 	});
@@ -33,5 +36,4 @@ export const fetchItems = () => async dispatch => {
 export const fetchClickedItem = (itemId) => async dispatch => {
 	const response = await apis.get(`/items/${itemId}/`);
 	dispatch({ type: 'FETCH_ITEM', payload: response.data})
-	console.log('actionnnnnnnnnnnnn', response.data);
 }

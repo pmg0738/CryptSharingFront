@@ -14,10 +14,10 @@ import ItemDetail from './screens/item/ItemDetail';
 import ItemPost from './screens/item/ItemPost';
 import ItemRequestList from './screens/item/ItemRequestList';
 import Login from './screens/user/Login';
-import MainSearch from './screens/item/MainSearch';
 import MyPage from './screens/user/MyPage';
 import SearchByOption from './screens/item/SearchByOption';
 import SignUp from './screens/user/SignUp';
+import Search from './screens/item/Search';
 import RentalRequest from './screens/item/RentalRequest';
 import UserDetail from './screens/user/UserDetail';
 // components
@@ -50,7 +50,7 @@ export default class App extends React.Component{
 						<Route exact path="/signup" component={SignUp}/>
 						<Auth>
 							<Switch>
-								<Route exact path='/' component={MainSearch}/>
+								<Route exact path='/' component={Search}/>
 								<Route exact path='/items/new/post' component={ItemPost}/>
 								<Route exact path='/items/:id' component={ItemDetail}/>
 								<Route exact path='/items/requests/list' component={ItemRequestList}/>

@@ -96,7 +96,6 @@ const mapStateProps = (state) => {
 	return { items: state.items };
 }
 
-
 export default connect( mapStateProps, { fetchItems })(ItemListComponent);
 
 

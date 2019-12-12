@@ -4,6 +4,11 @@ import axios from 'axios';
 import './style.scss';
 import {Link} from 'react-router-dom';
 
+import { connect } from 'react-redux';
+// import { fetchMyData } from '../../../redux/actions/user';
+import { fetchMyData } from '../../../redux/actions/user';
+
+
 // Material UI Component
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -28,7 +33,7 @@ import ConfirmDialog from '../../../components/item/ItemPostConfirmDialog';
 const MAX_NUM_OF_IMAGE = 9
 
 
-export default class ItemPost extends React.Component {
+class ItemPost extends React.Component {
 	constructor(props){
 		super(props);
 
@@ -38,8 +43,24 @@ export default class ItemPost extends React.Component {
 			imageStartIndex: 0,
 			isOverNumOfImage: false,
 			showConfirmDialog: false,
+			me: {
+				name: " ",
+			}
+		}	
+	}
+
+	componentWillMount() {
+		this.setMyData();
+	}
+
+	setMyData = async () => {
+		if(Object.keys(this.props.store.me).length==0) {
+			const response =  await this.props.fetchMyData();
+			console.log('response', response);
+			this.setState({me: response})
 		}
 	}
+	
 
 	deleteImage = (index) => {
 		let { images } = this.state;
@@ -102,11 +123,14 @@ export default class ItemPost extends React.Component {
 
 	// 画像が選択されていたら、確認ダイアログを表示する
 	handleConfirm = () => {
-		if(this.state.images.length > 0) {
-			this.setState({showConfirmDialog: true})
-		} else {
-			alert("画像を1枚以上選択してください");
-		}
+		var token = localStorage.getItem("token");
+		console.log('token', token)
+
+		// if(this.state.images.length > 0) {
+		// 	this.setState({showConfirmDialog: true})
+		// } else {
+		// 	alert("画像を1枚以上選択してください");
+		// }
 	}
 
 	// 画像を選択
@@ -151,6 +175,21 @@ export default class ItemPost extends React.Component {
 		const response = await axios.post('http://localhost:8000/api/v1/items/', postData);
 	}
 
+	// confirm = (obj, key) => {
+	// 	if(obj.hasOwnProperty(key)) {
+	// 		return obj.key;
+	// 	}
+	// 	else {
+	// 		return "";
+	// 	}
+	// }
+	renderDate = (date) => {
+		const year  = date.getFullYear();
+		const month = date.getMonth() + 1;
+		const day   = date.getDate();
+		const week = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
+		return `${year} / ${month} / ${day} (${week})`;
+	}
 
 
 	render() {
@@ -169,10 +208,11 @@ export default class ItemPost extends React.Component {
 					</Link>
 					<Card className="item-post-card">
 						<CardHeader
-							avatar={<Avatar aria-label="recipe" className="">R</Avatar>}
+							avatar={<Avatar aria-label="recipe" className="">{this.state.me.name[0]}</Avatar>}
 							action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
-							title="Shrimp and Chorizo Paella"
-							subheader="September 14, 2016"
+							title={this.state.me.name}
+							// subheader="September 14, 2016"
+							subheader={this.renderDate(new Date())}
 						/>
 						<CardMedia
 							className=""
@@ -292,6 +332,15 @@ export default class ItemPost extends React.Component {
 		);
 	}
 }
+
+
+const mapStateProps = (store) => {
+	return { store: store };
+}
+
+export default connect( mapStateProps, { fetchMyData })(ItemPost);
+
+
 
 
 export class ItemPostCard extends React.Component {

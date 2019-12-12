@@ -1,14 +1,25 @@
 import React from 'react';
 import './style.scss';
 
-import { Button, Card, Container, Col, Form, Row,
+import {
+	Button,
+	Card,
+	Container,
+	Col,
+	Form,
+	Row,
 	ListGroup,
  } from 'react-bootstrap';
+
+import { connect } from 'react-redux';
+import { fetchMyData } from '../../../redux/actions/user';
+
 import { Link } from 'react-router-dom';
 
 import logo from '../../../images/logo.png';
 
-export default class MainSearch extends React.Component {
+
+class Top extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -18,7 +29,14 @@ export default class MainSearch extends React.Component {
 			showMoneyMenu: false,
 			showPlaceMenu: false,
 		}
+
+		console.log(this.props.store.me);
+		if(Object.keys(this.props.store.me).length==0) {
+			// me が空の時はサーバーからデータを取得する
+			this.props.fetchMyData();
+		}
 	}
+
 
 	handleItemMenu = () => {
 		let { showItemMenu } = this.state;
@@ -107,7 +125,6 @@ export default class MainSearch extends React.Component {
 
 	renderItemMenu = (show) => {
 		if(show){
-			console.log('return')
 			return(
 				<Card className="main-search-item-menu-card">
 					<ListGroup variant="flush">
@@ -238,3 +255,12 @@ export default class MainSearch extends React.Component {
 		);
 	}
 }
+
+
+
+const mapStateProps = (store) => {
+	return { store: store };
+}
+
+
+export default connect( mapStateProps, { fetchMyData })(Top);

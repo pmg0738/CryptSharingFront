@@ -37,7 +37,10 @@ const useStyles = makeStyles({
 
 const logout = (props) => {
 
-	props.history.push('/login');
+	// props.history.push('/login');
+	localStorage.removeItem("token");
+	const token = localStorage.getItem("token");
+	console.log("TOKEN", token);
 	// write here
 }
 
