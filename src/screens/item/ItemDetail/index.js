@@ -292,7 +292,11 @@ renderStar = (valueOfPostUser) =>{
 								InputProps={{reaOnly:true}}
 								style={{backgroundColor:"white", width:"500px"}}
 							/>
-							<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>リクエスト画面に進む</Button>
+							<Link to='/request'>
+								<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>
+									リクエスト画面に進む
+								</Button>
+							</Link>
 						</Grid>
 					</Grid>
 				</div>

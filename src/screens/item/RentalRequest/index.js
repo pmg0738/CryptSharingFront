@@ -1,14 +1,23 @@
 import React from 'react';
 import './style.scss';
-import { 
-	Button,
-	Card,
-	Container,
-	Col,
-	Image,
-	Row,
-	Form,
-} from 'react-bootstrap';
+
+import Grid from '@material-ui/core/Grid';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import StarIcon from '@material-ui/icons/Star';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import Avatar from '@material-ui/core/Avatar';
+import { green, red, blue } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
+import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -24,62 +33,9 @@ export default class Request extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<Container>
-					<Row>
-						<Col sm={12} md={6} className="left">
-							<Image className="request-image" src={eroi}/>
-							<div className="request-posted-person">出品者：Park</div>
-							<div className="request-posted-person-value">★★★★★</div>
-							<div className="request-item-brand-name">ブランド名：Nike</div>
-							<div className="request-item-price">購入金額: 4万</div>
-						</Col>
-						<Col sm={12} md={6} className="right">
-							<Form>
-								<p className="request-item-use-period">
-									使用時間：<input type="text" name="num" size="5"/>
-											<select name="time" className="request-use-time">
-												<option value="hour">時間</option>
-												<option value="day">日</option>
-											</select>
-								</p>
-								<p className="request-item-price">
-									金額：<input type="text" name="money" size="20"/>円
-								</p> 
-								<p className="request-item-preferred-date">
-									希望日：<select name="month">
-												<option value="1">1月</option>
-												<option value="2">2月</option>
-												<option value="3">3月</option>
-												<option value="4">4月</option>
-												<option value="5">5月</option>
-												<option value="6">6月</option>
-												<option value="7">7月</option>
-												<option value="8">8月</option>
-												<option value="9">9月</option>
-												<option value="10">10月</option>
-												<option value="11">11月</option>
-												<option value="12">12月</option>
-										</select>
-										<input type="text" className="request-item-preferred-date-text" size="3"></input>日
-								</p>
-								<p className="request-item-deliver-place">
-									受け渡し場所：<input type="text" name="place" size="30"/>
-								</p>
-								<div className="item-post-form-label">コメント</div>
-									<textarea
-										className="item-post-item-detail-textarea"
-										type="text"
-										placeholder='メッセージを記入してください'
-									/>
-							</Form>
-							<Button variant="warning" className="request-request-button">
-								リクエストを送る
-							</Button>
-						</Col>
-					</Row>
-				</Container>
-			</div>
+			<Grid>
+				<div style={{color:"white", fontSize:"200px", textAlign:"center"}}>ASAP GOLANG</div>
+			</Grid>
 		)
 	}
 }
