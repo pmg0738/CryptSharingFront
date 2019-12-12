@@ -26,6 +26,7 @@ class ItemListComponent extends React.Component {
     }   
     componentWillMount(){
         if(this.props.items.length <= 1){
+            console.log('aaaaaaa',this.props.items);
             console.log("@".repeat(100));
             this.props.fetchItems();
         }

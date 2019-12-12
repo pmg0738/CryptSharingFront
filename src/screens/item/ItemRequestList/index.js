@@ -44,6 +44,11 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { TextField, Button } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinStars, faHourglassStart, faYenSign, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
@@ -82,6 +87,7 @@ export default class ItemRequestList extends React.Component{
                    <RequestListCard/>
                    <RequestListCard/>
                 </Grid>
+                <RequestAddButton/>
             </Grid>
         );
     }
@@ -98,6 +104,26 @@ const styles = {
     postaddIcon:{
         width:"50px",
         height:"50px",
+    },
+    requestAddButton:{
+        position:"fixed",
+        bottom:"10px",
+        right:"30px",
+        backgroundColor:"#ea4335",
+        borderColor:"#ea4335",
+        borderRadius:"60px",
+        height:"120px",
+        width:"120px",
+    },
+    requestAddButtonLabel:{
+        fontSize:"18px",
+        fontWeight:"900",
+        color:"white",
+    },
+    requestAddButtonIcon:{
+        marginLeft:"36px",
+        fontSize:"33px",
+        color:"white",
     }
 }
 
@@ -123,7 +149,7 @@ class RequestListCard extends React.Component{
                             </Grid>
                             <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px"}}>
                                 <FontAwesomeIcon icon={faGrinStars} style={{fontSize:"30px"}}/>
-                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>たこ焼き機</div>
+                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>パンツ</div>
                             </Grid>
                             <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px", marginBottom:"20px"}}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} style={{fontSize:"30px"}}/>
@@ -143,7 +169,7 @@ class RequestListCard extends React.Component{
                         </Grid>
                     </Grid>
                     <Grid style={{marginLeft:"100px"}}>
-                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>12/25に友達とタコパしたい！誰か貸してください！！。。</div>
+                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>パンツがないです。。ノーパンは嫌なので、誰か貸してください</div>
                     </Grid>
                     <Grid container justify="flex-end">
                         <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", height:"50px", fontWeight:"600", fontSize:"20px", marginRight:"10px", marginBottom:"10px"}}>交渉する！</Button>
@@ -214,7 +240,7 @@ class SearchBar extends React.Component{
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography style={{fontSize:"20px", fontWeight:"900"}}>貸せるものある？</Typography>
+                        <Typography style={{fontSize:"20px", fontWeight:"900"}}>貸せるものあるかな？？</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Grid container direction="column">
@@ -269,6 +295,122 @@ class SearchBar extends React.Component{
           )
     }
 }
+
+
+
+function RequestAddButton() {
+    const [open, setOpen] = React.useState(true);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    return (
+      <div>
+        <Button 
+            style={styles.requestAddButton}
+            onClick={handleClickOpen}
+        >
+            <Grid container direction="column">
+                <p style={styles.requestAddButtonLabel}>リクエスト</p>
+                <FontAwesomeIcon icon={faGrinStars} style={styles.requestAddButtonIcon}/>
+            </Grid>
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle style={{textAlign:"center", fontWeight:"900"}}>借りたいものを投稿してみよ！</DialogTitle>
+            <DialogContent>
+            <Grid container direction="column" justfiy="center" alignItems="center" style={{width:"500px"}}>
+                    <TextField
+                        style={{marginBottom:"30px"}}
+                        InputProps={{
+                            startAdornment :(
+                                <InputAdornment position="start">
+                                    <FontAwesomeIcon icon={faGrinStars} style={{width:"30px", height:"30px"}}/>
+                                </InputAdornment>
+                            ),
+                        }}
+                        variant="standard" 
+                        placeholder="借りたいもの"
+                    />
+                    <TextField
+                        style={{marginBottom:"30px"}}
+                        InputProps={{
+                            startAdornment :(
+                                <InputAdornment position="start">
+                                    <FontAwesomeIcon icon={faMapMarkerAlt} style={{width:"30px", height:"30px"}}/>
+                                </InputAdornment>
+                            ),
+                        }}
+                        variant="standard" 
+                        placeholder="位置情報"
+                    />
+                    <RadioGroup row style={{marginBottom:"30px"}}>
+                        <FormControlLabel
+                            value="onehour"
+                            control={<Radio color="primary" />}
+                            label="1時間"
+                            labelPlacement="start"
+                        />
+                        <FormControlLabel
+                            value="oneday"
+                            control={<Radio color="primary"/>}
+                            label="1日"
+                            labelPlacement="start"
+                        />
+                        <FormControlLabel
+                            value="oneweek"
+                            control={<Radio color="primary"/>}
+                            label="1週間"
+                            labelPlacement="start"
+                        />
+                    </RadioGroup>
+                    <Input
+                        style={{width:"150px", marginBottom:"30px"}}
+                        // onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faHourglassStart} style={{width:"30px", height:"30px"}}/></InputAdornment>}
+                        endAdornment={<InputAdornment position="end">時間</InputAdornment>}
+                        labelWidth={60}
+                    />
+                    <Input
+                        style={{width:"150px", marginBottom:"30px"}}
+                        // onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faYenSign} style={{width:"30px", height:"30px"}}/></InputAdornment>}
+                        endAdornment={<InputAdornment position="end">/1時間</InputAdornment>}
+                        labelWidth={60}
+                    />
+                    <TextField
+                        style={{width:"400px"}}
+                        label="コメント"
+                        multiline
+                        rows="4"
+                        variant="outlined"
+                        rowsMax="4"
+                    />
+                    <DialogActions>
+                        <Button 
+                            onClick={handleClose}
+                            style={{
+                                backgroundColor:"#ea4335",
+                                borderColor:"#ea4335",
+                                color:"white", 
+                                height:"50px",
+                                width:"250px",
+                                fontWeight:"600",
+                                fontSize:"20px"}}
+                        >リクェる！
+                        </Button>
+                    </DialogActions>
+                </Grid>
+            </DialogContent>
+        </Dialog>
+      </div>
+    );
+  }
+
 
 
 
