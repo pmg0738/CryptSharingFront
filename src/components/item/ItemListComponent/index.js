@@ -2,35 +2,44 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchItems } from '../../../redux/actions';
 import { Link } from 'react-router-dom';
-
-// Material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-
 import './style.scss';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
-
+import { makeStyles } from '@material-ui/core/styles';
+// Material UI Component
+import Button from '@material-ui/core/Button';
+import TreeView from '@material-ui/lab/TreeView';
+import TreeItem from '@material-ui/lab/TreeItem';
+// Material UI Layout
+import Grid from '@material-ui/core/Grid';
+// Material UI Icon
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+// My Component
 import Pagination from '../../../components/common/Pagination';
 import Item from '../ItemCard';
+
+
 
 
 class ItemListComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: []
-		}
-	}
-	componentWillMount(){
-		if(this.props.items.length <= 1){
-			console.log("@".repeat(100));
-			this.props.fetchItems();
+			items: [],
+			searchWords: "",
 		}
 	}
 
+	componentWillMount(){
+		if(this.props.items.length <= 1){
+			var searchWords = localStorage.getItem("search");
+			console.log("*".repeat(100))
+			console.log(searchWords)
+			this.setState({　searchWords: searchWords })
+			this.props.fetchItems(searchWords ? searchWords : "");
+		}
+	}
 
 	renderItems = () =>{
 		console.log(this.props.items);
@@ -49,10 +58,22 @@ class ItemListComponent extends React.Component {
 	}
 
 	render() {
-		
-		
 		return (
 			<Grid container>
+				<TreeView
+					defaultCollapseIcon={<ExpandMoreIcon />}
+					defaultExpandIcon={<ChevronRightIcon />}
+					style={{color: "#ffffff"}}
+				>
+					<TreeItem nodeId="5" label={this.state.searchWords}>
+						<TreeItem nodeId="6" label="Material-UI">
+						{/* <TreeItem nodeId="7" label="src">
+							<TreeItem nodeId="8" label="index.js" />
+							<TreeItem nodeId="9" label="tree-view.js" />
+						</TreeItem> */}
+						</TreeItem>
+					</TreeItem>
+				</TreeView>
 				{this.renderItems()}
 				 <Link to='/items/new/post'>
 					<ItemPostButton/>
@@ -87,14 +108,19 @@ const ItemPostButton = () => {
 
 	return(
 		<Button className={classes.root}>
-			<p className="item-list-add-button-label">出品する</p>
-			<FontAwesomeIcon className="item-list-add-button-camera-icon" icon={faCamera}/>
+			<Grid direction="row">
+				<p className="item-list-add-button-label">出品する</p>
+				<AddAPhotoIcon style={{fontSize: 45, marginTop: -10}}/>
+			</Grid>
 		</Button>
 	);
 }
 
-const mapStateProps = (state) => {
-	return { items: state.items };
+const mapStateProps = (store) => {
+	return {
+		items: store.items,
+		searchWords: store.searchWords,
+	};
 }
 
 export default connect( mapStateProps, { fetchItems })(ItemListComponent);

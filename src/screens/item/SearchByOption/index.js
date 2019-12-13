@@ -21,6 +21,9 @@ export default class ItemFilterAndList extends React.Component {
 			priceValue: {min:0, max:3500},
 			distance: {min:0, max:30},
 		}
+		console.log('='.repeat(20))
+		console.log(this.props.location.search);
+		console.log(this.props);
 	}
 
 	render() {

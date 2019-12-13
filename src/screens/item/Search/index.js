@@ -11,6 +11,12 @@ import {
 	ListGroup,
  } from 'react-bootstrap';
 
+ // Material UI
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
 
@@ -28,6 +34,8 @@ class Top extends React.Component {
 			showHumanMenu: false,
 			showMoneyMenu: false,
 			showPlaceMenu: false,
+			searchWords: "",
+			searching: false,
 		}
 
 		console.log(this.props.store.me);
@@ -203,54 +211,89 @@ class Top extends React.Component {
 		}
 	}
 
+	search = () => {
+		// 検索ワードを保存し、アイテムリストに遷移
+		if(this.state.searchWords!="") {
+			this.setState({ searching: true });
+			localStorage.setItem('search', this.state.searchWords);
+			setTimeout(() => {
+				this.setState({ searching: false });
+				this.props.history.push('/items');
+			}, 2000)
+		}
+	}
+
+	searchButtonClassName = () => {
+		return this.state.searchWords=="" ? "search-button-deactive":"search-button-active";
+	}
+
 
 	render() {
 		return (
-			// <div>
 				<Container className="main-search-container">
-					<Card className="main-search-card">
+					<div className="main-search-card">
 						<img src={logo} className="main-search-logo-image"/>
 						<Form>
 							<Row className="main-search-form-row">
 								<Form.Group controlId="formBasicEmail">
-									<Form.Control className="main-search-search-form" type="text" placeholder="Search" />
+									<Form.Control
+										className="main-search-search-form"
+										type="text"
+										placeholder="Search"
+										value={this.state.searchWords}
+										onChange={(e) => this.setState({searchWords: e.target.value})}
+									/>
 								</Form.Group>
+								<Button className={this.searchButtonClassName()}
+									onClick={this.search}>検索</Button>
 							</Row>
 						</Form>
 							<Link to='/filter'>
 								<p className="main-search-category-search-button">絞り込みで探す</p>
 							</Link>
-								<Row className="main-search-category-button-row">
+								{/* <Row className="main-search-category-button-row">
 									<Col>
 										<Button className="main-search-category-button-red"
 											onClick={this.handleItemMenu}
 										>+</Button>
-										{/* {this.renderItemMenu(true)} */}
 										{this.renderItemMenu(this.state.showItemMenu)}
 									</Col>
 									<Col>
 										<Button className="main-search-category-button-blue"
 											onClick={this.handleHumanMenu}
 										>+</Button>
-										{/* {this.renderHumanMenu(true)} */}
 										{this.renderHumanMenu(this.state.showHumanMenu)}
 									</Col>
 									<Col>
 										<Button className="main-search-category-button-yellow"
 											onClick={this.handleMoneyMenu}
 										>+</Button>
-										{/* {this.renderMoneyMenu(true)} */}
 										{this.renderMoneyMenu(this.state.showMoneyMenu)}
 									</Col>
 									<Col>
 										<Button className="main-search-category-button-green"
 											onClick={this.handlePlaceMenu}
 										>+</Button>
-										{/* {this.renderPlaceMenu(true)} */}
 										{this.renderPlaceMenu(this.state.showPlaceMenu)}
 									</Col>
-								</Row>
-					</Card>
+								</Row> */}
+					</div>
+					<Dialog
+						open={this.state.searching}
+						// onClose={handleClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title">検索中</DialogTitle>
+						<DialogContent>
+							<CircularProgress
+								variant="indeterminate"
+								disableShrink
+								// className={classes.bottom}
+								thickness={4}
+							/>
+						</DialogContent>
+				</Dialog>
 				</Container>
 		);
 	}
