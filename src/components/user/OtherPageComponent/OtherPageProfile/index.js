@@ -1,18 +1,15 @@
 import React from 'react';
-import './style.scss';
 import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import eraiza from '../../../../images/eraiza.png';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
-import { fontSize, border, borderColor } from '@material-ui/system';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { borders } from '@material-ui/system';
+import Button from '@material-ui/core/Button';
 
-export default class MyPage extends React.Component {
+export default class OtherPage extends React.Component {
 
 	renderStar = (valueOfPostUser) =>{
 
@@ -41,38 +38,53 @@ export default class MyPage extends React.Component {
 		return starArray;
 	}
 
+	renderFollow = () =>{
+
+	}
+
+
+
+	
+	
+	
+	
 	render() {
 		return (
 			<div>
-				<Container maxWidth="lg" style={styles.mypageContainer}>
+				<Container maxWidth="lg" style={styles.otherPageContainer}>
 					<Grid container direction="row">
 						<Grid container sm={12} md={4} >
-							<Grid container direction="row" style={styles.avatar} justify="center">
-								<Avatar style={styles.eraiza} src={this.props.avatar} />
+							<Grid container direction="row"  justify="center">
+								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
-							<Grid container direction="row" style={styles.mypageStar} justify="center">
+							<Grid container direction="row" style={styles.otherPageStar} justify="center">
 								{this.renderStar(this.props.star)}
 							</Grid>
 							
 						</Grid>
 						<Grid sm={12} md={8} direction="column" style={styles.profile}>
-							<Grid container direction="row" justify="space-between">
-								<Grid style={styles.mypageName}>
+							<Grid container direction="row" justify="flex-start">
+								<Grid style={styles.otherPageName}>
 									{this.props.name}
 								</Grid>
+                                <Grid style={styles.followButton}>
+                                    <Button variant="outlined" color="primary">
+                                        フォローする
+                                    </Button>
+                                </Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
-								<Grid style={styles.mypagePostNum}>
+								<Grid style={styles.otherPagePostNum}>
                                     投稿：{this.props.postNum} 件  
 								</Grid>
-								<Grid style={styles.mypageFollower}>
+								<Grid style={styles.otherPageFollower}>
 									フォロワー：{this.props.follower}人
 								</Grid>
-								<Grid style={styles.mypageFollow}>
+								<Grid style={styles.otherPageFollow}>
 									フォロー：{this.props.follow}人
 								</Grid>
 							</Grid>
-							<Grid container direction="row" justify="flex-start" style={styles.mypageSelfIntroduce}>
+							<Grid container direction="row" justify="flex-start" style={styles.otherPageSelfIntroduce}>
                                 {this.props.comments}
 							</Grid>
 						</Grid>
@@ -87,17 +99,17 @@ export default class MyPage extends React.Component {
 
 
 const styles = {
-	mypageContainer:{
+	otherPageContainer:{
         color:'white'
     },
 
-	eraiza:{
+	avatar:{
 		marginTop:'20px',
 		width:'150px',
 		height:'150px'
 	},
 
-	mypageStar:{
+	otherPageStar:{
 		marginTop:'20px'
 	},
 
@@ -105,33 +117,39 @@ const styles = {
 	
 	},
 
-	mypageName:{
+	otherPageName:{
 		// color:'black',
 		fontSize:'50px'
-	},
+    },
+    
+    followButton:{
+		marginTop:'25px',
+		marginLeft:'20px',
+		
+    },
 
 
-	mypagePostNum:{
+	otherPagePostNum:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
 		marginRight:'20px'
 	},
 
-	mypageFollower:{
+	otherPageFollower:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
 		marginRight:'20px'
 	},
 
-	mypageFollow:{
+	otherPageFollow:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
 	},
 
-	mypageSelfIntroduce:{
+	otherPageSelfIntroduce:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
