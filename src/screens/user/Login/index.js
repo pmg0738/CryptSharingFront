@@ -63,8 +63,9 @@ const login = async (email, password, props, done) => {
 		// トークンをcookieまたはストアに保存
 		localStorage.setItem('token', token);
 		// ホーム画面に移動
-		props.history.push('/');
 		done();
+
+		props.history.push('/');
 	}
 }
 
@@ -113,19 +114,22 @@ export default function Login(props) {
 								variant="outlined"
 								style={styles.textField}
 							/>
-							<Button className={classes.root}
-								onClick={() => {
-									setLoading(true);
-									login(email, password, props, () => setLoading(false))
-								}}
-							>
-								L O G I N</Button>
+							
 							<Link to='/signup'>
 								<p className="login-sign-up-button">新規登録はこちら</p>
 							</Link>
 						</div>
 					</div>
 				</Card>
+				<Button 
+								style={styles.loginButton}
+								// className={classes.root}
+								onClick={() => {
+									setLoading(true);
+									login(email, password, props, () => setLoading(false))
+								}}
+							>
+								L O G I N</Button>
 			</Container>
 				<Dialog
 					open={loading}
@@ -162,5 +166,14 @@ const styles = {
 		backgroundColor: "#ffffff",
 		marginTop: 20,
 		width: "100%",
+	},
+	loginButton:{
+		position:"fixed",
+		bottom:"100px",
+		right:"100px",
+		width:"300px",
+		height:"200px",
+		backgroundColor:"yellow",
+		color:"blue",
 	}
 }
