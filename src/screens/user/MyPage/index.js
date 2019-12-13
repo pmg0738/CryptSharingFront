@@ -18,6 +18,8 @@ import MyPageFavorite from '../../../components/user/MyPageComponents/MyPageFavo
 import MyPagePosted from '../../../components/user/MyPageComponents/MyPagePosted';
 import MyPageRentNow from '../../../components/user/MyPageComponents/MyPageRentNow';
 import MyPageUsedHistory from '../../../components/user/MyPageComponents/MyPageUsedHistory';
+import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
+import OtherPageProfile from '../../../components/user/OtherPageComponent/OtherPageProfile';
 // ??
 import logo from '../../../images/logo.png';
 
@@ -43,6 +45,15 @@ class Mypage extends React.Component {
 				<Grid container direction="row" justify="flex-end">
 					<SettingsIcon style={styles.mypageSetting} />
 				</Grid>
+				<OtherPageProfile
+					avatar={eraiza}
+					star="3.5"
+					name="Bitch"
+					postNum="1,235"
+					follower="995"
+					follow="857"
+					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
+				/>
 				<MypageProfile
 					avatar={eraiza}
 					evaluation="3.5"
@@ -77,7 +88,7 @@ class Mypage extends React.Component {
 						</Tab> 
 						</Tabs>
 						</Container>
-				</Grid>					
+				</Grid>
 			</Grid>
 		)
 	}

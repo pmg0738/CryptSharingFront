@@ -1,23 +1,22 @@
 import React from 'react';
-import './style.scss';
 import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import eraiza from '../../../../images/eraiza.png';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
-import { fontSize, border, borderColor } from '@material-ui/system';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { borders } from '@material-ui/system';
+import Button from '@material-ui/core/Button';
 
-export default class MyPage extends React.Component {
+export default class OtherPage extends React.Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
-
+			follow:false,
+			followButtonLabel:'フォローする',
+			// followButtonColor:''
 		}
 	}
 
@@ -48,41 +47,59 @@ export default class MyPage extends React.Component {
 		return starArray;
 	}
 
+	handleFollowButton = () =>{
+		if (this.state.follow == true) {
+			this.setState({followButtonLabel:'フォローする'});
+			this.setState({follow:false});
+		}else {
+			this.setState({followButtonLabel:'フォロー中'});
+			this.setState({followButtonColor:'primary'})
+			this.setState({follow:true});
+		} 
+		console.log('asdfklasdjflkjasdflkasdf');
+		console.log('@@@@@@@@', this.state.follow);
+	}
 	render() {
 		return (
 			<div>
-				<Container maxWidth="lg" style={styles.mypageContainer}>
+				<Container maxWidth="lg" style={styles.otherPageContainer}>
 					<Grid container direction="row">
 						<Grid container sm={12} md={4} >
-							<Grid container direction="row" justify="center">
+							<Grid container direction="row"  justify="center">
 								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
-							<Grid container direction="row" style={styles.mypageStar} justify="center">
-								{this.renderStar(this.props.evaluation)}
-								<p style={styles.starValue}>({this.props.evaluation})</p>
+							<Grid container direction="row" style={styles.otherPageStar} justify="center">
+								{this.renderStar(this.props.star)}
 							</Grid>
+							
 						</Grid>
 						<Grid sm={12} md={8} direction="column" style={styles.profile}>
-							<Grid container direction="row" justify="space-between">
-								<Grid style={styles.mypageName}>
+							<Grid container direction="row" justify="flex-start">
+								<Grid style={styles.otherPageName}>
 									{this.props.name}
 								</Grid>
+                                <Grid style={styles.followButton}>
+                                    <Button onClick={this.handleFollowButton} variant='contained' color={this.state.followButtonColor}>
+                                        {this.state.followButtonLabel}
+                                    </Button>
+                                </Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
-								<Grid style={styles.mypageFollower}>
+								<Grid style={styles.otherPagePostNum}>
+                                    投稿：{this.props.postNum} 件  
+								</Grid>
+								<Grid style={styles.otherPageFollower}>
 									フォロワー：{this.props.follower}人
 								</Grid>
-								<Grid style={styles.mypageFollow}>
+								<Grid style={styles.otherPageFollow}>
 									フォロー：{this.props.follow}人
 								</Grid>
 							</Grid>
-							<Grid style={styles.mypagePostNum}>
-								投稿：{this.props.postNum} 件
-							</Grid>
-							<Grid container direction="row" justify="flex-start" style={styles.mypageSelfIntroduce}>
-								{this.props.comments}
+							<Grid container direction="row" justify="flex-start" style={styles.otherPageSelfIntroduce}>
+                                {this.props.comments}
 							</Grid>
 						</Grid>
+
 					</Grid>
 				</Container>
 			</div>
@@ -93,45 +110,61 @@ export default class MyPage extends React.Component {
 
 
 const styles = {
+	otherPageContainer:{
+        color:'white'
+    },
+
 	avatar:{
+		marginTop:'20px',
 		width:'150px',
 		height:'150px'
 	},
-	mypageContainer:{
-		color:'white'
-	},
-	mypageFollower:{
-		marginTop:'20px',
-		// color:'black',
-		fontSize:'20px',
-		marginRight:'20px'
-	},
-	mypageFollow:{
-		marginTop:'20px',
-		fontSize:'20px',
-	},
-	mypageName:{
-		fontSize:'42px',
-		fontWeight: 'bold',
-	},
-	mypagePostNum:{
-		marginTop:'20px',
-		// color:'black',
-		fontSize:'20px',
-		marginRight:'20px'
-	},
-	mypageStar:{
+
+	otherPageStar:{
 		marginTop:'20px'
 	},
-	mypageSelfIntroduce:{
+
+	profile:{
+	
+	},
+
+	otherPageName:{
+		// color:'black',
+		fontSize:'50px'
+    },
+    
+    followButton:{
+		marginTop:'25px',
+		marginLeft:'20px',
+		
+    },
+
+
+	otherPagePostNum:{
 		marginTop:'20px',
-		color:'#cccccc',
+		// color:'black',
+		fontSize:'20px',
+		marginRight:'20px'
+	},
+
+	otherPageFollower:{
+		marginTop:'20px',
+		// color:'black',
+		fontSize:'20px',
+		marginRight:'20px'
+	},
+
+	otherPageFollow:{
+		marginTop:'20px',
+		// color:'black',
+		fontSize:'20px',
+	},
+
+	otherPageSelfIntroduce:{
+		marginTop:'20px',
+		// color:'black',
 		fontSize:'20px',
 		marginBottom:'20px'
-	},
-	starValue: {
-		fontSize: '20px',
-		marginTop: '10px',
 	}
 
 }
