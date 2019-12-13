@@ -37,7 +37,7 @@ class ItemListComponent extends React.Component {
 		return Object.keys(this.props.items).map(itemId => {
 			const item = this.props.items[itemId]
 			return(
-				<Grid sm={12} md={6} lg={4} key={itemId}>
+				<Grid xs={12} sm={6} md={4} lg={3} key={itemId}>
 					<Item
 						to={'/items/' + itemId}
 						image={item.images[0].url}
@@ -62,6 +62,7 @@ class ItemListComponent extends React.Component {
 		);
 	}
 }
+
 const useStyles = makeStyles({
 	root: {
 		background: 'linear-gradient(45deg, #886Dff 30%, #4285F4 90%)',
