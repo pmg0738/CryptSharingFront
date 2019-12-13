@@ -9,7 +9,6 @@ import eraiza from '../../../images/eraiza.png';
 import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
 import { Grid } from '@material-ui/core';
 import { Button, Card, Container, Col, Form, Row,ListGroup, Tabs, Tab,} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 // ???????
@@ -46,7 +45,7 @@ class Mypage extends React.Component {
 				</Grid>
 				<MypageProfile
 					avatar={eraiza}
-					star="3.5"
+					evaluation="3.5"
 					name="eraiza_ikd"
 					postNum="1,235"
 					follower="995"

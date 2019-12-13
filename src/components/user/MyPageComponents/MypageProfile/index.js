@@ -47,13 +47,13 @@ export default class Mypage extends React.Component {
 				<Container maxWidth="lg" style={styles.mypageContainer}>
 					<Grid container direction="row">
 						<Grid container sm={12} md={4} >
-							<Grid container direction="row" style={styles.avatar} justify="center">
-								<Avatar style={styles.eraiza} src={this.props.avatar} />
+							<Grid container direction="row" justify="center">
+								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
 							<Grid container direction="row" style={styles.mypageStar} justify="center">
-								{this.renderStar(this.props.star)}
+								{this.renderStar(this.props.evaluation)}
+								<p style={styles.starValue}>({this.props.evaluation})</p>
 							</Grid>
-							
 						</Grid>
 						<Grid sm={12} md={8} direction="column" style={styles.profile}>
 							<Grid container direction="row" justify="space-between">
@@ -62,9 +62,6 @@ export default class Mypage extends React.Component {
 								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
-								<Grid style={styles.mypagePostNum}>
-                                    投稿：{this.props.postNum} 件  
-								</Grid>
 								<Grid style={styles.mypageFollower}>
 									フォロワー：{this.props.follower}人
 								</Grid>
@@ -72,11 +69,13 @@ export default class Mypage extends React.Component {
 									フォロー：{this.props.follow}人
 								</Grid>
 							</Grid>
+							<Grid style={styles.mypagePostNum}>
+								投稿：{this.props.postNum} 件
+							</Grid>
 							<Grid container direction="row" justify="flex-start" style={styles.mypageSelfIntroduce}>
-                                {this.props.comments}
+								{this.props.comments}
 							</Grid>
 						</Grid>
-
 					</Grid>
 				</Container>
 			</div>
@@ -87,55 +86,45 @@ export default class Mypage extends React.Component {
 
 
 const styles = {
-	mypageContainer:{
-        color:'white'
-    },
-
-	eraiza:{
-		marginTop:'20px',
+	avatar:{
 		width:'150px',
 		height:'150px'
 	},
-
-	mypageStar:{
-		marginTop:'20px'
+	mypageContainer:{
+		color:'white'
 	},
-
-	profile:{
-	
-	},
-
-	mypageName:{
-		// color:'black',
-		fontSize:'50px'
-	},
-
-
-	mypagePostNum:{
-		marginTop:'20px',
-		// color:'black',
-		fontSize:'20px',
-		marginRight:'20px'
-	},
-
 	mypageFollower:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
 		marginRight:'20px'
 	},
-
 	mypageFollow:{
 		marginTop:'20px',
-		// color:'black',
 		fontSize:'20px',
 	},
-
-	mypageSelfIntroduce:{
+	mypageName:{
+		fontSize:'42px',
+		fontWeight: 'bold',
+	},
+	mypagePostNum:{
 		marginTop:'20px',
 		// color:'black',
 		fontSize:'20px',
+		marginRight:'20px'
+	},
+	mypageStar:{
+		marginTop:'20px'
+	},
+	mypageSelfIntroduce:{
+		marginTop:'20px',
+		color:'#cccccc',
+		fontSize:'20px',
 		marginBottom:'20px'
+	},
+	starValue: {
+		fontSize: '20px',
+		marginTop: '10px',
 	}
 
 }
