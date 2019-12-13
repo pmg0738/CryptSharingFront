@@ -6,7 +6,6 @@ import { fetchMyData } from '../../../redux/actions/user';
 
 import eraiza from '../../../images/eraiza.png';
 
-import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
 import { Grid } from '@material-ui/core';
 import { Button, Card, Container, Col, Form, Row,ListGroup, Tabs, Tab,} from 'react-bootstrap';
 import SettingsIcon from '@material-ui/icons/Settings';
