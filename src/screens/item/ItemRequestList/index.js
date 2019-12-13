@@ -70,9 +70,6 @@ export default class ItemRequestList extends React.Component{
     render() {
         return (
             <Grid container direction="column">
-                <Grid style={styles.search}>
-                   <SearchBar/>
-                </Grid>
                 <Grid style={styles.postList} alignItems="center">
                    <RequestListCard/>
                    <RequestListCard/>
@@ -88,6 +85,9 @@ export default class ItemRequestList extends React.Component{
                    <RequestListCard/>
                 </Grid>
                 <RequestAddButton/>
+                <Grid style={styles.search}>
+                   <SearchBar/>
+                </Grid>
             </Grid>
         );
     }
@@ -96,6 +96,8 @@ export default class ItemRequestList extends React.Component{
 const styles = {
     search:{
         backgroundColor:"white",
+        marginTop:"10px",
+        
     },
     postList:{
         // backgroundColor:"skyblue",
@@ -234,7 +236,7 @@ class SearchBar extends React.Component{
     render(){
         return (
             <div>
-                <ExpansionPanel>
+                <ExpansionPanel style={{position:"fixed", top:"80px", right:"10px", width:"100%"}}>
                     <ExpansionPanelSummary
                         expandIcon={<SearchIcon style={{color:"#ea4335"}}/>}
                         aria-controls="panel1a-content"
