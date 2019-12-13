@@ -13,6 +13,13 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { borders } from '@material-ui/system';
 
 export default class MyPage extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+
+		}
+	}
 
 	renderStar = (valueOfPostUser) =>{
 

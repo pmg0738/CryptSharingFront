@@ -10,6 +10,15 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Button from '@material-ui/core/Button';
 
 export default class OtherPage extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			follow:false,
+			followButtonLabel:'フォローする',
+			// followButtonColor:''
+		}
+	}
 
 	renderStar = (valueOfPostUser) =>{
 
@@ -38,16 +47,18 @@ export default class OtherPage extends React.Component {
 		return starArray;
 	}
 
-	renderFollow = () =>{
-
+	handleFollowButton = () =>{
+		if (this.state.follow == true) {
+			this.setState({followButtonLabel:'フォローする'});
+			this.setState({follow:false});
+		}else {
+			this.setState({followButtonLabel:'フォロー中'});
+			this.setState({followButtonColor:'primary'})
+			this.setState({follow:true});
+		} 
+		console.log('asdfklasdjflkjasdflkasdf');
+		console.log('@@@@@@@@', this.state.follow);
 	}
-
-
-
-	
-	
-	
-	
 	render() {
 		return (
 			<div>
@@ -68,8 +79,8 @@ export default class OtherPage extends React.Component {
 									{this.props.name}
 								</Grid>
                                 <Grid style={styles.followButton}>
-                                    <Button variant="outlined" color="primary">
-                                        フォローする
+                                    <Button onClick={this.handleFollowButton} variant='contained' color={this.state.followButtonColor}>
+                                        {this.state.followButtonLabel}
                                     </Button>
                                 </Grid>
 							</Grid>

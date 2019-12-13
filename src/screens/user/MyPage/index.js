@@ -24,6 +24,13 @@ import logo from '../../../images/logo.png';
 
 
 export default class Mypage extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			
+		}
+	}
 
 	render() {
 		return (
