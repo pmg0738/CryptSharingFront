@@ -44,12 +44,12 @@ export default class Item extends React.Component {
 	render() {
 		return (
 		 <Link to={this.props.to}>
-			<Card className="" style={{marginBottom: 30, position: "relative"}}>
+			<Card className="" style={{marginBottom: 30, position: "relative", marginLeft: 10, marginRight: 10}}>
 				<CardMedia
 					className=""
 					image={this.props.image}
 					title="Paella dish"
-					style={{width: "100%", height: 250}}
+					style={{ height: 250 }}
 				/>
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"

@@ -6,11 +6,11 @@ import Avatar from '@material-ui/core/Avatar';
 import eraiza from '../../../../images/eraiza.png';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
-import { fontSize } from '@material-ui/system';
+import { fontSize, border, borderColor } from '@material-ui/system';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import SettingsIcon from '@material-ui/icons/Settings';
+import { borders } from '@material-ui/system';
 
 export default class Mypage extends React.Component {
 
@@ -44,44 +44,38 @@ export default class Mypage extends React.Component {
 	render() {
 		return (
 			<div>
-				<Container maxWidth="lg" className="" style={styles.mypageContainer}>
+				<Container maxWidth="lg" style={styles.mypageContainer}>
 					<Grid container direction="row">
 						<Grid container sm={12} md={4} >
-							<Grid container direction="row" style={styles.avater} justify="center">
-								<Avatar style={styles.eraiza} src={eraiza} />
+							<Grid container direction="row" justify="center">
+								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
 							<Grid container direction="row" style={styles.mypageStar} justify="center">
-								{this.renderStar(2)}
+								{this.renderStar(this.props.evaluation)}
+								<p style={styles.starValue}>({this.props.evaluation})</p>
 							</Grid>
-							
 						</Grid>
 						<Grid sm={12} md={8} direction="column" style={styles.profile}>
 							<Grid container direction="row" justify="space-between">
 								<Grid style={styles.mypageName}>
 									{this.props.name}
 								</Grid>
-								<Grid>
-									<SettingsIcon style={styles.mypageSetting} />
-								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
-								<Grid style={styles.mypagePostNum}>
-									投稿：1,235件 
-								</Grid>
 								<Grid style={styles.mypageFollower}>
-									フォロワー：995K人
+									フォロワー：{this.props.follower}人
 								</Grid>
 								<Grid style={styles.mypageFollow}>
-									フォロー：857人
+									フォロー：{this.props.follow}人
 								</Grid>
 							</Grid>
+							<Grid style={styles.mypagePostNum}>
+								投稿：{this.props.postNum} 件
+							</Grid>
 							<Grid container direction="row" justify="flex-start" style={styles.mypageSelfIntroduce}>
-								my name is ELAIZA IKEDA.<br/>
-								my name is ELAIZA IKEDA.<br/>
-								my name is ELAIZA IKEDA.
+								{this.props.comments}
 							</Grid>
 						</Grid>
-
 					</Grid>
 				</Container>
 			</div>
@@ -91,67 +85,46 @@ export default class Mypage extends React.Component {
 }
 
 
-
-
-
-
 const styles = {
-	mypageContainer:{
-		backgroundColor:'white'
-	},
-
-	eraiza:{
-		marginTop:'20px',
+	avatar:{
 		width:'150px',
 		height:'150px'
 	},
-
+	mypageContainer:{
+		color:'white'
+	},
+	mypageFollower:{
+		marginTop:'20px',
+		// color:'black',
+		fontSize:'20px',
+		marginRight:'20px'
+	},
+	mypageFollow:{
+		marginTop:'20px',
+		fontSize:'20px',
+	},
+	mypageName:{
+		fontSize:'42px',
+		fontWeight: 'bold',
+	},
+	mypagePostNum:{
+		marginTop:'20px',
+		// color:'black',
+		fontSize:'20px',
+		marginRight:'20px'
+	},
 	mypageStar:{
 		marginTop:'20px'
 	},
-
-	profile:{
-	
-	},
-
-	mypageName:{
-		color:'black',
-		fontSize:'50px'
-	},
-
-	mypageSetting:{
-		marginRight:'20px',
-		marginTop:'20px',
-		width:'50px',
-		height:'50px',
-		color:'blue'
-	},
-
-	mypagePostNum:{
-		marginTop:'20px',
-		color:'black',
-		fontSize:'20px',
-		marginRight:'20px'
-	},
-
-	mypageFollower:{
-		marginTop:'20px',
-		color:'black',
-		fontSize:'20px',
-		marginRight:'20px'
-	},
-
-	mypageFollow:{
-		marginTop:'20px',
-		color:'black',
-		fontSize:'20px',
-	},
-
 	mypageSelfIntroduce:{
 		marginTop:'20px',
-		color:'black',
+		color:'#cccccc',
 		fontSize:'20px',
 		marginBottom:'20px'
+	},
+	starValue: {
+		fontSize: '20px',
+		marginTop: '10px',
 	}
 
 }
