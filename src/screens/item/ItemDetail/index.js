@@ -25,6 +25,8 @@ import TextField from '@material-ui/core/TextField';
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
 import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import UserProfile from '../../../components/user/UserProfileComponent';
+
 
 
 import cat from '../../../images/cup.jpg';
@@ -270,12 +272,22 @@ renderStar = (valueOfPostUser) =>{
 								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
 							</Grid>
 						</Grid>
-						<Grid sm={12} md={6} style={{backgroundColor:""}}>
+						<Grid container direction="column" sm={12} md={6} style={{backgroundColor:""}}>
 							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
-								<Avatar src={cat} style={{width:"45px", height:"45px"}}/>
+								<UserProfile
+									avatar={cat}
+									evaluation="4.5"
+									name="yushi_maeno"
+									prefecture="鹿児島県"
+								/>
+
+
+
+								{/* <Avatar src={cat} style={{width:"45px", height:"45px"}}/>
 								<div style={{fontSize:"20px", color:"white", margin:"7px"}}>upallnight0738</div>
-								{this.renderStar(2.5)}
+								{this.renderStar(2.5)} */}
 							</Grid>
+
 							<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
 							{this.renderFeeTable()}
 							

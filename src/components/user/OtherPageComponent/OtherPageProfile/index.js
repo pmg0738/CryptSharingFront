@@ -56,8 +56,7 @@ export default class OtherPage extends React.Component {
 			this.setState({followButtonColor:'primary'})
 			this.setState({follow:true});
 		} 
-		console.log('asdfklasdjflkjasdflkasdf');
-		console.log('@@@@@@@@', this.state.follow);
+
 	}
 	render() {
 		return (
@@ -69,7 +68,8 @@ export default class OtherPage extends React.Component {
 								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
 							<Grid container direction="row" style={styles.otherPageStar} justify="center">
-								{this.renderStar(this.props.star)}
+								{this.renderStar(this.props.evaluation)}
+								<p style={styles.starValue}>({this.props.evaluation})</p>
 							</Grid>
 							
 						</Grid>
@@ -165,6 +165,11 @@ const styles = {
 		// color:'black',
 		fontSize:'20px',
 		marginBottom:'20px'
+	},
+
+	starValue: {
+		fontSize: '20px',
+		marginTop: '10px',
 	}
 
 }

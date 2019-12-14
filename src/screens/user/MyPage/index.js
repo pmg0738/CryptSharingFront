@@ -46,7 +46,7 @@ class Mypage extends React.Component {
 				</Grid>
 				<OtherPageProfile
 					avatar={eraiza}
-					star="3.5"
+					evaluation="3.5"
 					name="Bitch"
 					postNum="1,235"
 					follower="995"
