@@ -65,7 +65,7 @@ class Mypage extends React.Component {
 				<Grid container direction="row" style={styles.tabBox}>
 						<Container>
 						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
-						<Tab eventKey="rent-now" title="?????">
+						<Tab eventKey="rent-now" title="現在利用中">
 						<MyPageRentNow/>
 						</Tab>
 						<Tab eventKey="requesting" title="??????">
