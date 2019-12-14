@@ -25,3 +25,6 @@ yarn-error.log*
 /src/images
 
 firebase.js
+
+src/config.js
+

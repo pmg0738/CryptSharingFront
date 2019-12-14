@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Auth from './Auth';
 
 // screens
+import CreateProfile from './screens/user/CreateProfile';
 import ChatList from './screens/chat/ChatList';
 import Filter from './screens/item/Filter';
 import History from './screens/history/HistoryList';
@@ -23,17 +24,17 @@ import UserDetail from './screens/user/UserDetail';
 // components
 import Drower from './components/common/Drower';
 
-import ENV from './firebase';
+import { FIREBASE_ENV } from './config';
 
 var firebaseConfig = {
-	apiKey: ENV.API_KEY,
-	authDomain: ENV.AUTH_DOMAIN,
-	databaseURL: ENV.DATABASE_URL,
-	projectId: ENV.PROJECT_ID,
-	storageBucket: ENV.STORAGE_BUCKET,
-	messagingSenderId: ENV.MESSAGING_SENDER_ID,
-	appId: ENV.APP_ID,
-	measurementId: ENV.MEASUREMENT_ID,
+	apiKey:            FIREBASE_ENV.API_KEY,
+	authDomain:        FIREBASE_ENV.AUTH_DOMAIN,
+	databaseURL:       FIREBASE_ENV.DATABASE_URL,
+	projectId:         FIREBASE_ENV.PROJECT_ID,
+	storageBucket:     FIREBASE_ENV.STORAGE_BUCKET,
+	messagingSenderId: FIREBASE_ENV.MESSAGING_SENDER_ID,
+	appId:             FIREBASE_ENV.APP_ID,
+	measurementId:     FIREBASE_ENV.MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -47,6 +48,7 @@ export default class App extends React.Component{
 				<BrowserRouter>
 					<Switch>
 						<Route exact path="/login" component={Login}/>
+						<Route exact path="/profile" component={CreateProfile}/>
 						<Route exact path="/signup" component={SignUp}/>
 						<Auth>
 							<Switch>

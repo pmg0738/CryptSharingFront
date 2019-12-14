@@ -123,14 +123,14 @@ class ItemPost extends React.Component {
 
 	// 画像が選択されていたら、確認ダイアログを表示する
 	handleConfirm = () => {
-		var token = localStorage.getItem("token");
-		console.log('token', token)
+		// var token = localStorage.getItem("token");
+		// console.log('token', token)
 
-		// if(this.state.images.length > 0) {
-		// 	this.setState({showConfirmDialog: true})
-		// } else {
-		// 	alert("画像を1枚以上選択してください");
-		// }
+		if(this.state.images.length > 0) {
+			this.setState({showConfirmDialog: true})
+		} else {
+			alert("画像を1枚以上選択してください");
+		}
 	}
 
 	// 画像を選択

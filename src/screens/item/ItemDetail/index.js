@@ -1,33 +1,38 @@
 import React from 'react';
-import './style.scss';
+// Redux
 import { connect } from 'react-redux';
 import { fetchClickedItem } from '../../../redux/actions';
-import { 
-	Image,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
-
-import Grid from '@material-ui/core/Grid';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import StarIcon from '@material-ui/icons/Star';
-import StarHalfIcon from '@material-ui/icons/StarHalf';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+// Ethereum
+import { web3 } from '../../../ethereum';
+import { pay, showBalance } from '../../../ethereum/token';
+import { createAccount, showAccounts } from '../../../ethereum/account';
+// Material UI Component
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import Avatar from '@material-ui/core/Avatar';
-import { green, red, blue } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+// Material UI Layout
+import Grid from '@material-ui/core/Grid';
+// Material UI Icon
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
-import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
+import StarIcon from '@material-ui/icons/Star';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+// Material UI
+import { green, red, blue } from '@material-ui/core/colors';
 
-
+import { Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './style.scss';
 import cat from '../../../images/cup.jpg';
+
 
 
 
@@ -37,7 +42,7 @@ class ItemDetail extends React.Component {
 		this.state = {
 			itemDetailFavoriteIcon: "default",
 			images: [],
-			imageStartIndex: 0, 
+			imageStartIndex: 0,
 			me: {
 				id: "1234",
 				name: "yushi",
@@ -45,13 +50,38 @@ class ItemDetail extends React.Component {
 				usedHistoryItemId:["4"],
 				rentalItemId:["3"], 
 				requestItemId:["5","6","7","8"]
-			},            
+			},
 		}
 		this.itemId = this.props.match.params.id;
 		// this.item = this.props.item[this.itemId];
 	}
 
 	componentWillMount() {
+		// createAccount("password");
+		// console.log('response', response);
+
+		// pay("0x2e993dcfB0108C875268585f19235C9671B4Da77", 1000);
+		showBalance();
+
+		showAccounts();
+		// console.log(web3.currentProvider.isMetaMask);
+		// console.log('web3', web3);
+		// console.log('web3', web3.version);
+		// web3.eth.getAccounts()
+		// 	.then(res => console.log('res', res));
+
+
+		// web3.eth.getBlockNumber()
+		// 	.then(result => {
+		// 		console.log("last block number: ", result);
+		// 	});
+
+		// web3.eth.getBlock("latest")
+		// 	.then(result => {
+		// 		console.log("last block: ", result);
+		// 	});
+
+
 		window.scrollTo(0, 0)
 		// this.props.fetchClickedItem(this.itemId);
 
@@ -176,15 +206,15 @@ class ItemDetail extends React.Component {
 }
 
 renderImage = (itemLendStatus) => {
-    if((this.props.item.images) && (itemLendStatus)) {
+	if((this.props.item.images) && (itemLendStatus)) {
 		return <Image style={styles.selectedImage} src={this.props.item.images[0].url} />
 	}
 	if((this.props.item.images) && (!itemLendStatus)) {
 		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.props.item.images[0].url} />
 	}
-    return <div/>
+	return <div/>
 }
-  
+
 showEmoticon = (itemLendStatus) =>{
 	if(itemLendStatus){			
 		return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
@@ -306,15 +336,15 @@ renderStar = (valueOfPostUser) =>{
 
 
 const mapStateProps = (state) => {
-    return { item: state.item };
+	return { item: state.item };
 }
 
 export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);
 
 const styles = {
-    selectedImage: {
-        width:"450px",
-        height:"100px",
-        marginBottom:"10px"
-    }
+	selectedImage: {
+		width:"450px",
+		height:"100px",
+		marginBottom:"10px"
+	}
 }

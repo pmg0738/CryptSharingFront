@@ -67,41 +67,32 @@ export default function Login(props) {
 	// const [prefecture, setPrefecture] = useState("");
 	// const [city, setCity]             = useState("");
 
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [passwordConfirm, setPasswordConfirm] = useState("");
-	const [birthday, setBirthday] = useState("1998/10/23");
+	const [birthday, setBirthday] = useState(null);
 	const [gender, setGenger]     = useState(1);
-	const [familyName, setFamilyName] = useState("koba");
-	const [givenName, setGivenName]   = useState("hayato");
-	const [prefecture, setPrefecture] = useState("福岡県");
-	const [city, setCity]             = useState("福岡市");
+	const [familyName, setFamilyName] = useState("");
+	const [givenName, setGivenName]   = useState("");
+	const [prefecture, setPrefecture] = useState("");
+	const [city, setCity]             = useState("");
 
 
 
 	const signup = async () => {
-		if(password === passwordConfirm) {
-			props.history.push('/profile');
+		const postData = {
+			family_name: familyName,
+			given_name:  givenName,
+			gender:      gender,
+			// birthday:    birthday,
+			birthday: '1998-10-23',
+			// birthday:    birthday.replace('/', '-').replace('/', '-'),
+			prefecture:  prefecture,
+			city:        city,
 		}
-		// const postData = {
-		// 	email: email,
-		// 	password: password,
-		// 	family_name: familyName,
-		// 	given_name: givenName,
-		// 	gender: gender,
-		// 	// birthday:    birthday,
-		// 	birthday: '1998-10-23',
-		// 	// birthday:    birthday.replace('/', '-').replace('/', '-'),
-		// 	prefecture:  prefecture,
-		// 	city:        city,
-		// }
-		// console.log('postData', postData);
+
 		// const response = await axios.post('http://localhost:8000/api/v1/users/create/', postData)
 		// 	.catch((error) => {
 		// 		// console.log('ERROR', error);
 		// 		alert("失敗", error);
 		// 	})
-		// console.log('response', response);
 	}
 
 	return(
@@ -115,45 +106,71 @@ export default function Login(props) {
 						</div>
 						<div className="login-card-right-container">
 							{/* <img src={logo} className="login-logo"/> */}
-							<TextField
-								required
-								label="Email"
-								placeholder="Email"
-								// className={classes.textField}
-								margin="normal"
-								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								style={styles.textFieldFull}
-							/>
 							<br/>
 							<TextField
+								id="outlined-required"
 								required
-								label="Password"
-								placeholder="Password"
+								label="姓"
+								placeholder="Family Name"
 								margin="normal"
-								type="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								style={styles.textFieldFull}
+								value={familyName}
+								onChange={(e) => setFamilyName(e.target.value)}
+								style={styles.textFieldHalfLeft}
 							/>
 							<TextField
 								required
-								label="Password Confirm"
-								placeholder="Password Confirm"
+								label="名"
+								placeholder="Given Name"
 								margin="normal"
-								type="password"
-								value={passwordConfirm}
-								onChange={(e) => setPasswordConfirm(e.target.value)}
-								style={styles.textFieldFull}
+								value={givenName}
+								onChange={(e) => setGivenName(e.target.value)}
+								style={styles.textFieldHalfRight}
+							/>
+							<br/>
+							 <MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<KeyboardDatePicker
+								disableToolbar
+								variant="inline"
+								format="yyyy/MM/dd"
+								margin="normal"
+								id="date-picker-inline"
+								label="生年月日"
+								value={birthday}
+								placeholder="1998/10/23"
+								onChange={(date) => setBirthday(date)}
+								// KeyboardButtonProps={{
+								// 	'aria-label': 'change date',
+								// }}
+								style={styles.textFieldHalfLeft}
+							/>
+							</MuiPickersUtilsProvider>
+							<GenderRadios onChange={(value) => setGenger(value)}/>
+							<br/>
+							{/* <TextField
+								required
+								label="都道府県"
+								placeholder="prefecture"
+								margin="normal"
+								value={prefecture}
+								onChange={(e) => setPrefecture(e.target.value)}
+								style={styles.textFieldHalfLeft}
+							/> */}
+							<PrefectureSelector width={"48%"}
+								onChange={(value) => setPrefecture(value)}
+							/>
+							<TextField
+								required
+								label="市区町村"
+								placeholder="city"
+								margin="normal"
+								value={city}
+								onChange={(e) => setCity(e.target.value)}
+								style={styles.textFieldHalfLeft}
 							/>
 							<Button className={classes.root}
-								onClick={() => signup(email, password, props)}
+								onClick={() => signup(props)}
 							>
-								SIGN UP</Button>
-							<Link to='/login'>
-								<p className="login-sign-up-button">ログイン＞</p>
-							</Link>
+								START</Button>
 						</div>
 					</div>
 				</Card>

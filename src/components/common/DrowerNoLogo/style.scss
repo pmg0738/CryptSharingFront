@@ -1,0 +1,40 @@
+.navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    // background-color: darkorange;
+    background-color: #282c34;
+}
+.navbar-menu-button {
+    position: absolute;
+    // left: 20px;
+    // right: 10px;
+    // bottom: 10px;
+    // background-color: darkred;
+
+}
+.navbar-menu-icon {
+    color: #ffffff;
+}
+.navbar-menu-chat-icon {
+    color: #34a853;
+}
+.navbar-menu-search-icon{
+    color: #4285F4;
+}
+.navbar-menu-person-icon{
+    // color: antiquewhite;
+    color: #ffffff;
+}
+.navbar-menu-add-icon{
+    color: #fbbc05;
+}
+.navbar-menu-request-icon {
+    color: #ea4335;
+}
+.drower-menu-title {
+    color: #ffffff;
+    margin-left: 30px;
+}

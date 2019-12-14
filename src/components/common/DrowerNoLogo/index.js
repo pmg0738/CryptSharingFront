@@ -36,8 +36,12 @@ const useStyles = makeStyles({
 });
 
 const logout = (props) => {
+
+	// props.history.push('/login');
 	localStorage.removeItem("token");
-	props.history.push('/login');
+	const token = localStorage.getItem("token");
+	console.log("TOKEN", token);
+	// write here
 }
 
 const NavDrawer = (props) => {
@@ -152,9 +156,6 @@ const NavDrawer = (props) => {
 	return (
 		<div className="navbar">
 				{/* <div  classNamw="empty"/> */}
-				<Link to='/'>
-						<img className="navbar-logo-image" src={logo}/>
-				</Link>
 				<Button className="navbar-menu-button" onClick={toggleDrawer('right', true)}>
 						<MenuIcon className="navbar-menu-icon"/>
 				</Button>

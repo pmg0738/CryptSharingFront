@@ -1,4 +1,9 @@
-export default {
+export const API_ROOT = "https://challecara-pok-2019.lolipop.io/api/";
+
+export const INFURA_API_KEY = "";
+
+
+export const FIREBASE_ENV = {
 	API_KEY:             "",
 	AUTH_DOMAIN:         "",
 	DATABASE_URL:        "",

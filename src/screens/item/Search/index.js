@@ -21,8 +21,9 @@ import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
 
 import { Link } from 'react-router-dom';
-
-import logo from '../../../images/logo.png';
+// import DrowerNoLogo from '../../../components/common/DrowerNoLogo';
+// import logo from '../../../images/logo.png';
+import logo from '../../../images/newlogo.png';
 
 
 class Top extends React.Component {
@@ -216,6 +217,7 @@ class Top extends React.Component {
 		if(this.state.searchWords!="") {
 			this.setState({ searching: true });
 			localStorage.setItem('search', this.state.searchWords);
+			
 			setTimeout(() => {
 				this.setState({ searching: false });
 				this.props.history.push('/items');
@@ -294,7 +296,7 @@ class Top extends React.Component {
 							/>
 						</DialogContent>
 				</Dialog>
-				</Container>
+			</Container>
 		);
 	}
 }

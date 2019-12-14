@@ -63,9 +63,9 @@ const login = async (email, password, props, done) => {
 		// トークンをcookieまたはストアに保存
 		localStorage.setItem('token', token);
 		// ホーム画面に移動
-		done();
-
 		props.history.push('/');
+		
+		done();
 	}
 }
 
