@@ -84,52 +84,52 @@ export default function Login(props) {
 			<img src={backgroundImage} className="background-image"/>
 			<Container maxWidth="lg" className="item-post-container">
 				<Card style={styles.card}>
-					<div className="login-card-inside-contaienr">
-						<div className="login-card-left-container">
-							{/* <img src={leftImageba} className="login-left-image"/> */}
+						<div className="login-card-inside-contaienr">
+							<div className="login-card-left-container">
+								{/* <img src={leftImageba} className="login-left-image"/> */}
+							</div>
+							<div className="login-card-right-container">
+								<img src={logo} className="login-logo"/>
+								<TextField
+									required
+									label="Email"
+									placeholder="Email"
+									// className={classes.textField}
+									margin="normal"
+									type="email"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									variant="outlined"
+									style={styles.textField}
+								/>
+								<TextField
+									required
+									label="Password"
+									placeholder="Password"
+									className={classes.textField}
+									margin="normal"
+									type="password"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									variant="outlined"
+									style={styles.textField}
+								/>
+								<Button 
+									// style={styles.loginButton}
+									className={classes.root}
+									onClick={() => {
+										setLoading(true);
+										login(email, password, props, () => setLoading(false))
+									}}
+								>L O G I N</Button>
+								<Link to='/signup'>
+									<p className="login-sign-up-button">新規登録はこちら</p>
+								</Link>
+							</div>
 						</div>
-						<div className="login-card-right-container">
-							<img src={logo} className="login-logo"/>
-							<TextField
-								required
-								label="Email"
-								placeholder="Email"
-								// className={classes.textField}
-								margin="normal"
-								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								variant="outlined"
-								style={styles.textField}
-							/>
-							<TextField
-								required
-								label="Password"
-								placeholder="Password"
-								className={classes.textField}
-								margin="normal"
-								type="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								variant="outlined"
-								style={styles.textField}
-							/>
-							
-							<Link to='/signup'>
-								<p className="login-sign-up-button">新規登録はこちら</p>
-							</Link>
-						</div>
-					</div>
+						
 				</Card>
-				<Button 
-								style={styles.loginButton}
-								// className={classes.root}
-								onClick={() => {
-									setLoading(true);
-									login(email, password, props, () => setLoading(false))
-								}}
-							>
-								L O G I N</Button>
+				
 			</Container>
 				<Dialog
 					open={loading}
@@ -155,7 +155,7 @@ export default function Login(props) {
 const styles = {
 	card: {
 		backgroundColor: "#ffffff",
-		height: 800,
+		height: 1000,
 		// height: "80%",
 		// position: "fixed",
 		// top: 0,
@@ -168,12 +168,12 @@ const styles = {
 		width: "100%",
 	},
 	loginButton:{
-		position:"fixed",
-		bottom:"100px",
-		right:"100px",
-		width:"300px",
-		height:"200px",
-		backgroundColor:"yellow",
-		color:"blue",
+		// position:"fixed",
+		// bottom:"100px",
+		// right:"100px",
+		// width:"300px",
+		// height:"200px",
+		// backgroundColor:"yellow",
+		// color:"blue",
 	}
 }

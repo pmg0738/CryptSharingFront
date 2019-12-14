@@ -151,11 +151,11 @@ class RequestListCard extends React.Component{
                             </Grid>
                             <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px"}}>
                                 <FontAwesomeIcon icon={faGrinStars} style={{fontSize:"30px"}}/>
-                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>パンツ</div>
+                                <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>たこ焼き器</div>
                             </Grid>
                             <Grid container direction="row" style={{marginTop:"30px", marginLeft:"20px", marginBottom:"20px"}}>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} style={{fontSize:"30px"}}/>
-                                <div style={{fontSize:"20px", fontWeight:"600", marginLeft:"10px"}}>福岡市 早良区</div>
+                                <div style={{fontSize:"20px", fontWeight:"600", marginLeft:"10px"}}>福岡市 博多区</div>
                             </Grid>
                         </Grid>
                         <Grid sm={12} md={4} container direction="column" style={{color:"white", marginLeft:"80px", marginTop:"80px"}}>
@@ -171,7 +171,7 @@ class RequestListCard extends React.Component{
                         </Grid>
                     </Grid>
                     <Grid style={{marginLeft:"100px"}}>
-                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>パンツがないです。。ノーパンは嫌なので、誰か貸してください</div>
+                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>タコパに使います！貸してください！12/13希望</div>
                     </Grid>
                     <Grid container justify="flex-end">
                         <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", height:"50px", fontWeight:"600", fontSize:"20px", marginRight:"10px", marginBottom:"10px"}}>交渉する！</Button>
