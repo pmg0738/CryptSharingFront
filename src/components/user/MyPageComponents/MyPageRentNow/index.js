@@ -23,11 +23,10 @@ import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Dialog from '@material-ui/core/Dialog';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import { green, red, blue } from '@material-ui/core/colors';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -95,9 +94,7 @@ export default class MyPageRentNow extends React.Component {
 	renderButton = (type) =>{
 		if(type==='using'){
 			return(
-				<div>
-					<Button variant="outlined" color="primary" style={{width:"100px", height:"40px", marginLeft:"180px", fontWeight:"900"}}>返却完了</Button>
-				</div>
+				<ReturnCodeInputButton/>
 			);
 		}
 		if(type==='lending'){
@@ -155,3 +152,32 @@ export default class MyPageRentNow extends React.Component {
 	}
 }
 
+function ReturnCodeInputButton() {
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+	};
+	
+    return (
+      <div>
+		<Button onClick={handleClickOpen} variant="outlined" color="primary" style={{width:"100px", height:"40px", marginLeft:"180px", fontWeight:"900"}}>返却完了</Button>
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle >送られたコードを入力してください</DialogTitle>
+            <DialogContent>
+				<TextField
+					label="コードを入力"
+					variant="outlined"
+				/>
+				<DialogActions>
+					<Button onClick={handleClose}>送信</Button>
+				</DialogActions>
+            </DialogContent>
+        </Dialog>
+      </div>
+    );
+  }
