@@ -16,7 +16,7 @@ export default class OtherPage extends React.Component {
 		this.state = {
 			follow:false,
 			followButtonLabel:'フォローする',
-			// followButtonColor:''
+			followButtonColor:''
 		}
 	}
 
@@ -50,6 +50,7 @@ export default class OtherPage extends React.Component {
 	handleFollowButton = () =>{
 		if (this.state.follow == true) {
 			this.setState({followButtonLabel:'フォローする'});
+			this.setState({followButtonColor:''})
 			this.setState({follow:false});
 		}else {
 			this.setState({followButtonLabel:'フォロー中'});
@@ -69,7 +70,8 @@ export default class OtherPage extends React.Component {
 								<Avatar style={styles.avatar} src={this.props.avatar} />
 							</Grid>
 							<Grid container direction="row" style={styles.otherPageStar} justify="center">
-								{this.renderStar(this.props.star)}
+								{this.renderStar(this.props.evaluation)}
+								<p style={styles.starValue}>({this.props.evaluation})</p>
 							</Grid>
 							
 						</Grid>
@@ -165,6 +167,11 @@ const styles = {
 		// color:'black',
 		fontSize:'20px',
 		marginBottom:'20px'
+	},
+
+	starValue: {
+		fontSize: '20px',
+		marginTop: '10px',
 	}
 
 }

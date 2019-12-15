@@ -25,8 +25,6 @@ import logo from '../../../images/logo.png';
 
 
 
-
-
 // マイページ
 class Mypage extends React.Component {
 	
@@ -46,7 +44,7 @@ class Mypage extends React.Component {
 				</Grid>
 				<OtherPageProfile
 					avatar={eraiza}
-					star="3.5"
+					evaluation="3.5"
 					name="Bitch"
 					postNum="1,235"
 					follower="995"
@@ -62,31 +60,32 @@ class Mypage extends React.Component {
 					follow="857"
 					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
 				/>
+				
 				<Grid container direction="row" style={styles.tabBox}>
-						<Container>
+					<Container>
 						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
-						<Tab eventKey="rent-now" title="?????">
-						<MyPageRentNow/>
-						</Tab>
-						<Tab eventKey="requesting" title="??????">
-						<div className="my-page-tab-explanation">????????</div>
-						<MyPageBooked/>
-						<div className="my-page-tab-explanation">??????</div>
-						<MyPageBooked/>
-						</Tab>
-						<Tab eventKey="used-history" title="????" className="mypage-used-history">
-						<MyPageUsedHistory to= {'/items/4'}/>
-						<MyPageUsedHistory to={'/items/4'}/>
-						<MyPageUsedHistory to={'/items/4'}/>
-						</Tab>
-						<Tab eventKey="posted-history" title="????">
-						<MyPagePosted/>
-						</Tab> 
-						<Tab eventKey="Like" title="?????">
-						<MyPageFavorite/>
-						</Tab> 
+							<Tab eventKey="rent-now" title="レンタル中">
+								<MyPageRentNow/>
+							</Tab>
+							<Tab eventKey="requesting" title="リクエスト中">
+								<div className="my-page-tab-explanation">送ったリクエスト</div>
+								<MyPageBooked/>
+								<div className="my-page-tab-explanation">来たリクエスト</div>
+								<MyPageBooked/>
+							</Tab>
+							<Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
+								<MyPageUsedHistory to= {'/items/4'}/>
+								<MyPageUsedHistory to={'/items/4'}/>
+								<MyPageUsedHistory to={'/items/4'}/>
+							</Tab>
+							<Tab eventKey="posted-history" title="投稿済み">
+								<MyPagePosted/>
+							</Tab> 
+							<Tab eventKey="Like" title="お気に入り">
+								<MyPageFavorite/>
+							</Tab> 
 						</Tabs>
-						</Container>
+					</Container>
 				</Grid>
 			</Grid>
 		)
@@ -111,5 +110,7 @@ const styles = {
 		width:'50px',
 		height:'50px',
 		color:'blue'
-	}
+	},
+
+
 }
