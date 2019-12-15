@@ -7,12 +7,12 @@ const token = localStorage.getItem("token");
 // const Auth = (props) => (true ? props.children : <Redirect to={'/login'}/>)
 const Auth = (props) => {
 
-	if(window.web3) {
+	// if(window.web3) {
 		return (token ? props.children : <Redirect to={'/login'}/>)
-	} else {
-		alert("メタマスクをインストールしてください");
-		return <Redirect to={'/login'}/>;
-	}
+	// } else {
+	// 	alert("メタマスクをインストールしてください");
+	// 	return <Redirect to={'/login'}/>;
+	// }
 }
 
 export default Auth

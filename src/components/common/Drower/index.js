@@ -3,14 +3,13 @@ import React from 'react';
 import { withRouter } from 'react-router';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { Link } from 'react-router-dom';
-
 // Material Icon
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import ChatIcon from '@material-ui/icons/Chat';
@@ -68,11 +67,11 @@ const NavDrawer = (props) => {
 		>
 				<List>
 					{/* <Button className="close-drower-button" onClick={toggleDrawer('right', false)}> */}
-						<ListItem className="drower-menu-title" button key={1} onClick={toggleDrawer('right', false)}>
-							<ListItemIcon><CloseIcon className="navbar-menu-icon"/>
-								<p className="drower-menu-title">閉じる</p>
-							</ListItemIcon>
-						</ListItem>
+					<ListItem className="drower-menu-title" button key={1} onClick={toggleDrawer('right', false)}>
+						<ListItemIcon><CloseIcon className="navbar-menu-icon"/>
+							<p className="drower-menu-title">閉じる</p>
+						</ListItemIcon>
+					</ListItem>
 					{/* </Button> */}
 			</List>
 			<Divider />
