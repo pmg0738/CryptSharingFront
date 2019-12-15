@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.scss';
 
-
 import SearchByOptionComponent from '../../../components/item/SearchByOptionComponent';
 import ItemListComponent from '../../../components/item/ItemListComponent';
 import 'react-input-range/lib/css/index.css';
@@ -21,9 +20,6 @@ export default class ItemFilterAndList extends React.Component {
 			priceValue: {min:0, max:3500},
 			distance: {min:0, max:30},
 		}
-		console.log('='.repeat(20))
-		console.log(this.props.location.search);
-		console.log(this.props);
 	}
 
 	render() {

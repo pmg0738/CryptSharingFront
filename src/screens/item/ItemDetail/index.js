@@ -3,9 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchClickedItem } from '../../../redux/actions';
 // Ethereum
-import { web3 } from '../../../ethereum';
+import { web3 } from '../../../ethereum/web3';
 import { pay, showBalance } from '../../../ethereum/token';
-import { createAccount, showAccounts } from '../../../ethereum/account';
+import { createAccount, showMyAccount } from '../../../ethereum/account';
 // Material UI Component
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -53,6 +53,11 @@ class ItemDetail extends React.Component {
 				rentalItemId:["3"], 
 				requestItemId:["5","6","7","8"]
 			},
+			item: {
+				fee_per_hour: null,
+				fee_per_day: null,
+				fee_per_week: null,
+			},
 		}
 		this.itemId = this.props.match.params.id;
 		// this.item = this.props.item[this.itemId];
@@ -63,9 +68,9 @@ class ItemDetail extends React.Component {
 		// console.log('response', response);
 
 		// pay("0x2e993dcfB0108C875268585f19235C9671B4Da77", 1000);
-		showBalance();
+		// showBalance();
+		console.log(showMyAccount());
 
-		showAccounts();
 		// console.log(web3.currentProvider.isMetaMask);
 		// console.log('web3', web3);
 		// console.log('web3', web3.version);
@@ -83,15 +88,14 @@ class ItemDetail extends React.Component {
 		// 		console.log("last block: ", result);
 		// 	});
 
-
 		window.scrollTo(0, 0)
-		// this.props.fetchClickedItem(this.itemId);
 
-		const existInStore = Object.keys(this.props.item).indexOf(this.itemId) !== -1;
-		// existInStore = this.props.items.hasOwnProperty(this.itemId);
-		if(!existInStore){
+		const existInStore = this.props.items.hasOwnProperty(this.itemId);
+
+		if(!existInStore) {
 			this.props.fetchClickedItem(this.itemId);
-		}else{
+		} else {
+			// this.setState({item: this.props.store.items[this.itemId]});
 		}
 	}
 
@@ -241,8 +245,10 @@ renderFeeTable = () => {
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell>
+				{/* <TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell> */}
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_hour}</TableCell>
+				{/* <TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell> */}
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_day}</TableCell>
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥500</TableCell>
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
@@ -347,8 +353,11 @@ renderStar = (valueOfPostUser) =>{
 }
 
 
-const mapStateProps = (state) => {
-	return { item: state.item };
+const mapStateProps = (store) => {
+	return { 
+		items: store.items,
+		item: store.item
+	};
 }
 
 export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);

@@ -1,5 +1,5 @@
 import { Container } from 'unstated';
-import axios from 'axios';
+import api from '../../redux/apis';
 
 class Category extends Container {
 	state = {
@@ -7,7 +7,7 @@ class Category extends Container {
 	};
 
 	getCurruntCategory = () =>{
-		axios.get('https://challecara-pok-2019.lolipop.io/api/v1/categories/', {
+		api.get('categories/', {
 
 		})  
 		this.setState()

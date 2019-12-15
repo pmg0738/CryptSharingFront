@@ -1,4 +1,4 @@
-import { web3 } from './index';
+import web3 from './web3';
 
 // 送金 transfer
 export const pay = async (toAddress, value) => {

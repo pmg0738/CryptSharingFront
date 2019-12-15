@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
+import api from '../../../redux/apis';
 import { Link } from 'react-router-dom';
+
 import './style.scss';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+// Material UI Component
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-
 import backgroundImage from '../../../images/space.png';
-// import leftImagep from '../../../images/logo-background.png';
 import logo from '../../../images/logo-login.png';
 
 
@@ -47,35 +35,30 @@ const useStyles = makeStyles({
 	},
 });
 
-const login = async (email, password, props, done) => {
-	const response = await axios.post('https://challecara-pok-2019.lolipop.io/api/v1/users/token/', {
-	// const response = await axios.post('http://localhost:8000/api/v1/users/token/', {
-		email: email,
+const login = async (eoaAddress, password, props, done) => {
+	api.post('users/token/', {
+		eoa_address: eoaAddress,
 		password: password
-	}).catch(() => {
-		done();
+	})
+	.then(response => {
+		const token = response.data.token;
+		localStorage.setItem('token', token);
+		localStorage.setItem('eoaAddress', eoaAddress);
+		// done();
+		props.history.push('/');
+	})
+	.catch(() => {
+		// done();
 		alert("ログイン失敗");
 	})
-
-
-	if(response && response.status===200){
-		const token = response.data.token;
-		// トークンをcookieまたはストアに保存
-		localStorage.setItem('token', token);
-		// ホーム画面に移動
-		props.history.push('/');
-		
-		done();
-	}
 }
 
 
 
 export default function Login(props) {
-
 	const classes = useStyles();
 
-	const [email, setEmail] = useState("");
+	const [eoaAddress, setEoaAddress] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = React.useState(false);
 
@@ -92,13 +75,11 @@ export default function Login(props) {
 								<img src={logo} className="login-logo"/>
 								<TextField
 									required
-									label="Email"
-									placeholder="Email"
-									// className={classes.textField}
+									label="Ethereumアドレス"
+									placeholder="0xb48D3exxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 									margin="normal"
-									type="email"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
+									value={eoaAddress}
+									onChange={(e) => setEoaAddress(e.target.value)}
 									variant="outlined"
 									style={styles.textField}
 								/>
@@ -115,11 +96,10 @@ export default function Login(props) {
 									style={styles.textField}
 								/>
 								<Button 
-									// style={styles.loginButton}
 									className={classes.root}
 									onClick={() => {
 										setLoading(true);
-										login(email, password, props, () => setLoading(false))
+										login(eoaAddress, password, props, () => setLoading(false))
 									}}
 								>L O G I N</Button>
 								<Link to='/signup'>
@@ -142,7 +122,6 @@ export default function Login(props) {
 						<CircularProgress
 							variant="indeterminate"
 							disableShrink
-							// className={classes.bottom}
 							thickness={4}
 						/>
 					</DialogContent>
@@ -156,10 +135,6 @@ const styles = {
 	card: {
 		backgroundColor: "#ffffff",
 		height: 1000,
-		// height: "80%",
-		// position: "fixed",
-		// top: 0,
-		// left: 0,
 	},
 	textField: {
 		background: "#ffffff",
@@ -167,13 +142,4 @@ const styles = {
 		marginTop: 20,
 		width: "100%",
 	},
-	loginButton:{
-		// position:"fixed",
-		// bottom:"100px",
-		// right:"100px",
-		// width:"300px",
-		// height:"200px",
-		// backgroundColor:"yellow",
-		// color:"blue",
-	}
 }

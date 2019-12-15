@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import api from '../../../redux/apis';
 import _ from 'lodash';
 
 // Material UI Component
@@ -9,10 +9,6 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 import './style.scss';
-
-// My Component
-// import Pagination from '../../common/Pagination';
-
 
 
 export default class ChatListComponent extends React.Component{
@@ -31,15 +27,13 @@ export default class ChatListComponent extends React.Component{
 	}
 
 	showSelectedChatRoom = (userId) =>{
-		console.log('this is clicked userId', userId);
 		
 	}
 
 	// サーバーからチャットルームのリストをとってくる
 	fetchChatRooms = () => {
-		axios.get('http://localhost:8000/api/v1/room/')
+		api.get('room/')
 			.then(response => {
-				console.log(response);
 				this.setState({rooms: response.data.rooms});
 			})
 	}
@@ -73,7 +67,6 @@ export default class ChatListComponent extends React.Component{
 						_.map(this.props.rooms, room => {
 							const opponent = room.opponent;
 
-							// console.log('oopennt', opponent);
 							return (
 								<Card className="chat-friend-card"
 									onClick={() => this.selectRoom(room.room_id)}

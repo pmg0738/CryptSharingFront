@@ -5,7 +5,6 @@ import {
 	Button,
 	Card,
 	Container,
-	Col,
 	Form,
 	Row,
 	ListGroup,
@@ -16,13 +15,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+// Redux
 import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
 
 import { Link } from 'react-router-dom';
-// import DrowerNoLogo from '../../../components/common/DrowerNoLogo';
-// import logo from '../../../images/logo.png';
 import logo from '../../../images/newlogo.png';
 
 
@@ -40,7 +37,7 @@ class Top extends React.Component {
 		}
 
 		console.log(this.props.store.me);
-		if(Object.keys(this.props.store.me).length==0) {
+		if(Object.keys(this.props.store.me).length===0) {
 			// me が空の時はサーバーからデータを取得する
 			this.props.fetchMyData();
 		}
@@ -226,7 +223,7 @@ class Top extends React.Component {
 	}
 
 	searchButtonClassName = () => {
-		return this.state.searchWords=="" ? "search-button-deactive":"search-button-active";
+		return this.state.searchWords==="" ? "search-button-deactive":"search-button-active";
 	}
 
 

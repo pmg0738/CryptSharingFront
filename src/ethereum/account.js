@@ -1,8 +1,9 @@
-import { web3 } from './index';
+import web3 from './web3';
+// import web3 from 'web3';
 
 export const createAccount = async (password) => {
 	// const response = await web3.eth.personal.newAccount(password);
-	const response = web3.eth.accounts.create("password")	
+	const response = web3.eth.accounts.create("password");
 	console.log('response account.js', response);
 	console.log('address', response.address);
 	console.log('privateKey', response.privateKey);
@@ -11,13 +12,7 @@ export const createAccount = async (password) => {
 	return response;
 }
 
-export const showAccounts = async () => {
-	const response = await web3.eth.getAccounts()
-	// const accounts = web3.eth.accounts;
-	console.log('response', response);
-	return response;
-	// console.log('='.repeat(100));
-	// console.log('eth', web3.eth);
-	// console.log('accounts', accounts);
-	// return accounts;
+export const showMyAccount = () => {
+	// Account4
+	return "0xb48D3ec744831Ff7A1EAb67C9AF6Ba544C5c111C"
 }

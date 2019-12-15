@@ -11,7 +11,6 @@ import Item from '../../../item/ItemCard';
 import eraiza from '../../../../images/eraiza.png';
 
 
-
 export default class MyPageBooked extends React.Component {
 	constructor(props) {
 		super(props);
@@ -26,7 +25,6 @@ export default class MyPageBooked extends React.Component {
 	}
 
 	getBookedItems = () => {
-		// Axios.get('/itesm')
 		const items = {
 			"5": {
 				id: "5",
@@ -67,7 +65,7 @@ export default class MyPageBooked extends React.Component {
 					)}
 				</Row>
 			</Container>
-		)
+		);
 	}
 }
 

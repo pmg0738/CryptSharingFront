@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Auth from './Auth';
 
 // screens
-import CreateProfile from './screens/user/CreateProfile';
 import ChatList from './screens/chat/ChatList';
 import Filter from './screens/item/Filter';
 import History from './screens/history/HistoryList';
@@ -41,6 +40,10 @@ firebase.initializeApp(firebaseConfig);
 
 
 export default class App extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+
 	render(){
 		return (
 		  <div className="App">
@@ -48,7 +51,6 @@ export default class App extends React.Component{
 				<BrowserRouter>
 					<Switch>
 						<Route exact path="/login" component={Login}/>
-						<Route exact path="/profile" component={CreateProfile}/>
 						<Route exact path="/signup" component={SignUp}/>
 						<Auth>
 							<Switch>

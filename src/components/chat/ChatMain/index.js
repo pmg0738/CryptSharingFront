@@ -1,19 +1,17 @@
 import React from 'react';
 import firebase from 'firebase';
-import axios from 'axios';
 import './style.scss';
-import { 
-	Form,
-} from 'react-bootstrap';
-import dogImage from '../../../images/dog.png';
+
 // Material UI Component
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-
 // Material UI Icon
 import CloseIcon from '@material-ui/icons/Close';
 import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
+// else
+import dogImage from '../../../images/dog.png';
+
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios'
-// import axios from '../../../redux/apis/apis';
+import api from '../../../redux/apis';
 import './style.scss';
 
 // Material UI component
@@ -11,6 +10,9 @@ import Rating from '@material-ui/lab/Rating';
 // Material UI Layout
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import OtherPageProfile from '../../../components/user/OtherPageComponent/OtherPageProfile';
+import eraiza from '../../../images/logo.png';
+
 
 
 export default class UserDetail extends React.Component {
@@ -29,8 +31,7 @@ export default class UserDetail extends React.Component {
 
 	fetchEvaluations = () => {
 		// 評価を受け取る
-		// axios.get('/evaluations/')
-		axios.get('http://localhost:8000/evaluations/')
+		api.get('evaluations/')
 			.then(res => {
 				console.log('evaluations', res.data);
 				this.setState({evaluations: res.data});
@@ -67,7 +68,15 @@ export default class UserDetail extends React.Component {
 	render() {
 		return (
 			<Container maxWidth="lg" className="item-post-container">
-				{/* Write User Profile Here. */}
+				<OtherPageProfile
+					avatar={eraiza}
+					evaluation="3.5"
+					name="Bitch"
+					postNum="1,235"
+					follower="995"
+					follow="857"
+					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
+				/>
 				{this.renderEvaluations()}
 			</Container>
 		)

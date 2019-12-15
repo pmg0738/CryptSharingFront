@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import api from '../../../redux/apis';
 import firebase from 'firebase';
 import _ from 'lodash';
 import './style.scss';
@@ -99,7 +99,7 @@ export default class Chat extends React.Component {
 
 	// サーバーからチャットルームのリストを取ってくる
 	fetchChatRooms = () => {
-		axios.get('http://localhost:8000/api/v1/room/', {
+		api.get('room/', {
 			params: {
 				requestSenderUserId: this.myUserId,
 			}

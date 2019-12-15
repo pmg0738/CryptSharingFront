@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-// import axios from '../../../redux/apis/apis';
+import api from '../../../redux/apis';
 import './style.scss';
 import {Link} from 'react-router-dom';
 
@@ -151,8 +150,7 @@ class ItemPost extends React.Component {
 		for(let i=0; i<this.state.images.length; i++ ) {
 			formData.append(`url${i}`, this.state.images[i], `${timestamp}${i}.png`);
 		}
-		// const response = await axios.post('/images/create_many/', formData);
-		const response = await axios.post('http://localhost:8000/api/v1/images/create_many/', formData);
+		const response = await api.post('images/create_many/', formData);
 		return response.data;
 	}
 
@@ -172,7 +170,7 @@ class ItemPost extends React.Component {
 			require_mortgaged_mount: 2000,
 		}
 
-		const response = await axios.post('http://localhost:8000/api/v1/items/', postData);
+		const response = await api.post('items/', postData);
 	}
 
 	// confirm = (obj, key) => {
