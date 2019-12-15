@@ -80,14 +80,16 @@ class Mypage extends React.Component {
 				/>
 				<Grid container direction="row" style={styles.tabBox}>
 					<Container>
-						<Tabs defaultActiveKey="requesting" id="uncontrolled-tab-example">
+						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
 							<Tab eventKey="rent-now" title="現在利用中" style={{color:"black"}}>
 							<ExpansionPanel style={{marginTop:"10px", backgroundColor: green[300]}}>
 									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>借りてるもの</Typography>
 									</ExpansionPanelSummary>
 									<ExpansionPanelDetails>
-										<MyPageRentNow/>		
+										<MyPageRentNow
+											type="using"
+										/>		
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
 								<ExpansionPanel style={{backgroundColor: blue[300]}}>
@@ -95,7 +97,9 @@ class Mypage extends React.Component {
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>貸し出し中</Typography>
 									</ExpansionPanelSummary>
 									<ExpansionPanelDetails>
-										<MyPageRentNow/>
+										<MyPageRentNow
+											type="lending"
+										/>
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
 							</Tab>

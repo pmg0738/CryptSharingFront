@@ -34,7 +34,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 
-import Item from '../../../item/ItemCard';
 import eraiza from '../../../../images/eraiza.png';
 import cup from '../../../../images/carry_bag.jpg';
 import yoni from '../../../../images/cup.jpg';
@@ -167,22 +166,6 @@ export default class MyPageBooked extends React.Component {
 						</Grid>
 					</Grid>
 				</Card>
-
-				
-			// <Container>
-			// 	<Row>
-			// 		{Object.keys(items).map((id) => 
-			// 			<Col xc={6} sm={6} md={4} lg={4}>
-			// 				<Item 
-			// 					to={'/items/' + id}
-			// 					image={items[id].image}
-			// 					pricePerHour={items[id].price}
-			// 					status={1}
-			// 				/>
-			// 			</Col>
-			// 		)}
-			// 	</Row>
-			// </Container>
 		);
 	}
 }
