@@ -11,11 +11,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import CallReceivedIcon from '@material-ui/icons/CallReceived';
-import { green, red, blue, lime, orange } from '@material-ui/core/colors';
-import AppBar from '@material-ui/core/AppBar';
-import TabsMaterial from '@material-ui/core/Tabs';
-import TabMaterial from '@material-ui/core/Tab';
-import Paper from '@material-ui/core/Paper';
+import { green, blue,} from '@material-ui/core/colors';
+
 
 // Bootstrap
 import { 
@@ -32,9 +29,6 @@ import MyPageRentNow from '../../../components/user/MyPageComponents/MyPageRentN
 import MyPageUsedHistory from '../../../components/user/MyPageComponents/MyPageUsedHistory';
 import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
 
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 // マイページ
 class Mypage extends React.Component {
@@ -165,36 +159,3 @@ const styles = {
 		color:'blue'
 	},
 }
-
-
-// function DisabledTabs() {
-// 	const [value, setValue] = React.useState(2);
-  
-// 	const handleChange = (event, newValue) => {
-// 	  setValue(newValue);
-// 	};
-  
-// 	return (
-// 	  <Paper square>
-// 		<TabsMaterial
-// 		  value={value}
-// 		  indicatorColor="primary"
-// 		  textColor="primary"
-// 		  onChange={handleChange}
-// 		  aria-label="disabled tabs example"
-// 		>
-// 		  <TabMaterial label="Octive" style={{fontSize:"30px"}}/>
-// 		  <TabMaterial label="Ectasdf"/>
-// 		  <TabMaterial label="Pctive" />
-// 		</TabsMaterial>
-// 		<Typography
-// 			component="div"
-// 			role="tabpanel"
-// 			value={value}
-// 			index="two"
-// 			// hidden={value !== index}
-// 		>
-// 		</Typography>
-// 	  </Paper>
-// 	);
-//   }
