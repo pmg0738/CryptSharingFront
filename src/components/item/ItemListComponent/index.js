@@ -7,14 +7,10 @@ import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 // Material UI Component
 import Button from '@material-ui/core/Button';
-import TreeView from '@material-ui/lab/TreeView';
-import TreeItem from '@material-ui/lab/TreeItem';
 // Material UI Layout
 import Grid from '@material-ui/core/Grid';
 // Material UI Icon
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 // My Component
 import Pagination from '../../../components/common/Pagination';
 import Item from '../ItemCard';

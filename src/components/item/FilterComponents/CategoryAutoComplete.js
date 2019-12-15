@@ -15,32 +15,35 @@ export default class Tags extends React.Component{
 
 	componentWillMount(){
 		api.get('categories/')
-			.then(res => {
-				let newestCategories = res.data;
-				this.setState({categories: newestCategories});
-			})
+			.then(res => this.setState({categories: res.data}))
+	}
+
+	onChange = (event, newValue) => {
+		this.props.onChange(newValue);
 	}
 	
 	render(){
 		return(
-			<div style={styles.div}>
+			<div style={this.props.style}>
 				<Autocomplete
-						style={styles.autoComplete}
-						multiple
-						id="tags-outlined"
-						options={this.state.categories}
-						getOptionLabel={option => option.title}
-						filterSelectedOptions
-						renderInput={params => (
-							<TextField
-								{...params}
-								variant="outlined"
-								label="カテゴリー"
-								margin="normal"
-								fullWidth
-								style={styles.textfield}
-							/>
-						)}
+					style={styles.autoComplete}
+					multiple
+					id="tags-outlined"
+					options={this.state.categories}
+					getOptionLabel={option => option.title}
+					filterSelectedOptions
+					onChange={this.onChange}
+					renderInput={params => (
+						<TextField
+							{...params}
+							variant="outlined"
+							label="カテゴリー"
+							margin="normal"
+							fullWidth
+							style={styles.textfield}
+							onChange={this.props.onChange}
+						/>
+					)}
 				/>
 			</div>
 		)
@@ -49,11 +52,6 @@ export default class Tags extends React.Component{
 
 
 const styles = {
-	div:{
-		color:"#ffffff",
-		textColor:"white",
-		width: 500,
-	},
 	autoComplete: {
 		marginLeft: '20px', 
 		marginRight: "20px",

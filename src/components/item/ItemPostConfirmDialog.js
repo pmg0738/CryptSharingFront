@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 // Material UI Component
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -109,7 +107,7 @@ const ConfirmDialog = (props) => {
 	return (
 		<Dialog maxWidth="lg" onClose={handleClose} aria-labelledby="simple-dialog-title" open={props.show}>
 			<Card className={classes.card}>
-				<DialogTitle id="simple-dialog-title">投稿 確認</DialogTitle>
+				<DialogTitle id="simple-dialog-title">{props.itemName}</DialogTitle>
 				<p>以下の内容で登録してもよろしいですか？</p>
 				<Divider />
 				<Grid container>
@@ -129,7 +127,6 @@ const ConfirmDialog = (props) => {
 							<p>その他</p>
 							<ListItem key={1}>
 								{props.elseInfo}
-								{/* <ListItemText></ListItemText> */}
 							</ListItem>
 						</List>
 					</Grid>

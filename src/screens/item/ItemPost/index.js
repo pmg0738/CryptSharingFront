@@ -1,13 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
+
 import api from '../../../redux/apis';
 import './style.scss';
 import {Link} from 'react-router-dom';
-
+// Redux
 import { connect } from 'react-redux';
-// import { fetchMyData } from '../../../redux/actions/user';
 import { fetchMyData } from '../../../redux/actions/user';
-
-
 // Material UI Component
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -18,12 +17,13 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-
 // Material UI Icon
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+// My Component
+import CategoryAutoComplete from '../../../components/item/FilterComponents/CategoryAutoComplete';
 
 import loadImage from 'blueimp-load-image';
 import ConfirmDialog from '../../../components/item/ItemPostConfirmDialog';
@@ -45,6 +45,8 @@ class ItemPost extends React.Component {
 			me: {
 				name: " ",
 			},
+			itemName:   null,
+			categories: null,
 			feePerHour: null,
 			feePerDay:  null,
 			feePerWeek: null,
@@ -60,8 +62,7 @@ class ItemPost extends React.Component {
 	setMyData = async () => {
 		if(Object.keys(this.props.store.me).length==0) {
 			const response =  await this.props.fetchMyData();
-			console.log('response', response);
-			this.setState({me: response})
+			this.setState({me: response});
 		}
 	}
 	
@@ -87,7 +88,7 @@ class ItemPost extends React.Component {
 			});
 		}
 		else {
-			this.setState({isOverNumOfImage: true})
+			this.setState({isOverNumOfImage: true});
 		}
 	}
 
@@ -112,7 +113,7 @@ class ItemPost extends React.Component {
 						</label>
 					</div>
 				</Card>
-			)
+			);
 		}
 		
 		for(let i=numOfImages+1; i<MAX_NUM_OF_IMAGE; i++) {
@@ -173,42 +174,29 @@ class ItemPost extends React.Component {
 
 		this.uploadImages()
 			.then(images => {
-				const imageUrls = Object.keys(images).map(id => {
-					return images[id].url;
+				const imageIds = images.map(image => image.image_id)
+
+				api.post('items/', {
+					name: this.state.itemName,
+					fee_per_hour: this.state.feePerHour,
+					fee_per_day:  this.state.feePerDay,
+					fee_per_week: this.state.feePerWeek,
+					images: imageIds,
+					categories: Object.keys(this.state.categories),
+					owner: this.state.me.user_id,
+					require_mortgage_amount: this.state.mortgagedAmount,
 				})
-			})
-
-
-		api.post('items/', postData, {
-			headers: { 
-				"Content-Type": "application/json",
-				"Authorization": "Token " + token
-			},
-			name: "Name",
-			fee_per_hour: this.state.feePerHour,
-			fee_per_day:  this.state.feePerDay,
-			fee_per_week: this.state.feePerWeek,
-			images: images.map(obj => obj.image_id),
-			categories: [1],
-			owner: 1,
-			require_mortgaged_amount: this.state.mortgagedAmount,
-		});
+				.then(() => this.props.history.push('/items'))
+		})
 	}
 
-	// confirm = (obj, key) => {
-	// 	if(obj.hasOwnProperty(key)) {
-	// 		return obj.key;
-	// 	}
-	// 	else {
-	// 		return "";
-	// 	}
-	// }
 	renderDate = (date) => {
 		const year  = date.getFullYear();
 		const month = date.getMonth() + 1;
 		const day   = date.getDate();
-		const week = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
-		return `${year}/${month}/${day} (${week})`;
+		// const week = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
+		const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
+		return `${year}/${month}/${day} ${week}`;
 	}
 
 
@@ -231,7 +219,6 @@ class ItemPost extends React.Component {
 							avatar={<Avatar aria-label="recipe" className="">{this.state.me.name[0]}</Avatar>}
 							action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
 							title={this.state.me.name}
-							// subheader="September 14, 2016"
 							subheader={this.renderDate(new Date())}
 						/>
 						<CardMedia
@@ -246,12 +233,20 @@ class ItemPost extends React.Component {
 									label="商品名"
 									multiline
 									rowsMax="4"
-									// value={value}
-									// onChange={handleChange}
+									value={this.state.itemName}
+									onChange={(e) => this.setState({itemName: e.target.value})}
 									className="item-post-item-name"
 									margin="normal"
 									variant="outlined"
 								/>
+								<Grid container direction="row" justify="flex-start" alignItems="center">
+									<CategoryAutoComplete
+										style={{width: "100%", marginLeft: 10, marginRight: 10}}
+										onChange={categories => {
+											this.setState({categories: _.mapKeys(categories, category => category.category_id)})
+										}}
+									/>
+								</Grid>
 								<Grid container direction="row" justify="flex-start" alignItems="center">
 									<TextField
 										id="standard-multiline-flexible"
@@ -264,8 +259,6 @@ class ItemPost extends React.Component {
 										onChange={(e) => this.setState({feePerHour: e.target.value})}
 									/>
 									<p className="item-post-yen">円</p>
-								{/* </Grid>
-								<Grid container direction="row" justify="flex-start" alignItems="center" xs={6}> */}
 									<TextField
 										id="standard-multiline-flexible"
 										label="1日当たりの料金"
@@ -342,7 +335,6 @@ class ItemPost extends React.Component {
 						<Grid container direction="row" justify="flex-end" style={{marginTop: 40}}>
 							<Button
 								variant="contained"
-								// color="primary"
 								className=""
 								size="large"
 								startIcon={<CheckCircleIcon />}
@@ -353,6 +345,7 @@ class ItemPost extends React.Component {
 					</Card>
 				</Container>
 				<ConfirmDialog
+					itemName={this.state.itemName}
 					feePerHour={this.state.feePerHour}
 					feePerDay={this.state.feePerDay}
 					feePerWeek={this.state.feePerWeek}
