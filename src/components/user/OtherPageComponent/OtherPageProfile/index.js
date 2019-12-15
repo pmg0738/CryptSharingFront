@@ -57,8 +57,7 @@ export default class OtherPage extends React.Component {
 			this.setState({followButtonColor:'primary'})
 			this.setState({follow:true});
 		} 
-		console.log('asdfklasdjflkjasdflkasdf');
-		console.log('@@@@@@@@', this.state.follow);
+
 	}
 	render() {
 		return (
