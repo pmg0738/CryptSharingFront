@@ -44,8 +44,9 @@ const login = async (eoaAddress, password, props, done) => {
 		const token = response.data.token;
 		localStorage.setItem('token', token);
 		localStorage.setItem('eoaAddress', eoaAddress);
-		// done();
-		props.history.push('/');
+		setTimeout(() => {
+			props.history.push('/');
+		}, 1000)
 	})
 	.catch(() => {
 		// done();

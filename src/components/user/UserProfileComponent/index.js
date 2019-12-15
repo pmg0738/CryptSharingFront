@@ -15,11 +15,11 @@ export default class UserProfile extends React.Component {
 		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
 		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
 		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
-	   
+
 		let starArray = [];
-	   
+
 		while (starArray.length<5) {
-	   
+
 			if(valueOfPostUser >= 1) {
 			valueOfPostUser -= 1;
 			starArray.push(FullStar);

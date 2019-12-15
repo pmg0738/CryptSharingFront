@@ -99,8 +99,7 @@ export default function Login(props) {
 				family_name: familyName,
 				given_name:  givenName,
 				gender:      gender,
-				birthday: '1998-10-23',
-				// birthday:    birthday,
+				birthday:    birthday,
 				prefecture:  prefecture,
 				city:        city,
 			}
@@ -132,6 +131,26 @@ export default function Login(props) {
 			setPassword("");
 			setPasswordConfirm("");
 		}
+	}
+
+	const handleConfirm = () => {
+		setShowDialog(false);
+		props.history.push('/');
+	}
+
+	const addZero = (num) => {
+		if(num < 10) {
+			return `0${num}`;
+		} else {
+			return num;
+		}
+	}
+
+	const onChangeBirthday = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setBirthday(`${year}-${month}-${day}`);
 	}
 
 	return(
@@ -166,7 +185,7 @@ export default function Login(props) {
 								style={styles.textFieldHalfRight}
 							/>
 							<br/>
-							 <MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<MuiPickersUtilsProvider utils={DateFnsUtils}>
 							<KeyboardDatePicker
 								disableToolbar
 								variant="inline"
@@ -175,8 +194,8 @@ export default function Login(props) {
 								id="date-picker-inline"
 								label="生年月日"
 								value={birthday}
-								placeholder="1998/10/23"
-								onChange={(date) => setBirthday(date)}
+								placeholder="yyyy/mm/dd"
+								onChange={onChangeBirthday}
 								// KeyboardButtonProps={{
 								// 	'aria-label': 'change date',
 								// }}
@@ -248,8 +267,10 @@ export default function Login(props) {
 							size="large"
 							className={classes.postButton}
 							startIcon={<CheckCircleIcon />}
-							onClick={() => setShowDialog(false)}
-						>OK</Button>
+							onClick={handleConfirm}
+						>
+							OK
+						</Button>
 				</Card>
 			</Dialog>
 		</div>

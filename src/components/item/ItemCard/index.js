@@ -43,25 +43,25 @@ export default class Item extends React.Component {
 	}
 	render() {
 		return (
-		 <Link to={this.props.to}>
 			<Card className="" style={{marginBottom: 30, position: "relative", marginLeft: 10, marginRight: 10}}>
-				<CardMedia
-					className=""
-					image={this.props.image}
-					title="Paella dish"
-					style={{ height: 250 }}
-				/>
+				<Link to={this.props.to}>
+					<CardMedia
+						className=""
+						image={this.props.image}
+						title="Paella dish"
+						style={{ height: 250 }}
+					/>
+				</Link>
+
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"
-						onClick={() => this.setState({numOfGood: this.state.numOfGood+1})}
-					>
+						onClick={() => this.setState({numOfLike: this.state.numOfLike+1})} >
 						<FavoriteIcon />
 					</IconButton>
 					<p className="item-num-of-good">{this.state.numOfLike}</p>
 				</CardActions>
 				<p className="item-price">￥{this.props.price}/h</p>                
 			</Card>
-		</Link>
 		)
 	}
 }
