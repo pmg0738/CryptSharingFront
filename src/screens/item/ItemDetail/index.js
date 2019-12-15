@@ -69,7 +69,7 @@ class ItemDetail extends React.Component {
 
 		// pay("0x2e993dcfB0108C875268585f19235C9671B4Da77", 1000);
 		// showBalance();
-		console.log(showMyAccount());
+		// console.log(showMyAccount());
 
 		// console.log(web3.currentProvider.isMetaMask);
 		// console.log('web3', web3);

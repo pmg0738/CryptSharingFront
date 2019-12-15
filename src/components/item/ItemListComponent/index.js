@@ -20,8 +20,6 @@ import Pagination from '../../../components/common/Pagination';
 import Item from '../ItemCard';
 
 
-
-
 class ItemListComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,23 +32,24 @@ class ItemListComponent extends React.Component {
 	componentWillMount(){
 		if(this.props.items.length <= 1){
 			var searchWords = localStorage.getItem("search");
-			console.log("*".repeat(100))
-			console.log(searchWords)
+
 			this.setState({　searchWords: searchWords })
 			this.props.fetchItems(searchWords ? searchWords : "");
 		}
 	}
 
 	renderItems = () =>{
-		console.log(this.props.items);
+		// console.log(this.props.items);
 		return Object.keys(this.props.items).map(itemId => {
 			const item = this.props.items[itemId]
 			return(
 				<Grid xs={12} sm={6} md={4} lg={3} key={itemId}>
 					<Item
+						itemId={itemId}
 						to={'/items/' + itemId}
 						image={item.images[0].url}
 						price={item.fee_per_hour}
+						likedNum={item.liked_num}
 					/>
 				</Grid>
 			);
@@ -60,17 +59,6 @@ class ItemListComponent extends React.Component {
 	render() {
 		return (
 			<Grid container>
-				{/* <TreeView
-					defaultCollapseIcon={<ExpandMoreIcon />}
-					defaultExpandIcon={<ChevronRightIcon />}
-					style={{color: "#ffffff"}}
-				>
-					<TreeItem nodeId="5" label={this.state.searchWords}>
-						<TreeItem nodeId="6" label="Material-UI">
-						</TreeItem>
-					</TreeItem>
-				</TreeView>
-				<br/> */}
 				{this.renderItems()}
 				 <Link to='/items/new/post'>
 					<ItemPostButton/>

@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const login = async (eoaAddress, password, props, done) => {
+const login = async (eoaAddress, password, props) => {
 	api.post('users/token/', {
 		eoa_address: eoaAddress,
 		password: password
@@ -49,7 +49,6 @@ const login = async (eoaAddress, password, props, done) => {
 		}, 1000)
 	})
 	.catch(() => {
-		// done();
 		alert("ログイン失敗");
 	})
 }
@@ -100,7 +99,7 @@ export default function Login(props) {
 									className={classes.root}
 									onClick={() => {
 										setLoading(true);
-										login(eoaAddress, password, props, () => setLoading(false))
+										login(eoaAddress, password, props)
 									}}
 								>L O G I N</Button>
 								<Link to='/signup'>

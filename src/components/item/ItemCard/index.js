@@ -1,4 +1,6 @@
 import React from 'react';
+import api from '../../../redux/apis';
+
 import { Link } from 'react-router-dom';
 
 import './style.scss';
@@ -11,17 +13,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 export default class Item extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			// cardClassName: "item-list-item-card-out",
-			// priceClassName: "item-list-item-card-price-out",
-			numOfLike: 2298,
-		}
-		// this.data = this.props.data;
-		this.image = "";
-		// this.image = this.data.images.length!=0 ? this.data.images[0].url:"";
+	state = {
+		cardClassName: "item-list-item-card-out",
+		priceClassName: "item-list-item-card-price-out",
+		likedNum: this.props.likedNum
 	}
 
 	handleMouseOver = () => {
@@ -41,6 +36,23 @@ export default class Item extends React.Component {
 	getItemDetail = () => {
 		// this.props.getItem(this.props.id)
 	}
+
+	onClickLikedButton = async () => {
+		const token = localStorage.getItem("token");
+
+		await api.patch('/item/' + this.props.itemId + '/unlike/', {
+			headers: {
+				"Authorization": "token 3fe13aa3ed3402536076ceff1b010a01fac51046",
+				"Content-Type": "application/json",
+				// "Authorization": "token " + token
+			},
+		}).then(response => {
+			this.setState({ likedNum: response.data.liked_num });
+		}).catch(error => {
+			console.log('error', error);
+		})
+	}
+
 	render() {
 		return (
 			<Card className="" style={{marginBottom: 30, position: "relative", marginLeft: 10, marginRight: 10}}>
@@ -52,15 +64,15 @@ export default class Item extends React.Component {
 						style={{ height: 250 }}
 					/>
 				</Link>
-
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"
-						onClick={() => this.setState({numOfLike: this.state.numOfLike+1})} >
+						onClick={this.onClickLikedButton}
+					>
 						<FavoriteIcon />
 					</IconButton>
-					<p className="item-num-of-good">{this.state.numOfLike}</p>
+					<p className="item-num-of-good">{this.state.likedNum}</p>
 				</CardActions>
-				<p className="item-price">￥{this.props.price}/h</p>                
+				<p className="item-price">￥{this.props.price}/h</p>
 			</Card>
 		)
 	}

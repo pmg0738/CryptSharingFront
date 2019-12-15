@@ -7,7 +7,7 @@ export const fetchItems = (searchWord) => async dispatch => {
 	// ローカルストレージに保存したトークンを取得する
 	const token = localStorage.getItem("token");
 
-	const response = await apis.get('/items/', {
+	const response = await apis.get('items/', {
 		// params: {
 		// 	name: searchWord,
 		// },
@@ -34,7 +34,7 @@ export const fetchClickedItem = (itemId) => async dispatch => {
 
 	const token = localStorage.getItem("token");
 	
-	const response = await apis.get(`/items/${itemId}/`, {
+	const response = await apis.get(`items/${itemId}/`, {
 		headers: { 
 			"Content-Type": "application/json",
 			"Authorization": "Token " + token

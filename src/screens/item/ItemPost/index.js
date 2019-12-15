@@ -44,7 +44,12 @@ class ItemPost extends React.Component {
 			showConfirmDialog: false,
 			me: {
 				name: " ",
-			}
+			},
+			feePerHour: null,
+			feePerDay:  null,
+			feePerWeek: null,
+			mortgagedAmount: null,
+			elseInfo: null,
 		}	
 	}
 
@@ -122,14 +127,21 @@ class ItemPost extends React.Component {
 
 	// 画像が選択されていたら、確認ダイアログを表示する
 	handleConfirm = () => {
-		// var token = localStorage.getItem("token");
-		// console.log('token', token)
+		const { feePerHour, feePerDay, feePerWeek, mortgagedAmount } = this.state;
 
 		if(this.state.images.length > 0) {
-			this.setState({showConfirmDialog: true})
+			this.setState({showConfirmDialog: true});
 		} else {
 			alert("画像を1枚以上選択してください");
 		}
+
+		if(feePerHour===null && feePerDay===null && feePerWeek===null) {
+			alert("料金を1つ以上入力してください");
+		}
+		if(mortgagedAmount===null) {
+			alert("担保に必要な金額を入力してください");
+		}
+		
 	}
 
 	// 画像を選択
@@ -157,20 +169,30 @@ class ItemPost extends React.Component {
 	// 商品を登録する（サーバーにリクエスト送信）
 	postItem = async () => {
 
-		const images = await this.uploadImages();
+		const token = localStorage.getItem("token");
 
-		const postData = {
+		this.uploadImages()
+			.then(images => {
+				const imageUrls = Object.keys(images).map(id => {
+					return images[id].url;
+				})
+			})
+
+
+		api.post('items/', postData, {
+			headers: { 
+				"Content-Type": "application/json",
+				"Authorization": "Token " + token
+			},
 			name: "Name",
-			fee_per_hour: 10,
-			fee_per_day:  100,
-			fee_per_week: 1000,
+			fee_per_hour: this.state.feePerHour,
+			fee_per_day:  this.state.feePerDay,
+			fee_per_week: this.state.feePerWeek,
 			images: images.map(obj => obj.image_id),
 			categories: [1],
 			owner: 1,
-			require_mortgaged_mount: 2000,
-		}
-
-		const response = await api.post('items/', postData);
+			require_mortgaged_amount: this.state.mortgagedAmount,
+		});
 	}
 
 	// confirm = (obj, key) => {
@@ -186,7 +208,7 @@ class ItemPost extends React.Component {
 		const month = date.getMonth() + 1;
 		const day   = date.getDate();
 		const week = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
-		return `${year} / ${month} / ${day} (${week})`;
+		return `${year}/${month}/${day} (${week})`;
 	}
 
 
@@ -238,6 +260,8 @@ class ItemPost extends React.Component {
 										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
+										value={this.state.feePerHour}
+										onChange={(e) => this.setState({feePerHour: e.target.value})}
 									/>
 									<p className="item-post-yen">円</p>
 								{/* </Grid>
@@ -249,6 +273,8 @@ class ItemPost extends React.Component {
 										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
+										value={this.state.feePerDay}
+										onChange={(e) => this.setState({feePerDay: e.target.value})}
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
@@ -260,6 +286,8 @@ class ItemPost extends React.Component {
 										style={styles.textfield}
 										margin="normal"
 										variant="outlined"
+										value={this.state.feePerWeek}
+										onChange={(e) => this.setState({feePerWeek: e.target.value})}
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
@@ -271,6 +299,7 @@ class ItemPost extends React.Component {
 										style={styles.textfieldFull}
 										margin="normal"
 										variant="outlined"
+										onChange={(e) => this.setState({mortgagedAmount: e.target.value})}
 									/>
 									<p className="item-post-yen">円</p>
 								</Grid>
@@ -284,7 +313,9 @@ class ItemPost extends React.Component {
 									placeholder='購入価格: 32400円'
 									margin="normal"
 									variant="outlined"
-									/>
+									value={this.state.elseInfo}
+									onChange={(e) => this.setState({ elseInfo: e.target.value })}
+								/>
 							</Grid>
 							<Grid item container direction="column" justify="center"
 								alignItems="center" xs={6}>
@@ -322,6 +353,11 @@ class ItemPost extends React.Component {
 					</Card>
 				</Container>
 				<ConfirmDialog
+					feePerHour={this.state.feePerHour}
+					feePerDay={this.state.feePerDay}
+					feePerWeek={this.state.feePerWeek}
+					mortgagedAmount={this.state.mortgagedAmount}
+					elseInfo={this.state.elseInfo}
 					show={this.state.showConfirmDialog}
 					close={() => this.setState({showConfirmDialog: false})}
 					postItem={this.postItem}

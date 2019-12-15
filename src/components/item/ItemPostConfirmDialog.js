@@ -69,7 +69,42 @@ const ConfirmDialog = (props) => {
 		alert("投稿しました");
 		props.close();
 	}
+	
+	const renderFeePerHour = () => {
+		if(props.feePerHour===null) {
+			return null;
+		} else {
+			return (
+				<ListItem key={1}>
+					<ListItemText>{props.feePerHour}円 / 1時間</ListItemText>
+				</ListItem>
+			);
+		}
+	}
 
+	const renderFeePerDay = () => {
+		if(props.feePerDay===null) {
+			return null;
+		} else {
+			return (
+				<ListItem key={1}>
+					<ListItemText>{props.feePerDay}円 / 1日</ListItemText>
+				</ListItem>
+			);
+		}
+	}
+
+	const renderFeePerWeek = () => {
+		if(props.feePerWeek===null) {
+			return null;
+		} else {
+			return (
+				<ListItem key={1}>
+					<ListItemText>{props.feePerWeek}円 / 1週間</ListItemText>
+				</ListItem>
+			);
+		}
+	}
 
 	return (
 		<Dialog maxWidth="lg" onClose={handleClose} aria-labelledby="simple-dialog-title" open={props.show}>
@@ -81,17 +116,11 @@ const ConfirmDialog = (props) => {
 					<Grid item xs={6}>
 						<List>
 							<p>料金</p>
+							{renderFeePerHour()}
+							{renderFeePerDay()}
+							{renderFeePerWeek()}
 							<ListItem key={1}>
-								<ListItemText>{10}円 / 1時間</ListItemText>
-							</ListItem>
-							<ListItem key={1}>
-								<ListItemText>{100}円 / 1日</ListItemText>
-							</ListItem>
-							<ListItem key={1}>
-								<ListItemText>{1000}円 / 1週間</ListItemText>
-							</ListItem>
-							<ListItem key={1}>
-								<ListItemText>担保： {2000}円</ListItemText>
+								<ListItemText>担保： {props.mortgagedAmount}円</ListItemText>
 							</ListItem>
 						</List>
 					</Grid>
@@ -99,7 +128,8 @@ const ConfirmDialog = (props) => {
 						<List>
 							<p>その他</p>
 							<ListItem key={1}>
-								<ListItemText>購入金額：2160円</ListItemText>
+								{props.elseInfo}
+								{/* <ListItemText></ListItemText> */}
 							</ListItem>
 						</List>
 					</Grid>

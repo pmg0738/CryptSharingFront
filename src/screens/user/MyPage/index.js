@@ -30,10 +30,12 @@ class Mypage extends React.Component {
 			me: {
 				user_id: null,
 				name: null,
+				evaluation: null,
 				profile_image: null,
+				comment: null,
 				follow_num: null,
 				follower_num: null,
-				evaluation: null,
+				item_num: null,
 			}
 		}
 	}
@@ -50,6 +52,7 @@ class Mypage extends React.Component {
 
 	render() {
 		const { me } = this.state;
+		console.log('me', me);
 
 		return (
 			<Grid container direction="column">
@@ -61,10 +64,10 @@ class Mypage extends React.Component {
 					avatar={me.profile_image}
 					evaluation={me.evaluation}
 					name={me.name}
-					postNum={2}
+					postNum={me.item_num}
 					follower={me.follower_num}
 					follow={me.follow_num}
-					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
+					comments={me.comment}
 				/>
 				<Grid container direction="row" style={styles.tabBox}>
 					<Container>
