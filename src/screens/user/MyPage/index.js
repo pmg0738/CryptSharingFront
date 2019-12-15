@@ -5,6 +5,18 @@ import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
 // Material UI
 import { Grid } from '@material-ui/core';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import SendIcon from '@material-ui/icons/Send';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
+import { green, red, blue, lime, orange } from '@material-ui/core/colors';
+import AppBar from '@material-ui/core/AppBar';
+import TabsMaterial from '@material-ui/core/Tabs';
+import TabMaterial from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
+
 // Bootstrap
 import { 
 	Container,
@@ -20,6 +32,9 @@ import MyPageRentNow from '../../../components/user/MyPageComponents/MyPageRentN
 import MyPageUsedHistory from '../../../components/user/MyPageComponents/MyPageUsedHistory';
 import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 // マイページ
 class Mypage extends React.Component {
@@ -71,15 +86,46 @@ class Mypage extends React.Component {
 				/>
 				<Grid container direction="row" style={styles.tabBox}>
 					<Container>
-						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
-							<Tab eventKey="rent-now" title="レンタル中">
-								<MyPageRentNow/>
+						<Tabs defaultActiveKey="requesting" id="uncontrolled-tab-example">
+							<Tab eventKey="rent-now" title="現在利用中" style={{color:"black"}}>
+							<ExpansionPanel style={{marginTop:"10px", backgroundColor: green[300]}}>
+									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>借りてるもの</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageRentNow/>		
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
+								<ExpansionPanel style={{backgroundColor: blue[300]}}>
+									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>貸し出し中</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageRentNow/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="requesting" title="リクエスト中">
-								<div className="my-page-tab-explanation">送ったリクエスト</div>
-								<MyPageBooked/>
-								<div className="my-page-tab-explanation">来たリクエスト</div>
-								<MyPageBooked/>
+								<ExpansionPanel style={{marginTop:"10px", backgroundColor: green[300]}}>
+									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>送った リクエスト</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageBooked
+											type="sent"
+										/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
+								<ExpansionPanel style={{backgroundColor: blue[300]}}>
+									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>届いた リクエスト</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageBooked
+											type="received"
+										/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
 								<MyPageUsedHistory to= {'/items/4'}/>
@@ -119,3 +165,36 @@ const styles = {
 		color:'blue'
 	},
 }
+
+
+// function DisabledTabs() {
+// 	const [value, setValue] = React.useState(2);
+  
+// 	const handleChange = (event, newValue) => {
+// 	  setValue(newValue);
+// 	};
+  
+// 	return (
+// 	  <Paper square>
+// 		<TabsMaterial
+// 		  value={value}
+// 		  indicatorColor="primary"
+// 		  textColor="primary"
+// 		  onChange={handleChange}
+// 		  aria-label="disabled tabs example"
+// 		>
+// 		  <TabMaterial label="Octive" style={{fontSize:"30px"}}/>
+// 		  <TabMaterial label="Ectasdf"/>
+// 		  <TabMaterial label="Pctive" />
+// 		</TabsMaterial>
+// 		<Typography
+// 			component="div"
+// 			role="tabpanel"
+// 			value={value}
+// 			index="two"
+// 			// hidden={value !== index}
+// 		>
+// 		</Typography>
+// 	  </Paper>
+// 	);
+//   }

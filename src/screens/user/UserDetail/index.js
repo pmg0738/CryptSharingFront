@@ -13,7 +13,10 @@ import Grid from '@material-ui/core/Grid';
 import OtherPageProfile from '../../../components/user/OtherPageComponent/OtherPageProfile';
 import eraiza from '../../../images/logo.png';
 
-
+import { 
+	Tabs,
+	Tab
+} from 'react-bootstrap';
 
 export default class UserDetail extends React.Component {
 	constructor(props) {
@@ -77,7 +80,17 @@ export default class UserDetail extends React.Component {
 					follow="857"
 					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
 				/>
-				{this.renderEvaluations()}
+				<Tabs defaultActiveKey="requesting" id="uncontrolled-tab-example">
+					<Tab eventKey="rent-now" title="投稿一覧" style={{color:"black"}}>
+						
+					</Tab>
+					<Tab eventKey="used-history" title="Get ★" className="mypage-used-history">
+						{this.renderEvaluations()}
+					</Tab>
+					<Tab eventKey="posted-history" title="Give ★">
+						{this.renderEvaluations()}
+					</Tab> 
+				</Tabs>
 			</Container>
 		)
 	}
