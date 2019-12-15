@@ -7,8 +7,6 @@ import {
 import './style.scss';
 
 import Grid from '@material-ui/core/Grid';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
@@ -17,12 +15,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import Avatar from '@material-ui/core/Avatar';
-import { green, red, blue } from '@material-ui/core/colors';
+import { green, red} from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
 import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -30,50 +27,15 @@ import Input from '@material-ui/core/Input';
 import Box from '@material-ui/core/Box';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-import { Link } from 'react-router-dom';
-
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faChevronLeft, faHeart, faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
+import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
-import Navbar from '../../../components/common/Navbar';
-import eroi from '../../../images/eraiza.png';
 import cat from '../../../images/cup.jpg';
-import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
 
 
 // function expensiveInitialState() {
 // 	return 10;
 // }
-
-
-// function Request(){
-// 	// const [count, setCount] = useState(() => expensiveInitialState());   when initial state return expensive stuff in function
-// 	// const [count, setCount] = useState(10);
-// 	const [{count, count2}, setCount] = useState({ count: 10, count2:20});
-// 	return (
-// 		<div style={{backgroundColor:"skyblue"}}>
-// 			{/* <button onClick={() => setCount(count + 1)}>+</button> */}
-// 			<button onClick={()=>
-// 					setCount(currentState =>({
-// 					...currentState,
-// 					count: currentState.count + 1,
-// 					count2: currentState.count2 + 1
-// 				}))
-// 			}>+</button>
-
-// 			{/* <button onClick={() => setCount(currentCount => currentCount + 1)}>+</button>   avoid update same time */}
-
-// 			<div>count1: {count}</div>
-// 			<div>count2: {count2}</div>
-// 		</div>
-// 	);
-// };
-
-// export default Request;
-
-
-
 
 
 class Request extends React.Component {
