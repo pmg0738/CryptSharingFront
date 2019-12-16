@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './style.scss';
-
+import api from '../../../redux/apis';
 // // Material UI Component
 // import Avatar from '@material-ui/core/Avatar';
 // import Button from '@material-ui/core/Button';
@@ -302,7 +302,14 @@ class SearchBar extends React.Component{
 
 function RequestAddButton() {
     const [open, setOpen] = React.useState(true);
-  
+    const [itemName, setItemName] = React.useState();
+    const [location, setLocation] = React.useState('福岡県 福岡市');
+    const [lentPeriodRadio, setLentPeriodRadio] = React.useState('oneweek');
+    const [lentPeriodNum, setLentPeriodNum] = React.useState();
+    const [hopeFee, setHopeFee] = React.useState();
+    const [comment, setCommnet] = React.useState();
+    const [lentPeriodStr, setLentPeriodStr] = React.useState('週間');
+
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -310,7 +317,64 @@ function RequestAddButton() {
     const handleClose = () => {
       setOpen(false);
     };
+
+    const handleItemName = (e) => {
+        setItemName(e.target.value);
+    };
+
+    const handleLocation = (e) => {
+        setLocation(e.target.value);
+    };
+
+    const handleLentPeirodRadio = (e) => {
+        setLentPeriodRadio(e.target.value);
+        if(e.target.value === 'onehour'){
+            setLentPeriodStr('時間');
+        }
+        if(e.target.value === 'oneday'){
+            setLentPeriodStr('日');
+        }
+        if(e.target.value === 'oneweek'){
+            setLentPeriodStr('週間');
+        }
+    };
+
+    const handleLentPeriodNum = (e) => {
+        setLentPeriodNum(e.target.value);
+    };
+    
+    const handleHopeFee = (e) => {
+        setHopeFee(e.target.value);
+    };
+
+    const handleComment = (e) => {
+        setCommnet(e.target.value);
+    };
   
+    const postHopeRequest = () => {
+        const notEmpty = (itemName !== "" && location !== "" && 
+            lentPeriodNum !=="" && hopeFee !=="");
+
+        if(notEmpty){
+            let postData ={
+                name: itemName,
+                hope_fee: hopeFee,
+                hope_time: lentPeriodNum,
+            }
+            api.post('/requests/', postData)
+                .then((res) => {
+                    console.log('@'.repeat(45))
+                    console.log('res', res);
+                    handleClose();
+                })
+                .catch((error) => {
+                    alert('なんでだろう', error);
+                    console.log('errorrrrr', error);
+                })
+        }else{
+            alert('項目を入力してください')
+        }
+    }
     return (
       <div>
         <Button 
@@ -335,6 +399,8 @@ function RequestAddButton() {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={handleItemName}
+                        value={itemName}
                         variant="standard" 
                         placeholder="借りたいもの"
                     />
@@ -347,10 +413,17 @@ function RequestAddButton() {
                                 </InputAdornment>
                             ),
                         }}
+                        onChange={handleLocation}
+                        value={location}
                         variant="standard" 
                         placeholder="位置情報"
                     />
-                    <RadioGroup row style={{marginBottom:"30px"}}>
+                    <RadioGroup
+                        row 
+                        style={{marginBottom:"30px"}}
+                        onChange={handleLentPeirodRadio}
+                        value={lentPeriodRadio}
+                    >
                         <FormControlLabel
                             value="onehour"
                             control={<Radio color="primary" />}
@@ -372,16 +445,18 @@ function RequestAddButton() {
                     </RadioGroup>
                     <Input
                         style={{width:"150px", marginBottom:"30px"}}
-                        // onChange={handleChange('amount')}
+                        onChange={handleLentPeriodNum}
+                        value={lentPeriodNum}
                         startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faHourglassStart} style={{width:"30px", height:"30px"}}/></InputAdornment>}
-                        endAdornment={<InputAdornment position="end">時間</InputAdornment>}
+                        endAdornment={<InputAdornment position="end">{lentPeriodStr}</InputAdornment>}
                         labelWidth={60}
                     />
                     <Input
                         style={{width:"150px", marginBottom:"30px"}}
-                        // onChange={handleChange('amount')}
+                        onChange={handleHopeFee}
+                        value={hopeFee}
                         startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faYenSign} style={{width:"30px", height:"30px"}}/></InputAdornment>}
-                        endAdornment={<InputAdornment position="end">/1時間</InputAdornment>}
+                        endAdornment={<InputAdornment position="end">/1{lentPeriodStr}</InputAdornment>}
                         labelWidth={60}
                     />
                     <TextField
@@ -391,10 +466,12 @@ function RequestAddButton() {
                         rows="4"
                         variant="outlined"
                         rowsMax="4"
+                        onChange={handleComment}
+                        value={comment}
                     />
                     <DialogActions>
                         <Button 
-                            onClick={handleClose}
+                            onClick={postHopeRequest}
                             style={{
                                 backgroundColor:"#ea4335",
                                 borderColor:"#ea4335",
