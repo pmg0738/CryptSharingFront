@@ -30,8 +30,9 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
-import cat from '../../../images/cup.jpg';
-
+import cat from '../../../images/carry_bag.jpg';
+import tyler from '../../../images/knock_black.png';
+import UserProfile from '../../../components/user/UserProfileComponent';
 
 // function expensiveInitialState() {
 // 	return 10;
@@ -121,10 +122,13 @@ handleLentPeriod = (e) =>{
 		return (
 			<Grid container direction="row" justify="center" alignItems="center">
 				<Grid container sm={12} md={6} direction="column" justify="center" alignItems="center">
-					<Grid container direction="row">
-						<Avatar src={cat} style={{width:"45px", height:"45px"}}/>
-						<div style={{fontSize:"20px", color:"white", margin:"7px"}}>upallnight0738</div>
-						{this.renderStar(2.5)}
+					<Grid container direction="row" style={{marginLeft:"100px"}}>
+						<UserProfile
+							avatar={tyler}
+							name ={"Tyler, The Creator"}
+							prefecture = {"海外"}
+							evalutaion="3"
+						/>
 					</Grid>
 					<Grid>
 						<Image style={{width:"450px", height:"450px", marginBottom:"10px", marginTop:"20px"}} src={cat} />
