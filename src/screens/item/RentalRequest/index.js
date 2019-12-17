@@ -14,7 +14,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import Avatar from '@material-ui/core/Avatar';
 import { green, red} from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -34,11 +33,6 @@ import cat from '../../../images/carry_bag.jpg';
 import tyler from '../../../images/knock_black.png';
 import UserProfile from '../../../components/user/UserProfileComponent';
 
-// function expensiveInitialState() {
-// 	return 10;
-// }
-
-
 class Request extends React.Component {
 	constructor(props){
 		super(props);
@@ -49,74 +43,73 @@ class Request extends React.Component {
 	}
 
 
-renderStar = (valueOfPostUser) =>{
+	renderStar = (valueOfPostUser) =>{
 
-	let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
-	let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
-	let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
 
-	let starArray = [];
+		let starArray = [];
 
-	while (starArray.length<5) {
+		while (starArray.length<5) {
 
-		if(valueOfPostUser >= 1) {
-			valueOfPostUser -= 1;
-			starArray.push(FullStar);
+			if(valueOfPostUser >= 1) {
+				valueOfPostUser -= 1;
+				starArray.push(FullStar);
+			}
+
+			else if(valueOfPostUser >= 0.5) {
+				starArray.push(HalfStar);
+				valueOfPostUser = 0;
+			}
+
+			else {
+				starArray.push(EmptyStar);
+			}
 		}
+		return starArray;
+	}
 
-		else if(valueOfPostUser >= 0.5) {
-			starArray.push(HalfStar);
-			valueOfPostUser = 0;
-		}
-
-		else {
-			starArray.push(EmptyStar);
+	showEmoticon = (itemLendStatus) =>{
+		if(itemLendStatus){			
+			return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
+		}else{
+			return(
+					<div>
+						<SentimentVeryDissatisfiedRoundedIcon style={{color:red[500], width:"40px", height:"40px"}}/>
+						<div style={{fontSize:"10px", opacity:"0.7"}}>12/25から可能</div>
+					</div>
+				)
 		}
 	}
-	return starArray;
-}
 
-showEmoticon = (itemLendStatus) =>{
-	if(itemLendStatus){			
-		return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
-	}else{
-		return(
-				<div>
-					<SentimentVeryDissatisfiedRoundedIcon style={{color:red[500], width:"40px", height:"40px"}}/>
-					<div style={{fontSize:"10px", opacity:"0.7"}}>12/25から可能</div>
-				</div>
-			)
+	renderFeeTable = () => {	
+		return (
+				<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
+				<TableHead>
+					<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1時間</TableCell>
+					<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
+					<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
+					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
+					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
+				</TableHead>
+				<TableBody>
+					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥50{this.props.item.fee_per_hour}</TableCell>
+					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥300{this.props.item.fee_per_day}</TableCell>
+					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥1000</TableCell>
+					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
+					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						{this.showEmoticon(1)}
+					</TableCell>
+				</TableBody>
+				</Table>
+		);
 	}
-}
 
-renderFeeTable = () => {	
-	return (
-			<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
-			<TableHead>
-				<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1時間</TableCell>
-				<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
-				<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
-				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
-				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
-			</TableHead>
-			<TableBody>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥50{this.props.item.fee_per_hour}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥300{this.props.item.fee_per_day}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥1000</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
-					{this.showEmoticon(1)}
-					{/* <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/> */}
-				</TableCell>
-			</TableBody>
-			</Table>
-	);
-}
-
-handleLentPeriod = (e) =>{
-	console.log(e.target.value);
-	this.setState({lentPeriod: e.target.value})
-}
+	handleLentPeriod = (e) =>{
+		console.log(e.target.value);
+		this.setState({lentPeriod: e.target.value})
+	}
 
 	render() {
 		return (
@@ -284,47 +277,7 @@ function LentPeriodRadioButton(){
 			)
 		}
 	}
-
-
-	const ValidationTextField = withStyles({
-		root: {
-		  '& input:valid + fieldset': {
-			borderColor: 'green',
-			borderWidth: 2,
-		  },
-		  '& input:invalid + fieldset': {
-			borderColor: 'red',
-			borderWidth: 2,
-		  },
-		  '& input:valid:focus + fieldset': {
-			borderLeftWidth: 6,
-			padding: '4px !important', // override inline-style
-		  },
-		},
-	  })(TextField);
-
-	const CssTextField = withStyles({
-		root: {
-		  '& label.Mui-focused': {
-			color: 'green',
-		  },
-		  '& .MuiInput-underline:after': {
-			borderBottomColor: 'green',
-		  },
-		  '& .MuiOutlinedInput-root': {
-			'& fieldset': {
-			  borderColor: 'red',
-			},
-			'&:hover fieldset': {
-			  borderColor: 'yellow',
-			},
-			'&.Mui-focused fieldset': {
-			  borderColor: 'green',
-			},
-		  },
-		},
-	  })(TextField);
-	
+		
 	return (
 		<div>
 			<Box border={1} borderColor="primary.main" className={classes.box}>
@@ -355,12 +308,6 @@ function LentPeriodRadioButton(){
 						</Grid>
 						<Grid item>
 							<Input label="借りる時間" value={lentTimeValue} className={classes.textField} onChange={handleLentTimeValue} color="primary"/>
-							{/* <ValidationTextField label="借りる時間"/>
-							<CssTextField
-								className={classes.textField}
-								label="Custom CSS"
-								id="custom-css-outlined-input"
-							/> */}
 						</Grid>
 						<Grid item style={{marginTop:"20px", fontSize:"20px"}}>
 							{lentPeriodLabel()}

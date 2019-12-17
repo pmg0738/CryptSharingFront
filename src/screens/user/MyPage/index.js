@@ -11,8 +11,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import CallReceivedIcon from '@material-ui/icons/CallReceived';
-import { green, blue,} from '@material-ui/core/colors';
-
 
 // Bootstrap
 import { 
@@ -82,7 +80,7 @@ class Mypage extends React.Component {
 					<Container>
 						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
 							<Tab eventKey="rent-now" title="現在利用中" style={{color:"black"}}>
-							<ExpansionPanel style={{marginTop:"10px", backgroundColor: green[300]}}>
+							<ExpansionPanel style={{marginTop:"10px"}} defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>借りてるもの</Typography>
 									</ExpansionPanelSummary>
@@ -92,7 +90,7 @@ class Mypage extends React.Component {
 										/>		
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
-								<ExpansionPanel style={{backgroundColor: blue[300]}}>
+								<ExpansionPanel defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>貸し出し中</Typography>
 									</ExpansionPanelSummary>
@@ -104,7 +102,7 @@ class Mypage extends React.Component {
 								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="requesting" title="リクエスト中">
-								<ExpansionPanel style={{marginTop:"10px", backgroundColor: green[300]}}>
+								<ExpansionPanel style={{marginTop:"10px", }} defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>送った リクエスト</Typography>
 									</ExpansionPanelSummary>
@@ -114,7 +112,7 @@ class Mypage extends React.Component {
 										/>
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
-								<ExpansionPanel style={{backgroundColor: blue[300]}}>
+								<ExpansionPanel defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>届いた リクエスト</Typography>
 									</ExpansionPanelSummary>

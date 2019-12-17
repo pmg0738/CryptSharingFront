@@ -303,7 +303,8 @@ class SearchBar extends React.Component{
 function RequestAddButton() {
     const [open, setOpen] = React.useState(true);
     const [itemName, setItemName] = React.useState();
-    const [location, setLocation] = React.useState('福岡県 福岡市');
+    const [prefecture, setPrefecture] = React.useState('福岡県');
+    const [city, setCity] = React.useState('');
     const [lentPeriodRadio, setLentPeriodRadio] = React.useState('oneweek');
     const [lentPeriodNum, setLentPeriodNum] = React.useState();
     const [hopeFee, setHopeFee] = React.useState();
@@ -322,8 +323,12 @@ function RequestAddButton() {
         setItemName(e.target.value);
     };
 
-    const handleLocation = (e) => {
-        setLocation(e.target.value);
+    const handlePrefecture = (e) => {
+        setPrefecture(e.target.value);
+    };
+
+    const handleCity = (e) => {
+        setCity(e.target.value);
     };
 
     const handleLentPeirodRadio = (e) => {
@@ -351,28 +356,43 @@ function RequestAddButton() {
         setCommnet(e.target.value);
     };
   
-    const postHopeRequest = () => {
-        const notEmpty = (itemName !== "" && location !== "" && 
-            lentPeriodNum !=="" && hopeFee !=="");
+    const postHopeRequest = async () => {
+
+        const token = localStorage.getItem("token");
+
+        const optionsPost = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + token
+            },
+        }
+
+        const notEmpty = (itemName !== "" && prefecture !== "" && 
+            lentPeriodNum !== "" && hopeFee !=="");
+
+        console.log(notEmpty);
 
         if(notEmpty){
-            let postData ={
+            console.log('notEmpty!!!')
+            const postData ={
                 name: itemName,
-                hope_fee: hopeFee,
-                hope_time: lentPeriodNum,
+                hope_fee: Number(hopeFee),
+                hope_hour: Number(lentPeriodNum),
+                solved: false,
             }
-            api.post('/requests/', postData)
-                .then((res) => {
-                    console.log('@'.repeat(45))
-                    console.log('res', res);
-                    handleClose();
-                })
+            console.log('postData', postData);
+            api.post('requests/', postData, optionsPost)
+                .then( ()=> {
+                        alert('リクエスト完了！');
+                        handleClose();
+                    }
+                )
                 .catch((error) => {
                     alert('なんでだろう', error);
                     console.log('errorrrrr', error);
                 })
         }else{
-            alert('項目を入力してください')
+            alert('項目を入力してください');
         }
     }
     return (
@@ -404,20 +424,24 @@ function RequestAddButton() {
                         variant="standard" 
                         placeholder="借りたいもの"
                     />
-                    <TextField
-                        style={{marginBottom:"30px"}}
-                        InputProps={{
-                            startAdornment :(
-                                <InputAdornment position="start">
-                                    <FontAwesomeIcon icon={faMapMarkerAlt} style={{width:"30px", height:"30px"}}/>
-                                </InputAdornment>
-                            ),
-                        }}
-                        onChange={handleLocation}
-                        value={location}
-                        variant="standard" 
-                        placeholder="位置情報"
-                    />
+                    <Grid container directionN="row">
+                        <FontAwesomeIcon icon={faMapMarkerAlt} style={{width:"30px", height:"30px", marginLeft:"85px", marginRight:"5px"}}/>
+                        <TextField
+                            style={{marginBottom:"30px", width:"120px", marginRight:"10px", textAlign:"center"}}
+                            onChange={handlePrefecture}
+                            value={prefecture}
+                            variant="standard" 
+                            placeholder="都道府県"
+                        />
+                        <TextField
+                            style={{marginBottom:"30px", width:"150px", textAlign:"center"}}
+                            onChange={handleCity}
+                            value={city}
+                            variant="standard" 
+                            placeholder="市村町"
+                        />
+                    </Grid>
+                    
                     <RadioGroup
                         row 
                         style={{marginBottom:"30px"}}
@@ -443,22 +467,24 @@ function RequestAddButton() {
                             labelPlacement="start"
                         />
                     </RadioGroup>
-                    <Input
-                        style={{width:"150px", marginBottom:"30px"}}
-                        onChange={handleLentPeriodNum}
-                        value={lentPeriodNum}
-                        startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faHourglassStart} style={{width:"30px", height:"30px"}}/></InputAdornment>}
-                        endAdornment={<InputAdornment position="end">{lentPeriodStr}</InputAdornment>}
-                        labelWidth={60}
-                    />
-                    <Input
-                        style={{width:"150px", marginBottom:"30px"}}
-                        onChange={handleHopeFee}
-                        value={hopeFee}
-                        startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faYenSign} style={{width:"30px", height:"30px"}}/></InputAdornment>}
-                        endAdornment={<InputAdornment position="end">/1{lentPeriodStr}</InputAdornment>}
-                        labelWidth={60}
-                    />
+                    <Grid container direction="row">
+                        <Input
+                            style={{width:"150px", marginBottom:"30px", marginLeft:"85px"}}
+                            onChange={handleLentPeriodNum}
+                            value={lentPeriodNum}
+                            startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faHourglassStart} style={{width:"30px", height:"30px"}}/></InputAdornment>}
+                            endAdornment={<InputAdornment position="end">{lentPeriodStr}</InputAdornment>}
+                            labelWidth={60}
+                        />
+                        <Input
+                            style={{width:"150px", marginBottom:"30px", marginLeft:"10px"}}
+                            onChange={handleHopeFee}
+                            value={hopeFee}
+                            startAdornment={<InputAdornment position="start"><FontAwesomeIcon icon={faYenSign} style={{width:"30px", height:"30px"}}/></InputAdornment>}
+                            endAdornment={<InputAdornment position="end">/1{lentPeriodStr}</InputAdornment>}
+                            labelWidth={60}
+                        />
+                    </Grid>
                     <TextField
                         style={{width:"400px"}}
                         label="コメント"

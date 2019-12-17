@@ -3,13 +3,6 @@ import {Link} from 'react-router-dom';
 
 import './style.scss';
 
-import {
-	Container,
-	Row,
-	Col,
-  } from 'react-bootstrap';
-
-
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
@@ -18,17 +11,10 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TextField from '@material-ui/core/TextField';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Dialog from '@material-ui/core/Dialog';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import { green, red, blue } from '@material-ui/core/colors';
+import { green, blue } from '@material-ui/core/colors';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
@@ -36,7 +22,6 @@ import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg
 
 import eraiza from '../../../../images/eraiza.png';
 import cup from '../../../../images/carry_bag.jpg';
-import yoni from '../../../../images/cup.jpg';
 import drake from '../../../../images/drake.jpg';
 
 
@@ -119,9 +104,6 @@ export default class MyPageBooked extends React.Component {
 	}
 
 	render() {
-		const { items } = this.state;
-		// const items = this.state.items;
-
 		return (
 				<Card style={{width:"1000px", height:"200px"}}>
 					<Grid container direction="row">
