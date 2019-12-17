@@ -1,7 +1,9 @@
 import React from 'react';
 import api from '../../../redux/apis';
 import './style.scss';
-
+// Redux
+import { connect } from 'react-redux';
+import { fetchUser } from '../../../redux/actions/user';
 // Material UI component
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
@@ -15,11 +17,20 @@ import eraiza from '../../../images/logo.png';
 
 
 
-export default class UserDetail extends React.Component {
+class UserDetail extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			user: {
+				name: null,
+				follower_num: null,
+				follow_num: null,
+				item_num: null,
+				profile_image: null,
+				comment: null,
+				following: null,
+			},
 			evaluations: [
 				{rate: 3, comment: "good" },
 				{rate: 2, comment: "mm..." },
@@ -27,14 +38,43 @@ export default class UserDetail extends React.Component {
 				{rate: 5, comment: "perfect" },
 			],
 		}
+		this.userId = this.props.match.params.id;
+	}
+
+	componentWillMount(){
+		this.fetchUser();
+	}
+
+	fetchUser = async () => {
+		const user = await this.props.fetchUser(this.userId);
+		this.setState({ user: user })
 	}
 
 	fetchEvaluations = () => {
 		// 評価を受け取る
 		api.get('evaluations/')
 			.then(res => {
-				console.log('evaluations', res.data);
 				this.setState({evaluations: res.data});
+			})
+	}
+
+	handleFollow = () => {
+		const token = localStorage.getItem("token");
+
+		api.post('users/follow/', {
+			user_id: this.state.user.user_id,
+		}, {
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Token " + token
+			},
+			data: {
+				
+			},
+		}).then(res => {
+				let { user } = this.state;
+				user.following = res.data.following;
+				this.setState({ user: user })
 			})
 	}
 
@@ -66,22 +106,36 @@ export default class UserDetail extends React.Component {
 	}
 
 	render() {
+		const { user } = this.state;
 		return (
 			<Container maxWidth="lg" className="item-post-container">
 				<OtherPageProfile
-					avatar={eraiza}
-					evaluation="3.5"
-					name="Bitch"
-					postNum="1,235"
-					follower="995"
-					follow="857"
-					comments="my name is ELAIZA IKEDA. my name is ELAIZA IKEDA. my name is ELAIZA IKEDA."
+					key="otherPageProfile"
+					avatar={user.profile_image}
+					evaluation={user.evaluation}
+					name={user.name}
+					postNum={user.item_num}
+					follower={user.follower_num}
+					follow={user.follow_num}
+					comments={user.comment}
+					onClickFollowButton={this.handleFollow}
+					isFollow={this.state.user.following}
 				/>
 				{this.renderEvaluations()}
 			</Container>
-		)
+		);
 	}
 }
+
+const mapStateProps = (store) => {
+	return { 
+		users: store.users,
+		user: store.user
+	};
+}
+
+export default connect( mapStateProps, { fetchUser })(UserDetail);
+
 
 
 const styles = {	

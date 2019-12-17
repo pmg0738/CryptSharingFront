@@ -35,25 +35,6 @@ const useStyles = makeStyles({
 	},
 });
 
-const login = async (eoaAddress, password, props) => {
-	api.post('users/token/', {
-		eoa_address: eoaAddress,
-		password: password
-	})
-	.then(response => {
-		const token = response.data.token;
-		localStorage.setItem('token', token);
-		localStorage.setItem('eoaAddress', eoaAddress);
-		setTimeout(() => {
-			props.history.push('/');
-		}, 1000)
-	})
-	.catch(() => {
-		alert("ログイン失敗");
-	})
-}
-
-
 
 export default function Login(props) {
 	const classes = useStyles();
@@ -61,6 +42,29 @@ export default function Login(props) {
 	const [eoaAddress, setEoaAddress] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = React.useState(false);
+
+
+	const login = async (eoaAddress, password, props) => {
+		api.post('users/token/', {
+			eoa_address: eoaAddress,
+			password: password
+		})
+		.then(response => {
+			const token = response.data.token;
+			localStorage.setItem('token', token);
+			localStorage.setItem('eoaAddress', eoaAddress);
+			setTimeout(() => {
+				props.history.push('/');
+			}, 1000)
+		})
+		.catch((error) => {
+			console.log('error', error);
+			alert("ログイン失敗");
+			setLoading(false);
+		})
+	}
+
+	
 
 	return(
 		<div>

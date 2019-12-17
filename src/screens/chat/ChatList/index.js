@@ -3,7 +3,10 @@ import api from '../../../redux/apis';
 import firebase from 'firebase';
 import _ from 'lodash';
 import './style.scss';
-
+import { makeStyles } from '@material-ui/core/styles';
+// Redux
+import { connect } from 'react-redux';
+import { fetchMyData } from '../../../redux/actions/user';
 // Material UI Component
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,17 +14,19 @@ import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 // Material UI Icon
-
+// import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import ChatIcon from '@material-ui/icons/Chat';
 import CloseIcon from '@material-ui/icons/Close';
 import GroupIcon from '@material-ui/icons/Group';
 // My Component
+import ChatAddButton  from '../../../components/chat/ChatAddButton';
 import ChatMain from '../../../components/chat/ChatMain';
 import ChatListComponent from '../../../components/chat/ChatListItem';
 import FriendListDialog from '../../../components/chat/ChatFriendListDialog';
 
 
 // チャット画面
-export default class Chat extends React.Component {
+class Chat extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -29,12 +34,30 @@ export default class Chat extends React.Component {
 			showFriendListDialog: false,
 			roomId: 0,
 			rooms: {},
+			me: {},
 		}
 		this.myUserId = 1;
 	}
 
 	componentWillMount() {
 		this.fetchChatRooms();
+		this.setMyData();
+	}
+
+	createRoom = () => {
+		// Django サーバーに作成
+		api.post('chat/rooms/', {
+			members: [1, 3],
+		}).then(res => {
+			const roomId = res.data.room_id;
+			const members = [1, 3];
+			const db = firebase.firestore();
+
+			// Firebase firestoreに作成
+			db.collection('/rooms').doc(String(roomId)).set({
+				members: members,
+			}).then(response => console.log('firestore', response))
+		})
 	}
 
 	closeChat = () => {
@@ -99,7 +122,7 @@ export default class Chat extends React.Component {
 
 	// サーバーからチャットルームのリストを取ってくる
 	fetchChatRooms = () => {
-		api.get('room/', {
+		api.get('chat/rooms/', {
 			params: {
 				requestSenderUserId: this.myUserId,
 			}
@@ -119,12 +142,10 @@ export default class Chat extends React.Component {
 	// Firebaseからメッセージを取ってくる
 	fetchMessages = (roomId) => {
 		const notFetched = this.state.rooms[roomId].messages.length === 0;
-		console.log('notFetched', notFetched);
 
 		if(notFetched) {
 			const db = firebase.firestore();
 
-			console.log("@".repeat(100));
 			db.collection('/rooms/' + roomId + '/messages')
 				.onSnapshot(querySnapshot => {
 					const messages = this.querySnapshotToArray(querySnapshot);
@@ -138,6 +159,19 @@ export default class Chat extends React.Component {
 
 		rooms[roomId].messages = messages;
 		this.setState({rooms: rooms})
+	}
+
+	// TODO: setStateは成功しているが、リアルタイムで更新されない
+	//Djangoに送信後、最新メッセージをフロントのみで更新する
+	setRoomLastMessage = (roomId, message, sentDateTime) => {
+		const { rooms } = this.state;
+
+		rooms[roomId]['last_message'] = {
+			message: message,
+			sent_date_time: sentDateTime,
+		};
+		this.setState({rooms: rooms});
+		this.render();
 	}
 
 
@@ -160,13 +194,22 @@ export default class Chat extends React.Component {
 	roomMssages = (roomId) => {
 		if(roomId != 0)
 			return this.state.rooms[roomId].messages;
-	}	
+	}
+
+	setMyData = async () => {
+		if(Object.keys(this.props.store.me).length==0) {
+			this.props.fetchMyData()
+				.then(response => this.setState({me: response}));
+		} else {
+			this.setState({ me: this.props.store.me });
+		}
+	}
 
 	render() {
 		return (
 			<Grid direction="row" className="chat-screen-contaienr">
 				{/* 左端に固定したメニューバー */}
-				<div className="chat-menu-container">
+				{/* <div className="chat-menu-container">
 					<Button color="default" onClick={this.openFriendListDialog}>
 						<Grid item>
 							<GroupIcon style={styles.buttonIconRed}/>
@@ -192,22 +235,27 @@ export default class Chat extends React.Component {
 						</Grid>
 					</Button>
 					{this.renderCloseButton()}
-				</div>
+				</div> */}
 				{/* 画面サイズがmd以下のとき非表示にするコンポーネント */}
 				<Hidden mdDown>
 					<div className="chat-list-container-half">
-						<Grid direction="row" style={{backgroundColor: "#fff00ff"}}>						
+						<Grid direction="row" style={{backgroundColor: "#fff00ff"}}>
 							<Grid item>
 								<ChatListComponent
 									rooms={this.state.rooms}
 									selectRoom={this.selectRoom}
 								/>
 							</Grid>
+							{/* <CreateRoomButton/> */}
+							<ChatAddButton
+								createRoom={this.createRoom}
+							/>
 						</Grid>
 					</div>
 					<div className="chat-main-container">
 						<ChatMain
 							roomId={this.state.roomId}
+							setRoomLastMessage={this.setRoomLastMessage}
 							messages={this.roomMssages(this.state.roomId)}
 							setMessages={this.setMessages}
 							close={this.closeChat}
@@ -255,6 +303,11 @@ export default class Chat extends React.Component {
 }
 
 
+const mapStateProps = (store) => {
+	return { store: store };
+}
+
+export default connect( mapStateProps, { fetchMyData })(Chat);
 
 
 

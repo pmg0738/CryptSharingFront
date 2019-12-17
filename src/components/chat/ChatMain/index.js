@@ -1,7 +1,10 @@
 import React from 'react';
 import firebase from 'firebase';
+import api from '../../../redux/apis';
 import './style.scss';
-
+// Redux
+import { connect } from 'react-redux';
+import { fetchMyData } from '../../../redux/actions/user';
 // Material UI Component
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,44 +18,63 @@ import dogImage from '../../../images/dog.png';
 
 
 
-export default class Chat extends React.Component {
+class Chat extends React.Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			inputtingMessage: '',
 			sendButtonStyle: styles.sendButtonDeactive,
+			me: {}
 		}
-		this.myUserId = 1;
 	}
 
 	componentDidMount() {
 		this.scrollToBottom();
+		this.setMyData();
+	}
+
+	
+	setMyData = async () => {
+		if(Object.keys(this.props.me).length==0) {
+			this.props.fetchMyData()
+				.then(response => this.setState({me: response}));
+		} else {
+			this.setState({ me: this.props.me });
+		}
+	}
+
+	// Ctrl + Enter でメッセージを送信
+	sendMessageByKeyboard = (e) => {
+		if(e.ctrlKey && e.keyCode===13){
+			this.sendMessage();
+		}
 	}
 
 	// メッセージを送信
 	sendMessage = () => {
 		if(this.state.inputtingMessage!="") {
 			const newMessage = this.state.inputtingMessage;
-			let messages = this.props.messages;
+			// let messages = this.props.messages;
 
-			messages.push({
-				id: 0,   // 0自分が送ったやつ
-				message: newMessage,
-			});
+			// messages.push({
+			// 	id: 0,   // 0自分が送ったやつ
+			// 	message: newMessage,
+			// });
 
 			// メッセージを追加
-			this.props.setMessages(this.props.roomId, messages);
+			// this.props.setMessages(this.props.roomId, messages);
 
 			// Firestoreに保存
 			this.postMessageToFirestore(newMessage);
+			// Djangoに保存
+			this.postMessageToDjango(newMessage);
 
 			// テキストエリアの中身を空にする
 			this.setState({
 				inputtingMessage: '',
 				sendButtonStyle: styles.sendButtonDeactive,
 			})
-
 	
 			setTimeout(() => {
 				this.scrollToBottom();
@@ -60,33 +82,34 @@ export default class Chat extends React.Component {
 		}
 	}
 
-	// Firestoreにデータを保存する
+	// Firestoreにデータを保存
 	postMessageToFirestore = (message) => {
 		const db = firebase.firestore();
 
-		const roomId = 1;
-
 		const timestamp = String(new Date().getTime());
 
-		db.collection('/rooms/' + roomId + '/messages').doc(timestamp).set({
-			sender: this.myUserId,
+		db.collection('/rooms/' + this.props.roomId + '/messages').doc(timestamp).set({
+			sender: this.state.me.user_id,
 			message: message,
 			is_read: false,
 			sent_date_time: new Date(),
 		}).then((docRef) => console.log('docRef', docRef))
 	}
 
-	// Ctrl + Enter でメッセージを送信
-	sendMessageByKeyboard = (e) => {
-		// if(e.ctrlKey){
-		// 	if (e.keyCode === 13) {
-		// 		this.sendMessage();
-		// 	}
-		// }
-		if(e.ctrlKey && e.keyCode===13){
-			this.sendMessage();
-		}
+	// Djangoにデータほ保存
+	postMessageToDjango = (message) => {
+		api.post('chat/messages/', {
+			room_id: this.props.roomId,
+			message: message,
+			sender: this.state.me.user_id,
+		})
+		.then(res => {
+			this.props.setRoomLastMessage(this.props.roomId,
+				res.data.message, new Date())
+		})
 	}
+
+
 
 	// テキストを入力
 	inputTextInTextarea = (e) => {
@@ -109,11 +132,13 @@ export default class Chat extends React.Component {
 	// 自分と相手を判別してメッセージコンポーネントを表示
 	renderMessages = () => {
 		return (
-			this.props.messages.map(item =>
-				[
-					<ChatBoxMe message = {item.message}/>,
-					<ChatBoxOther message = {item.message}/>,
-				][Number(this.myUserId==item.id)]
+			this.props.messages.map(item => {
+					if(item.sender===this.state.me.user_id){
+						return <ChatBoxMe message = {item.message}/>;
+					} else {
+						return <ChatBoxOther message = {item.message}/>;
+					}
+				}
 			)
 		);
 	}
@@ -152,23 +177,30 @@ export default class Chat extends React.Component {
 								/>
 							</div>
 							<div className="chat-send-button-container">
-								<div>
+								{/* <div>
 									<IconButton aria-label="delete" onClick={() => console.log("画像を選択")}>
 										<PhotoLibraryOutlinedIcon style={styles.imageButtonIcon} />
 									</IconButton>
-								</div>
+								</div> */}
 								<Button onClick={this.sendMessage} style={this.state.sendButtonStyle}>送信</Button>
 							</div>
 						
 					</div>
-					<IconButton aria-label="delete" style={styles.closeButton} onClick={this.props.close}>
+					{/* <IconButton aria-label="delete" style={styles.closeButton} onClick={this.props.close}>
 						<CloseIcon style={styles.closeButtonIcon} />
-					</IconButton>
+					</IconButton> */}
 				</div>
 			);
 		}
 	}
 }
+
+
+const mapStateProps = (store) => {
+	return { me: store.me };
+}
+
+export default connect( mapStateProps, { fetchMyData })(Chat);
 
 
 class ChatBoxMe extends React.Component {

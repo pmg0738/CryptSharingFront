@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 // Redux
 import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+import { fetchMyData, fetchFollowers, fetchFollowings } from '../../../redux/actions/user';
 // Material UI
 import { Grid } from '@material-ui/core';
 // Bootstrap
@@ -19,6 +19,7 @@ import MyPagePosted from '../../../components/user/MyPageComponents/MyPagePosted
 import MyPageRentNow from '../../../components/user/MyPageComponents/MyPageRentNow';
 import MyPageUsedHistory from '../../../components/user/MyPageComponents/MyPageUsedHistory';
 import MypageProfile from '../../../components/user/MyPageComponents/MypageProfile';
+import UserListDialog from '../../../components/user/UserListDialog';
 
 
 // マイページ
@@ -36,11 +37,19 @@ class Mypage extends React.Component {
 				follow_num: null,
 				follower_num: null,
 				item_num: null,
-			}
+			},
+			showFollowingDialog: false,
+			showFollowerDialog: false,
+			followings: [],
+			followers: [],
 		}
 	}
 
-	componentWillMount = async () => {
+	componentWillMount = () => {
+		this.fetchMe();
+	}
+
+	fetchMe = async () => {
 		// store.meが空の場合
 		if(Object.keys(this.props.me).length==0) {
 			const myData = await this.props.fetchMyData();
@@ -50,9 +59,23 @@ class Mypage extends React.Component {
 		}
 	}
 
+	onClickFollower = () => {
+		this.props.fetchFollowers()
+			.then(users => {
+				this.setState({ followers: users, showFollowerDialog: true });
+			});
+	}
+
+	onClickFollowing = () => {
+		this.props.fetchFollowings()
+			.then(users => {
+				this.setState({ followings: users, showFollowingDialog : true });
+			});
+	}
+
 	render() {
 		const { me } = this.state;
-		console.log('me', me);
+		console.log('this.props', this.props);
 
 		return (
 			<Grid container direction="column">
@@ -68,6 +91,8 @@ class Mypage extends React.Component {
 					follower={me.follower_num}
 					follow={me.follow_num}
 					comments={me.comment}
+					onClickFollower={this.onClickFollower}
+					onClickFollowing={this.onClickFollowing}
 				/>
 				<Grid container direction="row" style={styles.tabBox}>
 					<Container>
@@ -91,10 +116,22 @@ class Mypage extends React.Component {
 							</Tab> 
 							<Tab eventKey="Like" title="お気に入り">
 								<MyPageFavorite/>
-							</Tab> 
+							</Tab>
 						</Tabs>
 					</Container>
 				</Grid>
+				<UserListDialog
+					title="フォロワー"
+					show={this.state.showFollowerDialog}
+					users={this.state.followers}
+					close={() => this.setState({ showFollowerDialog: false })}
+				/>
+				<UserListDialog
+					title="フォロー"
+					show={this.state.showFollowingDialog}
+					users={this.state.followings}
+					close={() => this.setState({ showFollowingDialog: false })}
+				/>
 			</Grid>
 		);
 	}
@@ -102,10 +139,14 @@ class Mypage extends React.Component {
 
 
 const mapStateProps = (store) => {
-	return { me: store.me };
+	return {
+		me: store.me,
+		followings: store.followsing,
+		followers: store.followers
+	};
 }
 
-export default connect( mapStateProps, { fetchMyData })(Mypage);
+export default connect( mapStateProps, { fetchMyData, fetchFollowings, fetchFollowers })(Mypage);
 const styles = {
 	tabBox:{
 		marginTop:'30px'

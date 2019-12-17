@@ -22,8 +22,8 @@ export default class OtherPage extends React.Component {
 
 	renderStar = (valueOfPostUser) =>{
 
-		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
-		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
+		let FullStar  = <StarIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
+		let HalfStar  = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
 		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
 	   
 		let starArray = [];
@@ -48,18 +48,21 @@ export default class OtherPage extends React.Component {
 	}
 
 	handleFollowButton = () =>{
-		if (this.state.follow == true) {
+		// if (this.state.follow == true) {
+		if (this.props.isFollow) {
 			this.setState({followButtonLabel:'フォローする'});
 			this.setState({followButtonColor:''})
 			this.setState({follow:false});
-		}else {
+		} else {
 			this.setState({followButtonLabel:'フォロー中'});
 			this.setState({followButtonColor:'primary'})
-			this.setState({follow:true});
-		} 
-
+			this.setState({follow: true});
+		}
 	}
+
+
 	render() {
+		console.log('子', this.props.isFollow)
 		return (
 			<div>
 				<Container maxWidth="lg" style={styles.otherPageContainer}>
@@ -72,22 +75,23 @@ export default class OtherPage extends React.Component {
 								{this.renderStar(this.props.evaluation)}
 								<p style={styles.starValue}>({this.props.evaluation})</p>
 							</Grid>
-							
 						</Grid>
 						<Grid sm={12} md={8} direction="column" style={styles.profile}>
 							<Grid container direction="row" justify="flex-start">
 								<Grid style={styles.otherPageName}>
 									{this.props.name}
 								</Grid>
-                                <Grid style={styles.followButton}>
-                                    <Button onClick={this.handleFollowButton} variant='contained' color={this.state.followButtonColor}>
-                                        {this.state.followButtonLabel}
-                                    </Button>
-                                </Grid>
+								<Grid style={styles.followButton}>
+									<Button onClick={this.props.onClickFollowButton} variant='contained'
+										color={this.props.isFollow ? 'primary' : ''}
+									>
+										{this.props.isFollow ? 'フォロー中' : 'フォローする'}
+									</Button>
+								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
 								<Grid style={styles.otherPagePostNum}>
-                                    投稿：{this.props.postNum} 件  
+									投稿：{this.props.postNum} 件
 								</Grid>
 								<Grid style={styles.otherPageFollower}>
 									フォロワー：{this.props.follower}人
@@ -97,7 +101,7 @@ export default class OtherPage extends React.Component {
 								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start" style={styles.otherPageSelfIntroduce}>
-                                {this.props.comments}
+								{this.props.comments}
 							</Grid>
 						</Grid>
 
@@ -112,8 +116,8 @@ export default class OtherPage extends React.Component {
 
 const styles = {
 	otherPageContainer:{
-        color:'white'
-    },
+		color:'white'
+	},
 
 	avatar:{
 		marginTop:'20px',
@@ -132,13 +136,13 @@ const styles = {
 	otherPageName:{
 		// color:'black',
 		fontSize:'50px'
-    },
-    
-    followButton:{
+	},
+	
+	followButton:{
 		marginTop:'25px',
 		marginLeft:'20px',
 		
-    },
+	},
 
 
 	otherPagePostNum:{

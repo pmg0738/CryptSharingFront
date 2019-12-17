@@ -43,12 +43,13 @@ export default class UserProfile extends React.Component {
 			<div>
 				<Container>
 					<Grid container direction="row">
+
 						<Grid container sm={12} md={3} >
 							<Avatar style={styles.userProfileAvatar} src={this.props.avatar} />
 						</Grid>
 						<Grid container sm={12} md={9} >
 							<Grid container direction="row" justify="">
-								<Link to='/users/:id'>
+								<Link to={'/users/' + 1}>
 									<Grid style={styles.userProfileName}>
 										{this.props.name}
 									</Grid>
@@ -76,28 +77,21 @@ const styles = {
 		width:'100px',
 		height:'100px'
 	},
-
 	userProfileStar:{
 		marginTop:'20px',
 	},
-
 	starValue:{
 		fontSize:'20px',
 		marginTop:'10px',
 		color:'white'
 	},
-
 	userProfileName:{
 		color:'white',
 		fontSize:'25px'
 	},
-
 	userProfilePrefecture:{
 		color:'white',
 		fontSize:'25px',
 		marginLeft:'20px'
 	},
-
-
-
 }

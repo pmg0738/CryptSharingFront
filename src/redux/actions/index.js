@@ -28,7 +28,6 @@ export const fetchItems = (searchWord) => async dispatch => {
 };
 
 
-
 // 1つの商品の詳細情報を取得 ItemDetail
 export const fetchClickedItem = (itemId) => async dispatch => {
 

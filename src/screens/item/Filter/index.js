@@ -52,7 +52,9 @@ export default class Filter extends Component {
 				/>
 				<Grid container style={{width:"100%"}}>
 					<Grid container xs={12} sm={12} md={4} style={{width:"30%", backgroundColor:"white", }} alignItems="center" justify="center">
-						<CategoryAutoComplete/>
+						<CategoryAutoComplete
+							onChange={() => console.log("write some action")}
+						/>
 					</Grid>
 					<Grid container xs={12} sm={12} md={3} style={{width:"25%", backgroundColor:"white", textAlign:"center"}} alignItems="center" justify="center">
 						<LentPeriodRadioButton/>

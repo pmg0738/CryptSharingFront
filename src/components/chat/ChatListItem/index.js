@@ -1,7 +1,9 @@
 import React from 'react';
 import api from '../../../redux/apis';
 import _ from 'lodash';
-
+// Redux
+import { connect } from 'react-redux';
+import { fetchMyData } from '../../../redux/actions/user';
 // Material UI Component
 import Card from '@material-ui/core/Card';
 import Fab from '@material-ui/core/Fab';
@@ -11,7 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 import './style.scss';
 
 
-export default class ChatListComponent extends React.Component{
+class ChatList extends React.Component{
 	constructor(props){
 		super(props);
 
@@ -19,11 +21,22 @@ export default class ChatListComponent extends React.Component{
 			rooms: this.props.rooms,
 			inputtingMessage: '',
 			selectedChatroom: '',
+			me: {},
 		}
 	}
 
 	componentWillMount() {
 		this.fetchChatRooms();
+		this.setMyData();
+	}
+
+	setMyData = async () => {
+		if(Object.keys(this.props.me).length==0) {
+			this.props.fetchMyData()
+				.then(response => this.setState({me: response}));
+		} else {
+			this.setState({ me: this.props.me });
+		}
 	}
 
 	showSelectedChatRoom = (userId) =>{
@@ -41,6 +54,25 @@ export default class ChatListComponent extends React.Component{
 	selectRoom = (id) => {
 		// console.log('room id', id)
 		this.props.selectRoom(id);
+	}
+
+	calcLastMessageSentTime = (date) => {
+		const sentTimestamp = new Date(date).getTime();
+		const nowTimestamp  = new Date().getTime();
+		const diffMin = Math.floor((nowTimestamp - sentTimestamp) / 1000 / 60);
+
+		if(diffMin < 1) {
+			return "1分未満";
+		}
+		else if(diffMin < 60) {
+			return `${diffMin}分前`;
+		}
+		else if(diffMin < 60*24) {
+			return `${Math.floor(diffMin/60)}時間前`;
+		}
+		else {
+			return `${Math.floor(diffMin/(60*24))}日前`;
+		}
 	}
 
 	render(){
@@ -65,18 +97,24 @@ export default class ChatListComponent extends React.Component{
 				<div>
 					{
 						_.map(this.props.rooms, room => {
-							const opponent = room.opponent;
+							const index = room.members[0].user_id==this.state.me.user_id ? 1 : 0;
+							const opponent = room.members[index];
+							const lastMessage = room.last_message===null ? "No Message" : room.last_message.message;
+
+							const lastMessageSentTime = (room.last_message===null ? "" :
+								this.calcLastMessageSentTime(room.last_message.sent_date_time))
 
 							return (
-								<Card className="chat-friend-card"
+								<Card className="chat-friend-card" style={{borderRadius: 0}}
 									onClick={() => this.selectRoom(room.room_id)}
+									key={`room/${room.room_id}`}
 								>
 									<img src={opponent.profile_image} className="friend-card-image"/>
 									<h4 className="friend-card-name">
-										{opponent.full_name}
+										{opponent.name}
 									</h4>
-									<h6 className="friend-card-last-message">{room.lastMessage}</h6>
-									<h6 className="friend-card-last-message-date-time">5分前</h6>
+									<h6 className="friend-card-last-message">{lastMessage}</h6>
+									<h6 className="friend-card-last-message-date-time">{lastMessageSentTime}</h6>
 								</Card>
 							);
 						})
@@ -86,3 +124,9 @@ export default class ChatListComponent extends React.Component{
 		}
 	}
 }
+
+const mapStateProps = (store) => {
+	return { me: store.me };
+}
+
+export default connect( mapStateProps, { fetchMyData })(ChatList);

@@ -61,8 +61,10 @@ class ItemPost extends React.Component {
 
 	setMyData = async () => {
 		if(Object.keys(this.props.store.me).length==0) {
-			const response =  await this.props.fetchMyData();
-			this.setState({me: response});
+			this.props.fetchMyData()
+				.then(response => this.setState({me: response}));
+		} else {
+			this.setState({ me: this.props.store.me });
 		}
 	}
 	

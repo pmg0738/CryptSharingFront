@@ -113,15 +113,13 @@ export default function Login(props) {
 				postData['eoa_address'] = address;
 	
 					api.post('users/create/', postData) .then((res) => {
-						console.log('@'.repeat(100))
-						console.log('res', res);
 						setEoaAddress(address);
 						setPrivatetKey(privateKey);
 						setShowDialog(true);
 					})
 					.catch((error) => {
-						// console.log('ERROR', error);
-						alert("失敗", error);
+						console.log('ERROR', error);
+						alert("失敗", error.status);
 					})
 			} else {
 				alert("必須項目を入力してください")

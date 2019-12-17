@@ -2,7 +2,9 @@ import React from 'react';
 import './style.scss';
 import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import eraiza from '../../../../images/eraiza.png';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
@@ -15,10 +17,6 @@ import { borders } from '@material-ui/system';
 export default class MyPage extends React.Component {
 	constructor(props){
 		super(props);
-
-		this.state = {
-
-		}
 	}
 
 	renderStar = (valueOfPostUser) =>{
@@ -70,10 +68,12 @@ export default class MyPage extends React.Component {
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
 								<Grid style={styles.mypageFollower}>
-									フォロワー：{this.props.follower}人
+									<Button style={{color: "#ffffff", fontSize: 20}}
+										onClick={this.props.onClickFollower}>フォロワー：{this.props.follower}人</Button>
 								</Grid>
 								<Grid style={styles.mypageFollow}>
-									フォロー：{this.props.follow}人
+									<Button style={{color: "#ffffff", fontSize: 20}}
+									onClick={this.props.onClickFollowing}>フォロー：{this.props.follow}人</Button>
 								</Grid>
 							</Grid>
 							<Grid style={styles.mypagePostNum}>

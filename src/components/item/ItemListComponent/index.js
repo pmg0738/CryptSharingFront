@@ -35,7 +35,6 @@ class ItemListComponent extends React.Component {
 	}
 
 	renderItems = () =>{
-		// console.log(this.props.items);
 		return Object.keys(this.props.items).map(itemId => {
 			const item = this.props.items[itemId]
 			return(
@@ -59,14 +58,16 @@ class ItemListComponent extends React.Component {
 				 <Link to='/items/new/post'>
 					<ItemPostButton/>
 				</Link>
-				<Pagination numOfPage={2} handlePagination={this.handlePagination}/>
+				<Grid container direction="row" justify="center">
+					<Pagination numOfPage={2} handlePagination={this.handlePagination}/>
+				</Grid>
 			</Grid>
 		);
 	}
 }
 
 const useStyles = makeStyles({
-	root: {
+	button: {
 		background: 'linear-gradient(45deg, #886Dff 30%, #4285F4 90%)',
 		border: 0,
 		borderRadius: 60,
@@ -88,7 +89,7 @@ const ItemPostButton = () => {
 	const classes = useStyles();
 
 	return(
-		<Button className={classes.root}>
+		<Button className={classes.button}>
 			<Grid direction="row">
 				<p className="item-list-add-button-label">出品する</p>
 				<AddAPhotoIcon style={{fontSize: 45, marginTop: -10}}/>

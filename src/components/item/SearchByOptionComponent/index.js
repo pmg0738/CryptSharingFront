@@ -78,7 +78,9 @@ export default class SearchByOptionComponent extends React.Component {
 						/>
 					</Grid>
 					<Grid container style={{marginBottom:"20px"}} alignItems="center" justify="center">
-						<CategoryAutoComplete/>
+						<CategoryAutoComplete
+							onChange={() => console.log("write some action")}
+						/>
 					</Grid>
 					<Grid container style={{marginBottom:"10px"}} alignItems="center" justify="center">
 						<LentPeriodRadioButton/>
