@@ -42,60 +42,55 @@ class ItemDetail extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			itemDetailFavoriteIcon: "default",
-			images: [],
-			imageStartIndex: 0,
-			me: {
-				id: "1234",
-				name: "yushi",
-				favoriteItemId:["2"],
-				usedHistoryItemId:["4"],
-				rentalItemId:["3"], 
-				requestItemId:["5","6","7","8"]
-			},
-			item: {
+			item:{
+				name: null,
+				categories: null,
 				fee_per_hour: null,
 				fee_per_day: null,
 				fee_per_week: null,
+				require_mortgage_amount: null,
+				owner: { 
+					profile_image: null, 
+				},
+				images: null,
+				liked_num: null,
 			},
+			itemDetailFavoriteIcon: "default",
+			images: [],
+			imageStartIndex: 0,
 		}
+		// this.state = {
+
+		// 	me: {
+		// 		id: "1234",
+		// 		name: "yushi",
+		// 		favoriteItemId:["2"],
+		// 		usedHistoryItemId:["4"],
+		// 		rentalItemId:["3"], 
+		// 		requestItemId:["5","6","7","8"]
+		// 	},
+		// 	item: {
+		// 		fee_per_hour: null,
+		// 		fee_per_day: null,
+		// 		fee_per_week: null,
+		// 	},
+		// }
 		this.itemId = this.props.match.params.id;
 		// this.item = this.props.item[this.itemId];
 	}
 
 	componentWillMount() {
-		// createAccount("password");
-		// console.log('response', response);
-
-		// pay("0x2e993dcfB0108C875268585f19235C9671B4Da77", 1000);
-		// showBalance();
-		// console.log(showMyAccount());
-
-		// console.log(web3.currentProvider.isMetaMask);
-		// console.log('web3', web3);
-		// console.log('web3', web3.version);
-		// web3.eth.getAccounts()
-		// 	.then(res => console.log('res', res));
-
-
-		// web3.eth.getBlockNumber()
-		// 	.then(result => {
-		// 		console.log("last block number: ", result);
-		// 	});
-
-		// web3.eth.getBlock("latest")
-		// 	.then(result => {
-		// 		console.log("last block: ", result);
-		// 	});
-
 		window.scrollTo(0, 0)
 
 		const existInStore = this.props.items.hasOwnProperty(this.itemId);
 
 		if(!existInStore) {
-			this.props.fetchClickedItem(this.itemId);
+			const clickedItem = this.props.fetchClickedItem(this.itemId);
+			this.setState({item: clickedItem});
 		} else {
-			// this.setState({item: this.props.store.items[this.itemId]});
+			console.log('already clicked item', this.props.item);
+			const clickedItem = this.props.items[this.itemId];
+			this.setState({item: clickedItem});
 		}
 	}
 
@@ -121,102 +116,102 @@ class ItemDetail extends React.Component {
 	}
 
 
-	handleFavoriteButtonClassName = (favorite) => {
-		this.setState({itemDetailFavoriteIconClassName: favorite ? "item-liked": "default" })
-	}
+// 	handleFavoriteButtonClassName = (favorite) => {
+// 		this.setState({itemDetailFavoriteIconClassName: favorite ? "item-liked": "default" })
+// 	}
 
-	clickFavoriteButton = () => {
-		const favoriteItemId = this.state.me.favoriteItemId;
+// 	clickFavoriteButton = () => {
+// 		const favoriteItemId = this.state.me.favoriteItemId;
 
-		const itemId = this.state.item.id;
+// 		const itemId = this.state.item.id;
 
-		const favorite = favoriteItemId.indexOf(itemId) >= 0;
+// 		const favorite = favoriteItemId.indexOf(itemId) >= 0;
 
-		if(favorite) {
-			const index = favoriteItemId.indexOf(itemId);
-			delete favoriteItemId[index];
-		}
-		else {
-			favoriteItemId.push(itemId);
-		}
+// 		if(favorite) {
+// 			const index = favoriteItemId.indexOf(itemId);
+// 			delete favoriteItemId[index];
+// 		}
+// 		else {
+// 			favoriteItemId.push(itemId);
+// 		}
 		
-		const { me } = this.state;
-		this.setState({
-			me: {
-				id: me.id,
-				name: me.name,
-				usedHistoryItemId: me.usedHistoryItemId,
-				rentalItemId: me.rentalItemId,
-				requestItemId: me.requestItemId,
-				favoriteItemId: favoriteItemId // ここだけ更新
-			}
-		})
-		// ボタンのデザインを変える
-		this.handleFavoriteButtonClassName(!favorite)
-	}
+// 		const { me } = this.state;
+// 		this.setState({
+// 			me: {
+// 				id: me.id,
+// 				name: me.name,
+// 				usedHistoryItemId: me.usedHistoryItemId,
+// 				rentalItemId: me.rentalItemId,
+// 				requestItemId: me.requestItemId,
+// 				favoriteItemId: favoriteItemId // ここだけ更新
+// 			}
+// 		})
+// 		// ボタンのデザインを変える
+// 		this.handleFavoriteButtonClassName(!favorite)
+// 	}
 
-	renderButton = () => {
-		const isMine =　false;
-		const favorite = true;
-		const usedHistory = true;
-		const rentaling = true;
+// 	renderButton = () => {
+// 		const isMine =　false;
+// 		const favorite = true;
+// 		const usedHistory = true;
+// 		const rentaling = true;
 
-		if(isMine) {
-			return (
-				<div>
-					<Link to='/items/new/post'>
-						<p><Button className="item-detail-edit">編集</Button></p>
-					</Link>
-					<Link to='/items/new/post'>    
-						<p><Button className="item-detail-delete">削除</Button></p>
-					</Link>
-				</div>
-			)
-		}
-		else if(favorite) {
-			return (
-				<Link to='/request'>
-					<Button className="item-detail-goto-request">借りる</Button>
-				</Link>
-			)
-		}
+// 		if(isMine) {
+// 			return (
+// 				<div>
+// 					<Link to='/items/new/post'>
+// 						<p><Button className="item-detail-edit">編集</Button></p>
+// 					</Link>
+// 					<Link to='/items/new/post'>    
+// 						<p><Button className="item-detail-delete">削除</Button></p>
+// 					</Link>
+// 				</div>
+// 			)
+// 		}
+// 		else if(favorite) {
+// 			return (
+// 				<Link to='/request'>
+// 					<Button className="item-detail-goto-request">借りる</Button>
+// 				</Link>
+// 			)
+// 		}
 
-		else if(usedHistory) {
-			return (
-				<div>
-					<p>
-						使用期間：2019年5月20日～2019年5月25日
-					</p>
-					<Link to='/request'>
-						<Button className="item-detail-goto-request">借りる</Button>
-					</Link>
-				</div>
-			)
-		}
-		else if(rentaling) {
-			return (
-				<div className = "item-detail-rent-now">レンタル中です</div>
-			)
-		}
-		else {
-			return (
-				<Button >リクエストを取り消す</Button>
-			)
-		}
+// 		else if(usedHistory) {
+// 			return (
+// 				<div>
+// 					<p>
+// 						使用期間：2019年5月20日～2019年5月25日
+// 					</p>
+// 					<Link to='/request'>
+// 						<Button className="item-detail-goto-request">借りる</Button>
+// 					</Link>
+// 				</div>
+// 			)
+// 		}
+// 		else if(rentaling) {
+// 			return (
+// 				<div className = "item-detail-rent-now">レンタル中です</div>
+// 			)
+// 		}
+// 		else {
+// 			return (
+// 				<Button >リクエストを取り消す</Button>
+// 			)
+// 		}
 
-	return (
-		<Link to='/request'>
-			<Button className="item-detail-goto-request">借りる</Button>
-		</Link>
-	)
-}
+// 	return (
+// 		<Link to='/request'>
+// 			<Button className="item-detail-goto-request">借りる</Button>
+// 		</Link>
+// 	)
+// }
 
 renderImage = (itemLendStatus) => {
-	if((this.props.item.images) && (itemLendStatus)) {
-		return <Image style={styles.selectedImage} src={this.props.item.images[0].url} />
+	if((this.state.item.images) && (itemLendStatus)) {
+		return <Image style={styles.selectedImage} src={this.state.item.images[0].url} />
 	}
-	if((this.props.item.images) && (!itemLendStatus)) {
-		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.props.item.images[0].url} />
+	if((this.state.item.images) && (!itemLendStatus)) {
+		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.state.item.images[0].url} />
 	}
 	return <div/>
 }
@@ -245,15 +240,12 @@ renderFeeTable = () => {
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				{/* <TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_hour}</TableCell> */}
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_hour}</TableCell>
-				{/* <TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.props.item.fee_per_day}</TableCell> */}
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_day}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥500</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_week}</TableCell>
+				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.require_mortgage_amount}</TableCell>
 				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
-					{this.showEmoticon(0)}
-					{/* <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/> */}
+					{this.showEmoticon(1)}
 				</TableCell>
 			</TableBody>
 			</Table>
@@ -288,6 +280,8 @@ renderStar = (valueOfPostUser) =>{
 }
 
 	render() {
+		console.log('props', this.props.item);
+		console.log('@'.repeat(100),this.state.item);
 		return (
 				<div>
 					<Link to='/items'>
@@ -295,10 +289,11 @@ renderStar = (valueOfPostUser) =>{
 					</Link>
 					<Grid container>
 						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
+							<div style={{color:"white", fontSize:"30px", fontWeight:"800", marginBottom:"20px"}}>{this.state.item.name}</div>
 							{this.renderImage()}
 							<Grid>
 								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
-								{this.threeArray(this.state.images, this.state.imageStartIndex).map(image => 
+								{this.threeArray(this.props.images, this.props.imageStartIndex).map(image => 
 									<img 
 										className="item-detail-not-selected-pic" 
 										src={image} 
@@ -311,19 +306,12 @@ renderStar = (valueOfPostUser) =>{
 						<Grid container direction="column" sm={12} md={6} style={{backgroundColor:""}}>
 							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
 								<UserProfile
-									avatar={cat}
+									avatar={this.state.item.owner.profile_image}
 									evaluation="4.5"
-									name="yushi_maeno"
-									prefecture="鹿児島県"
+									name={this.state.item.owner.name}
+									prefecture={this.state.item.owner.prefecture}
 								/>
-
-
-
-								{/* <Avatar src={cat} style={{width:"45px", height:"45px"}}/>
-								<div style={{fontSize:"20px", color:"white", margin:"7px"}}>upallnight0738</div>
-								{this.renderStar(2.5)} */}
 							</Grid>
-
 							<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
 							{this.renderFeeTable()}
 							

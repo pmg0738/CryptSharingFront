@@ -5,6 +5,13 @@ import { connect } from 'react-redux';
 import { fetchMyData, fetchFollowers, fetchFollowings } from '../../../redux/actions/user';
 // Material UI
 import { Grid } from '@material-ui/core';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import SendIcon from '@material-ui/icons/Send';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
+
 // Bootstrap
 import { 
 	Container,
@@ -97,14 +104,49 @@ class Mypage extends React.Component {
 				<Grid container direction="row" style={styles.tabBox}>
 					<Container>
 						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
-							<Tab eventKey="rent-now" title="レンタル中">
-								<MyPageRentNow/>
+							<Tab eventKey="rent-now" title="現在利用中" style={{color:"black"}}>
+							<ExpansionPanel style={{marginTop:"10px"}} defaultExpanded={true}>
+									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>借りてるもの</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageRentNow
+											type="using"
+										/>		
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
+								<ExpansionPanel defaultExpanded={true}>
+									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>貸し出し中</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageRentNow
+											type="lending"
+										/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="requesting" title="リクエスト中">
-								<div className="my-page-tab-explanation">送ったリクエスト</div>
-								<MyPageBooked/>
-								<div className="my-page-tab-explanation">来たリクエスト</div>
-								<MyPageBooked/>
+								<ExpansionPanel style={{marginTop:"10px", }} defaultExpanded={true}>
+									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>送った リクエスト</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageBooked
+											type="sent"
+										/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
+								<ExpansionPanel defaultExpanded={true}>
+									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
+										<Typography style={{fontSize:"20px", fontWeight:"900"}}>届いた リクエスト</Typography>
+									</ExpansionPanelSummary>
+									<ExpansionPanelDetails>
+										<MyPageBooked
+											type="received"
+										/>
+									</ExpansionPanelDetails>
+								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="used-history" title="使用履歴" className="mypage-used-history">
 								<MyPageUsedHistory to= {'/items/4'}/>
