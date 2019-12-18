@@ -16,7 +16,8 @@ export default class Item extends React.Component {
 	state = {
 		cardClassName: "item-list-item-card-out",
 		priceClassName: "item-list-item-card-price-out",
-		likedNum: this.props.likedNum
+		likedNum: this.props.likedNum,
+		liked: false,
 	}
 
 	handleMouseOver = () => {
@@ -38,9 +39,12 @@ export default class Item extends React.Component {
 	}
 
 	onClickLikedButton = async () => {
-		await api.patch('/item/' + this.props.itemId + '/like/', {
+		await api.post('/items/' + this.props.itemId + '/like/', {
 		}).then(response => {
-			this.setState({ likedNum: response.data.liked_num });
+			this.setState({
+				likedNum: response.data.liked_num,
+				liked: response.data.liked
+			});
 		}).catch(error => {
 			console.log('error', error);
 		})
@@ -59,6 +63,7 @@ export default class Item extends React.Component {
 				</Link>
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"
+						style={this.state.liked ? styles.likedIcon : styles.notLikedIcon}
 						onClick={this.onClickLikedButton}
 					>
 						<FavoriteIcon />
@@ -70,3 +75,14 @@ export default class Item extends React.Component {
 		)
 	}
 }
+
+const styles = {
+	likedIcon: {
+		color: "#ff6967",
+	},
+	notLikedIcon: {
+		color: "#999999",
+	}
+}
+
+

@@ -5,22 +5,17 @@ import apis from '../apis';
 export const fetchMyData = () => async dispatch => {
 
 	const response = await apis.get('users/me/');
-	dispatch({ type: 'FETCH_MY_DATA', payload: response.data })
-	
+	dispatch({ type: 'FETCH_MY_DATA', payload: response.data });
+
 	return response.data;
 };
-
-// export const fetchClickedItem = (itemId) => async dispatch => {
-// 	const response = await apis.get(`/items/${itemId}/`);
-// 	dispatch({ type: 'FETCH_ITEM', payload: response.data})
-// }
 
 
 // 1人のユーザーの詳細情報を取得 UserDetail
 export const fetchUser = (userId) => async dispatch => {
 
 	const response = await apis.get(`users/${userId}/`);
-	dispatch({ type: 'FETCH_USER', payload: response.data})
+	dispatch({ type: 'FETCH_USER', payload: response.data});
 
 	return response.data;
 }
@@ -30,7 +25,7 @@ export const fetchUser = (userId) => async dispatch => {
 export const fetchFollowings = (userId) => async dispatch => {
 	
 	const response = await apis.get('users/following/');
-	dispatch({ type: 'FETCH_FOLLOWING_USERS', payload: response.data})
+	dispatch({ type: 'FETCH_FOLLOWING_USERS', payload: response.data});
 
 	return response.data;
 }
@@ -40,7 +35,7 @@ export const fetchFollowings = (userId) => async dispatch => {
 export const fetchFollowers = (userId) => async dispatch => {
 	
 	const response = await apis.get('users/follower/');
-	dispatch({ type: 'FETCH_FOLLOWERS', payload: response.data})
+	dispatch({ type: 'FETCH_FOLLOWERS', payload: response.data});
 
 	return response.data;
 }
