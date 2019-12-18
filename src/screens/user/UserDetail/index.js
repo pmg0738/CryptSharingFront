@@ -61,20 +61,10 @@ class UserDetail extends React.Component {
 			})
 	}
 
+	// フォロー/アンフォローする
 	handleFollow = () => {
-		const token = localStorage.getItem("token");
-
-		api.post('users/follow/', {
-			user_id: this.state.user.user_id,
-		}, {
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Token " + token
-			},
-			data: {
-				
-			},
-		}).then(res => {
+		api.post('users/follow/', { user_id: this.state.user.user_id, })
+			.then(res => {
 				let { user } = this.state;
 				user.following = res.data.following;
 				this.setState({ user: user })
