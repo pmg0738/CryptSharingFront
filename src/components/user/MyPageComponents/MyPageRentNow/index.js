@@ -9,7 +9,6 @@ import {
 	Col,
   } from 'react-bootstrap';
 
-
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
@@ -33,11 +32,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faClock} from '@fortawesome/free-solid-svg-icons'
 
 
-import eraiza from '../../../../images/eraiza.png';
-import cup from '../../../../images/carry_bag.jpg';
-import yoni from '../../../../images/cup.jpg';
-import drake from '../../../../images/drake.jpg';
-
 
 export default class MyPageRentNow extends React.Component {
 	constructor(props) {
@@ -49,20 +43,9 @@ export default class MyPageRentNow extends React.Component {
 	}
 
 	componentWillMount() {
-		this.getRentNowItems();
 	}
 
-	getRentNowItems = () => {
-		const items = {
-			"3": {
-				id: "3",
-				price: 10,
-				image: eraiza,
-			}
-		}
 
-		this.setState({items: items})
-	}
 
 	renderStar = (valueOfPostUser) =>{
 
@@ -111,7 +94,7 @@ export default class MyPageRentNow extends React.Component {
 			<Card style={{width:"1000px", height:"200px"}}>
 			<Grid container direction="row">
 				<Grid md={2} style={{marginLeft:"15px"}}>
-					<img src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
+					<img src={" "} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 				</Grid>
 				<Grid md={4} container direction="column" justify="center" alignItems="center" style={{marginLeft:"20px"}}>
 					<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
@@ -129,7 +112,7 @@ export default class MyPageRentNow extends React.Component {
 				</Grid>
 				<Grid md={5} container direction="column" style={{marginTop:"20px"}}>
 					<Grid container direction="row">
-						<Avatar src={drake} style={{width:"60px", height:"60px"}}/>
+						<Avatar src={" "} style={{width:"60px", height:"60px"}}/>
 						<Link to=''>
 							<div style={{color:"black", fontSize:"20px", fontWeight:"600",marginTop:"10px",marginLeft:"10px"}}>champagnepapi</div>
 						</Link>

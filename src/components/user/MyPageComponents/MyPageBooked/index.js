@@ -20,10 +20,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 
-import eraiza from '../../../../images/eraiza.png';
-import cup from '../../../../images/carry_bag.jpg';
-import drake from '../../../../images/drake.jpg';
-
 
 export default class MyPageBooked extends React.Component {
 	constructor(props) {
@@ -35,30 +31,8 @@ export default class MyPageBooked extends React.Component {
 	}
 
 	componentWillMount() {
-		this.getBookedItems();
 	}
 
-	getBookedItems = () => {
-		const items = {
-			"5": {
-				id: "5",
-				price: 10,
-				image: eraiza,
-			}, 
-			"6": {
-				id: "6",
-				price: 20,
-				image: eraiza,
-			},
-			"7": {
-				id: "7",
-				price: 20,
-				image: eraiza,
-			}
-		}
-
-		this.setState({items: items})
-	}
 
 	renderStar = (valueOfPostUser) =>{
 
@@ -108,7 +82,7 @@ export default class MyPageBooked extends React.Component {
 				<Card style={{width:"1000px", height:"200px"}}>
 					<Grid container direction="row">
 						<Grid md={2} style={{marginLeft:"15px"}}>
-							<img src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
+							<img src={" "} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 						</Grid>
 						<Grid md={4} container direction="column" justify="center" alignItems="center" style={{marginLeft:"20px"}}>
 							<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
@@ -129,7 +103,7 @@ export default class MyPageBooked extends React.Component {
 						</Grid>
 						<Grid md={5} container direction="column" style={{marginTop:"20px"}}>
 							<Grid container direction="row">
-								<Avatar src={drake} style={{width:"60px", height:"60px"}}/>
+								<Avatar src={" "} style={{width:"60px", height:"60px"}}/>
 								<Link to=''>
 									<div style={{color:"black", fontSize:"20px", fontWeight:"600",marginTop:"10px",marginLeft:"10px"}}>champagnepapi</div>
 								</Link>

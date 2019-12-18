@@ -105,7 +105,7 @@ class Mypage extends React.Component {
 					<Container>
 						<Tabs defaultActiveKey="rent-now" id="uncontrolled-tab-example">
 							<Tab eventKey="rent-now" title="現在利用中" style={{color:"black"}}>
-							<ExpansionPanel style={{marginTop:"10px"}} defaultExpanded={true}>
+							<ExpansionPanel style={{marginTop:"10px", backgroundColor: "#eeeeee"}} defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>借りてるもの</Typography>
 									</ExpansionPanelSummary>
@@ -115,7 +115,7 @@ class Mypage extends React.Component {
 										/>		
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
-								<ExpansionPanel defaultExpanded={true}>
+								<ExpansionPanel  style={{backgroundColor: "#eeeeee"}} defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>貸し出し中</Typography>
 									</ExpansionPanelSummary>
@@ -127,7 +127,7 @@ class Mypage extends React.Component {
 								</ExpansionPanel>
 							</Tab>
 							<Tab eventKey="requesting" title="リクエスト中">
-								<ExpansionPanel style={{marginTop:"10px", }} defaultExpanded={true}>
+								<ExpansionPanel style={{marginTop:"10px", backgroundColor: "#eeeeee"}} defaultExpanded={true}>
 									<ExpansionPanelSummary expandIcon={<SendIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>送った リクエスト</Typography>
 									</ExpansionPanelSummary>
@@ -137,7 +137,7 @@ class Mypage extends React.Component {
 										/>
 									</ExpansionPanelDetails>
 								</ExpansionPanel>
-								<ExpansionPanel defaultExpanded={true}>
+								<ExpansionPanel defaultExpanded={true}  style={{marginTop:"10px", backgroundColor: "#eeeeee"}}>
 									<ExpansionPanelSummary expandIcon={<CallReceivedIcon style={{color:"#ea4335"}}/>}>
 										<Typography style={{fontSize:"20px", fontWeight:"900"}}>届いた リクエスト</Typography>
 									</ExpansionPanelSummary>
