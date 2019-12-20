@@ -79,30 +79,34 @@ export default class MyPageBooked extends React.Component {
 
 	render() {
 		return (
-				<Card style={{width:"1000px", height:"200px"}}>
+				<Card style={{width:"1100px", }}>
 					<Grid container direction="row">
-						<Grid md={2} style={{marginLeft:"15px"}}>
+						<Grid container direction="column" sm={12} md={2} justify="center" alignItems="center" style={{marginLeft:"15px"}}>
 							<img src={" "} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 						</Grid>
-						<Grid md={4} container direction="column" justify="center" alignItems="center" style={{marginLeft:"20px"}}>
-							<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
-							<Table stickyHeader aria-label="sticky table" style={{width:"300px", marginTop:"15px"}}>
-								<TableHead style={{color:blue[200]}}>
-									<TableCell key='hour_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1時間</TableCell>
-									<TableCell key='day_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1日</TableCell>
-									<TableCell key='week_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1週間</TableCell>
-									<TableCell key='assure_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>担保</TableCell>
-								</TableHead>
-								<TableBody>
-									<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥10</TableCell>
-									<TableCell align='center' style={{fontSize:"15px", fontWeight:"900", color: green[500]}}>￥100</TableCell>
-									<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥500</TableCell>
-									<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥2000</TableCell>
-								</TableBody>
-							</Table>
+						<Grid container direction="column" sm={12} md={4} >
+							<Grid container direction="row" justify="center">
+								<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
+							</Grid>
+							<Grid container direction="row" justify="center" style={{marginLeft:"20px"}}>
+								<Table stickyHeader aria-label="sticky table" style={{width:"300px", marginTop:"15px", }}>
+									<TableHead style={{color:blue[200]}}>
+										<TableCell key='hour_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1時間</TableCell>
+										<TableCell key='day_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1日</TableCell>
+										<TableCell key='week_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>1週間</TableCell>
+										<TableCell key='assure_fee' align='center' style={{fontSize:"14px", fontWeight:"900"}}>担保</TableCell>
+									</TableHead>
+									<TableBody>
+										<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥10</TableCell>
+										<TableCell align='center' style={{fontSize:"15px", fontWeight:"900", color: green[500]}}>￥100</TableCell>
+										<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥500</TableCell>
+										<TableCell align='center' style={{fontSize:"15px", fontWeight:"900"}}>￥2000</TableCell>
+									</TableBody>
+								</Table>
+							</Grid>
 						</Grid>
-						<Grid md={5} container direction="column" style={{marginTop:"20px"}}>
-							<Grid container direction="row">
+						<Grid container sm={12} md={5} direction="column" style={{marginTop:"20px"}}>
+							<Grid container direction="row" justify="center">
 								<Avatar src={" "} style={{width:"60px", height:"60px"}}/>
 								<Link to=''>
 									<div style={{color:"black", fontSize:"20px", fontWeight:"600",marginTop:"10px",marginLeft:"10px"}}>champagnepapi</div>
@@ -110,7 +114,7 @@ export default class MyPageBooked extends React.Component {
 								<div style={{marginTop:"15px", marginLeft:"10px", opacity:"0.5"}}>福岡県</div>
 								<div style={{marginLeft:"10px", marginTop:"8px"}}>{this.renderStar(5)}(5)</div>
 							</Grid>
-							<Grid container direction="row">
+							<Grid container direction="row" justify="center">
 								<FontAwesomeIcon icon={faHourglassStart} style={{marginTop:"20px", fontSize:"30px", marginLeft:"80px"}}/>
 								<div style={{marginTop:"10px", fontSize:"30px", marginLeft:"10px", fontWeight:"900"}}>3Days</div>
 								<FontAwesomeIcon icon={faYenSign} style={{marginTop:"20px", fontSize:"30px", marginLeft:"50px"}}/>

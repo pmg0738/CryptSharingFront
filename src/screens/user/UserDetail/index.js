@@ -139,7 +139,28 @@ class UserDetail extends React.Component {
 						</ExpansionPanel>
 					</Tab>
 					<Tab eventKey="GiveValue" title="挙げた 評価">
-						{this.renderEvaluations()}
+						<Grid sm={12}>
+						<ExpansionPanel style={{marginTop:"10px"}} defaultExpanded={true}>
+							<ExpansionPanelSummary>
+								<Typography style={{fontSize:"20px", fontWeight:"900"}}>To User</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Grid sm={12}>
+									{this.renderEvaluations()}
+								</Grid>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
+						<ExpansionPanel defaultExpanded={true}>
+							<ExpansionPanelSummary>
+								<Typography style={{fontSize:"20px", fontWeight:"900"}}>To Owner</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Grid sm={12}>
+									{this.renderEvaluations()}
+								</Grid>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
+						</Grid>
 					</Tab> 
 				</Tabs>
 			</Container>

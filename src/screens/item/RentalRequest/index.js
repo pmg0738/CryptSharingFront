@@ -26,6 +26,12 @@ import Input from '@material-ui/core/Input';
 import Box from '@material-ui/core/Box';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
+import DateFnsUtils from '@date-io/date-fns';
+import {
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
@@ -165,6 +171,9 @@ function LentPeriodRadioButton(){
 	const classes = useStyles();
 	const [value, setValue] = useState('onehour');
 
+	const [startDay, setStartDay] = React.useState(null);
+    const [endDay, setEndDay] = React.useState(null);
+
 	const [lentTimeValue, setLentTimeValue] = useState(1);
 
 	const handleValue = (e) =>{
@@ -277,12 +286,83 @@ function LentPeriodRadioButton(){
 			)
 		}
 	}
+
+	const addZero = (num) => {
+		if(num < 10) {
+			return `0${num}`;
+		} else {
+			return num;
+		}
+	}
+
+
+    const onChangeStartDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 2);
+		const day   = addZero(date.getDate());
+		setStartDay(`${year}-${month}-${day}`);
+    }
+    
+    const onChangeEndDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setEndDay(`${year}-${month}-${day}`);
+    }
 		
 	return (
 		<div>
-			<Box border={1} borderColor="primary.main" className={classes.box}>
+			{/* <Box border={1} borderColor="primary.main" className={classes.box}> */}
 				<Grid container direction="column" justify="center" alignItems="center">
-					<RadioGroup row className={classes.formControl} value={value} onChange={handleValue}>
+					<Grid>
+						<MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<KeyboardDatePicker
+								disableToolbar
+								variant="inline"
+								format="yyyy/MM/dd"
+								margin="normal"
+								id="date-picker-inline"
+								label="利用開始日"
+								value={startDay}
+								placeholder="yyyy/mm/dd"
+								onChange={onChangeStartDay}
+								// KeyboardButtonProps={{
+								// 	'aria-label': 'change date',
+								// }}
+								style={styles.rentalRequestStartDay}
+							/>
+						</MuiPickersUtilsProvider>
+					</Grid>
+					<Grid>
+						<MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<KeyboardDatePicker
+								disableToolbar
+								variant="inline"
+								format="yyyy/MM/dd"
+								margin="normal"
+								id="date-picker-inline"
+								label="利用終了日"
+								value={endDay}
+								placeholder="yyyy/mm/dd"
+								onChange={onChangeEndDay}
+								// KeyboardButtonProps={{
+								// 	'aria-label': 'change date',
+								// }}
+								style={styles.rentalRequestEndDay}
+							/>
+						</MuiPickersUtilsProvider>
+					</Grid>
+					<Grid>
+						<Button variant="contained" color="primary" style={{width:"105%", height:"80px", fontSize:"30px", fontWeight:"900", marginTop:"10px"}}>
+							リクエストを送る
+						</Button>
+					</Grid>
+                </Grid>
+                    
+                    
+
+
+					{/* <RadioGroup row className={classes.formControl} value={value} onChange={handleValue}>
 						<FormControlLabel
 							value="onehour"
 							control={<Radio color="default" className={classes.radio}/>}
@@ -301,26 +381,52 @@ function LentPeriodRadioButton(){
 							label="1週間"
 							labelPlacement="start"
 						/>
-					</RadioGroup>
-					<Grid container direction="row" justify="center" alignItems="center" spacing={1} style={{marginTop:"20px"}}>
-						<Grid item>
+					</RadioGroup> */}
+					{/* <Grid container direction="row" justify="center" alignItems="center" spacing={1} style={{marginTop:"20px"}}> */}
+						{/* <Grid item>
 							<FontAwesomeIcon icon={faHourglassStart} style={{fontSize:"25px", marginTop:"20px", marginRight:"10px"}}/>
 						</Grid>
 						<Grid item>
 							<Input label="借りる時間" value={lentTimeValue} className={classes.textField} onChange={handleLentTimeValue} color="primary"/>
-						</Grid>
-						<Grid item style={{marginTop:"20px", fontSize:"20px"}}>
+						</Grid> */}
+						{/* <Grid item style={{marginTop:"20px", fontSize:"20px"}}>
 							{lentPeriodLabel()}
-						</Grid>
-					</Grid>
-					<Grid style={{marginTop:"30px"}}>{renderPriceTable()}</Grid>
-					<Button variant="contained" color="primary" style={{width:"400px", height:"80px", fontSize:"30px", fontWeight:"900", marginTop:"10px"}}>
-						リクエストを送る
-					</Button>
-				</Grid>
-			</Box>
+						</Grid> */}
+					{/* </Grid> */}
+					{/* <Grid style={{marginTop:"30px"}}>{renderPriceTable()}</Grid> */}
+					
+				
+			{/* </Box> */}
 		</div>
 	);
+}
+
+const styles = {
+	// card: {
+	// 	backgroundColor: "#ffffff",
+	// 	height: 800
+	// },
+
+	rentalRequestStartDay: {
+		background: "#ffffff",
+		backgroundColor: "#ffffff",
+		marginTop: "20px",
+		width: "100%",
+		marginLeft: "10px",
+	},
+	rentalRequestEndDay: {
+		background: "#ffffff",
+		backgroundColor: "#ffffff",
+		marginTop: "20px",
+		width: "100%",
+		marginLeft: "10px",
+	}
+	// textFieldFull: {
+	// 	background: "#ffffff",
+	// 	backgroundColor: "#ffffff",
+	// 	marginTop: 20,
+	// 	width: "100%",
+	// }
 }
 
 

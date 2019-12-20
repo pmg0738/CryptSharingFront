@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { fetchRequestList } from '../../../redux/actions/requestList';
 
 import './style.scss';
 import api from '../../../redux/apis';
@@ -37,8 +39,7 @@ import {
 
 import cup from '../../../images/cup.jpg';
 
-
-export default class ItemRequestList extends React.Component{
+class ItemRequestList extends React.Component{
     constructor(props) {
         super(props);
         
@@ -47,7 +48,13 @@ export default class ItemRequestList extends React.Component{
         }
     }
     
+    componentWillMount(){
+        console.log('@'.repeat(100),this.props.list);
+    }
+
     render() {
+        console.log('a'.repeat(100),this.props.list);
+
         return (
             <Grid container direction="column">
                 <Grid style={styles.postList} alignItems="center">
@@ -118,6 +125,7 @@ class RequestListCard extends React.Component{
     }
 
     render(){
+        
         return(
             <Grid container justify="center" alignItems="center">
                 <Box border={1} borderColor="white" style={{width:"70%"}}>
@@ -389,17 +397,22 @@ function RequestAddButton() {
     const onChangeStartDay = (date) => {
 		const year  = date.getFullYear();
 		const month = addZero(date.getMonth() + 1);
-		const day   = addZero(date.getDate());
-		setStartDay(`${year}-${month}-${day}`);
+        const day   = addZero(date.getDate());
+        const hour =  addZero(date.getHours());
+        setStartDay(`${year}-${month}-${day}`);
     }
     
     const onChangeEndDay = (date) => {
 		const year  = date.getFullYear();
 		const month = addZero(date.getMonth() + 1);
-		const day   = addZero(date.getDate());
-		setEndDay(`${year}-${month}-${day}`);
+        const day   = addZero(date.getDate());
+        const hour =  addZero(date.getHours());
+        setEndDay(`${year}-${month}-${day}`);
     }
 
+    // console.log('num(endday)', new Date(endDay));
+    // console.log('num(startday)', new Date(startDay));
+    // console.log('end - start = ',  (new Date(endDay) - new Date(startDay)));
     return (
       <div>
         <Button 
@@ -446,7 +459,6 @@ function RequestAddButton() {
                             placeholder="市村町"
                         />
                     </Grid>
-                    
                     <Grid>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker
@@ -560,28 +572,10 @@ function RequestAddButton() {
     );
   }
 
+const mapStateProps = (store) => {
+	return {
+        list: store.requestList,
+	};
+}
 
-// const itemRequests = [
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Hayato Koba',
-//         prefecture: '福岡県',
-//         city: '福岡市',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Park Mingu',
-//         prefecture: '福岡県',
-//         city: '飯塚市',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     }
-// ];
+export default connect( mapStateProps, { fetchRequestList })(ItemRequestList);
