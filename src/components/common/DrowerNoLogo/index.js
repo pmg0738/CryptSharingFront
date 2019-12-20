@@ -36,12 +36,10 @@ const useStyles = makeStyles({
 });
 
 const logout = (props) => {
-
 	// props.history.push('/login');
+	// 自動で /login にリダイレクトされる
 	localStorage.removeItem("token");
 	const token = localStorage.getItem("token");
-	console.log("TOKEN", token);
-	// write here
 }
 
 const NavDrawer = (props) => {

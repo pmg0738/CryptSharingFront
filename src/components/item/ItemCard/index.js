@@ -38,14 +38,7 @@ export default class Item extends React.Component {
 	}
 
 	onClickLikedButton = async () => {
-		const token = localStorage.getItem("token");
-
-		await api.patch('/item/' + this.props.itemId + '/unlike/', {
-			headers: {
-				"Authorization": "token 3fe13aa3ed3402536076ceff1b010a01fac51046",
-				"Content-Type": "application/json",
-				// "Authorization": "token " + token
-			},
+		await api.patch('/item/' + this.props.itemId + '/like/', {
 		}).then(response => {
 			this.setState({ likedNum: response.data.liked_num });
 		}).catch(error => {

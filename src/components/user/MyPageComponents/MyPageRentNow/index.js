@@ -27,7 +27,6 @@ import { faHourglassStart, faYenSign, faClock} from '@fortawesome/free-solid-svg
 
 
 import eraiza from '../../../../images/eraiza.png';
-import cup from '../../../../images/carry_bag.jpg';
 import drake from '../../../../images/drake.jpg';
 
 
@@ -41,20 +40,9 @@ export default class MyPageRentNow extends React.Component {
 	}
 
 	componentWillMount() {
-		this.getRentNowItems();
 	}
 
-	getRentNowItems = () => {
-		const items = {
-			"3": {
-				id: "3",
-				price: 10,
-				image: eraiza,
-			}
-		}
 
-		this.setState({items: items})
-	}
 
 	renderStar = (valueOfPostUser) =>{
 

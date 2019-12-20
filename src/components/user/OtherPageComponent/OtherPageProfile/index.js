@@ -62,7 +62,6 @@ export default class OtherPage extends React.Component {
 
 
 	render() {
-		console.log('子', this.props.isFollow)
 		return (
 			<div>
 				<Container maxWidth="lg" style={styles.otherPageContainer}>

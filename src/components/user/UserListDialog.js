@@ -57,6 +57,7 @@ export default function UserListDialog(props) {
 	return starArray;
 }
 
+
 const renderUser = (user) => {
 	console.log('user', user);
 	return (

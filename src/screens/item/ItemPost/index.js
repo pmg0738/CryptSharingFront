@@ -171,9 +171,6 @@ class ItemPost extends React.Component {
 
 	// 商品を登録する（サーバーにリクエスト送信）
 	postItem = async () => {
-
-		const token = localStorage.getItem("token");
-
 		this.uploadImages()
 			.then(images => {
 				const imageIds = images.map(image => image.image_id)
