@@ -44,7 +44,7 @@ class ItemListComponent extends React.Component {
 						image={item.images[0].url}
 						price={item.fee_per_hour}
 						// priceLabel={}
-						likedNum={329}
+						likedNum={item.liked_num}
 					/>
 				</Grid>
 			);

@@ -55,10 +55,10 @@ class ItemCard extends React.Component {
 	render() {
 		return (
 			<Card className="" style={{marginBottom: 30, position: "relative", marginLeft: 10, marginRight: 10}}>
-				<Link to={this.props.to}>
+				<Link to={this.state.to}>
 					<CardMedia
 						className=""
-						image={this.props.image}
+						image={this.state.image}
 						title="Paella dish"
 						style={{ height: 250 }}
 					/>
@@ -71,9 +71,9 @@ class ItemCard extends React.Component {
 					>
 						<FavoriteIcon />
 					</IconButton>
-					<p className="item-num-of-good">{this.props.likedNum}</p>
+					<p className="item-num-of-good">{this.state.likedNum}</p>
 				</CardActions>
-				<p className="item-price">￥{this.props.price}/{this.props.priceLabel}</p>
+				<p className="item-price">￥{this.state.price}/{this.state.priceLabel}</p>
 			</Card>
 		)
 	}
