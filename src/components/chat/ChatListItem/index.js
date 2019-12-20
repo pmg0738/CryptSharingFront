@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../../../redux/apis';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 // Redux
 import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
@@ -109,7 +110,10 @@ class ChatList extends React.Component{
 									onClick={() => this.selectRoom(room.room_id)}
 									key={`room/${room.room_id}`}
 								>
-									<img src={opponent.profile_image} className="friend-card-image"/>
+									<Link to={'users/' + opponent.user_id}>
+										<img src={opponent.profile_image} className="friend-card-image"/>
+									</Link>
+
 									<h4 className="friend-card-name">
 										{opponent.name}
 									</h4>

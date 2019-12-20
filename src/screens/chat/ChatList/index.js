@@ -6,7 +6,12 @@ import './style.scss';
 import { makeStyles } from '@material-ui/core/styles';
 // Redux
 import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+import {
+	fetchMyData,
+	fetchFollowers,
+	fetchFollowings
+} from '../../../redux/actions/user';
+import { fetchChatRooms } from '../../../redux/actions/chat';
 // Material UI Component
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -22,7 +27,7 @@ import GroupIcon from '@material-ui/icons/Group';
 import ChatAddButton  from '../../../components/chat/ChatAddButton';
 import ChatMain from '../../../components/chat/ChatMain';
 import ChatListComponent from '../../../components/chat/ChatListItem';
-import FriendListDialog from '../../../components/chat/ChatFriendListDialog';
+import UserListDialog from '../../../components/user/UserListDialog';
 
 
 // チャット画面
@@ -31,34 +36,42 @@ class Chat extends React.Component {
 		super(props);
 
 		this.state = {
-			showFriendListDialog: false,
+			showFollowerDialog: false,
 			roomId: 0,
 			rooms: {},
 			me: {},
+			followings: [],
+			followers: [],
 		}
 		this.myUserId = 1;
 	}
 
 	componentWillMount() {
-		this.fetchChatRooms();
+		this.setChatRooms();
 		this.setMyData();
 	}
 
-	createRoom = () => {
-		// Django サーバーに作成
-		api.post('chat/rooms/', {
-			members: [1, 3],
-		}).then(res => {
-			const roomId = res.data.room_id;
-			const members = [1, 3];
-			const db = firebase.firestore();
+	// createRoom = (opponentId) => {
+	// 	// Django サーバーに作成
+	// 	api.post('chat/rooms/', {
+	// 		opponent_id: opponentId
+	// 	}).then(res => {
+	// 		const roomId = res.data.room_id;
+	// 		const members = res.data.members;
+	// 		// const db = firebase.firestore();
 
-			// Firebase firestoreに作成
-			db.collection('/rooms').doc(String(roomId)).set({
-				members: members,
-			}).then(response => console.log('firestore', response))
-		})
-	}
+	// 		const memberIds = members.map(m => m.user_id);
+
+	// 		console.log('res', res);
+	// 		console.log('roomId', roomId);
+	// 		console.log('memberIds', memberIds);
+
+	// 		// Firebase firestoreに作成
+	// 		// db.collection('/rooms').doc(String(roomId)).set({
+	// 		// 	members: memberIds,
+	// 		// }).then(response => console.log('firestore', response))
+	// 	})
+	// }
 
 	closeChat = () => {
 		this.setState({roomId: 0});
@@ -86,18 +99,6 @@ class Chat extends React.Component {
 		}
 	}
 
-	// 表示するチャットルームのID
-	setRoomId = (num) => {
-		this.setState({ roomId: num });
-	}
-
-	// チャットルーム内にメッセージを追加
-	setMessages = (roomId, messages) => {
-		let rooms = this.state.rooms;
-		rooms[roomId]['messages'] = messages;
-		this.setState({ rooms: rooms });
-	}
-
 	// 友達一覧のダイアログを開く
 	openFriendListDialog = () => {
 		this.setState({ showFriendListDialog: true });
@@ -120,38 +121,40 @@ class Chat extends React.Component {
 		this.setState({ showChatMainDialog: true });
 	}
 
-	// サーバーからチャットルームのリストを取ってくる
-	fetchChatRooms = () => {
-		api.get('chat/rooms/', {
-			params: {
-				requestSenderUserId: this.myUserId,
-			}
-		}).then(response => {
-			this.setRooms(response.data);
-		})
+	// querySnapshotToArray = (querySnapshot) => {
+	// 	let tmpArray = [];
+	// 	querySnapshot.forEach(doc => {
+	// 		tmpArray.push(doc.data());
+	// 	})
+	// 	return tmpArray
+	// }
+
+	// // Firebaseからメッセージを取ってくる
+	// fetchMessages = (roomId) => {
+	// 	console.log('this.state.rooms', this.state.rooms);
+	// 	const notFetched = this.state.rooms[roomId].messages.length === 0;
+
+	// 	if(notFetched) {
+	// 		const db = firebase.firestore();
+
+	// 		db.collection('/rooms/' + roomId + '/messages')
+	// 			.onSnapshot(querySnapshot => {
+	// 				const messages = this.querySnapshotToArray(querySnapshot);
+	// 				this.setRoomMessage(roomId, messages);
+	// 			})
+	// 	}
+	// }
+
+	// 表示するチャットルームのID
+	setRoomId = (num) => {
+		this.setState({ roomId: num });
 	}
 
-	querySnapshotToArray = (querySnapshot) => {
-		let tmpArray = [];
-		querySnapshot.forEach(doc => {
-			tmpArray.push(doc.data());
-		})
-		return tmpArray
-	}
-
-	// Firebaseからメッセージを取ってくる
-	fetchMessages = (roomId) => {
-		const notFetched = this.state.rooms[roomId].messages.length === 0;
-
-		if(notFetched) {
-			const db = firebase.firestore();
-
-			db.collection('/rooms/' + roomId + '/messages')
-				.onSnapshot(querySnapshot => {
-					const messages = this.querySnapshotToArray(querySnapshot);
-					this.setRoomMessage(roomId, messages);
-				})
-		}
+	// チャットルーム内にメッセージを追加
+	setMessages = (roomId, messages) => {
+		let rooms = this.state.rooms;
+		rooms[roomId]['messages'] = messages;
+		this.setState({ rooms: rooms });
 	}
 
 	setRoomMessage = (roomId, messages) => {
@@ -197,15 +200,62 @@ class Chat extends React.Component {
 	}
 
 	setMyData = async () => {
-		if(Object.keys(this.props.store.me).length==0) {
+		if(Object.keys(this.props.me).length==0) {
 			this.props.fetchMyData()
 				.then(response => this.setState({me: response}));
 		} else {
-			this.setState({ me: this.props.store.me });
+			this.setState({ me: this.props.me });
 		}
 	}
 
+	// チャットルームのデータをstateに保存
+	setChatRooms = async () => {
+		this.props.fetchChatRooms()
+			.then(rooms => this.setState({rooms: rooms}))
+	}
+
+	// フォロワーボタンをクリックした時の処理
+	onClickFollower = () => {
+		this.props.fetchFollowers()
+			.then(users => {
+				this.setState({ followers: users, showFollowerDialog: true });
+			});
+	}
+
+	// フォロー中のボタンをクリックした時の処理
+	onClickFollowing = () => {
+		this.props.fetchFollowings()
+			.then(users => {
+				this.setState({ followings: users, showFollowingDialog : true });
+			});
+	}
+
+	onClickContractingDialog = () => {
+		this.props.fetchFollowers()
+			.then(users => {
+				this.setState({ followers: users, showContractingDialog: true });
+			});
+	}
+
+	onClickContractedDialog = () => {
+		this.props.fetchFollowings()
+			.then(users => {
+				this.setState({ followings: users, showContractedDialog : true });
+			});
+	}
+
+	onClickRequestedDialog = () => {
+		this.props.fetchFollowers()
+			.then(users => {
+				this.setState({ followers: users, showRequestedDialog: true });
+			});
+	}
+
+
+
+
 	render() {
+		console.log('this.state.rooms', this.state.rooms);
 		return (
 			<Grid direction="row" className="chat-screen-contaienr">
 				{/* 左端に固定したメニューバー */}
@@ -246,8 +296,9 @@ class Chat extends React.Component {
 									selectRoom={this.selectRoom}
 								/>
 							</Grid>
-							{/* <CreateRoomButton/> */}
 							<ChatAddButton
+								openFollowerDialog={this.onClickFollower}
+								openFollowingDialog={this.onClickFollowing}
 								createRoom={this.createRoom}
 							/>
 						</Grid>
@@ -287,16 +338,38 @@ class Chat extends React.Component {
 					</div> */}
 				</Dialog>
 				</Hidden>
-				{/* ダイアログ */}
-				<Dialog
-					aria-labelledby="customized-dialog-title"
-					open={this.state.showFriendListDialog}
-					onClose={this.closeFriendListDialog}
-				>
-					<FriendListDialog
-						close={this.closeFriendListDialog}
-					/>
-				</Dialog>
+				<UserListDialog
+					title="フォロワー"
+					show={this.state.showFollowerDialog}
+					users={this.state.followers}
+					// users={[]}
+					close={() => this.setState({ showFollowerDialog: false })}
+				/>
+				<UserListDialog
+					title="フォロー"
+					show={this.state.showFollowingDialog}
+					users={this.state.followings}
+					close={() => this.setState({ showFollowingDialog: false })}
+				/>
+				<UserListDialog
+					title="取引中のユーザー"
+					show={this.state.showContractingDialog}
+					users={[]}
+					// users={[]}
+					close={() => this.setState({ showContractingDialog: false })}
+				/>
+				<UserListDialog
+					title="過去に取引したユーザー"
+					show={this.state.showContractedDialog}
+					users={[]}
+					close={() => this.setState({ showContractedDialog: false })}
+				/>
+				<UserListDialog
+					title="リクエストしたユーザー"
+					show={this.state.showRequestedDialog}
+					users={[]}
+					close={() => this.setState({ showRequestedDialog: false })}
+				/>
 			</Grid>
 		);
 	}
@@ -304,10 +377,22 @@ class Chat extends React.Component {
 
 
 const mapStateProps = (store) => {
-	return { store: store };
+	return { 
+		me: store.me,
+		followings: store.followsing,
+		followers: store.followers,
+		rooms: store.rooms,
+	 };
 }
 
-export default connect( mapStateProps, { fetchMyData })(Chat);
+const actions = {
+	fetchMyData,
+	fetchFollowings,
+	fetchFollowers,
+	fetchChatRooms
+}
+
+export default connect( mapStateProps, actions )(Chat);
 
 
 

@@ -7,6 +7,10 @@ import {
 	fetchFollowers,
 	fetchFollowings
 } from './user';
+import {
+	fetchChatRooms,
+	createChatRoom,
+} from './chat';
 
 export default combineReducers({
 	items: getItemListReducer,
@@ -15,4 +19,6 @@ export default combineReducers({
 	user: fetchUser,
 	followings: fetchFollowings,
 	followers: fetchFollowers,
+	rooms: fetchChatRooms,
+	newRoom: createChatRoom,
 });

@@ -65,6 +65,9 @@ export default class MyPage extends React.Component {
 								<Grid style={styles.mypageName}>
 									{this.props.name}
 								</Grid>
+								<Grid item style={styles.balance}>
+									残高：{this.props.balance} ether
+								</Grid>
 							</Grid>
 							<Grid container direction="row" justify="flex-start">
 								<Grid style={styles.mypageFollower}>
@@ -96,6 +99,10 @@ const styles = {
 	avatar:{
 		width:'150px',
 		height:'150px'
+	},
+	balance: {
+		fontSize: "20px",
+		fontWeight: 300,
 	},
 	mypageContainer:{
 		color:'white'

@@ -44,6 +44,7 @@ class Mypage extends React.Component {
 				follow_num: null,
 				follower_num: null,
 				item_num: null,
+				balance: null,
 			},
 			showFollowingDialog: false,
 			showFollowerDialog: false,
@@ -80,15 +81,18 @@ class Mypage extends React.Component {
 			});
 	}
 
+	// fetchPostedItem = () => {
+	// 	api.get('items/posted')
+	// }
+
 	render() {
 		const { me } = this.state;
-		console.log('this.props', this.props);
 
 		return (
 			<Grid container direction="column">
-				<Grid container direction="row" justify="flex-end">
+				{/* <Grid container direction="row" justify="flex-end">
 					<SettingsIcon style={styles.mypageSetting} />
-				</Grid>
+				</Grid> */}
 				<MypageProfile
 					id={me.user_id}
 					avatar={me.profile_image}
@@ -98,6 +102,7 @@ class Mypage extends React.Component {
 					follower={me.follower_num}
 					follow={me.follow_num}
 					comments={me.comment}
+					balance={me.balance}
 					onClickFollower={this.onClickFollower}
 					onClickFollowing={this.onClickFollowing}
 				/>
@@ -189,6 +194,7 @@ const mapStateProps = (store) => {
 }
 
 export default connect( mapStateProps, { fetchMyData, fetchFollowings, fetchFollowers })(Mypage);
+
 const styles = {
 	tabBox:{
 		marginTop:'30px'

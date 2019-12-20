@@ -96,16 +96,38 @@ export default function ChatAddButton(props) {
 		{
 			icon: <GroupIcon className={classes.iconRed} />,
 			name: "フォロワー",
-			onClick: () => props.createRoom()
+			onClick: () => props.openFollowerDialog()
 		},
 		{
-			icon: <FileCopyIcon className={classes.iconBlue}/>,
-			name: 'Copy'
+			// icon: <FileCopyIcon className={classes.iconBlue}/>,
+			icon: <GroupIcon className={classes.iconBlue}/>,
+			name: 'フォロー中',
+			onClick: () => props.openFollowingDialog()
 		},
-		{ icon: <SaveIcon className={classes.iconGreen}/>, name: 'Save' },
-		{ icon: <PrintIcon className={classes.iconYellow} />, name: 'Print' },
-		{ icon: <ShareIcon className={classes.icon}/>, name: 'Share' },
-		{ icon: <FavoriteIcon className={classes.icon} />, name: 'Like' },
+		{ 
+			// icon: <SaveIcon className={classes.iconGreen}/>,
+			icon: <GroupIcon className={classes.iconGreen}/>,
+			name: '取引中のユーザー',
+			onClick: () => props.openFollowerDialog()
+		},
+		{
+			icon: <GroupIcon className={classes.iconYellow} />,
+			// icon: <PrintIcon className={classes.iconYellow} />,
+			name: 'リクエストしたユーザー',
+			onClick: () => props.openFollowerDialog()
+		},
+		// {
+		// 	icon: <GroupIcon className={classes.icon}/>,
+		// 	// icon: <ShareIcon className={classes.icon}/>,
+		// 	name: 'Share',
+		// 	onClick: () => props.openFollowerDialog()
+		// },
+		// {
+		// 	icon: <GroupIcon className={classes.icon} />,
+		// 	// icon: <FavoriteIcon className={classes.icon} />,
+		// 	name: 'Like',
+		// 	onClick: () => props.openFollowerDialog()
+		// },
 	  ];
 	
 

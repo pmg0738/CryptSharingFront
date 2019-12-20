@@ -59,13 +59,10 @@ export default function UserListDialog(props) {
 
 
 const renderUser = (user) => {
-	console.log('user', user);
 	return (
 		<Link to={'/users/' + user.user_id} style={styles.link}>
 			<ListItem style={styles.listItem} style={styles.listItem}>
-				{/* <Grid container sm={12} md={3} > */}
-					<Avatar style={styles.userProfileAvatar} src={user.profile_image} />
-				{/* </Grid> */}
+				<Avatar style={styles.userProfileAvatar} src={user.profile_image} />
 				<Grid container sm={12} md={9} >
 					<Grid container direction="row" justify="">
 							<Grid style={styles.userProfileName}>
@@ -76,10 +73,8 @@ const renderUser = (user) => {
 						</Grid>
 					</Grid>
 					<Grid container direction="row" justify="" style={styles.userProfileStar}>
-						{renderStar(3.2)}
-						{/* {this.renderStar(this.props.evaluation)} */}
-						{/* <p style={styles.starValue}>({this.props.evaluation})</p> */}
-						<p style={styles.starValue}>({3.2})</p>
+						{renderStar(user.evaluation)}
+						<p style={styles.starValue}>({user.evaluation})</p>
 					</Grid>
 				</Grid>
 			</ListItem>
@@ -90,8 +85,6 @@ const renderUser = (user) => {
   return (
 	<div>
 		<Dialog maxWidth="lg" open={props.show} onClose={handleClose} aria-labelledby="form-dialog-title">
-			<Button style={{fontSize: 20}}
-				onClick={props.close}>閉じる</Button>
 			<DialogTitle id="form-dialog-title">{props.title}</DialogTitle>
 			<DialogContent>
 				<List>
@@ -112,6 +105,8 @@ const renderUser = (user) => {
 			</DialogContent>
 			<DialogActions>
 			</DialogActions>
+			<Button style={{fontSize: 20}}
+				onClick={props.close}>閉じる</Button>
 		</Dialog>
 	</div>
   );

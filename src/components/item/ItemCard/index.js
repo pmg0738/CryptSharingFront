@@ -4,6 +4,7 @@ import api from '../../../redux/apis';
 import { Link } from 'react-router-dom';
 
 import './style.scss';
+import { connect } from 'react-redux';
 
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,12 +13,13 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
-export default class Item extends React.Component {
+class ItemCard extends React.Component {
 	state = {
 		cardClassName: "item-list-item-card-out",
 		priceClassName: "item-list-item-card-price-out",
 		likedNum: this.props.likedNum,
 		liked: false,
+		me: { likedItems: []　},
 	}
 
 	handleMouseOver = () => {
@@ -63,6 +65,7 @@ export default class Item extends React.Component {
 				</Link>
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"
+						// style={this.state.liked ? styles.likedIcon : styles.notLikedIcon}
 						style={this.state.liked ? styles.likedIcon : styles.notLikedIcon}
 						onClick={this.onClickLikedButton}
 					>
@@ -75,6 +78,16 @@ export default class Item extends React.Component {
 		)
 	}
 }
+
+
+const mapStateProps = (store) => {
+	return {
+		me: store.me,
+	};
+}
+
+export default connect( mapStateProps )(ItemCard);
+
 
 const styles = {
 	likedIcon: {
