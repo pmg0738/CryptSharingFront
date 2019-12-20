@@ -28,7 +28,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinStars, faHourglassStart, faYenSign, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
-
+import DateFnsUtils from '@date-io/date-fns';
+import {
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker
+} from '@material-ui/pickers';
 
 
 import cup from '../../../images/cup.jpg';
@@ -285,6 +289,8 @@ function RequestAddButton() {
     const [hopeFee, setHopeFee] = React.useState();
     const [comment, setCommnet] = React.useState();
     const [lentPeriodStr, setLentPeriodStr] = React.useState('週間');
+    const [startDay, setStartDay] = React.useState(null);
+    const [endDay, setEndDay] = React.useState(null);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -370,6 +376,30 @@ function RequestAddButton() {
             alert('項目を入力してください');
         }
     }
+
+    const addZero = (num) => {
+		if(num < 10) {
+			return `0${num}`;
+		} else {
+			return num;
+		}
+	}
+
+
+    const onChangeStartDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setStartDay(`${year}-${month}-${day}`);
+    }
+    
+    const onChangeEndDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setEndDay(`${year}-${month}-${day}`);
+    }
+
     return (
       <div>
         <Button 
@@ -417,7 +447,46 @@ function RequestAddButton() {
                         />
                     </Grid>
                     
-                    <RadioGroup
+                    <Grid>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="yyyy/MM/dd"
+							margin="normal"
+							id="date-picker-inline"
+							label="利用開始日"
+							value={startDay}
+							placeholder="yyyy/mm/dd"
+							onChange={onChangeStartDay}
+							// KeyboardButtonProps={{
+							// 	'aria-label': 'change date',
+							// }}
+							style={styles.textFieldHalfLeft}
+						/>
+                    </MuiPickersUtilsProvider>
+                    </Grid>
+                    <Grid>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="yyyy/MM/dd"
+							margin="normal"
+							id="date-picker-inline"
+							label="利用終了日"
+							value={endDay}
+							placeholder="yyyy/mm/dd"
+							onChange={onChangeEndDay}
+							// KeyboardButtonProps={{
+							// 	'aria-label': 'change date',
+							// }}
+							style={styles.textFieldHalfLeft}
+						/>
+                    </MuiPickersUtilsProvider>
+                    </Grid>
+
+                    {/* <RadioGroup
                         row 
                         style={{marginBottom:"30px"}}
                         onChange={handleLentPeirodRadio}
@@ -459,7 +528,7 @@ function RequestAddButton() {
                             endAdornment={<InputAdornment position="end">/1{lentPeriodStr}</InputAdornment>}
                             labelWidth={60}
                         />
-                    </Grid>
+                    </Grid> */}
                     <TextField
                         style={{width:"400px"}}
                         label="コメント"

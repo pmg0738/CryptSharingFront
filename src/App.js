@@ -52,7 +52,8 @@ export default class App extends React.Component{
 					<Switch>
 						<Route exact path="/login" component={Login}/>
 						<Route exact path="/signup" component={SignUp}/>
-						<Auth>
+						<div>
+						{/* <Auth> */}
 							<Switch>
 								<Route exact path='/' component={Search}/>
 								<Route exact path='/items/new/post' component={ItemPost}/>
@@ -69,7 +70,8 @@ export default class App extends React.Component{
 								<Route exact path='/users/:id' component={UserDetail}/>
 							</Switch>
 							<Drower/>
-						</Auth>
+						{/* </Auth> */}
+						</div>
 					</Switch>
 				</BrowserRouter>
 			  </div>
