@@ -1,43 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 import api from '../../../redux/apis';
+
 // // Material UI Component
-// import Avatar from '@material-ui/core/Avatar';
-// import Button from '@material-ui/core/Button';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import Dialog from '@material-ui/core/Dialog';
-// import Fab from '@material-ui/core/Fab';
-// import GridList from '@material-ui/core/GridList';
-// import GridListTile from '@material-ui/core/GridListTile';
-// import ListSubheader from '@material-ui/core/ListSubheader';
-// import IconButton from '@material-ui/core/IconButton';
-// import MuiDialogActions from '@material-ui/core/DialogActions';
-// import MuiDialogContent from '@material-ui/core/DialogContent';
-
-// // Material UI Icon
-// import AddIcon from '@material-ui/icons/Add';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-// // My Component
-// import ItemRequestCard from '../../../components/item/ItemRequestCard';
-// import { StylesContext } from '@material-ui/styles/StylesProvider';
-// import { getDefaultSettings } from 'http2';
-
-import { Link } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import Avatar from '@material-ui/core/Avatar';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-// import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -47,12 +24,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGrinStars, faHourglassStart, faYenSign, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
-
+import DateFnsUtils from '@date-io/date-fns';
+import {
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker
+} from '@material-ui/pickers';
 
 
 import cup from '../../../images/cup.jpg';
@@ -100,7 +80,6 @@ const styles = {
         
     },
     postList:{
-        // backgroundColor:"skyblue",
         marginTop:"20px"
     },
     postaddIcon:{
@@ -310,6 +289,8 @@ function RequestAddButton() {
     const [hopeFee, setHopeFee] = React.useState();
     const [comment, setCommnet] = React.useState();
     const [lentPeriodStr, setLentPeriodStr] = React.useState('週間');
+    const [startDay, setStartDay] = React.useState(null);
+    const [endDay, setEndDay] = React.useState(null);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -395,6 +376,30 @@ function RequestAddButton() {
             alert('項目を入力してください');
         }
     }
+
+    const addZero = (num) => {
+		if(num < 10) {
+			return `0${num}`;
+		} else {
+			return num;
+		}
+	}
+
+
+    const onChangeStartDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setStartDay(`${year}-${month}-${day}`);
+    }
+    
+    const onChangeEndDay = (date) => {
+		const year  = date.getFullYear();
+		const month = addZero(date.getMonth() + 1);
+		const day   = addZero(date.getDate());
+		setEndDay(`${year}-${month}-${day}`);
+    }
+
     return (
       <div>
         <Button 
@@ -442,7 +447,46 @@ function RequestAddButton() {
                         />
                     </Grid>
                     
-                    <RadioGroup
+                    <Grid>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="yyyy/MM/dd"
+							margin="normal"
+							id="date-picker-inline"
+							label="利用開始日"
+							value={startDay}
+							placeholder="yyyy/mm/dd"
+							onChange={onChangeStartDay}
+							// KeyboardButtonProps={{
+							// 	'aria-label': 'change date',
+							// }}
+							style={styles.textFieldHalfLeft}
+						/>
+                    </MuiPickersUtilsProvider>
+                    </Grid>
+                    <Grid>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="yyyy/MM/dd"
+							margin="normal"
+							id="date-picker-inline"
+							label="利用終了日"
+							value={endDay}
+							placeholder="yyyy/mm/dd"
+							onChange={onChangeEndDay}
+							// KeyboardButtonProps={{
+							// 	'aria-label': 'change date',
+							// }}
+							style={styles.textFieldHalfLeft}
+						/>
+                    </MuiPickersUtilsProvider>
+                    </Grid>
+
+                    {/* <RadioGroup
                         row 
                         style={{marginBottom:"30px"}}
                         onChange={handleLentPeirodRadio}
@@ -484,7 +528,7 @@ function RequestAddButton() {
                             endAdornment={<InputAdornment position="end">/1{lentPeriodStr}</InputAdornment>}
                             labelWidth={60}
                         />
-                    </Grid>
+                    </Grid> */}
                     <TextField
                         style={{width:"400px"}}
                         label="コメント"
@@ -517,141 +561,6 @@ function RequestAddButton() {
   }
 
 
-
-
-// class PostAddDrawer extends React.Component{
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             left: false,
-//         }        
-//     }   
-
-
-//     toggleDrawer = (sample) = (e) =>{
-//         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-//             return;
-//           }
-//           this.setState({left: sample});
-//     }
-
-//     render(){
-//         return(
-//             <div>
-//                 <PostAddIcon style={styles.postaddIcon} onClick={this.toggleDrawer(true)}/>
-//                 <Drawer open={this.state.left}>
-//                     <CancelPresentationIcon onClose={this.toggleDrawer(false)}/>
-//                 </Drawer>
-//             </div>
-//         )
-//     }
-// }
-
-
-
-// const useStyles = makeStyles(theme => ({
-// 	fab: {
-// 		height: 80,
-// 		width:  80,
-// 		margin: theme.spacing(1),
-// 		position: "fixed",
-// 		bottom: 50,
-// 		right: 50,
-// 	},
-// 	root: {
-// 		color: '#ffffff',
-// 		display: 'flex',
-// 		flexWrap: 'wrap',
-// 		justifyContent: 'center',
-// 		overflow: 'hidden',
-// 	},
-// 		gridList: {
-// 		width: "80%",
-// 	},
-// 		icon: {
-// 		color: 'rgba(255, 255, 255, 0.54)',
-// 	},
-// 	postDialog: {
-// 		minWidth: "80%"
-// 	}
-// }));
-
-
-// const DialogContent = withStyles(theme => ({
-// 	root: {
-// 		padding: theme.spacing(2),
-// 	},
-// }))(MuiDialogContent);
-
-// const DialogActions = withStyles(theme => ({
-// 	root: {
-// 		margin: 0,
-// 		padding: theme.spacing(1),
-// 	},
-// }))(MuiDialogActions);
-
-
-// // 商品リクエストの一覧
-// export default function ItemRequestList() {
-
-// 	// スタイリングに使うクラス名
-// 	const classes = useStyles();
-
-// 	// stateを定義
-// 	const [open, setOpen] = React.useState(false);
-
-// 	// 投稿画面のダイアログを開く
-// 	const openPostDialog = () => {
-// 		setOpen(true);
-// 	};
-
-// 	// 投稿画面のダイアログを閉じる
-// 	const closePostDialog = () => {
-// 		setOpen(false);
-// 	};
-
-// 	return (
-// 		<div className={classes.root}>
-// 			<GridList cellHeight={260} className={classes.gridList}>
-// 				<GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
-// 					<ListSubheader component="div" style={{color: "#ffffff", fontSize: 24}}>REQUESTS</ListSubheader>
-// 				</GridListTile>
-// 				{itemRequests.map(itemRequest => (
-// 					<Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-// 						<ItemRequestCard itemRequest={itemRequest} />
-// 					</Grid>
-// 				))}
-// 			</GridList>
-// 			<Fab color="primary" aria-label="add" className={classes.fab} onClick={openPostDialog}>
-// 				<AddIcon />
-// 			</Fab>
-// 			{/* 投稿画面 */}
-// 			<Dialog className={classes.postDialog} onClose={closePostDialog} aria-labelledby="customized-dialog-title" open={open}>
-// 				<CardHeader
-// 					avatar={<Avatar aria-label="recipe" className={classes.avatar}
-// 					style={{backgroundColor: "#ff6967"}}
-// 					>H</Avatar>}
-// 					action={
-// 						<IconButton aria-label="settings">
-// 							<MoreVertIcon />
-// 						</IconButton>
-// 					}
-// 					title="Hayato Koba"
-// 					subheader="September 14, 2016"
-// 				/>
-// 				<DialogContent dividers>
-// 					{/* ここにフォームを書く */}
-// 				</DialogContent>
-// 				<DialogActions>
-// 				<Button autoFocus onClick={() => console.log("POST")} color="primary">投稿する</Button>
-// 				<Button autoFocus onClick={closePostDialog} color="primary">閉じる</Button>
-// 				</DialogActions>
-// 			</Dialog>
-// 		</div>
-// 	);
-// };
-
-
 // const itemRequests = [
 //     {
 //         title: '自転車',
@@ -674,159 +583,5 @@ function RequestAddButton() {
 //         fee: 400,
 //         hashTags: ['タコパ', 'たこ焼き'],
 //         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Ozaki Ryuya',
-//         prefecture: '宮崎県',
-//         city: '',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Maeno Yushi',
-//         prefecture: '鹿児島県',
-//         city: '',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Hayato Koba',
-//         prefecture: '福岡県',
-//         city: '福岡市',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Park Mingu',
-//         prefecture: '福岡県',
-//         city: '飯塚市',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Ozaki Ryuya',
-//         prefecture: '宮崎県',
-//         city: '',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Maeno Yushi',
-//         prefecture: '鹿児島県',
-//         city: '',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Hayato Koba',
-//         prefecture: '福岡県',
-//         city: '福岡市',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Park Mingu',
-//         prefecture: '福岡県',
-//         city: '飯塚市',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Ozaki Ryuya',
-//         prefecture: '宮崎県',
-//         city: '',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Maeno Yushi',
-//         prefecture: '鹿児島県',
-//         city: '',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Hayato Koba',
-//         prefecture: '福岡県',
-//         city: '福岡市',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Park Mingu',
-//         prefecture: '福岡県',
-//         city: '飯塚市',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
-//     {
-//         title: '自転車',
-//         date: '2020-11-30',
-//         author: 'Ozaki Ryuya',
-//         prefecture: '宮崎県',
-//         city: '',
-//         rentalTerm: '3日',
-//         fee: 300,
-//         hashTags: ['自転車', 'チャリ', 'GIANT'],
-//         comment: '自転車貸して下さい!!'
-//     },
-//     {
-//         title: 'たこ焼き機',
-//         date: '2019-12-24',
-//         author: 'Maeno Yushi',
-//         prefecture: '鹿児島県',
-//         city: '',
-//         rentalTerm: '1日',
-//         fee: 400,
-//         hashTags: ['タコパ', 'たこ焼き'],
-//         comment: '深夜一人タコパしたい!!'
-//     },
+//     }
 // ];

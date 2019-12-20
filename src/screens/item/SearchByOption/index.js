@@ -5,7 +5,7 @@ import SearchByOptionComponent from '../../../components/item/SearchByOptionComp
 import ItemListComponent from '../../../components/item/ItemListComponent';
 import 'react-input-range/lib/css/index.css';
 
-
+import Container from '@material-ui/core/Container';
 
 export default class ItemFilterAndList extends React.Component {
 	constructor(props){
@@ -24,14 +24,10 @@ export default class ItemFilterAndList extends React.Component {
 
 	render() {
 		return (
-			<div className="search-by-option-container">
-				<div className="search-by-option-search-form">
-					<SearchByOptionComponent/>
-				</div>
-				<div className="search-by-option-item-list-component">
-					<ItemListComponent/>
-				</div>
-			</div>
+			<Container maxWidth="lg">
+				<ItemListComponent/>
+				<SearchByOptionComponent/>
+			</Container>
 		)
 	}
 }

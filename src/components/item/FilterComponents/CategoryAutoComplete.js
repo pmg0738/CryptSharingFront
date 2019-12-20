@@ -53,8 +53,8 @@ export default class Tags extends React.Component{
 
 const styles = {
 	autoComplete: {
-		marginLeft: '20px', 
-		marginRight: "20px",
+		// marginLeft: '20px',
+		// marginRight: "20px",
 		color: "white",
 	},
 	textfield:{

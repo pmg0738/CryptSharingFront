@@ -7,11 +7,13 @@ import Select from '@material-ui/core/Select';
 
 import {prefectures} from '../../../datas/prefectures';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 
 const useStyles = makeStyles(theme => ({
 	formControl: {
 		// margin: theme.spacing(1),
-		minWidth: 120,
+		minWidth: 150,
 	}
 }));
 
@@ -32,7 +34,8 @@ export default function PrefectureSelector(props) {
 
 	return (
 		<div>
-			<FormControl className={classes.formControl} style={{width: props.width}}>
+			<FontAwesomeIcon icon={faMapMarkerAlt} style={{width:"30px", height:"30px", color:"#4285F4", marginTop:"95px", marginRight:"10px"}}/>
+			<FormControl className={classes.formControl} style={{marginTop:"80px"}}>
 				<InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">都道府県</InputLabel>
 				<Select
 					labelId="demo-simple-select-outlined-label"
@@ -41,11 +44,7 @@ export default function PrefectureSelector(props) {
 					onChange={handleChange}
 					labelWidth={labelWidth}
 				>
-						{
-							prefectures.map( prefecture =>
-								<MenuItem value={prefecture}>{prefecture}</MenuItem>
-							)
-						}
+					{prefectures.map(prefecture =><MenuItem value={prefecture}>{prefecture}</MenuItem>)}
 				</Select>
 			</FormControl>
 		</div>
