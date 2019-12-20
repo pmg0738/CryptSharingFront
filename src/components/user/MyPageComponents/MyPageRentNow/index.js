@@ -28,7 +28,7 @@ import { faHourglassStart, faYenSign, faClock} from '@fortawesome/free-solid-svg
 
 import eraiza from '../../../../images/eraiza.png';
 import drake from '../../../../images/drake.jpg';
-
+import cup from '../../../../images/cap.jpg';
 
 export default class MyPageRentNow extends React.Component {
 	constructor(props) {
