@@ -3,10 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faYenSign} from '@fortawesome/free-solid-svg-icons'
 
 const useStyles = makeStyles({
 	root: {
-		padding: "50px",
 	},
 });
 
@@ -68,24 +71,33 @@ export default class FeeSlider extends Component{
 
 	render(){
 	return (
-		<div className={classes.root}>
-			<Grid container style={{marginBottom:"20px"}}>
-				<Grid sm={12} md={6} style={{padding:"3px"}}>
+		<div style={{marginLeft:"50px"}}>
+			<Grid container direction="row" style={{marginBottom:"20px"}}>
+				<Grid sm={12} md={1}>
+					<FontAwesomeIcon icon={faYenSign} style={{width:"30px", height:"30px", color:"#4285F4", marginTop:"10px"}}/>
+				</Grid>
+				<Grid sm={12} md={3} style={{marginRight:"40px"}}>
 					<TextField 
-						id="outlined-basic" 
 						value={this.state.priceSet[0]}
 						label="最小料金" 
 						variant="outlined"
 						onChange={this.changeMinPriceSetbyTextField}
+						InputProps={{
+							startAdornment: <InputAdornment position="start">￥</InputAdornment>,
+						  }}
+						style={{width:"140px"}}
 					/>
 				</Grid>
-				<Grid sm={12} md={6} style={{padding:"3px"}}>
+				<Grid sm={12} md={5}>
 					<TextField 
-						id="outlined-basic" 
 						value={this.state.priceSet[1]} 
 						label="最大料金" 
 						variant="outlined"
 						onChange={this.changeMaxPriceSetbyTextField}
+						InputProps={{
+							startAdornment: <InputAdornment position="start">￥</InputAdornment>,
+						  }}
+						style={{width:"140px"}}
 					/>
 				</Grid>
 			</Grid>
@@ -100,6 +112,7 @@ export default class FeeSlider extends Component{
 				min={this.state.priceRange.min}
 				max={this.state.priceRange.max}
 				className={classes.feeSlider}
+				style={{width:"340px"}}
 			/>
 		</div>
 	)

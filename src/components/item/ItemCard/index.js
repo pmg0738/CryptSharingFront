@@ -70,9 +70,9 @@ export default class Item extends React.Component {
 					>
 						<FavoriteIcon />
 					</IconButton>
-					<p className="item-num-of-good">{this.state.likedNum}</p>
+					<p className="item-num-of-good">{this.props.likedNum}</p>
 				</CardActions>
-				<p className="item-price">￥{this.props.price}/h</p>
+				<p className="item-price">￥{this.props.price}/{this.props.priceLabel}</p>
 			</Card>
 		)
 	}

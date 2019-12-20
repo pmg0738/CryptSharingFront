@@ -9,12 +9,20 @@ import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Rating from '@material-ui/lab/Rating';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import SendIcon from '@material-ui/icons/Send';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
+import Box from '@material-ui/core/Box';
+
 // Material UI Layout
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import OtherPageProfile from '../../../components/user/OtherPageComponent/OtherPageProfile';
-import eraiza from '../../../images/logo.png';
 
+import drake from '../../../images/drake.jpg';
 import { 
 	Tabs,
 	Tab
@@ -35,10 +43,9 @@ class UserDetail extends React.Component {
 				following: null,
 			},
 			evaluations: [
-				{rate: 3, comment: "good" },
-				{rate: 2, comment: "mm..." },
-				{rate: 4, comment: "very good" },
-				{rate: 5, comment: "perfect" },
+				{rate: 4.7, comment: "スピーカーの音質に対して安い値段！！" ,date:"2019/12/10"},
+				{rate: 5, comment: "可愛い人でした！！！" ,date:"2019/11/27"},
+				{rate: 1.8, comment: "初期不良で広範囲のドット落ち？でした。即アマゾンさんにて返金してもらいました。" ,date:"2019/10/8"},
 			],
 		}
 		this.userId = this.props.match.params.id;
@@ -83,27 +90,18 @@ class UserDetail extends React.Component {
 
 	renderEvaluations = () => {
 		return (
-			this.state.evaluations.map((item) => <Grid item md={8} lg={12}>
-				<Card style={styles.card}>
-					<CardContent>
-						<Grid container spacing={2}>
-							<div style={styles.rateContainer}>
-								<Rating name="half-rating" value={item.rate} precision={0.5} readOnly size="large"/>({item.rate})
-							</div>
-							<div className="profile-container" style={styles.profileContainer}>
-								<div className="avatar-container">
-									<Avatar alt="Remy Sharp" src="http://challecara-pok-2019.lolipop.io/images/images/S__23519281.jpg"
-										style={styles.avatar}
-										className="avatar"
-									/>
-								</div>
-								<div className="name">Hayato Koba</div>
-							</div>
-							<div className="comment-container">{item.comment}</div>
-						</Grid>
-					</CardContent>
-					</Card>
+			this.state.evaluations.map((item) =>
+			<Box borderBottom={1} style={{marginBottom:"20px"}}>
+				<Grid container direction="column" style={{marginBottom:"20px"}}>
+					<Grid container direction="row">
+						<Avatar src={drake} style={{height:"70px", width:"70px"}}></Avatar>
+						<div style={{backgroundColor:"white", fontSize:"20px", fontWeight:"600",marginLeft:"20px", marginTop:"15px"}}>drake_1023</div>
+						<div style={{opacity:"0.5", marginLeft:"40px", marginTop:"15px"}}>{item.date}</div>
+					</Grid>
+					<Rating value={item.rate} precision={0.1} readOnly size="large" style={{marginLeft:"85px"}}/>
+					<div style={{backgroundColor:"white", marginTop:"30px", marginLeft:"85px", fontSize:"17px", fontWeight:"700"}}>{item.comment}</div>
 				</Grid>
+			</Box>	
 			)
 		);
 	}
@@ -124,14 +122,33 @@ class UserDetail extends React.Component {
 					onClickFollowButton={this.handleFollow}
 					isFollow={this.state.user.following}
 				/>
-				<Tabs defaultActiveKey="requesting" id="uncontrolled-tab-example">
+				<Tabs defaultActiveKey="getValue" id="uncontrolled-tab-example">
 					<Tab eventKey="rent-now" title="投稿一覧" style={{color:"black"}}>
 						
 					</Tab>
-					<Tab eventKey="used-history" title="Get ★" className="mypage-used-history">
-						{this.renderEvaluations()}
+					<Tab eventKey="getValue" title="貰った 評価" className="mypage-used-history">
+						<ExpansionPanel style={{marginTop:"10px"}} defaultExpanded={true}>
+							<ExpansionPanelSummary>
+								<Typography style={{fontSize:"20px", fontWeight:"900"}}>From User</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Grid sm={12}>
+									{this.renderEvaluations()}
+								</Grid>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
+						<ExpansionPanel defaultExpanded={true}>
+							<ExpansionPanelSummary>
+								<Typography style={{fontSize:"20px", fontWeight:"900"}}>From Owner</Typography>
+							</ExpansionPanelSummary>
+							<ExpansionPanelDetails>
+								<Grid sm={12}>
+									{this.renderEvaluations()}
+								</Grid>
+							</ExpansionPanelDetails>
+						</ExpansionPanel>
 					</Tab>
-					<Tab eventKey="posted-history" title="Give ★">
+					<Tab eventKey="GiveValue" title="挙げた 評価">
 						{this.renderEvaluations()}
 					</Tab> 
 				</Tabs>
@@ -148,49 +165,3 @@ const mapStateProps = (store) => {
 }
 
 export default connect( mapStateProps, { fetchUser })(UserDetail);
-
-
-
-const styles = {	
-	avatar: {
-		height: 60,
-		width: 60,
-		// backgroundColor: "#ff00ff",
-	},
-	avatarContainer: {
-		// backgroundColor: "#ff9900",
-		textAlign: "center",
-		alignItems: "center",
-		justifyContent: "center",
-		// width: 70,
-	},
-	container: {
-		// backgroundColor: "#ff6967",
-		// textAlign: "center",
-		// alignItems: "center",
-	},
-	card: {
-		marginBottom: 10,
-	},
-	nameContainer: {
-		// backgroundColor: "#8790f2",
-		color: "#555555",
-		fontWeigth: "bold",
-		paddingLeft: 10,
-		paddingRight: 10,
-		// width: 200,
-	},
-	rateContainer: {
-		// backgroundColor: "#879002",
-		flexDirection: "row",
-		position: "relative",
-		// width: 400,
-		// width: "100%"
-		width: 200
-	},
-	profileContainer: {
-		// backgroundColor: "#ff9999",
-		// width: 400,
-		// width: "100%" - ,
-	}
-}

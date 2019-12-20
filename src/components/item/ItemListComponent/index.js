@@ -28,7 +28,6 @@ class ItemListComponent extends React.Component {
 	componentWillMount(){
 		if(this.props.items.length <= 1){
 			var searchWords = localStorage.getItem("search");
-
 			this.setState({　searchWords: searchWords })
 			this.props.fetchItems(searchWords ? searchWords : "");
 		}
@@ -44,7 +43,8 @@ class ItemListComponent extends React.Component {
 						to={'/items/' + itemId}
 						image={item.images[0].url}
 						price={item.fee_per_hour}
-						likedNum={item.liked_num}
+						// priceLabel={}
+						likedNum={329}
 					/>
 				</Grid>
 			);
@@ -52,6 +52,8 @@ class ItemListComponent extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.items);
+
 		return (
 			<Grid container>
 				{this.renderItems()}
