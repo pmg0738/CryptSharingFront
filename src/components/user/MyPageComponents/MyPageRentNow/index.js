@@ -88,27 +88,31 @@ export default class MyPageRentNow extends React.Component {
 		const { items } = this.state;
 
 		return (
-			<Card style={{width:"1000px", height:"200px"}}>
+			<Card style={{width:"1100"}}>
 				<Grid container direction="row">
-					<Grid md={2} style={{marginLeft:"15px"}}>
+					<Grid container sm={12} md={2} direction="column" justify="center" alignItems="center" style={{marginLeft:"15px"}}>
 						<img src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 					</Grid>
-					<Grid md={4} container direction="column" justify="center" alignItems="center" style={{marginLeft:"20px"}}>
-						<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
-						<Table stickyHeader aria-label="sticky table" style={{width:"350px", marginTop:"15px"}}>
-							<TableHead style={{color:blue[200]}}>
-								<TableCell key='hour_fee' align='center' style={{fontSize:"30px", fontWeight:"900"}}>残り時間</TableCell>
-							</TableHead>
-							<TableBody>
-								<TableCell align='center' style={{fontSize:"25px", fontWeight:"900"}}>
-									<FontAwesomeIcon icon={faClock} style={{fontSize:"30px", marginRight:"5px"}}/>
-									1Day 17Hour 42Min
-								</TableCell>
-							</TableBody>
-						</Table>
+					<Grid container sm={12} md={4} direction="column" >
+						<Grid container direction="row" justify="center" style={{marginLeft:"20px"}}>
+							<div style={{fontSize:"20px", fontWeight:"900", marginTop:"20px"}}>{this.props.itemName}キャリーバック</div>
+						</Grid>
+						<Grid container direction="row" justify="center" style={{marginLeft:"20px", marginRight:"5px"}}>
+							<Table stickyHeader aria-label="sticky table" style={{width:"300px", marginTop:"15px", marginRight:"5px", marginLeft:"20px"}}>
+								<TableHead style={{color:blue[200]}}>
+									<TableCell key='hour_fee' align='center' style={{fontSize:"30px", fontWeight:"900", marginRight:"5px",  marginLeft:"20px"}}>残り時間</TableCell>
+								</TableHead>
+								<TableBody>
+									<TableCell align='center' style={{fontSize:"25px", fontWeight:"900", marginLeft:"20px"}}>
+										<FontAwesomeIcon icon={faClock} style={{fontSize:"30px", marginRight:"5px", marginLeft:"20px"}}/>
+										1Day 17Hour 42Min
+									</TableCell>
+								</TableBody>
+							</Table>
+						</Grid>
 					</Grid>
-					<Grid md={5} container direction="column" style={{marginTop:"20px"}}>
-						<Grid container direction="row">
+					<Grid container sm={12} md={5} direction="column" style={{marginTop:"20px"}}>
+						<Grid container direction="row" justify="center">
 							<Avatar src={drake} style={{width:"60px", height:"60px"}}/>
 							<Link to=''>
 								<div style={{color:"black", fontSize:"20px", fontWeight:"600",marginTop:"10px",marginLeft:"10px"}}>champagnepapi</div>

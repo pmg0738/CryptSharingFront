@@ -27,3 +27,7 @@ export const fetchClickedItem = (itemId) => async dispatch => {
 
 	return response.data;
 }
+
+// export cont fetchLikedItems =() => asyncs dispatch => {
+// 	const response = await apis.get()
+// }

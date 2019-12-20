@@ -7,6 +7,6 @@ export default axios.create({
 	headers: { 
 		"Content-Type": "application/json",
 		// "Authorization": "Token " + localStorage.getItem("token")
-		"authorization": "Token " + "d8965778288e2e5318e4139870e8d67cbf10361d"
+		"authorization": "Token " + "947bb79f0cfff96f7bedb13d34f9c2393aa23dce"
 	},
 })
