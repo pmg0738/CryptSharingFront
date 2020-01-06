@@ -1,0 +1,38 @@
+.navbar-container{
+    background-color: #282c34;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+.navbar-hamburger-menu-button{
+    background-color: white;
+    border-color: #282c34;
+    color : #282c34;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+}
+.navbar-hamburger-menu-button:hover{
+    background-color: #999999;
+    border-color: #282c34;
+    color : #282c34;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.navbar-hamburger-menu-button-item{
+    background-color: white;
+    border-color: #282c34;
+    color: #282c34;
+    width: 80px;
+}
+.navbar-hamburger-menu-button-items{
+    position: fixed;
+    top: 55px;
+    right:20px;
+}
+.navbar-logo-image{
+    height: 60px;
+    margin-left: 15px;
+    margin-top: 10px;
+}

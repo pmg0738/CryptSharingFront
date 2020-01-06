@@ -1,0 +1,45 @@
+.mypage-posted-item-card{
+    border-width: 0px;
+    margin-bottom: 20px;
+}
+.mypage-posted-item-card:hover {
+    border-width: 0px;
+    margin-bottom: 20px;
+    transform: scale(1.2);
+    transition-duration: 0.5s;  
+}
+.mypage-posted-item-card-image {
+    border-color: #ffffff;
+    width: 100%;
+    // transition-duration: 0.5s;
+    // -webkit-transform: scale(1.5,1.5);
+	// transform: scale(1.5,1.5);
+}
+.mypage-posted-item-card-image:hover {
+    border-color: #ffffff;
+    width: 100%;
+    // transform: scale(1.2);
+    // transition-duration: 0.5s;  
+}
+.mypage-posted-item-card-image-smoke {    
+    background-color: #ffffff;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    padding-top: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.1;
+}
+.item-list-item-card-image-smoke-not-available{
+    background-color: #333333;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    padding-top: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+}

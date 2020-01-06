@@ -1,0 +1,106 @@
+.item-list-item-card {
+    background-color: transparent;
+    border-width: 0px;
+    margin-bottom: 20px;
+    // padding-top: 100%;
+    position: relative;
+}
+// .item-list-item-card:hover {
+//     border-width: 0px;
+//     margin-bottom: 20px;
+//     transform: scale(1.2);
+//     transition-duration: 0.5s;  
+// }
+.item-list-item-card-image {
+    border-color: #ffffff;
+    width: 100%;
+    height: 240px;
+    // width: 200px;
+    // padding-top: 100%;
+    // position: absolute;
+    // transition-duration: 0.5s;
+    // -webkit-transform: scale(1.5,1.5);
+	// transform: scale(1.5,1.5);
+}
+.item-list-item-card-image-smoke {    
+    background-color: #ffffff;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    height: 100%;
+    // width: 200px;
+    // padding-top: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.1;
+}
+.item-list-item-card-image-smoke-not-available{
+    background-color: #333333;
+    // height: 250px;
+    // width: 250px;
+    width: 100%;
+    padding-top: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+}
+
+$title-top: 7px;
+$title-left: 7px;
+$price-bottom: -5px;
+$price-right: 10px;
+.item-list-item-card-title {
+    // background-color: #ea4335;
+    background: linear-gradient(to bottom,#FF6254,#ea4335 30%,#D12A1B); 
+    // border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: $title-top;
+    left: $title-left;
+}
+.item-list-item-card-price-out {
+    background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: -5px;
+    right: 0px;
+}
+.item-list-item-card-price-over {
+    // background: #ea4335;
+    background-color: #e29930;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 10px;
+    position: absolute;
+    bottom: -5px;
+    right: 0px;
+}
+.item-price {
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+}
+.item-num-of-good {
+    padding-top: 12px;
+}

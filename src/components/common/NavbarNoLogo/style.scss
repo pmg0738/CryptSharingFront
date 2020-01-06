@@ -1,0 +1,38 @@
+// .navbar-logo-image{
+//     height: 60px;
+// }
+
+.navbar-container{
+    background-color: #282c34;
+    margin-bottom: 70px;
+}
+
+.navbar-hamburger-menu-button{
+    color : #282c34;
+    background-color: white;
+    border-color: #282c34;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.navbar-hamburger-menu-button:hover{
+    color : #282c34;
+    background-color: #999999;
+    border-color: #282c34;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.navbar-hamburger-menu-button-items{
+    position: absolute;
+    top: 55px;
+    right:20px;
+}
+
+.navbar-hamburger-menu-button-item{
+    background-color: white;
+    border-color: #282c34;
+    color: #282c34;
+    width: 80px;
+}

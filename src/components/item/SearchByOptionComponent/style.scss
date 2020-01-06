@@ -1,0 +1,87 @@
+$marginLeft: 30px;
+
+.option-search-free-word-search-row{
+	width: 190px;
+	margin-left: $marginLeft;
+	margin-bottom:20px;
+}
+
+.option-search-category-row{
+	width: 190px;
+	margin-left: $marginLeft;
+	margin-bottom:20px;
+}
+
+.option-search-prefecture-row{
+	width: 190px;
+	margin-left: $marginLeft;
+	margin-bottom:20px;
+}
+
+.option-search-free-word-search-form {
+	border-radius: 25px;
+	height: 50px;
+	// padding-left: 40px;
+	// width: 100%;
+	width: 230px;
+}
+
+.option-search-lent-price-row{
+	width: 190px;
+	margin-left:$marginLeft;
+	margin-bottom: 30px;
+}
+
+.option-search-lent-period-head{
+	width: 190px;
+	margin-left: $marginLeft;
+	margin-bottom:5px;
+	color:white;
+	font-size: 20px;
+	
+}
+
+.option-search-lent-period-button{
+	margin-left: $marginLeft;
+	margin-bottom:20px;
+	color:white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.button-one-hour{
+	margin-right: 30px;
+	width: 80px;
+	font-weight: bold;
+}
+
+.button-one-day{
+	width:80px;
+	font-weight: bold;
+
+}
+
+.option-search-lent-price-head{
+	margin-left: $marginLeft;
+	margin-bottom:20px;
+	color:white;
+	font-size: 20px;
+}
+
+.option-search-lent-price-row{
+	margin-left: 35px;
+}
+
+// .option-search-price-input-range{
+//     margin-bottom:10px;
+//     margin-left: 20px;
+// }
+
+.option-search-min-price-input{
+	margin-bottom:10px;
+	width: 190px;
+}
+
+.option-search-max-price-input{
+	width:190px;
+}
