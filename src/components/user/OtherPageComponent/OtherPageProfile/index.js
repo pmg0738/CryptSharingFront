@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+
 import Avatar from '@material-ui/core/Avatar';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
@@ -115,7 +114,7 @@ export default class OtherPage extends React.Component {
 
 const styles = {
 	otherPageContainer:{
-		color:'white'
+
 	},
 
 	avatar:{

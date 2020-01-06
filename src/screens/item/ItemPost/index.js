@@ -210,7 +210,7 @@ class ItemPost extends React.Component {
 							className="item-post-back-to-list-button"
 							size="large"
 							startIcon={<SettingsBackupRestoreIcon />}
-							style={{marginBottom: 20, background: "#282c34", fontWeight: "bold"}}
+							style={{marginBottom: 20, fontWeight: "bold"}}
 						>一覧</Button>
 					</Link>
 					<Card className="item-post-card">
@@ -449,12 +449,12 @@ const resizeImage = (event, maxWidth = 1024) => {
 const styles = {
 	confirmButtonDeactive: {
 		backgroundColor: "#999999",
-		color: "#ffffff",
+
 		fontWeight: "bold",
 	},
 	confirmButtonActive: {
 		backgroundColor: "#fbbc05",
-		color: "#ffffff",
+
 		fontWeight: "bold",
 	},
 	textfield: {

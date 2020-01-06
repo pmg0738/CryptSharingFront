@@ -16,15 +16,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import { green, red} from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
 import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Input from '@material-ui/core/Input';
-import Box from '@material-ui/core/Box';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+import { makeStyles} from '@material-ui/core/styles';
 
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -33,7 +29,7 @@ import {
 } from '@material-ui/pickers';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
+import { faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 import cat from '../../../images/carry_bag.jpg';
 import tyler from '../../../images/knock_black.png';
@@ -100,11 +96,11 @@ class Request extends React.Component {
 					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 				</TableHead>
 				<TableBody>
-					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥50{this.props.item.fee_per_hour}</TableCell>
-					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥300{this.props.item.fee_per_day}</TableCell>
-					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥1000</TableCell>
-					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
-					<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥50{this.props.item.fee_per_hour}</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥300{this.props.item.fee_per_day}</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥1000</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 						{this.showEmoticon(1)}
 					</TableCell>
 				</TableBody>
@@ -134,7 +130,7 @@ class Request extends React.Component {
 					</Grid>
 				</Grid>
 				<Grid container sm={12} md={6} direction="column" justify="center" alignItems="center">
-					<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
+					<div style={{fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
 					{this.renderFeeTable()}
 					<LentPeriodRadioButton/>
 				</Grid>
@@ -149,7 +145,7 @@ function LentPeriodRadioButton(){
 
 	const useStyles = makeStyles(theme => ({
 		formControl: {
-			color:"white",
+
 			marginTop:"20px"
 		},
 		radio:{
@@ -157,13 +153,11 @@ function LentPeriodRadioButton(){
 		},
 		box:{
 			marginTop:"20px",
-			color:"white",
+
 			width:"500px",
 			height:"450px",
 		},
 		textField:{
-			color:"white",
-			// backgroundColor:"white",
 			width:"90px",
 		}
 	}));
@@ -214,12 +208,12 @@ function LentPeriodRadioButton(){
 						<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>総支払額</TableCell>
 					</TableHead>
 					<TableBody>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{onehourPrice}&nbsp;
 							<FontAwesomeIcon icon={faTimes}/>&nbsp;
 							{lentTimeValue}時間&nbsp;=&nbsp;<FontAwesomeIcon icon={faYenSign}/>{price}
 						</TableCell>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{tanpo}
 						</TableCell>
 						<TableCell align='center' style={{color:green[300], fontSize:"17px", fontWeight:"900"}}>
@@ -242,12 +236,12 @@ function LentPeriodRadioButton(){
 						<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>総支払額</TableCell>
 					</TableHead>
 					<TableBody>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{onedayPrice}&nbsp;
 							<FontAwesomeIcon icon={faTimes}/>&nbsp;
 							{lentTimeValue}日&nbsp;=&nbsp;<FontAwesomeIcon icon={faYenSign}/>{price}
 						</TableCell>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{tanpo}
 						</TableCell>
 						<TableCell align='center' style={{color:green[300], fontSize:"17px", fontWeight:"900"}}>
@@ -270,12 +264,12 @@ function LentPeriodRadioButton(){
 						<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>総支払額</TableCell>
 					</TableHead>
 					<TableBody>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{oneweekPrice}&nbsp;
 							<FontAwesomeIcon icon={faTimes}/>&nbsp;
 							{lentTimeValue}週間&nbsp;=&nbsp;<FontAwesomeIcon icon={faYenSign}/>{price}
 						</TableCell>
-						<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+						<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
 							<FontAwesomeIcon icon={faYenSign}/>{tanpo}
 						</TableCell>
 						<TableCell align='center' style={{color:green[300], fontSize:"17px", fontWeight:"900"}}>
@@ -358,75 +352,22 @@ function LentPeriodRadioButton(){
 						</Button>
 					</Grid>
                 </Grid>
-                    
-                    
-
-
-					{/* <RadioGroup row className={classes.formControl} value={value} onChange={handleValue}>
-						<FormControlLabel
-							value="onehour"
-							control={<Radio color="default" className={classes.radio}/>}
-							label="1時間"
-							labelPlacement="start"
-						/>
-						<FormControlLabel
-							value="oneday"
-							control={<Radio color="default" className={classes.radio}/>}
-							label="1日"
-							labelPlacement="start"
-						/>
-						<FormControlLabel
-							value="oneweek"
-							control={<Radio color="default" className={classes.radio}/>}
-							label="1週間"
-							labelPlacement="start"
-						/>
-					</RadioGroup> */}
-					{/* <Grid container direction="row" justify="center" alignItems="center" spacing={1} style={{marginTop:"20px"}}> */}
-						{/* <Grid item>
-							<FontAwesomeIcon icon={faHourglassStart} style={{fontSize:"25px", marginTop:"20px", marginRight:"10px"}}/>
-						</Grid>
-						<Grid item>
-							<Input label="借りる時間" value={lentTimeValue} className={classes.textField} onChange={handleLentTimeValue} color="primary"/>
-						</Grid> */}
-						{/* <Grid item style={{marginTop:"20px", fontSize:"20px"}}>
-							{lentPeriodLabel()}
-						</Grid> */}
-					{/* </Grid> */}
-					{/* <Grid style={{marginTop:"30px"}}>{renderPriceTable()}</Grid> */}
-					
-				
-			{/* </Box> */}
 		</div>
 	);
 }
 
 const styles = {
-	// card: {
-	// 	backgroundColor: "#ffffff",
-	// 	height: 800
-	// },
-
 	rentalRequestStartDay: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
 		marginTop: "20px",
 		width: "100%",
 		marginLeft: "10px",
 	},
 	rentalRequestEndDay: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
 		marginTop: "20px",
 		width: "100%",
 		marginLeft: "10px",
 	}
-	// textFieldFull: {
-	// 	background: "#ffffff",
-	// 	backgroundColor: "#ffffff",
-	// 	marginTop: 20,
-	// 	width: "100%",
-	// }
+
 }
 
 

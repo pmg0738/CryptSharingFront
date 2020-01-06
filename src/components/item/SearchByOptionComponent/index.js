@@ -101,7 +101,7 @@ export default class SearchByOptionComponent extends React.Component {
 									/>
 									<CategoryAutoComplete style={{width:"300px", marginLeft:"30px"}}/>
 								</Grid>
-								<Grid sm={12} md={5} container direction="column" justify="center" style={{backgroundColor:"white",  marginTop:"40px"}}>
+								<Grid sm={12} md={5} container direction="column" justify="center" style={{marginTop:"40px"}}>
 									<LentPeriodRadioButton/>
 									<FeeSlider/>
 								</Grid>
@@ -135,7 +135,6 @@ const styles={
 	SearchButton:{
 		backgroundColor:"#4285F4",
 		borderColo:"#4285F4", 
-		color:"white", 
 		width:"200px", 
 		height:"50px", 
 		fontWeight:"600",

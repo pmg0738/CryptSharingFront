@@ -66,7 +66,7 @@ const NavDrawer = (props) => {
 			role="presentation"
 			onClick={toggleDrawer(side, false)}
 			onKeyDown={toggleDrawer(side, false)}
-			style={{backgroundColor: "#282c34", height: "100%"}}
+			style={{height: "100%"}}
 		>
 				<List>
 					{/* <Button className="close-drower-button" onClick={toggleDrawer('right', false)}> */}

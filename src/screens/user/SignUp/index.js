@@ -43,7 +43,6 @@ const useStyles = makeStyles({
 		border: 0,
 		borderRadius: 3,
 		boxShadow: '0 3px 5px 2px rgba(130, 105, 255, .3)',
-		color: 'white',
 		fontSize: 20,
 		fontWeight: "bold",
 		height: 60,
@@ -60,7 +59,7 @@ const useStyles = makeStyles({
 	},
 	postButton: {
 		background: '#999999',
-		color: '#ffffff',
+		
 		'&:hover': {
 			backgroundColor: '#4285F4',
 			borderColor: '#4285F4',
@@ -279,26 +278,23 @@ export default function Login(props) {
 
 const styles = {
 	card: {
-		backgroundColor: "#ffffff",
+		
 		height: 800
 	},
 	textFieldHalfLeft: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
+			
 		marginTop: 20,
 		width: "48%",
 		// marginLeft: 10,
 	},
 	textFieldHalfRight: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
+			
 		marginTop: 20,
 		width: "48%",
 		marginLeft: "4%",
 	},
 	textFieldFull: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
+			
 		marginTop: 20,
 		width: "100%",
 	}

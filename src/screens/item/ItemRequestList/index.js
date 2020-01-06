@@ -82,7 +82,6 @@ class ItemRequestList extends React.Component{
 
 const styles = {
     search:{
-        backgroundColor:"white",
         marginTop:"10px",
         
     },
@@ -106,12 +105,10 @@ const styles = {
     requestAddButtonLabel:{
         fontSize:"18px",
         fontWeight:"900",
-        color:"white",
     },
     requestAddButtonIcon:{
         marginLeft:"36px",
         fontSize:"33px",
-        color:"white",
     }
 }
 
@@ -128,9 +125,9 @@ class RequestListCard extends React.Component{
         
         return(
             <Grid container justify="center" alignItems="center">
-                <Box border={1} borderColor="white" style={{width:"70%"}}>
+                <Box border={1}  style={{width:"70%"}}>
                     <Grid container direction="row">
-                        <Grid sm={12} md={4} container direction="column" style={{color:"white", marginLeft:"80px"}}>
+                        <Grid sm={12} md={4} container direction="column" style={{marginLeft:"80px"}}>
                             <Grid container direction="row" style={{marginTop:"20px"}}>
                                 <Avatar style={{width:"50px", height:"50px"}} src={cup}/>
                                 <div style={{fontSize:"16px", fontWeight:"500", marginLeft:"20px", marginTop:"10px"}}>upallnight0738</div>
@@ -145,7 +142,7 @@ class RequestListCard extends React.Component{
                                 <div style={{fontSize:"20px", fontWeight:"600", marginLeft:"10px"}}>福岡市 博多区</div>
                             </Grid>
                         </Grid>
-                        <Grid sm={12} md={4} container direction="column" style={{color:"white", marginLeft:"80px", marginTop:"80px"}}>
+                        <Grid sm={12} md={4} container direction="column" style={{marginLeft:"80px", marginTop:"80px"}}>
                             <Grid container direction="row" style={{marginTop:"20px"}}>
                                 <FontAwesomeIcon icon={faHourglassStart} style={{fontSize:"30px"}}/>
                                 <div style={{fontSize:"20px", fontWeight:"800", marginLeft:"10px"}}>1日</div>                        
@@ -158,10 +155,10 @@ class RequestListCard extends React.Component{
                         </Grid>
                     </Grid>
                     <Grid style={{marginLeft:"100px"}}>
-                        <div style={{color:"white", fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>タコパに使います！貸してください！12/13希望</div>
+                        <div style={{fontSize:"17px", marginBottom:"20px", fontWeight:"500"}}>タコパに使います！貸してください！12/13希望</div>
                     </Grid>
                     <Grid container justify="flex-end">
-                        <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", height:"50px", fontWeight:"600", fontSize:"20px", marginRight:"10px", marginBottom:"10px"}}>交渉する！</Button>
+                        <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", height:"50px", fontWeight:"600", fontSize:"20px", marginRight:"10px", marginBottom:"10px"}}>交渉する！</Button>
                     </Grid>
                 </Box>
             </Grid>
@@ -275,7 +272,7 @@ class SearchBar extends React.Component{
                                 </Grid>
                             </Grid>
                             <Grid container justify="center" style={{marginTop:"20px"}}>
-                                <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", color:"white", width:"200px", height:"50px", fontWeight:"600" ,fontSize:"20px"}}>この条件で検索</Button>
+                                <Button style={{backgroundColor:"#ea4335", borderColo:"#ea4335", width:"200px", height:"50px", fontWeight:"600" ,fontSize:"20px"}}>この条件で検索</Button>
                             </Grid>
                         </Grid>
                     </ExpansionPanelDetails>
@@ -557,7 +554,6 @@ function RequestAddButton() {
                             style={{
                                 backgroundColor:"#ea4335",
                                 borderColor:"#ea4335",
-                                color:"white", 
                                 height:"50px",
                                 width:"250px",
                                 fontWeight:"600",

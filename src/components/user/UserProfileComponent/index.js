@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import {Link} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
@@ -83,14 +82,11 @@ const styles = {
 	starValue:{
 		fontSize:'20px',
 		marginTop:'10px',
-		color:'white'
 	},
 	userProfileName:{
-		color:'white',
 		fontSize:'25px'
 	},
 	userProfilePrefecture:{
-		color:'white',
 		fontSize:'25px',
 		marginLeft:'20px'
 	},

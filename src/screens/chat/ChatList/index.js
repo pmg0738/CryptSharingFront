@@ -422,7 +422,7 @@ const styles = {
 		width: "100%",
 	},
 	buttonIconBlack: {
-		color: "#282c34",
+
 		fontSize: 50,
 		flexDirection: "col",
 		width: "100%",
@@ -444,7 +444,7 @@ const styles = {
 		fontWeight: "bold",
 	},
 	buttonLabelBlack: {
-		color: "#282c34",
+
 		fontWeight: "bold",
 	}
 }

@@ -55,11 +55,8 @@ const styles = {
 	autoComplete: {
 		// marginLeft: '20px',
 		// marginRight: "20px",
-		color: "white",
 	},
 	textfield:{
-		textColor:"white",
-		color:"#FFFFFF",
-		// backgroundColor:"white",
+
 	}
 }

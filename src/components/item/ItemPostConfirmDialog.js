@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 // Material UI Component
 import Button from '@material-ui/core/Button';
@@ -36,7 +35,6 @@ const useStyles = makeStyles({
 		// background: 'linear-gradient(45deg, #F99522 10%, #FBBC05 90%)',
 		// background: '#FBBC05',
 		background: '#999999',
-		color: '#ffffff',
 		'&:hover': {
 			backgroundColor: '#FBBC05',
 			borderColor: '#FBBC05',

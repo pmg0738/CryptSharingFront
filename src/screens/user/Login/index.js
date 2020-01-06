@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 		border: 0,
 		borderRadius: 3,
 		boxShadow: '0 3px 5px 2px rgba(130, 105, 255, .3)',
-		color: 'white',
 		fontSize: 20,
 		fontWeight: "bold",
 		height: 60,
@@ -137,12 +136,12 @@ export default function Login(props) {
 
 const styles = {
 	card: {
-		backgroundColor: "#ffffff",
+		
 		height: 1000,
 	},
 	textField: {
-		background: "#ffffff",
-		backgroundColor: "#ffffff",
+		
+		
 		marginTop: 20,
 		width: "100%",
 	},

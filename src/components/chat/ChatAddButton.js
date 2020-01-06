@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 		border: 0,
 		borderRadius: 60,
 		boxShadow: '0 3px 5px 2px rgba(130, 105, 255, .3)',
-		color: 'white',
 		fontSize: 20,
 		fontWeight: "bold",
 		height: 120,
@@ -169,6 +168,6 @@ export default function ChatAddButton(props) {
 const styles = {
 	closeButton: {
 		backgroundColor: "#4285F4",
-		color: "#ffffff",
+
 	}
 }

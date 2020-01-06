@@ -32,6 +32,6 @@ export default function ChatFriendListDialog(props) {
 const styles = {
 	closeButton: {
 		backgroundColor: "#4285F4",
-		color: "#ffffff",
+
 	}
 }

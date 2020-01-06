@@ -6,15 +6,13 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../../redux/actions/user';
 // Material UI component
 import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+
 import Rating from '@material-ui/lab/Rating';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import SendIcon from '@material-ui/icons/Send';
-import CallReceivedIcon from '@material-ui/icons/CallReceived';
+
 import Box from '@material-ui/core/Box';
 
 // Material UI Layout
@@ -85,11 +83,11 @@ class UserDetail extends React.Component {
 				<Grid container direction="column" style={{marginBottom:"20px"}}>
 					<Grid container direction="row">
 						<Avatar src={drake} style={{height:"70px", width:"70px"}}></Avatar>
-						<div style={{backgroundColor:"white", fontSize:"20px", fontWeight:"600",marginLeft:"20px", marginTop:"15px"}}>drake_1023</div>
+						<div style={{fontSize:"20px", fontWeight:"600",marginLeft:"20px", marginTop:"15px"}}>drake_1023</div>
 						<div style={{opacity:"0.5", marginLeft:"40px", marginTop:"15px"}}>{item.date}</div>
 					</Grid>
 					<Rating value={item.rate} precision={0.1} readOnly size="large" style={{marginLeft:"85px"}}/>
-					<div style={{backgroundColor:"white", marginTop:"30px", marginLeft:"85px", fontSize:"17px", fontWeight:"700"}}>{item.comment}</div>
+					<div style={{marginTop:"30px", marginLeft:"85px", fontSize:"17px", fontWeight:"700"}}>{item.comment}</div>
 				</Grid>
 			</Box>	
 			)

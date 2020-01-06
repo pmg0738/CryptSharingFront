@@ -7,11 +7,10 @@ import { connect } from 'react-redux';
 import { fetchMyData } from '../../../redux/actions/user';
 // Material UI Component
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+
 import TextField from '@material-ui/core/TextField';
 // Material UI Icon
-import CloseIcon from '@material-ui/icons/Close';
-import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
+
 // else
 import dogImage from '../../../images/dog.png';
 
@@ -249,23 +248,20 @@ class ChatBoxOther extends React.Component{
 
 const styles = {
 	closeButton: {
-		backgroundColor: "#282c34",
-		color: "#ffffff",
 		position: "absolute",
 		top: 80,
 		left: 20,
 	},
 	closeButtonIcon: {
-		color: "#ffffff",
+
 		fontSize: 30,
 	},
 	imageButtonIcon: {
-		color: "#ffffff",
 		fontSize: 40,
 	},
 	sendButtonActive: {
 		backgroundColor: "#34a853",
-		color: "#ffffff",
+
 		fontSize: 20,
 		fontWeight: "bold",
 		paddingLeft: 20,
@@ -273,15 +269,14 @@ const styles = {
 	},
 	sendButtonDeactive: {
 		backgroundColor: "#999999",
-		color: "#ffffff",
+
 		fontSize: 20,
 		fontWeight: "bold",
 		paddingLeft: 20,
 		paddingRight: 20,
 	},
 	textfield: {
-		backgroundColor: "#ffffff",
-		color: "#ffffff",
+
 		borderRadius: 8,
 		width: "100%",
 		maxHeight: 300,

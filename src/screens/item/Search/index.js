@@ -247,35 +247,6 @@ class Top extends React.Component {
 									onClick={this.search}>検索</Button>
 							</Row>
 						</Form>
-							<Link to='/filter'>
-								<p className="main-search-category-search-button">絞り込みで探す</p>
-							</Link>
-								{/* <Row className="main-search-category-button-row">
-									<Col>
-										<Button className="main-search-category-button-red"
-											onClick={this.handleItemMenu}
-										>+</Button>
-										{this.renderItemMenu(this.state.showItemMenu)}
-									</Col>
-									<Col>
-										<Button className="main-search-category-button-blue"
-											onClick={this.handleHumanMenu}
-										>+</Button>
-										{this.renderHumanMenu(this.state.showHumanMenu)}
-									</Col>
-									<Col>
-										<Button className="main-search-category-button-yellow"
-											onClick={this.handleMoneyMenu}
-										>+</Button>
-										{this.renderMoneyMenu(this.state.showMoneyMenu)}
-									</Col>
-									<Col>
-										<Button className="main-search-category-button-green"
-											onClick={this.handlePlaceMenu}
-										>+</Button>
-										{this.renderPlaceMenu(this.state.showPlaceMenu)}
-									</Col>
-								</Row> */}
 					</div>
 					<Dialog
 						open={this.state.searching}
@@ -288,7 +259,6 @@ class Top extends React.Component {
 							<CircularProgress
 								variant="indeterminate"
 								disableShrink
-								// className={classes.bottom}
 								thickness={4}
 							/>
 						</DialogContent>

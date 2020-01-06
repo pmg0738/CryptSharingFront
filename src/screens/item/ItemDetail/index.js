@@ -116,95 +116,6 @@ class ItemDetail extends React.Component {
 	}
 
 
-// 	handleFavoriteButtonClassName = (favorite) => {
-// 		this.setState({itemDetailFavoriteIconClassName: favorite ? "item-liked": "default" })
-// 	}
-
-// 	clickFavoriteButton = () => {
-// 		const favoriteItemId = this.state.me.favoriteItemId;
-
-// 		const itemId = this.state.item.id;
-
-// 		const favorite = favoriteItemId.indexOf(itemId) >= 0;
-
-// 		if(favorite) {
-// 			const index = favoriteItemId.indexOf(itemId);
-// 			delete favoriteItemId[index];
-// 		}
-// 		else {
-// 			favoriteItemId.push(itemId);
-// 		}
-		
-// 		const { me } = this.state;
-// 		this.setState({
-// 			me: {
-// 				id: me.id,
-// 				name: me.name,
-// 				usedHistoryItemId: me.usedHistoryItemId,
-// 				rentalItemId: me.rentalItemId,
-// 				requestItemId: me.requestItemId,
-// 				favoriteItemId: favoriteItemId // ここだけ更新
-// 			}
-// 		})
-// 		// ボタンのデザインを変える
-// 		this.handleFavoriteButtonClassName(!favorite)
-// 	}
-
-// 	renderButton = () => {
-// 		const isMine =　false;
-// 		const favorite = true;
-// 		const usedHistory = true;
-// 		const rentaling = true;
-
-// 		if(isMine) {
-// 			return (
-// 				<div>
-// 					<Link to='/items/new/post'>
-// 						<p><Button className="item-detail-edit">編集</Button></p>
-// 					</Link>
-// 					<Link to='/items/new/post'>    
-// 						<p><Button className="item-detail-delete">削除</Button></p>
-// 					</Link>
-// 				</div>
-// 			)
-// 		}
-// 		else if(favorite) {
-// 			return (
-// 				<Link to='/request'>
-// 					<Button className="item-detail-goto-request">借りる</Button>
-// 				</Link>
-// 			)
-// 		}
-
-// 		else if(usedHistory) {
-// 			return (
-// 				<div>
-// 					<p>
-// 						使用期間：2019年5月20日～2019年5月25日
-// 					</p>
-// 					<Link to='/request'>
-// 						<Button className="item-detail-goto-request">借りる</Button>
-// 					</Link>
-// 				</div>
-// 			)
-// 		}
-// 		else if(rentaling) {
-// 			return (
-// 				<div className = "item-detail-rent-now">レンタル中です</div>
-// 			)
-// 		}
-// 		else {
-// 			return (
-// 				<Button >リクエストを取り消す</Button>
-// 			)
-// 		}
-
-// 	return (
-// 		<Link to='/request'>
-// 			<Button className="item-detail-goto-request">借りる</Button>
-// 		</Link>
-// 	)
-// }
 
 renderImage = (itemLendStatus) => {
 	if((this.state.item.images) && (itemLendStatus)) {
@@ -240,11 +151,11 @@ renderFeeTable = () => {
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_hour}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_day}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_week}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.require_mortgage_amount}</TableCell>
-				<TableCell align='center' style={{color:"white", fontSize:"17px", fontWeight:"900"}}>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_hour}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_day}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_week}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.require_mortgage_amount}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>
 					{this.showEmoticon(1)}
 				</TableCell>
 			</TableBody>
@@ -289,7 +200,7 @@ renderStar = (valueOfPostUser) =>{
 					</Link>
 					<Grid container>
 						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
-							<div style={{color:"white", fontSize:"30px", fontWeight:"800", marginBottom:"20px"}}>{this.state.item.name}</div>
+							<div style={{ fontSize:"30px", fontWeight:"800", marginBottom:"20px"}}>{this.state.item.name}</div>
 							{this.renderImage()}
 							<Grid>
 								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
@@ -312,7 +223,7 @@ renderStar = (valueOfPostUser) =>{
 									prefecture={this.state.item.owner.prefecture}
 								/>
 							</Grid>
-							<div style={{color:"white", fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
+							<div style={{ fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
 							{this.renderFeeTable()}
 							
 							<TextField
@@ -326,7 +237,7 @@ renderStar = (valueOfPostUser) =>{
 								margin="normal"
 								variant="outlined"
 								InputProps={{reaOnly:true}}
-								style={{backgroundColor:"white", width:"500px"}}
+								style={{width:"500px"}}
 							/>
 							<Link to='/request'>
 								<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>
