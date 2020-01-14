@@ -1,10 +1,10 @@
 import React from 'react';
-import api from '../../../redux/apis';
+
+// import faker from 'faker';
 
 import { Link } from 'react-router-dom';
 
 import './style.scss';
-import { connect } from 'react-redux';
 
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -13,7 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
-class ItemCard extends React.Component {
+
+export default class ItemCard extends React.Component {
 	state = {
 		cardClassName: "item-list-item-card-out",
 		priceClassName: "item-list-item-card-price-out",
@@ -40,53 +41,42 @@ class ItemCard extends React.Component {
 		// this.props.getItem(this.props.id)
 	}
 
-	onClickLikedButton = async () => {
-		await api.post('/items/' + this.props.itemId + '/like/', {
-		}).then(response => {
-			this.setState({
-				likedNum: response.data.liked_num,
-				liked: response.data.liked
-			});
-		}).catch(error => {
-			console.log('error', error);
-		})
-	}
+	// onClickLikedButton = async () => {
+	// 	await api.post('/items/' + this.props.itemId + '/like/', {
+	// 	}).then(response => {
+	// 		this.setState({
+	// 			likedNum: response.data.liked_num,
+	// 			liked: response.data.liked
+	// 		});
+	// 	}).catch(error => {
+	// 		console.log('error', error);
+	// 	})
+	// }
 
 	render() {
 		return (
 			<Card className="" style={{marginBottom: 30, position: "relative", marginLeft: 10, marginRight: 10}}>
-				<Link to={this.state.to}>
+				<Link to={this.props.to}>
 					<CardMedia
 						className=""
-						image={this.state.image}
-						title="Paella dish"
+						image={this.props.image}
 						style={{ height: 250 }}
 					/>
 				</Link>
 				<CardActions disableSpacing>
 					<IconButton aria-label="add to favorites"
-						// style={this.state.liked ? styles.likedIcon : styles.notLikedIcon}
-						style={this.state.liked ? styles.likedIcon : styles.notLikedIcon}
+						style={this.props.liked ? styles.likedIcon : styles.notLikedIcon}
 						onClick={this.onClickLikedButton}
 					>
 						<FavoriteIcon />
 					</IconButton>
-					<p className="item-num-of-good">{this.state.likedNum}</p>
+					<p className="item-num-of-good">{this.props.likeNum}</p>
 				</CardActions>
-				<p className="item-price">￥{this.state.price}/{this.state.priceLabel}</p>
+				<p className="item-price">￥{this.props.price}/Day</p>
 			</Card>
 		)
 	}
 }
-
-
-const mapStateProps = (store) => {
-	return {
-		me: store.me,
-	};
-}
-
-export default connect( mapStateProps )(ItemCard);
 
 
 const styles = {

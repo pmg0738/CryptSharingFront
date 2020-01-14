@@ -20,7 +20,7 @@ export default class MyPagination extends React.Component{
 		let items = [];
 		for (let number = 1; number <= numOfPage; number++) {
 			items.push(
-				this.renderPaginationItem(number, number==currentPage)
+				this.renderPaginationItem(number, number===currentPage)
 			);
 		}
 		return items;

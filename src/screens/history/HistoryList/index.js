@@ -1,21 +1,12 @@
 import React from 'react';
 import './style.scss';
 
-import { Button, Card, Container, Col, Form, Row,
-	ListGroup, Tabs, Tab,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Tabs, Tab,} from 'react-bootstrap';
 
 import HistoryBooked from '../../../components/history/HistoryComponents/HistoryBooked';
 import HistoryPosted from '../../../components/history/HistoryComponents/HistoryPosted';
-import Navbar from '../../../components/common/NavbarNoLogo';
-import logo from '../../../images/logo.png';
-
 
 export default class MainSearch extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		return (

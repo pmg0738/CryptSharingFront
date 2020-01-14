@@ -1,8 +1,7 @@
 import React from 'react';
 import './style.scss';
-// Redux
-import { connect } from 'react-redux';
-import { fetchMyData, fetchFollowers, fetchFollowings } from '../../../redux/actions/user';
+
+import Faker from 'faker';
 // Material UI
 import { Grid } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -18,7 +17,6 @@ import {
 	Tabs,
 	Tab
 } from 'react-bootstrap';
-import SettingsIcon from '@material-ui/icons/Settings';
 // My Component
 import MyPageBooked from '../../../components/user/MyPageComponents/MyPageBooked';
 import MyPageFavorite from '../../../components/user/MyPageComponents/MyPageFavorite';
@@ -29,8 +27,9 @@ import MypageProfile from '../../../components/user/MyPageComponents/MypageProfi
 import UserListDialog from '../../../components/user/UserListDialog';
 
 
+
 // マイページ
-class Mypage extends React.Component {
+export default class Mypage extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -59,31 +58,27 @@ class Mypage extends React.Component {
 
 	fetchMe = async () => {
 		// store.meが空の場合
-		if(Object.keys(this.props.me).length==0) {
-			const myData = await this.props.fetchMyData();
-			this.setState({ me: myData });
-		} else {
-			this.setState({ me: this.props.me })
-		}
+		// if(Object.keys(this.props.me).length==0) {
+		// 	const myData = await this.props.fetchMyData();
+		// 	this.setState({ me: myData });
+		// } else {
+		// 	this.setState({ me: this.props.me })
+		// }
 	}
 
 	onClickFollower = () => {
-		this.props.fetchFollowers()
-			.then(users => {
-				this.setState({ followers: users, showFollowerDialog: true });
-			});
+		// this.props.fetchFollowers()
+		// 	.then(users => {
+		// 		this.setState({ followers: users, showFollowerDialog: true });
+		// 	});
 	}
 
 	onClickFollowing = () => {
-		this.props.fetchFollowings()
-			.then(users => {
-				this.setState({ followings: users, showFollowingDialog : true });
-			});
+		// this.props.fetchFollowings()
+		// 	.then(users => {
+		// 		this.setState({ followings: users, showFollowingDialog : true });
+		// 	});
 	}
-
-	// fetchPostedItem = () => {
-	// 	api.get('items/posted')
-	// }
 
 	render() {
 		const { me } = this.state;
@@ -94,15 +89,15 @@ class Mypage extends React.Component {
 					<SettingsIcon style={styles.mypageSetting} />
 				</Grid> */}
 				<MypageProfile
-					id={me.user_id}
-					avatar={me.profile_image}
-					evaluation={me.evaluation}
-					name={me.name}
-					postNum={me.item_num}
-					follower={me.follower_num}
-					follow={me.follow_num}
+					id="kinmugiafter_kadai"
+					avatar={Faker.internet.avatar}
+					evaluation={4.1}
+					name="kinmugiafter_kadai"
+					postNum={32}
+					follower={120}
+					follow={391}
 					comments={me.comment}
-					balance={me.balance}
+					balance={30}
 					onClickFollower={this.onClickFollower}
 					onClickFollowing={this.onClickFollowing}
 				/>
@@ -183,17 +178,6 @@ class Mypage extends React.Component {
 		);
 	}
 }
-
-
-const mapStateProps = (store) => {
-	return {
-		me: store.me,
-		followings: store.followsing,
-		followers: store.followers
-	};
-}
-
-export default connect( mapStateProps, { fetchMyData, fetchFollowings, fetchFollowers })(Mypage);
 
 const styles = {
 	tabBox:{

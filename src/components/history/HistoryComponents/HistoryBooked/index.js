@@ -1,21 +1,14 @@
 import React from 'react';
 import './style.scss';
 
-import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {
-	Button,
 	Card,
 	Container,
 	Row,
 	Col,
-	Nav,
 	Image,
 } from 'react-bootstrap';
 
-import speaker from '../../../../images/speaker.jpg';
-import cap from '../../../../images/cap.jpg';
 import cup from '../../../../images/cup.jpg';
 
 
@@ -28,13 +21,13 @@ export default class HistoryBooked extends React.Component {
 			items: [
 				{
 					color: "red",
-					image: speaker,
+					image: cup,
 					title: "スピーカ",
 					status: 0,
 				}, 
 				{
 					color: "yellow",
-					image: cap,
+					image: cup,
 					title: "キャップ",
 					status: 1,
 				}, 

@@ -2,20 +2,12 @@ import React from 'react';
 
 // Material UI Component
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 // Material UI Icon
-import AddIcon from '@material-ui/icons/Add';
-import ChatIcon from '@material-ui/icons/Chat';
 import GroupIcon from '@material-ui/icons/Group';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
 
 
@@ -79,9 +71,9 @@ export default function ChatAddButton(props) {
 	const [open, setOpen] = React.useState(false);
 	const [hidden, setHidden] = React.useState(false);
 
-	const handleVisibility = () => {
-		setHidden(prevHidden => !prevHidden);
-	};
+	// const handleVisibility = () => {
+	// 	setHidden(prevHidden => !prevHidden);
+	// };
 
 	const handleOpen = () => {
 		setOpen(true);
@@ -163,11 +155,4 @@ export default function ChatAddButton(props) {
 		</div>
 			
 	)
-}
-
-const styles = {
-	closeButton: {
-		backgroundColor: "#4285F4",
-
-	}
 }

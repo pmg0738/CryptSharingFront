@@ -1,13 +1,6 @@
 import React from 'react';
-// Redux
-import { connect } from 'react-redux';
-import { fetchClickedItem } from '../../../redux/actions';
-// Ethereum
-import { web3 } from '../../../ethereum/web3';
-import { pay, showBalance } from '../../../ethereum/token';
-import { createAccount, showMyAccount } from '../../../ethereum/account';
+
 // Material UI Component
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -29,16 +22,13 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { green, red, blue } from '@material-ui/core/colors';
 import UserProfile from '../../../components/user/UserProfileComponent';
 
+import Faker from 'faker';
 
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './style.scss';
-import cat from '../../../images/cup.jpg';
 
-
-
-
-class ItemDetail extends React.Component {
+export default class ItemDetail extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -59,39 +49,24 @@ class ItemDetail extends React.Component {
 			images: [],
 			imageStartIndex: 0,
 		}
-		// this.state = {
-
-		// 	me: {
-		// 		id: "1234",
-		// 		name: "yushi",
-		// 		favoriteItemId:["2"],
-		// 		usedHistoryItemId:["4"],
-		// 		rentalItemId:["3"], 
-		// 		requestItemId:["5","6","7","8"]
-		// 	},
-		// 	item: {
-		// 		fee_per_hour: null,
-		// 		fee_per_day: null,
-		// 		fee_per_week: null,
-		// 	},
-		// }
+		
 		this.itemId = this.props.match.params.id;
-		// this.item = this.props.item[this.itemId];
 	}
 
 	componentWillMount() {
 		window.scrollTo(0, 0)
 
-		const existInStore = this.props.items.hasOwnProperty(this.itemId);
+		// const existInStore = this.props.items.hasOwnProperty(this.itemId);
 
-		if(!existInStore) {
-			const clickedItem = this.props.fetchClickedItem(this.itemId);
-			this.setState({item: clickedItem});
-		} else {
-			console.log('already clicked item', this.props.item);
-			const clickedItem = this.props.items[this.itemId];
-			this.setState({item: clickedItem});
-		}
+		// if(!existInStore) {
+		// 	const clickedItem = this.props.fetchClickedItem(this.itemId);
+		// 	this.setState({item: clickedItem});
+		// } else {
+		// 	console.log('already clicked item', this.props.item);
+		// 	const clickedItem = this.props.items[this.itemId];
+		// 	this.setState({item: clickedItem});
+		// }
+		console.log('faker@@@@@@@@@@',Faker);
 	}
 
 	threeArray = (array, index) => {
@@ -119,10 +94,10 @@ class ItemDetail extends React.Component {
 
 renderImage = (itemLendStatus) => {
 	if((this.state.item.images) && (itemLendStatus)) {
-		return <Image style={styles.selectedImage} src={this.state.item.images[0].url} />
+		return <Image style={styles.selectedImage} src={Faker.image.cats} />
 	}
 	if((this.state.item.images) && (!itemLendStatus)) {
-		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={this.state.item.images[0].url} />
+		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={Faker.image.cats} />
 	}
 	return <div/>
 }
@@ -151,10 +126,10 @@ renderFeeTable = () => {
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_hour}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_day}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.fee_per_week}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.item.require_mortgage_amount}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
 				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>
 					{this.showEmoticon(1)}
 				</TableCell>
@@ -209,6 +184,7 @@ renderStar = (valueOfPostUser) =>{
 										className="item-detail-not-selected-pic" 
 										src={image} 
 										onClick={() => this.setState({selectedImage: image})}
+										alt=""
 									/>
 								)}
 								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
@@ -217,10 +193,10 @@ renderStar = (valueOfPostUser) =>{
 						<Grid container direction="column" sm={12} md={6} style={{backgroundColor:""}}>
 							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
 								<UserProfile
-									avatar={this.state.item.owner.profile_image}
+									avatar={Faker.internet.avatar}
 									evaluation="4.5"
-									name={this.state.item.owner.name}
-									prefecture={this.state.item.owner.prefecture}
+									name={Faker.name.firstName}
+									prefecture="福岡県"
 								/>
 							</Grid>
 							<div style={{ fontSize:"20px", fontWeight:"900", marginBottom:"10px"}}>料金</div>
@@ -250,16 +226,6 @@ renderStar = (valueOfPostUser) =>{
 		)
 	}
 }
-
-
-const mapStateProps = (store) => {
-	return { 
-		items: store.items,
-		item: store.item
-	};
-}
-
-export default connect( mapStateProps, { fetchClickedItem })(ItemDetail);
 
 const styles = {
 	selectedImage: {

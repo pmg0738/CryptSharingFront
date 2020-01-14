@@ -1,5 +1,5 @@
 import React from 'react';
-import api from '../../../redux/apis';
+
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -13,10 +13,10 @@ export default class Tags extends React.Component{
 		}
 	}
 
-	componentWillMount(){
-		api.get('categories/')
-			.then(res => this.setState({categories: res.data}))
-	}
+	// componentWillMount(){
+	// 	api.get('categories/')
+	// 		.then(res => this.setState({categories: res.data}))
+	// }
 
 	onChange = (event, newValue) => {
 		this.props.onChange(newValue);

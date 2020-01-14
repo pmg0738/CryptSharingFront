@@ -21,7 +21,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import './style.scss';
 
-import logo from '../../../images/logo.png';
+import logo from '../../../images/Logo.jpg';
 
 
 
@@ -152,7 +152,7 @@ const NavDrawer = (props) => {
 		<div className="navbar">
 				{/* <div  classNamw="empty"/> */}
 				<Link to='/'>
-						<img className="navbar-logo-image" src={logo}/>
+						<img className="navbar-logo-image" src={logo} alt=""/>
 				</Link>
 				<Button className="navbar-menu-button" onClick={toggleDrawer('right', true)}>
 						<MenuIcon className="navbar-menu-icon"/>

@@ -17,7 +17,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { green, blue } from '@material-ui/core/colors';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHourglassStart, faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
+import { faHourglassStart, faYenSign} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -82,7 +82,7 @@ export default class MyPageBooked extends React.Component {
 				<Card style={{width:"1100px", }}>
 					<Grid container direction="row">
 						<Grid container direction="column" sm={12} md={2} justify="center" alignItems="center" style={{marginLeft:"15px"}}>
-							<img src={" "} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
+							<img src={" "} alt="" style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 						</Grid>
 						<Grid container direction="column" sm={12} md={4} >
 							<Grid container direction="row" justify="center">

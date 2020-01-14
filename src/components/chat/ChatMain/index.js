@@ -1,10 +1,8 @@
 import React from 'react';
 import firebase from 'firebase';
-import api from '../../../redux/apis';
+
 import './style.scss';
-// Redux
-import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+
 // Material UI Component
 import Button from '@material-ui/core/Button';
 
@@ -17,7 +15,7 @@ import dogImage from '../../../images/dog.png';
 
 
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
 	constructor(props){
 		super(props);
 
@@ -30,12 +28,12 @@ class Chat extends React.Component {
 
 	componentDidMount() {
 		this.scrollToBottom();
-		this.setMyData();
+		// this.setMyData();
 	}
 
 	
 	setMyData = async () => {
-		if(Object.keys(this.props.me).length==0) {
+		if(Object.keys(this.props.me).length===0) {
 			this.props.fetchMyData()
 				.then(response => this.setState({me: response}));
 		} else {
@@ -52,7 +50,7 @@ class Chat extends React.Component {
 
 	// メッセージを送信
 	sendMessage = () => {
-		if(this.state.inputtingMessage!="") {
+		if(this.state.inputtingMessage!=="") {
 			const newMessage = this.state.inputtingMessage;
 			// let messages = this.props.messages;
 
@@ -96,17 +94,17 @@ class Chat extends React.Component {
 	}
 
 	// Djangoにデータほ保存
-	postMessageToDjango = (message) => {
-		api.post('chat/messages/', {
-			room_id: this.props.roomId,
-			message: message,
-			sender: this.state.me.user_id,
-		})
-		.then(res => {
-			this.props.setRoomLastMessage(this.props.roomId,
-				res.data.message, new Date())
-		})
-	}
+	// postMessageToDjango = (message) => {
+	// 	api.post('chat/messages/', {
+	// 		room_id: this.props.roomId,
+	// 		message: message,
+	// 		sender: this.state.me.user_id,
+	// 	})
+	// 	.then(res => {
+	// 		this.props.setRoomLastMessage(this.props.roomId,
+	// 			res.data.message, new Date())
+	// 	})
+	// }
 
 
 
@@ -115,7 +113,7 @@ class Chat extends React.Component {
 		const text = e.target.value;
 
 		// テキストが入力されていたら送信ボタンをアクティブにする
-		if (text=="") {
+		if (text==="") {
 			this.setState({sendButtonStyle: styles.sendButtonDeactive});
 		} else {
 			this.setState({sendButtonStyle: styles.sendButtonActive});
@@ -143,11 +141,11 @@ class Chat extends React.Component {
 	}
 
 	render() {
-		if(this.props.roomId==0) {
+		if(this.props.roomId===0) {
 			return (
 				<div className="chat-main-not-selected">
 					<p>Chat !!</p>
-					<img src={dogImage} />
+					<img src={dogImage} alt=""/>
 				</div>
 			);
 		}
@@ -194,19 +192,7 @@ class Chat extends React.Component {
 	}
 }
 
-
-const mapStateProps = (store) => {
-	return { me: store.me };
-}
-
-export default connect( mapStateProps, { fetchMyData })(Chat);
-
-
 class ChatBoxMe extends React.Component {
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return (
 			<div>
@@ -225,10 +211,6 @@ class ChatBoxMe extends React.Component {
 
 
 class ChatBoxOther extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return (
 			<div>

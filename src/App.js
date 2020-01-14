@@ -4,7 +4,7 @@ import './app.scss';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Auth from './Auth';
+// import Auth from './Auth';
 
 // screens
 import ChatList from './screens/chat/ChatList';
@@ -40,10 +40,6 @@ firebase.initializeApp(firebaseConfig);
 
 
 export default class App extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return (
 		  <div className="App">

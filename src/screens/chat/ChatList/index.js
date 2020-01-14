@@ -1,17 +1,9 @@
 import React from 'react';
-import api from '../../../redux/apis';
-import firebase from 'firebase';
+
+// import firebase from 'firebase';
 import _ from 'lodash';
 import './style.scss';
-import { makeStyles } from '@material-ui/core/styles';
-// Redux
-import { connect } from 'react-redux';
-import {
-	fetchMyData,
-	fetchFollowers,
-	fetchFollowings
-} from '../../../redux/actions/user';
-import { fetchChatRooms } from '../../../redux/actions/chat';
+
 // Material UI Component
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -20,9 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 // Material UI Icon
 // import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import ChatIcon from '@material-ui/icons/Chat';
+
 import CloseIcon from '@material-ui/icons/Close';
-import GroupIcon from '@material-ui/icons/Group';
+
 // My Component
 import ChatAddButton  from '../../../components/chat/ChatAddButton';
 import ChatMain from '../../../components/chat/ChatMain';
@@ -31,7 +23,7 @@ import UserListDialog from '../../../components/user/UserListDialog';
 
 
 // チャット画面
-class Chat extends React.Component {
+export default class Chat extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -91,7 +83,7 @@ class Chat extends React.Component {
 
 	// チャットルームのメンバーから自分と相手を分ける
 	findChatOpponentFromMembers = (members) => {
-		if(members[0].user_id!=this.myUserId) {
+		if(members[0].user_id!==this.myUserId) {
 			return members[0];
 		}
 		else {
@@ -179,7 +171,7 @@ class Chat extends React.Component {
 
 
 	renderCloseButton = () => {
-		if (this.state.roomId!=0) {
+		if (this.state.roomId!==0) {
 			return (
 				<Button color="default"
 					onClick={this.closeChat}
@@ -195,60 +187,60 @@ class Chat extends React.Component {
 
 	// チャットルーム内のメッセージ
 	roomMssages = (roomId) => {
-		if(roomId != 0)
+		if(roomId !== 0)
 			return this.state.rooms[roomId].messages;
 	}
 
 	setMyData = async () => {
-		if(Object.keys(this.props.me).length==0) {
-			this.props.fetchMyData()
-				.then(response => this.setState({me: response}));
-		} else {
-			this.setState({ me: this.props.me });
-		}
+		// if(Object.keys(this.props.me).length==0) {
+		// 	this.props.fetchMyData()
+		// 		.then(response => this.setState({me: response}));
+		// } else {
+		// 	this.setState({ me: this.props.me });
+		// }
 	}
 
 	// チャットルームのデータをstateに保存
 	setChatRooms = async () => {
-		this.props.fetchChatRooms()
-			.then(rooms => this.setState({rooms: rooms}))
+		// this.props.fetchChatRooms()
+		// 	.then(rooms => this.setState({rooms: rooms}))
 	}
 
 	// フォロワーボタンをクリックした時の処理
 	onClickFollower = () => {
-		this.props.fetchFollowers()
-			.then(users => {
-				this.setState({ followers: users, showFollowerDialog: true });
-			});
+		// this.props.fetchFollowers()
+		// 	.then(users => {
+		// 		this.setState({ followers: users, showFollowerDialog: true });
+		// 	});
 	}
 
 	// フォロー中のボタンをクリックした時の処理
 	onClickFollowing = () => {
-		this.props.fetchFollowings()
-			.then(users => {
-				this.setState({ followings: users, showFollowingDialog : true });
-			});
+		// this.props.fetchFollowings()
+		// 	.then(users => {
+		// 		this.setState({ followings: users, showFollowingDialog : true });
+		// 	});
 	}
 
 	onClickContractingDialog = () => {
-		this.props.fetchFollowers()
-			.then(users => {
-				this.setState({ followers: users, showContractingDialog: true });
-			});
+		// this.props.fetchFollowers()
+		// 	.then(users => {
+		// 		this.setState({ followers: users, showContractingDialog: true });
+		// 	});
 	}
 
 	onClickContractedDialog = () => {
-		this.props.fetchFollowings()
-			.then(users => {
-				this.setState({ followings: users, showContractedDialog : true });
-			});
+		// this.props.fetchFollowings()
+		// 	.then(users => {
+		// 		this.setState({ followings: users, showContractedDialog : true });
+		// 	});
 	}
 
 	onClickRequestedDialog = () => {
-		this.props.fetchFollowers()
-			.then(users => {
-				this.setState({ followers: users, showRequestedDialog: true });
-			});
+		// this.props.fetchFollowers()
+		// 	.then(users => {
+		// 		this.setState({ followers: users, showRequestedDialog: true });
+		// 	});
 	}
 
 
@@ -258,35 +250,6 @@ class Chat extends React.Component {
 		console.log('this.state.rooms', this.state.rooms);
 		return (
 			<Grid direction="row" className="chat-screen-contaienr">
-				{/* 左端に固定したメニューバー */}
-				{/* <div className="chat-menu-container">
-					<Button color="default" onClick={this.openFriendListDialog}>
-						<Grid item>
-							<GroupIcon style={styles.buttonIconRed}/>
-							<p style={styles.buttonLabelRed}>友達</p>
-						</Grid>
-					</Button>
-					<Button color="default">
-						<Grid item>
-							<GroupIcon style={styles.buttonIconBlue}/>
-							<p style={styles.buttonLabelBlue}>契約中</p>
-						</Grid>
-					</Button>
-					<Button color="default">
-						<Grid item>
-							<GroupIcon style={styles.buttonIconYellow}/>
-							<p style={styles.buttonLabelYellow}>リクエスト</p>
-						</Grid>
-					</Button>
-					<Button color="default">
-						<Grid item>
-							<GroupIcon style={styles.buttonIconGreen}/>
-							<p style={styles.buttonLabelGreen}>メニュー</p>
-						</Grid>
-					</Button>
-					{this.renderCloseButton()}
-				</div> */}
-				{/* 画面サイズがmd以下のとき非表示にするコンポーネント */}
 				<Hidden mdDown>
 					<div className="chat-list-container-half">
 						<Grid direction="row" style={{backgroundColor: "#fff00ff"}}>
@@ -328,21 +291,12 @@ class Chat extends React.Component {
 						open={this.state.showChatMainDialog}
 						onClose={() => this.setState({ showChatMainDialog: false })}
 					>
-					{/* <div className="chat-main-container">
-						<ChatMain
-							roomId={this.state.roomId}
-							messages={this.roomMssages(this.state.roomId)}
-							setMessages={this.setMessages}
-							close={this.closeChat}
-						/>
-					</div> */}
 				</Dialog>
 				</Hidden>
 				<UserListDialog
 					title="フォロワー"
 					show={this.state.showFollowerDialog}
 					users={this.state.followers}
-					// users={[]}
 					close={() => this.setState({ showFollowerDialog: false })}
 				/>
 				<UserListDialog
@@ -355,7 +309,6 @@ class Chat extends React.Component {
 					title="取引中のユーザー"
 					show={this.state.showContractingDialog}
 					users={[]}
-					// users={[]}
 					close={() => this.setState({ showContractingDialog: false })}
 				/>
 				<UserListDialog
@@ -374,26 +327,6 @@ class Chat extends React.Component {
 		);
 	}
 }
-
-
-const mapStateProps = (store) => {
-	return { 
-		me: store.me,
-		followings: store.followsing,
-		followers: store.followers,
-		rooms: store.rooms,
-	 };
-}
-
-const actions = {
-	fetchMyData,
-	fetchFollowings,
-	fetchFollowers,
-	fetchChatRooms
-}
-
-export default connect( mapStateProps, actions )(Chat);
-
 
 
 const styles = {

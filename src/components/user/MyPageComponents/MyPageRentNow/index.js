@@ -11,24 +11,22 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { blue } from '@material-ui/core/colors';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faClock} from '@fortawesome/free-solid-svg-icons'
 
-
-import eraiza from '../../../../images/eraiza.png';
 import drake from '../../../../images/drake.jpg';
-import cup from '../../../../images/cap.jpg';
+import cup from '../../../../images/cup.jpg';
 
 export default class MyPageRentNow extends React.Component {
 	constructor(props) {
@@ -85,13 +83,13 @@ export default class MyPageRentNow extends React.Component {
 	}
 
 	render() {
-		const { items } = this.state;
+		// const { items } = this.state;
 
 		return (
 			<Card style={{width:"1100"}}>
 				<Grid container direction="row">
 					<Grid container sm={12} md={2} direction="column" justify="center" alignItems="center" style={{marginLeft:"15px"}}>
-						<img src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
+						<img alt="" src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
 					</Grid>
 					<Grid container sm={12} md={4} direction="column" >
 						<Grid container direction="row" justify="center" style={{marginLeft:"20px"}}>
@@ -137,32 +135,32 @@ export default class MyPageRentNow extends React.Component {
 	}
 }
 
-function ReturnCodeInputButton() {
-    const [open, setOpen] = React.useState(false);
+// function ReturnCodeInputButton() {
+//     const [open, setOpen] = React.useState(false);
   
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
+//     const handleClickOpen = () => {
+//       setOpen(true);
+//     };
   
-    const handleClose = () => {
-      setOpen(false);
-	};
+//     const handleClose = () => {
+//       setOpen(false);
+// 	};
 	
-    return (
-      <div>
-		<Button onClick={handleClickOpen} variant="outlined" color="primary" style={{width:"100px", height:"40px", marginLeft:"180px", fontWeight:"900"}}>返却完了</Button>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle >送られたコードを入力してください</DialogTitle>
-            <DialogContent>
-				<TextField
-					label="コードを入力"
-					variant="outlined"
-				/>
-				<DialogActions>
-					<Button onClick={handleClose}>送信</Button>
-				</DialogActions>
-            </DialogContent>
-        </Dialog>
-      </div>
-    );
-  }
+//     return (
+//       <div>
+// 		<Button onClick={handleClickOpen} variant="outlined" color="primary" style={{width:"100px", height:"40px", marginLeft:"180px", fontWeight:"900"}}>返却完了</Button>
+//         <Dialog open={open} onClose={handleClose}>
+//             <DialogTitle >送られたコードを入力してください</DialogTitle>
+//             <DialogContent>
+// 				<TextField
+// 					label="コードを入力"
+// 					variant="outlined"
+// 				/>
+// 				<DialogActions>
+// 					<Button onClick={handleClose}>送信</Button>
+// 				</DialogActions>
+//             </DialogContent>
+//         </Dialog>
+//       </div>
+//     );
+//   }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchItems } from '../../../redux/actions';
+// import { fetchItems } from '../../../redux/actions';
 import { Link } from 'react-router-dom';
 import './style.scss';
+// import Faker from 'faker';
 
 import { makeStyles } from '@material-ui/core/styles';
 // Material UI Component
@@ -15,48 +15,56 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Pagination from '../../../components/common/Pagination';
 import Item from '../ItemCard';
 
+import {items} from '../../../datas/items';
 
-class ItemListComponent extends React.Component {
+
+export default class ItemListComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: [],
+			items: items,
 			searchWords: "",
+			itemNum :100,
 		}
+		console.log('@@@@@@@@@@@@@@@@@@@',this.state.items);
+		console.log('objectkey', Object.values(this.state.items)[2].likeNum);
 	}
 
-	componentWillMount(){
-		if(this.props.items.length <= 1){
-			var searchWords = localStorage.getItem("search");
-			this.setState({　searchWords: searchWords })
-			this.props.fetchItems(searchWords ? searchWords : "");
-		}
-	}
+	// componentWillMount(){
+	// 	if(this.props.items.length <= 1){
+	// 		var searchWords = localStorage.getItem("search");
+	// 		this.setState({　searchWords: searchWords })
+	// 		this.props.fetchItems(searchWords ? searchWords : "");
+	// 	}
+	// }
+
 
 	renderItems = () =>{
-		return Object.keys(this.props.items).map(itemId => {
-			const item = this.props.items[itemId]
-			return(
-				<Grid xs={12} sm={6} md={4} lg={3} key={itemId}>
-					<Item
-						itemId={itemId}
-						to={'/items/' + itemId}
-						image={item.images[0].url}
-						price={item.fee_per_hour}
-						// priceLabel={}
-						likedNum={item.liked_num}
-					/>
-				</Grid>
-			);
+		return Object.keys(this.state.items).map(itemId => {
+			const item = this.state.items[itemId];
+			console.log('itemnum',itemId);
+			console.log(`asap${itemId}`, item);
+			console.log(`image${itemId}`, Object.values(item.image));
+					return(
+						<Grid xs={12} sm={6} md={4} lg={3}>
+							<Item
+								itemId={itemId}
+								to={'/items/' + {itemId}}
+								image={Object.values(item.image)}
+								price={item.price}
+								likeNum={item.likeNum}
+							/>
+						</Grid>
+					);
 		})
 	}
 
 	render() {
-		console.log(this.props.items);
-
 		return (
 			<Grid container>
-				{this.renderItems()}
+				<Grid container direction="row" aliginItems="center" style={{marginTop:"40px"}}>
+					{this.renderItems()}
+				</Grid>
 				 <Link to='/items/new/post'>
 					<ItemPostButton/>
 				</Link>
@@ -99,13 +107,65 @@ const ItemPostButton = () => {
 	);
 }
 
-const mapStateProps = (store) => {
-	return {
-		items: store.items,
-		searchWords: store.searchWords,
-	};
-}
-
-export default connect( mapStateProps, { fetchItems })(ItemListComponent);
-
-
+// const items = {
+//     1:{
+//         image:{basketball},
+//         likeNum:67,
+//         price: 10,
+//     },
+//     2:{
+//         image:{basketball10},
+//         likeNum:91,
+//         price: 50,
+//     },
+//     3:{
+//         image:{bicycle},
+//         likeNum:23,
+//         price:50,
+//     },
+//     4:{
+//         image:{camp},
+//         likeNum:102,
+//         price: 200,
+//     },
+//     5:{
+//         image:{carry_bag},
+//         likeNum:399,
+//         price: 50,
+//     },
+//     6:{
+//         image:{drill},
+//         likeNum:420,
+//         price:50,
+//     },
+//     7:{
+//         image:{ski7},
+//         likeNum:47,
+//         price: 100,
+//     },
+//     8:{
+//         image:{soccer},
+//         likeNum:10,
+//         price: 50,
+//     },
+//     9:{
+//         image:{speaker},
+//         likeNum:233,
+//         price:30,
+//     },
+//     10:{
+//         image:{suit},
+//         likeNum:77,
+//         price: 100,
+//     },
+//     11:{
+//         image:{switch2},
+//         likeNum:729,
+//         price: 50,
+//     },
+//     12:{
+//         image:{christmas},
+//         likeNum:8989,
+//         price:500,
+//     },
+// }

@@ -24,7 +24,7 @@ import {
 	}
 
 	render() {
-		const { items } = this.state;
+		// const { items } = this.state;
 
 		return (
 			<Container>

@@ -14,9 +14,6 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
 export default class MyPage extends React.Component {
-	constructor(props){
-		super(props);
-	}
 
 	renderStar = (valueOfPostUser) =>{
 

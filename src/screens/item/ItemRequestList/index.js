@@ -1,10 +1,7 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
-import { fetchRequestList } from '../../../redux/actions/requestList';
-
 import './style.scss';
-import api from '../../../redux/apis';
+
 
 // // Material UI Component
 
@@ -39,7 +36,7 @@ import {
 
 import cup from '../../../images/cup.jpg';
 
-class ItemRequestList extends React.Component{
+export default class ItemRequestList extends React.Component{
     constructor(props) {
         super(props);
         
@@ -344,42 +341,42 @@ function RequestAddButton() {
   
     const postHopeRequest = async () => {
 
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
 
-        const optionsPost = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        }
+        // const optionsPost = {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': 'Token ' + token
+        //     },
+        // }
 
-        const notEmpty = (itemName !== "" && prefecture !== "" && 
-            lentPeriodNum !== "" && hopeFee !=="");
+        // const notEmpty = (itemName !== "" && prefecture !== "" && 
+        //     lentPeriodNum !== "" && hopeFee !=="");
 
-        console.log(notEmpty);
+        // console.log(notEmpty);
 
-        if(notEmpty){
-            console.log('notEmpty!!!')
-            const postData ={
-                name: itemName,
-                hope_fee: Number(hopeFee),
-                hope_hour: Number(lentPeriodNum),
-                solved: false,
-            }
-            console.log('postData', postData);
-            api.post('requests/', postData, optionsPost)
-                .then( ()=> {
-                        alert('リクエスト完了！');
-                        handleClose();
-                    }
-                )
-                .catch((error) => {
-                    alert('なんでだろう', error);
-                    console.log('errorrrrr', error);
-                })
-        }else{
-            alert('項目を入力してください');
-        }
+        // if(notEmpty){
+        //     console.log('notEmpty!!!')
+        //     const postData ={
+        //         name: itemName,
+        //         hope_fee: Number(hopeFee),
+        //         hope_hour: Number(lentPeriodNum),
+        //         solved: false,
+        //     }
+        //     console.log('postData', postData);
+        //     api.post('requests/', postData, optionsPost)
+        //         .then( ()=> {
+        //                 alert('リクエスト完了！');
+        //                 handleClose();
+        //             }
+        //         )
+        //         .catch((error) => {
+        //             alert('なんでだろう', error);
+        //             console.log('errorrrrr', error);
+        //         })
+        // }else{
+        //     alert('項目を入力してください');
+        // }
     }
 
     const addZero = (num) => {
@@ -567,11 +564,3 @@ function RequestAddButton() {
       </div>
     );
   }
-
-const mapStateProps = (store) => {
-	return {
-        list: store.requestList,
-	};
-}
-
-export default connect( mapStateProps, { fetchRequestList })(ItemRequestList);

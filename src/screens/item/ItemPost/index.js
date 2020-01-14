@@ -1,12 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 
-import api from '../../../redux/apis';
+
 import './style.scss';
 import {Link} from 'react-router-dom';
-// Redux
-import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+
 // Material UI Component
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -32,7 +30,7 @@ import ConfirmDialog from '../../../components/item/ItemPostConfirmDialog';
 const MAX_NUM_OF_IMAGE = 9
 
 
-class ItemPost extends React.Component {
+export default class ItemPost extends React.Component {
 	constructor(props){
 		super(props);
 
@@ -60,12 +58,12 @@ class ItemPost extends React.Component {
 	}
 
 	setMyData = async () => {
-		if(Object.keys(this.props.store.me).length==0) {
-			this.props.fetchMyData()
-				.then(response => this.setState({me: response}));
-		} else {
-			this.setState({ me: this.props.store.me });
-		}
+		// if(Object.keys(this.props.store.me).length==0) {
+		// 	this.props.fetchMyData()
+		// 		.then(response => this.setState({me: response}));
+		// } else {
+		// 	this.setState({ me: this.props.store.me });
+		// }
 	}
 	
 
@@ -159,34 +157,34 @@ class ItemPost extends React.Component {
 
 	// 画像をサーバーに送信
 	uploadImages = async () => {
-		const formData = new FormData();
-		const timestamp = new Date().getTime();
+		// const formData = new FormData();
+		// const timestamp = new Date().getTime();
 
-		for(let i=0; i<this.state.images.length; i++ ) {
-			formData.append(`url${i}`, this.state.images[i], `${timestamp}${i}.png`);
-		}
-		const response = await api.post('images/create_many/', formData);
-		return response.data;
+		// for(let i=0; i<this.state.images.length; i++ ) {
+		// 	formData.append(`url${i}`, this.state.images[i], `${timestamp}${i}.png`);
+		// }
+		// const response = await api.post('images/create_many/', formData);
+		// return response.data;
 	}
 
 	// 商品を登録する（サーバーにリクエスト送信）
 	postItem = async () => {
-		this.uploadImages()
-			.then(images => {
-				const imageIds = images.map(image => image.image_id)
+		// this.uploadImages()
+		// 	.then(images => {
+		// 		const imageIds = images.map(image => image.image_id)
 
-				api.post('items/', {
-					name: this.state.itemName,
-					fee_per_hour: this.state.feePerHour,
-					fee_per_day:  this.state.feePerDay,
-					fee_per_week: this.state.feePerWeek,
-					images: imageIds,
-					categories: Object.keys(this.state.categories),
-					owner: this.state.me.user_id,
-					require_mortgage_amount: this.state.mortgagedAmount,
-				})
-				.then(() => this.props.history.push('/items'))
-		})
+				// api.post('items/', {
+				// 	name: this.state.itemName,
+				// 	fee_per_hour: this.state.feePerHour,
+				// 	fee_per_day:  this.state.feePerDay,
+				// 	fee_per_week: this.state.feePerWeek,
+				// 	images: imageIds,
+				// 	categories: Object.keys(this.state.categories),
+				// 	owner: this.state.me.user_id,
+				// 	require_mortgage_amount: this.state.mortgagedAmount,
+				// })
+				// .then(() => this.props.history.push('/items'))
+		// })
 	}
 
 	renderDate = (date) => {
@@ -359,16 +357,6 @@ class ItemPost extends React.Component {
 	}
 }
 
-
-const mapStateProps = (store) => {
-	return { store: store };
-}
-
-export default connect( mapStateProps, { fetchMyData })(ItemPost);
-
-
-
-
 export class ItemPostCard extends React.Component {
 	constructor(props){
 		super(props);
@@ -383,7 +371,7 @@ export class ItemPostCard extends React.Component {
 			<Card className="item-post-image-container"
 				onClick={() => this.setState({selected: !this.state.selected})}
 			>
-				<img className="item-post-image" src={this.props.image}></img>
+				<img alt="" className="item-post-image" src={this.props.image}></img>
 				{[
 					<div/>,
 					<div>

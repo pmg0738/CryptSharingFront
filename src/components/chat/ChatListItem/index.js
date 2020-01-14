@@ -1,10 +1,7 @@
 import React from 'react';
-import api from '../../../redux/apis';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-// Redux
-import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+
 // Material UI Component
 import Card from '@material-ui/core/Card';
 import Fab from '@material-ui/core/Fab';
@@ -14,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import './style.scss';
 
 
-class ChatList extends React.Component{
+export default class ChatList extends React.Component{
 	constructor(props){
 		super(props);
 
@@ -26,13 +23,8 @@ class ChatList extends React.Component{
 		}
 	}
 
-	componentWillMount() {
-		this.fetchChatRooms();
-		this.setMyData();
-	}
-
 	setMyData = async () => {
-		if(Object.keys(this.props.me).length==0) {
+		if(Object.keys(this.props.me).length===0) {
 			this.props.fetchMyData()
 				.then(response => this.setState({me: response}));
 		} else {
@@ -45,12 +37,12 @@ class ChatList extends React.Component{
 	}
 
 	// サーバーからチャットルームのリストをとってくる
-	fetchChatRooms = () => {
-		api.get('room/')
-			.then(response => {
-				this.setState({rooms: response.data.rooms});
-			})
-	}
+	// fetchChatRooms = () => {
+	// 	api.get('room/')
+	// 		.then(response => {
+	// 			this.setState({rooms: response.data.rooms});
+	// 		})
+	// }
 
 	selectRoom = (id) => {
 		// console.log('room id', id)
@@ -78,7 +70,7 @@ class ChatList extends React.Component{
 
 	render(){
 		// 表示するチャットルームがない場合
-		if(this.props.rooms.length==0){
+		if(this.props.rooms.length===0){
 			return(
 				<div className="chat-list-no-meesage-container">
 					<p>NO MESSAGE</p>
@@ -98,7 +90,7 @@ class ChatList extends React.Component{
 				<div>
 					{
 						_.map(this.props.rooms, room => {
-							const index = room.members[0].user_id==this.state.me.user_id ? 1 : 0;
+							const index = room.members[0].user_id===this.state.me.user_id ? 1 : 0;
 							const opponent = room.members[index];
 							const lastMessage = room.last_message===null ? "No Message" : room.last_message.message;
 
@@ -111,7 +103,7 @@ class ChatList extends React.Component{
 									key={`room/${room.room_id}`}
 								>
 									<Link to={'users/' + opponent.user_id}>
-										<img src={opponent.profile_image} className="friend-card-image"/>
+										<img src={opponent.profile_image} alt="" className="friend-card-image"/>
 									</Link>
 
 									<h4 className="friend-card-name">
@@ -128,9 +120,3 @@ class ChatList extends React.Component{
 		}
 	}
 }
-
-const mapStateProps = (store) => {
-	return { me: store.me };
-}
-
-export default connect( mapStateProps, { fetchMyData })(ChatList);

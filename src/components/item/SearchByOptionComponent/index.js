@@ -3,25 +3,15 @@ import React from 'react';
 import 'react-input-range/lib/css/index.css';
 import './style.scss';
 
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import Input from '@material-ui/core/Input';
+
 import Typography from '@material-ui/core/Typography';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { TextField, Button } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
 
 import PrefectureSelector from '../../../components/item/FilterComponents/PrefectureSelector';
 import CategoryAutoComplete from '../../../components/item/FilterComponents/CategoryAutoComplete';
@@ -83,7 +73,7 @@ export default class SearchByOptionComponent extends React.Component {
 	
 	render() {
 		return (
-			<ExpansionPanel style={styles.ExpansionPanel} defaultExpanded="true">
+			<ExpansionPanel style={styles.ExpansionPanel}>
 					<ExpansionPanelSummary
 						expandIcon={<SearchIcon style={styles.SearchIcon}/>}
 					>

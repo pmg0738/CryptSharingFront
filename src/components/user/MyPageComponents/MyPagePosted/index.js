@@ -1,19 +1,6 @@
 import React from 'react';
 import './style.scss';
 
-import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import {
-	Button,
-	Card,
-	Container,
-	Row,
-	Col,
-	Nav,
-	Image,
-} from 'react-bootstrap';
-
 import Item from '../../../item/ItemCard';
 import cup from '../../../../images/carry_bag.jpg';
 
@@ -36,7 +23,7 @@ export default class MyPagePosted extends React.Component {
 
 
 	render() {
-		const { items } = this.state;
+		// const { items } = this.state;
 		
 		return (
 			<Item

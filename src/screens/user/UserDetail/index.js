@@ -1,9 +1,6 @@
 import React from 'react';
-import api from '../../../redux/apis';
 import './style.scss';
-// Redux
-import { connect } from 'react-redux';
-import { fetchUser } from '../../../redux/actions/user';
+
 // Material UI component
 import Avatar from '@material-ui/core/Avatar';
 
@@ -26,7 +23,7 @@ import {
 	Tab
 } from 'react-bootstrap';
 
-class UserDetail extends React.Component {
+export default class UserDetail extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -60,20 +57,20 @@ class UserDetail extends React.Component {
 
 	fetchEvaluations = () => {
 		// 評価を受け取る
-		api.get('evaluations/')
-			.then(res => {
-				this.setState({evaluations: res.data});
-			})
+		// api.get('evaluations/')
+		// 	.then(res => {
+		// 		this.setState({evaluations: res.data});
+		// 	})
 	}
 
 	// フォロー/アンフォローする
 	handleFollow = () => {
-		api.post('users/follow/', { user_id: this.state.user.user_id, })
-			.then(res => {
-				let { user } = this.state;
-				user.following = res.data.following;
-				this.setState({ user: user })
-			})
+		// api.post('users/follow/', { user_id: this.state.user.user_id, })
+		// 	.then(res => {
+		// 		let { user } = this.state;
+		// 		user.following = res.data.following;
+		// 		this.setState({ user: user })
+		// 	})
 	}
 
 	renderEvaluations = () => {
@@ -165,12 +162,3 @@ class UserDetail extends React.Component {
 		);
 	}
 }
-
-const mapStateProps = (store) => {
-	return { 
-		users: store.users,
-		user: store.user
-	};
-}
-
-export default connect( mapStateProps, { fetchUser })(UserDetail);

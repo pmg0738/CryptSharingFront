@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import api from '../../../redux/apis';
 
 import { Link } from 'react-router-dom';
 import './style.scss';
 // web3
-import { createAccount } from '../../../ethereum/account';
+// import { createAccount } from '../../../ethereum/account';
 
 import { makeStyles } from '@material-ui/core/styles';
 // Material UI component
-import Avatar from '@material-ui/core/Avatar';
+
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
+
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -34,7 +29,7 @@ import PrefectureSelector from '../../../components/item/FilterComponents/Prefec
 import GenderRadios from '../../../components/common/GenderRadios';
 
 import backgroundImage from '../../../images/space.png';
-import { green, red, blue } from '@material-ui/core/colors';
+
 
 
 const useStyles = makeStyles({
@@ -92,41 +87,41 @@ export default function Login(props) {
 
 
 	const signup = async () => {
-		if(password==passwordConfirm) {
-			let postData = {
-				password: password,
-				family_name: familyName,
-				given_name:  givenName,
-				gender:      gender,
-				birthday:    birthday,
-				prefecture:  prefecture,
-				city:        city,
-			}
+		if(password===passwordConfirm) {
+			// let postData = {
+			// 	password: password,
+			// 	family_name: familyName,
+			// 	given_name:  givenName,
+			// 	gender:      gender,
+			// 	birthday:    birthday,
+			// 	prefecture:  prefecture,
+			// 	city:        city,
+			// }
 	
-			const notEmpty = (familyName!="" && givenName!="" &&
-				birthday!=null && prefecture!="")
+		// 	const notEmpty = (familyName!="" && givenName!="" &&
+		// 		birthday!=null && prefecture!="")
 	
-			if(notEmpty) {
-				const { address, privateKey } = await createAccount(password);
+		// 	if(notEmpty) {
+		// 		const { address, privateKey } = await createAccount(password);
 				
-				postData['eoa_address'] = address;
+		// 		postData['eoa_address'] = address;
 	
-					api.post('users/create/', postData) .then((res) => {
-						setEoaAddress(address);
-						setPrivatetKey(privateKey);
-						setShowDialog(true);
-					})
-					.catch((error) => {
-						console.log('ERROR', error);
-						alert("失敗", error.status);
-					})
-			} else {
-				alert("必須項目を入力してください")
-			}
-		} else {
-			alert("パスワードが一致しません");
-			setPassword("");
-			setPasswordConfirm("");
+		// 			api.post('users/create/', postData) .then((res) => {
+		// 				setEoaAddress(address);
+		// 				setPrivatetKey(privateKey);
+		// 				setShowDialog(true);
+		// 			})
+		// 			.catch((error) => {
+		// 				console.log('ERROR', error);
+		// 				alert("失敗", error.status);
+		// 			})
+		// 	} else {
+		// 		alert("必須項目を入力してください")
+		// 	}
+		// } else {
+		// 	alert("パスワードが一致しません");
+		// 	setPassword("");
+		// 	setPasswordConfirm("");
 		}
 	}
 
@@ -152,7 +147,7 @@ export default function Login(props) {
 
 	return(
 		<div>
-			<img src={backgroundImage} className="background-image"/>
+			<img alt="" src={backgroundImage} className="background-image"/>
 			<Container maxWidth="lg" className="item-post-container">
 				<Card style={styles.card}>
 					<div className="login-card-inside-contaienr">

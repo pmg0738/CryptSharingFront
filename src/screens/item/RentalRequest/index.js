@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import { connect } from 'react-redux';
-import { fetchClickedItem } from '../../../redux/actions';
 import { 
 	Image,
 } from 'react-bootstrap';
@@ -32,10 +30,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYenSign, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 import cat from '../../../images/carry_bag.jpg';
-import tyler from '../../../images/knock_black.png';
+import tyler from '../../../images/cup.jpg';
 import UserProfile from '../../../components/user/UserProfileComponent';
 
-class Request extends React.Component {
+export default class Request extends React.Component {
 	constructor(props){
 		super(props);
 
@@ -96,8 +94,8 @@ class Request extends React.Component {
 					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 				</TableHead>
 				<TableBody>
-					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥50{this.props.item.fee_per_hour}</TableCell>
-					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥300{this.props.item.fee_per_day}</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥50</TableCell>
+					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥300</TableCell>
 					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥1000</TableCell>
 					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>￥2000</TableCell>
 					<TableCell align='center' style={{fontSize:"17px", fontWeight:"900"}}>
@@ -369,11 +367,3 @@ const styles = {
 	}
 
 }
-
-
-
-const mapStateProps = (state) => {
-    return { item: state.item };
-}
-
-export default connect( mapStateProps, { fetchClickedItem })(Request);

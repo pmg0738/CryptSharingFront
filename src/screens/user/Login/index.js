@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import api from '../../../redux/apis';
 import { Link } from 'react-router-dom';
 
 import './style.scss';
@@ -44,30 +43,30 @@ export default function Login(props) {
 
 
 	const login = async (eoaAddress, password, props) => {
-		api.post('users/token/', {
-			eoa_address: eoaAddress,
-			password: password
-		})
-		.then(response => {
-			const token = response.data.token;
-			localStorage.setItem('token', token);
-			localStorage.setItem('eoaAddress', eoaAddress);
-			setTimeout(() => {
-				props.history.push('/');
-			}, 1000)
-		})
-		.catch((error) => {
-			console.log('error', error);
-			alert("ログイン失敗");
-			setLoading(false);
-		})
+		// api.post('users/token/', {
+		// 	eoa_address: eoaAddress,
+		// 	password: password
+		// })
+		// .then(response => {
+		// 	const token = response.data.token;
+		// 	localStorage.setItem('token', token);
+		// 	localStorage.setItem('eoaAddress', eoaAddress);
+		// 	setTimeout(() => {
+		// 		props.history.push('/');
+		// 	}, 1000)
+		// })
+		// .catch((error) => {
+		// 	console.log('error', error);
+		// 	alert("ログイン失敗");
+		// 	setLoading(false);
+		// })
 	}
 
 	
 
 	return(
 		<div>
-			<img src={backgroundImage} className="background-image"/>
+			<img alt="" src={backgroundImage} className="background-image"/>
 			<Container maxWidth="lg" className="item-post-container">
 				<Card style={styles.card}>
 						<div className="login-card-inside-contaienr">
@@ -75,7 +74,7 @@ export default function Login(props) {
 								{/* <img src={leftImageba} className="login-left-image"/> */}
 							</div>
 							<div className="login-card-right-container">
-								<img src={logo} className="login-logo"/>
+								<img alt="" src={logo} className="login-logo"/>
 								<TextField
 									required
 									label="Ethereumアドレス"

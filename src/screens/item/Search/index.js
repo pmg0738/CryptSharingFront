@@ -15,15 +15,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// Redux
-import { connect } from 'react-redux';
-import { fetchMyData } from '../../../redux/actions/user';
+
 
 import { Link } from 'react-router-dom';
-import logo from '../../../images/newlogo.png';
+import logo from '../../../images/Logo.jpg';
 
 
-class Top extends React.Component {
+export default class Top extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -36,11 +34,11 @@ class Top extends React.Component {
 			searching: false,
 		}
 
-		console.log(this.props.store.me);
-		if(Object.keys(this.props.store.me).length===0) {
-			// me が空の時はサーバーからデータを取得する
-			this.props.fetchMyData();
-		}
+		// console.log(this.props.store.me);
+		// if(Object.keys(this.props.store.me).length===0) {
+		// 	// me が空の時はサーバーからデータを取得する
+		// 	this.props.fetchMyData();
+		// }
 	}
 
 
@@ -211,7 +209,7 @@ class Top extends React.Component {
 
 	search = () => {
 		// 検索ワードを保存し、アイテムリストに遷移
-		if(this.state.searchWords!="") {
+		if(this.state.searchWords!=="") {
 			this.setState({ searching: true });
 			localStorage.setItem('search', this.state.searchWords);
 			
@@ -231,7 +229,7 @@ class Top extends React.Component {
 		return (
 				<Container className="main-search-container">
 					<div className="main-search-card">
-						<img src={logo} className="main-search-logo-image"/>
+						<img alt="" src={logo} className="main-search-logo-image"/>
 						<Form>
 							<Row className="main-search-form-row">
 								<Form.Group controlId="formBasicEmail">
@@ -267,12 +265,3 @@ class Top extends React.Component {
 		);
 	}
 }
-
-
-
-const mapStateProps = (store) => {
-	return { store: store };
-}
-
-
-export default connect( mapStateProps, { fetchMyData })(Top);
