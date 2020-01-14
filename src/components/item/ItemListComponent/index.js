@@ -49,7 +49,7 @@ export default class ItemListComponent extends React.Component {
 						<Grid xs={12} sm={6} md={4} lg={3}>
 							<Item
 								itemId={itemId}
-								to={'/items/' + {itemId}}
+								to={'/items/' + itemId}
 								image={Object.values(item.image)}
 								price={item.price}
 								likeNum={item.likeNum}

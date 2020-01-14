@@ -24,6 +24,8 @@ import UserProfile from '../../../components/user/UserProfileComponent';
 
 import Faker from 'faker';
 
+import {items} from '../../../datas/items';
+
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './style.scss';
@@ -45,6 +47,11 @@ export default class ItemDetail extends React.Component {
 				images: null,
 				liked_num: null,
 			},
+			curruntItem:{
+				image: null,
+				price: null,
+				likeNum: null,
+			},
 			itemDetailFavoriteIcon: "default",
 			images: [],
 			imageStartIndex: 0,
@@ -55,6 +62,13 @@ export default class ItemDetail extends React.Component {
 
 	componentWillMount() {
 		window.scrollTo(0, 0)
+		var itemNum = String(window.location.href);
+		console.log('url', itemNum.slice(28));
+		// console.log('item[1]', this.state.curruntItem);
+		console.log('aaa', items[String(window.location.href).slice(28)]);
+		this.setState({curruntItem: items[String(window.location.href).slice(28)]});
+		console.log('state',this.state.curruntItem);
+
 
 		// const existInStore = this.props.items.hasOwnProperty(this.itemId);
 
@@ -166,8 +180,7 @@ renderStar = (valueOfPostUser) =>{
 }
 
 	render() {
-		console.log('props', this.props.item);
-		console.log('@'.repeat(100),this.state.item);
+		console.log('item[1]', this.state.curruntItem);
 		return (
 				<div>
 					<Link to='/items'>
@@ -181,8 +194,8 @@ renderStar = (valueOfPostUser) =>{
 								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
 								{this.threeArray(this.props.images, this.props.imageStartIndex).map(image => 
 									<img 
-										className="item-detail-not-selected-pic" 
-										src={image} 
+										className="item-detail-not-selected-pic"
+										// src={Object.values(this.state.curruntItem.image)}
 										onClick={() => this.setState({selectedImage: image})}
 										alt=""
 									/>
