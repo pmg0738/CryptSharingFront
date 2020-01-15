@@ -7,17 +7,20 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TextField from '@material-ui/core/TextField';
+import Chip from '@material-ui/core/Chip';
 // Material UI Layout
 import Grid from '@material-ui/core/Grid';
 // Material UI Icon
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import InsertEmoticonRoundedIcon from '@material-ui/icons/InsertEmoticonRounded';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+// import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import SentimentVeryDissatisfiedRoundedIcon from '@material-ui/icons/SentimentVeryDissatisfiedRounded';
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 // Material UI
 import { green, red, blue } from '@material-ui/core/colors';
 import UserProfile from '../../../components/user/UserProfileComponent';
@@ -51,6 +54,9 @@ export default class ItemDetail extends React.Component {
 				image: null,
 				price: null,
 				likeNum: null,
+				category: null,
+				name: null,
+				tanpo: null,
 			},
 			itemDetailFavoriteIcon: "default",
 			images: [],
@@ -107,13 +113,15 @@ export default class ItemDetail extends React.Component {
 
 
 renderImage = (itemLendStatus) => {
-	if((this.state.item.images) && (itemLendStatus)) {
-		return <Image style={styles.selectedImage} src={Faker.image.cats} />
-	}
-	if((this.state.item.images) && (!itemLendStatus)) {
-		return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={Faker.image.cats} />
-	}
-	return <div/>
+
+	return <Image src={this.state.curruntItem.image} style={{width:"450px", height:"450px", marginBottom:"10px"}}/>
+	// if((this.state.item.images) && (itemLendStatus)) {
+	// 	return <Image style={styles.selectedImage} src={Faker.image.cats} />
+	// }
+	// if((this.state.item.images) && (!itemLendStatus)) {
+	// 	return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={Faker.image.cats} />
+	// }
+	// return <div/>
 }
 
 showEmoticon = (itemLendStatus) =>{
@@ -133,17 +141,17 @@ renderFeeTable = () => {
 	return (
 			<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
 			<TableHead>
-				<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1時間</TableCell>
-				<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
+				<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
+				<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>5日</TableCell>
 				<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
 				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
 			</TableHead>
 			<TableBody>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{Faker.commerce.price}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.price}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*5}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*7}</TableCell>
+				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.tanpo}</TableCell>
 				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>
 					{this.showEmoticon(1)}
 				</TableCell>
@@ -184,11 +192,20 @@ renderStar = (valueOfPostUser) =>{
 		return (
 				<div>
 					<Link to='/items'>
-						<KeyboardBackspaceIcon style={{position:"fixed", color:blue[500], left:"30px",width:"50px", height:"50px"}}/>
+						{/* <KeyboardBackspaceIcon style={{position:"fixed", color:blue[500], left:"30px",width:"50px", height:"50px"}}/> */}
+						<Button variant="contained" color="primary" href="#contained-buttons" style={{position:"fixed", left:"20px", top:"80px", width:"100px",height:"50px", fontSize:"20px"}}>戻る</Button>
 					</Link>
 					<Grid container>
 						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
-							<div style={{ fontSize:"30px", fontWeight:"800", marginBottom:"20px"}}>{this.state.item.name}</div>
+							<div style={{ fontSize:"30px", fontWeight:"800", marginBottom:"10px"}}>
+								{this.state.curruntItem.name}
+								{/* <Chip label={this.state.curruntItem.category} style={{marginLeft:"10px"}}/>
+								<FavoriteIcon style={{marginLeft:"10px"}}/>{this.state.curruntItem.likeNum} */}
+							</div>
+							<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+								<Chip label={this.state.curruntItem.category} style={{}}/>
+								<FavoriteIcon style={{marginLeft:"20px"}}/>{this.state.curruntItem.likeNum}
+							</div>
 							{this.renderImage()}
 							<Grid>
 								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>

@@ -50,7 +50,7 @@ export default class ItemListComponent extends React.Component {
 							<Item
 								itemId={itemId}
 								to={'/items/' + itemId}
-								image={Object.values(item.image)}
+								image={item.image}
 								price={item.price}
 								likeNum={item.likeNum}
 							/>
