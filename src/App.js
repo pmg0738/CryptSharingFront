@@ -61,7 +61,7 @@ export default class App extends React.Component{
 								<Route exact path='/mypage' component={MyPage}/>
 								<Route exact path='/history' component={History}/>
 								<Route exact path='/items' component={SearchByOption}/>
-								<Route exact path='/request' component={RentalRequest}/>
+								<Route exact path='/request/:id' component={RentalRequest}/>
 								<Route exact path='/filter' component={Filter}/>
 								<Route exact path='/users/:id' component={UserDetail}/>
 							</Switch>

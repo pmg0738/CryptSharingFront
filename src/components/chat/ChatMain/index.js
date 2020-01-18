@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 import './style.scss';
 
@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 // Material UI Icon
 
 // else
-import dogImage from '../../../images/dog.png';
+// import dogImage from '../../../images/dog.png';
 
 
 
@@ -22,7 +22,10 @@ export default class Chat extends React.Component {
 		this.state = {
 			inputtingMessage: '',
 			sendButtonStyle: styles.sendButtonDeactive,
-			me: {}
+			me: {},
+			mymessages:["どこで待ち合わせしますか？",],
+			othermessage:["九工大のチャリ置き場にしましょ！"],
+
 		}
 	}
 
@@ -32,14 +35,14 @@ export default class Chat extends React.Component {
 	}
 
 	
-	setMyData = async () => {
-		if(Object.keys(this.props.me).length===0) {
-			this.props.fetchMyData()
-				.then(response => this.setState({me: response}));
-		} else {
-			this.setState({ me: this.props.me });
-		}
-	}
+	// setMyData = async () => {
+	// 	if(Object.keys(this.props.me).length===0) {
+	// 		this.props.fetchMyData()
+	// 			.then(response => this.setState({me: response}));
+	// 	} else {
+	// 		this.setState({ me: this.props.me });
+	// 	}
+	// }
 
 	// Ctrl + Enter でメッセージを送信
 	sendMessageByKeyboard = (e) => {
@@ -52,23 +55,24 @@ export default class Chat extends React.Component {
 	sendMessage = () => {
 		if(this.state.inputtingMessage!=="") {
 			const newMessage = this.state.inputtingMessage;
-			// let messages = this.props.messages;
+			let messages = this.state.mymessages;
 
-			// messages.push({
-			// 	id: 0,   // 0自分が送ったやつ
-			// 	message: newMessage,
-			// });
+			messages.push({
+				// id: 0,   // 0自分が送ったやつ
+				message: newMessage,
+			});
 
 			// メッセージを追加
 			// this.props.setMessages(this.props.roomId, messages);
 
 			// Firestoreに保存
-			this.postMessageToFirestore(newMessage);
+			// this.postMessageToFirestore(newMessage);
 			// Djangoに保存
-			this.postMessageToDjango(newMessage);
+			// this.postMessageToDjango(newMessage);
 
 			// テキストエリアの中身を空にする
 			this.setState({
+				mymessages: messages,
 				inputtingMessage: '',
 				sendButtonStyle: styles.sendButtonDeactive,
 			})
@@ -80,18 +84,18 @@ export default class Chat extends React.Component {
 	}
 
 	// Firestoreにデータを保存
-	postMessageToFirestore = (message) => {
-		const db = firebase.firestore();
+	// postMessageToFirestore = (message) => {
+	// 	const db = firebase.firestore();
 
-		const timestamp = String(new Date().getTime());
+	// 	const timestamp = String(new Date().getTime());
 
-		db.collection('/rooms/' + this.props.roomId + '/messages').doc(timestamp).set({
-			sender: this.state.me.user_id,
-			message: message,
-			is_read: false,
-			sent_date_time: new Date(),
-		}).then((docRef) => console.log('docRef', docRef))
-	}
+	// 	db.collection('/rooms/' + this.props.roomId + '/messages').doc(timestamp).set({
+	// 		sender: this.state.me.user_id,
+	// 		message: message,
+	// 		is_read: false,
+	// 		sent_date_time: new Date(),
+	// 	}).then((docRef) => console.log('docRef', docRef))
+	// }
 
 	// Djangoにデータほ保存
 	// postMessageToDjango = (message) => {
@@ -129,27 +133,33 @@ export default class Chat extends React.Component {
 	// 自分と相手を判別してメッセージコンポーネントを表示
 	renderMessages = () => {
 		return (
-			this.props.messages.map(item => {
-					if(item.sender===this.state.me.user_id){
-						return <ChatBoxMe message = {item.message}/>;
-					} else {
-						return <ChatBoxOther message = {item.message}/>;
-					}
-				}
-			)
+			<div>
+				<ChatBoxMe message = {this.state.mymessages}/>
+				<ChatBoxOther message = {this.state.othermessage}/>
+			</div>
+			
+			// this.props.messages.map(item => {
+			// 		if(item.sender===this.state.me.user_id){
+			// 			<ChatBoxMe message = {this.state.messages}/>
+			// 		} else {
+			// 			<ChatBoxOther message = {item.message}/>
+			// 		}
+			// 	}
+			// )
+			
 		);
 	}
 
 	render() {
-		if(this.props.roomId===0) {
-			return (
-				<div className="chat-main-not-selected">
-					<p>Chat !!</p>
-					<img src={dogImage} alt=""/>
-				</div>
-			);
-		}
-		else {
+		// if(this.props.roomId===0) {
+		// 	return (
+		// 		<div className="chat-main-not-selected">
+		// 			<p>Chat !!</p>
+		// 			<img src={dogImage} alt=""/>
+		// 		</div>
+		// 	);
+		// }
+		// else {
 			return (
 				<div>
 					<div id="chat-view-container" className="chat-view-container">
@@ -189,7 +199,7 @@ export default class Chat extends React.Component {
 				</div>
 			);
 		}
-	}
+	// }
 }
 
 class ChatBoxMe extends React.Component {

@@ -19,6 +19,7 @@ export const items = {
         tanpo:10000,
         name:"バッシュ（アンダーアーマー)",
         category:"スポーツ",
+        available:0,
     },
     2:{
         image:basketball10,
@@ -27,6 +28,7 @@ export const items = {
         tanpo:5000,
         name:"バスケットボール",
         category:"スポーツ",
+        available:1,
     },
     3:{
         image:bicycle,
@@ -35,6 +37,7 @@ export const items = {
         tanpo:20000,
         name:"いい自転車",
         category:"自転車",
+        available:0,
     },
     4:{
         image:camp,
@@ -43,6 +46,7 @@ export const items = {
         tanpo:20000,
         name:"BBQグリル",
         category:"旅行",
+        available:0,
     },
     5:{
         image:carry_bag,
@@ -51,6 +55,7 @@ export const items = {
         tanpo:20000,
         name:"キャリーバック",
         category:"旅行",
+        available:0,
     },
     6:{
         image:drill,
@@ -59,6 +64,7 @@ export const items = {
         tanpo:20000,
         name:"電子ドリル",
         category:"工具",
+        available:1,
     },
     7:{
         image:ski7,
@@ -67,6 +73,7 @@ export const items = {
         tanpo:20000,
         name:"スキー服",
         category:"スポーツ",
+        available:1,
     },
     8:{
         image:soccer,
@@ -75,6 +82,7 @@ export const items = {
         tanpo:20000,
         name:"サッカーシューズ",
         category:"スポーツ",
+        available:1,
     },
     9:{
         image:speaker,
@@ -83,6 +91,7 @@ export const items = {
         tanpo:20000,
         name:"スピーカ",
         category:"音楽",
+        available:1,
     },
     10:{
         image:suit,
@@ -91,6 +100,7 @@ export const items = {
         tanpo:20000,
         name:"スーツ（メンズ）",
         category:"メンズ服",
+        available:1,
     },
     11:{
         image:switch2,
@@ -99,6 +109,7 @@ export const items = {
         tanpo:20000,
         name:"Switch",
         category:"ゲーム",
+        available:0,
     },
     12:{
         image:christmas,
@@ -107,5 +118,6 @@ export const items = {
         tanpo:20000,
         name:"サンタコスプレ",
         category:"非日常品",
+        available:1,
     },
 }

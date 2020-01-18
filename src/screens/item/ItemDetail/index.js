@@ -22,12 +22,15 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 // Material UI
-import { green, red, blue } from '@material-ui/core/colors';
+import { green, red, blue, grey, teal} from '@material-ui/core/colors';
 import UserProfile from '../../../components/user/UserProfileComponent';
 
 import Faker from 'faker';
 
 import {items} from '../../../datas/items';
+
+import cup from '../../../images/cup.jpg';
+
 
 import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -57,10 +60,12 @@ export default class ItemDetail extends React.Component {
 				category: null,
 				name: null,
 				tanpo: null,
+				available: null,
 			},
 			itemDetailFavoriteIcon: "default",
 			images: [],
 			imageStartIndex: 0,
+			itemNum: null,
 		}
 		
 		this.itemId = this.props.match.params.id;
@@ -70,6 +75,7 @@ export default class ItemDetail extends React.Component {
 		window.scrollTo(0, 0)
 		var itemNum = String(window.location.href);
 		console.log('url', itemNum.slice(28));
+		this.setState({itemNum: itemNum.slice(28)});
 		// console.log('item[1]', this.state.curruntItem);
 		console.log('aaa', items[String(window.location.href).slice(28)]);
 		this.setState({curruntItem: items[String(window.location.href).slice(28)]});
@@ -112,80 +118,138 @@ export default class ItemDetail extends React.Component {
 
 
 
-renderImage = (itemLendStatus) => {
+	renderImage = (itemLendStatus) => {
 
-	return <Image src={this.state.curruntItem.image} style={{width:"450px", height:"450px", marginBottom:"10px"}}/>
-	// if((this.state.item.images) && (itemLendStatus)) {
-	// 	return <Image style={styles.selectedImage} src={Faker.image.cats} />
-	// }
-	// if((this.state.item.images) && (!itemLendStatus)) {
-	// 	return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={Faker.image.cats} />
-	// }
-	// return <div/>
-}
+		return <Image src={this.state.curruntItem.image} style={{width:"450px", height:"450px", marginBottom:"10px"}}/>
+		// if((this.state.item.images) && (itemLendStatus)) {
+		// 	return <Image style={styles.selectedImage} src={Faker.image.cats} />
+		// }
+		// if((this.state.item.images) && (!itemLendStatus)) {
+		// 	return <Image style={{width:"450px", height:"450px", marginBottom:"10px"}} src={Faker.image.cats} />
+		// }
+		// return <div/>
+	}
 
-showEmoticon = (itemLendStatus) =>{
-	if(itemLendStatus){			
-		return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
-	}else{
-		return(
-				<div>
-					<SentimentVeryDissatisfiedRoundedIcon style={{color:red[500], width:"40px", height:"40px"}}/>
-					<div style={{fontSize:"10px", opacity:"0.7"}}>12/25から可能</div>
+	showEmoticon = (itemLendStatus) =>{
+		if(itemLendStatus){			
+			return <InsertEmoticonRoundedIcon style={{color:green[500], width:"40px", height:"40px"}}/>
+		}else{
+			return(
+					<div>
+						<SentimentVeryDissatisfiedRoundedIcon style={{color:red[500], width:"40px", height:"40px"}}/>
+						<div style={{fontSize:"10px", opacity:"0.7"}}>12/25から可能</div>
+					</div>
+				)
+		}
+	}
+
+	renderFeeTable = () => {	
+		return (
+				<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
+				<TableHead>
+					<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
+					<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>5日</TableCell>
+					<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
+					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
+					<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
+				</TableHead>
+				<TableBody>
+					<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.price}</TableCell>
+					<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*5}</TableCell>
+					<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*7}</TableCell>
+					<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.tanpo}</TableCell>
+					<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>
+						{this.showEmoticon(this.state.curruntItem.available)}
+					</TableCell>
+				</TableBody>
+				</Table>
+		);
+	}
+
+	renderStar = (valueOfPostUser) =>{
+
+		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
+
+		let starArray = [];
+
+		while (starArray.length<5) {
+
+			if(valueOfPostUser >= 1) {
+				valueOfPostUser -= 1;
+				starArray.push(FullStar);
+			}
+
+			else if(valueOfPostUser >= 0.5) {
+				starArray.push(HalfStar);
+				valueOfPostUser = 0;
+			}
+
+			else {
+				starArray.push(EmptyStar);
+			}
+		}
+		return starArray;
+	}
+
+	returnCategoryStyle = () =>{
+		if(this.state.curruntItem.category === "スポーツ"){
+			return(
+			<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+				<Chip label={this.state.curruntItem.category} style={{backgroundColor:blue[300]}}/>
+				<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+				{this.state.curruntItem.likeNum}
+			</div>
+			);
+		}
+		if(this.state.curruntItem.category === "旅行"){
+			return(
+				<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+					<Chip label={this.state.curruntItem.category} style={{backgroundColor:green[200]}}/>
+					<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+					{this.state.curruntItem.likeNum}
 				</div>
-			)
+				);
+		}
+		if(this.state.curruntItem.category === "工具"){
+			return(
+				<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+					<Chip label={this.state.curruntItem.category} style={{backgroundColor:grey[400]}}/>
+					<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+					{this.state.curruntItem.likeNum}
+				</div>
+				);
+		}
+		if(this.state.curruntItem.category === "非日常品"){
+			return(
+				<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+					<Chip label={this.state.curruntItem.category} style={{backgroundColor:red[400]}}/>
+					<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+					{this.state.curruntItem.likeNum}
+				</div>
+				);
+		}
+		if(this.state.curruntItem.category === "ゲーム"){
+			return(
+				<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+					<Chip label={this.state.curruntItem.category} style={{backgroundColor:teal[600]}}/>
+					<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+					{this.state.curruntItem.likeNum}
+				</div>
+				);
+		}
+		if(this.state.curruntItem.category === "自転車"){
+			return(
+				<div style={{marginBottom:"20px", marginLeft:"0px"}}>
+					<Chip label={this.state.curruntItem.category} style={{backgroundColor:teal[300]}}/>
+					<FavoriteIcon style={{marginLeft:"20px", marginRight:"5px"}}/>
+					{this.state.curruntItem.likeNum}
+				</div>
+				);
+		}
+		
 	}
-}
-
-renderFeeTable = () => {	
-	return (
-			<Table stickyHeader aria-label="sticky table" style={{width:"450px", marginBottom:"10px"}}>
-			<TableHead>
-				<TableCell key='hour_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1日</TableCell>
-				<TableCell key='day_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>5日</TableCell>
-				<TableCell key='week_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>1週間</TableCell>
-				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>担保</TableCell>
-				<TableCell key='assure_fee' align='center' style={{fontSize:"17px", fontWeight:"900"}}>貸し出し</TableCell>
-			</TableHead>
-			<TableBody>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.price}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*5}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{(this.state.curruntItem.price)*7}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>￥{this.state.curruntItem.tanpo}</TableCell>
-				<TableCell align='center' style={{ fontSize:"17px", fontWeight:"900"}}>
-					{this.showEmoticon(1)}
-				</TableCell>
-			</TableBody>
-			</Table>
-	);
-}
-
-renderStar = (valueOfPostUser) =>{
-
-	let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
-	let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
-	let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px"}}/>;
-
-	let starArray = [];
-
-	while (starArray.length<5) {
-
-		if(valueOfPostUser >= 1) {
-			valueOfPostUser -= 1;
-			starArray.push(FullStar);
-		}
-
-		else if(valueOfPostUser >= 0.5) {
-			starArray.push(HalfStar);
-			valueOfPostUser = 0;
-		}
-
-		else {
-			starArray.push(EmptyStar);
-		}
-	}
-	return starArray;
-}
 
 	render() {
 		console.log('item[1]', this.state.curruntItem);
@@ -199,16 +263,11 @@ renderStar = (valueOfPostUser) =>{
 						<Grid  sm={12} md={6} container direction="column" justify="center" alignItems="center" style={{}}>
 							<div style={{ fontSize:"30px", fontWeight:"800", marginBottom:"10px"}}>
 								{this.state.curruntItem.name}
-								{/* <Chip label={this.state.curruntItem.category} style={{marginLeft:"10px"}}/>
-								<FavoriteIcon style={{marginLeft:"10px"}}/>{this.state.curruntItem.likeNum} */}
 							</div>
-							<div style={{marginBottom:"20px", marginLeft:"0px"}}>
-								<Chip label={this.state.curruntItem.category} style={{}}/>
-								<FavoriteIcon style={{marginLeft:"20px"}}/>{this.state.curruntItem.likeNum}
-							</div>
+							{this.returnCategoryStyle()}
 							{this.renderImage()}
 							<Grid>
-								<ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
+								{/* <ArrowBackIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
 								{this.threeArray(this.props.images, this.props.imageStartIndex).map(image => 
 									<img 
 										className="item-detail-not-selected-pic"
@@ -217,15 +276,15 @@ renderStar = (valueOfPostUser) =>{
 										alt=""
 									/>
 								)}
-								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/>
+								<ArrowForwardIosIcon style={{color: blue[500], width:"50px",height:"50px"}}/> */}
 							</Grid>
 						</Grid>
 						<Grid container direction="column" sm={12} md={6} style={{backgroundColor:""}}>
 							<Grid container direction="row" justify="flex-start" style={{marginBottom:"20px"}}>
 								<UserProfile
-									avatar={Faker.internet.avatar}
+									avatar={cup}
 									evaluation="4.5"
-									name={Faker.name.firstName}
+									name="ekeda_eraiza"
 									prefecture="福岡県"
 								/>
 							</Grid>
@@ -234,7 +293,7 @@ renderStar = (valueOfPostUser) =>{
 							
 							<TextField
 								id="outlined-multiline-static"
-								placeholder={"Air Jordan\nサイズ：29\n購入時価格：21600円"}
+								value={"Air Jordan\n\nサイズ：29\n\n購入時価格：21600円"}
 								disabled
 								multiline
 								rows="10"
@@ -245,7 +304,7 @@ renderStar = (valueOfPostUser) =>{
 								InputProps={{reaOnly:true}}
 								style={{width:"500px"}}
 							/>
-							<Link to='/request'>
+							<Link to={'/request/' + this.state.itemNum}>
 								<Button variant="contained" color="primary" style={{width:"500px", height:"80px", fontSize:"30px", fontWeight:"900"}}>
 									リクエスト画面に進む
 								</Button>

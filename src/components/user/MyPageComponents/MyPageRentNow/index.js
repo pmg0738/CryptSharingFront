@@ -26,7 +26,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHourglassStart, faYenSign, faClock} from '@fortawesome/free-solid-svg-icons'
 
 import drake from '../../../../images/drake.jpg';
-import cup from '../../../../images/cup.jpg';
+import cup from '../../../../images/carry_bag.jpg';
+import basketball from '../../../../images/basketball.png';
 
 export default class MyPageRentNow extends React.Component {
 	constructor(props) {
@@ -82,6 +83,15 @@ export default class MyPageRentNow extends React.Component {
 		}
 	}
 
+	// renderImage = (type) =>{
+	// 	if(type==='using'){
+	// 		return(<img alt="" src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>)
+	// 	}
+	// 	if(type==='lending'){
+	// 		return(<img alt="" src={basketball} style={{width:"160px", height:"160px", marginTop:"20px"}}/>)
+	// 	}
+	// }
+
 	render() {
 		// const { items } = this.state;
 
@@ -90,6 +100,7 @@ export default class MyPageRentNow extends React.Component {
 				<Grid container direction="row">
 					<Grid container sm={12} md={2} direction="column" justify="center" alignItems="center" style={{marginLeft:"15px"}}>
 						<img alt="" src={cup} style={{width:"160px", height:"160px", marginTop:"20px"}}/>
+						{/* {this.renderImage} */}
 					</Grid>
 					<Grid container sm={12} md={4} direction="column" >
 						<Grid container direction="row" justify="center" style={{marginLeft:"20px"}}>

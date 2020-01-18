@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { Grid } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
@@ -11,9 +11,9 @@ export default class UserProfile extends React.Component {
 
 	renderStar = (valueOfPostUser) =>{
 
-		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
-		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
-		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px", width:"30px", height:"30px"}}/>;
+		let FullStar = <StarIcon style={{color:"#FBBC05", marginTop:"10px", width:"25px", height:"25px"}}/>;
+		let HalfStar = <StarHalfIcon style={{color:"#FBBC05", marginTop:"10px", width:"25px", height:"25px"}}/>;
+		let EmptyStar = <StarBorderIcon style={{color:"#FBBC05", marginTop:"10px", width:"25px", height:"25px"}}/>;
 
 		let starArray = [];
 
@@ -48,11 +48,11 @@ export default class UserProfile extends React.Component {
 						</Grid>
 						<Grid container sm={12} md={9} >
 							<Grid container direction="row" justify="">
-								<Link to={'/users/' + 1}>
+								{/* <Link to={'/users/' + 1}> */}
 									<Grid style={styles.userProfileName}>
 										{this.props.name}
 									</Grid>
-								</Link>
+								{/* </Link> */}
 								<Grid style={styles.userProfilePrefecture}>
 									{this.props.prefecture}
 								</Grid>
@@ -72,22 +72,23 @@ export default class UserProfile extends React.Component {
 
 const styles = {
 	userProfileAvatar:{
-		marginTop:'10px',
 		width:'100px',
 		height:'100px'
 	},
 	userProfileStar:{
-		marginTop:'20px',
+		marginTop:'5px',
 	},
 	starValue:{
-		fontSize:'20px',
-		marginTop:'10px',
+		fontSize:'15px',
+		marginTop:'11px',
 	},
 	userProfileName:{
 		fontSize:'25px'
 	},
 	userProfilePrefecture:{
-		fontSize:'25px',
-		marginLeft:'20px'
+		fontSize:'20px',
+		marginLeft:'20px',
+		marginTop:"5px",
+		opacity:0.7
 	},
 }
